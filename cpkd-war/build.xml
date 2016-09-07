@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cpkd-war">
+    <property name="export.dir" value="D:\LamLe\wildfly-10.0.0\standalone\deployments" />
+
+    <target name="export" description="cpkd.war">
+        <property name="name" value="cpkd" />
+        <property name="app.dir" value="${basedir}/../cpkd-war" />
+        <property name="build.dir" value="${app.dir}/build" />
+
+        <delete dir="${build.dir}" />
+
+        <zip destfile="${build.dir}/${name}.war">
+            <!--<zipfileset file="${app.dir}/WebContent/META-INF/MANIFEST.MF" prefix="META-INF"/>-->
+            <zipfileset dir="${app.dir}/WebContent"/>
+            <zipfileset dir="${app.dir}/resources" prefix="WEB-INF/classes"/>
+        </zip>
+
+        <copy todir="${export.dir}" file="${build.dir}/${name}.war" overwrite="true"/>
+    </target>
+</project>

@@ -1,0 +1,10 @@
+#zone()
+	#scriptBundle("helloworld-common-script")
+	    iNet.ns('iNet.resources','iNet.resources.helloworld');
+	    if (iNet.resources.helloworld) {
+	        iNet.apply(iNet.resources.helloworld, {
+	            title : '$text.getText("helloworld.common.title")'
+	        });
+	    }
+	#end
+#end

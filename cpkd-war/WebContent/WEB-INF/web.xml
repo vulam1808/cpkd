@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+id="icloud_helloword_version_4_0" version="3.0">
+	<display-name>Cloud Management Platform</display-name>
+  
+	<!-- prefix of this firm (same with site profile prefix) -->
+	<context-param>
+		<param-name>firm.prefix</param-name>
+		<param-value>smartcloud</param-value>
+	</context-param>
+
+	<!-- Cloud Security environment -->
+	<listener>
+		<listener-class>com.inet.xportal.web.listener.CloudSecurityEnvironmentListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>ShiroFilter</filter-name>
+		<filter-class>com.inet.xportal.web.security.servlet.OAuthShiroFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ShiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- OAUTH SUPPORTED -->
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/smartcloud/restapi/*</url-pattern>
+	</servlet-mapping>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errors/serviceunavailable.html</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errors/system.html</location>
+	</error-page>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/errors/system.html</location>
+	</error-page>
+
+	<error-page>
+		<error-code>401</error-code>
+		<location>/errors/denied.html</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>com.inet.xportal.web.exception.ExpiredContractException</exception-type>
+		<location>/errors/expiredcontract.html</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>com.inet.xportal.web.exception.OverQuotaException</exception-type>
+		<location>/errors/overquota.html</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>com.inet.xportal.web.exception.WebFirewallException</exception-type>
+		<location>/errors/firewall.html</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>com.inet.xportal.web.exception.BeanModificationException</exception-type>
+		<location>/errors/business.html</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>com.inet.xportal.web.exception.WebOSBOException</exception-type>
+		<location>/errors/error.html</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>com.inet.xportal.web.exception.WebSecurityException</exception-type>
+		<location>/errors/denied.html</location>
+	</error-page>
+
+	<welcome-file-list>
+		<welcome-file>/index.html</welcome-file>
+	</welcome-file-list>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+</web-app>

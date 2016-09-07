@@ -1,0 +1,98 @@
+#script("/js/cpkd/inet/lib/helloworld-new-office-modal-dialog.min.js")
+<div id="office-modal-create" class="modal fade" data-focus-on="input:first" data-width="650" tabindex="-1" style="display: none">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-group"></i> <span id="social-group-modal-lbl-title">$text.getText("New Office")</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-name">$text.getText("Name") (<span class="required"/>):</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-name" name="name" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-brief">$text.getText("Code") :</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-brief" name="brief" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-address">$text.getText("Address") (<span class="required"/>):</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="office-modal-txt-address" name="address1" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-address2">$text.getText("Other") :</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="office-modal-txt-address2" name="address2" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-ward">$text.getText("Ward"):</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-ward" name="ward" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-district">$text.getText("District") :</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-district" name="district" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-ward">$text.getText("City"):</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-city" name="city" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-country">$text.getText("Country") :</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-country" name="country" value="" class="col-xs-12 col-sm-12" disabled="disabled">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-phone">$text.getText("Phone") :</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-phone" name="phone" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-fax">$text.getText("Fax") :</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-fax" name="fax" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-email">$text.getText("Email") :</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-email" name="email" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-txt-fax">$text.getText("Website") :</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="office-modal-txt-website" name="website" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="office-modal-select-member">$text.getText("Member") :</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="office-modal-select-member" name="members" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="office-modal-create-btn-save" type="button" class="btn btn-primary btn-small"><i class="icon-save"></i> $text.getText("Save")</button>
+        <button id="office-modal-create-btn-cancel" type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("Close")</button>
+    </div>
+</div><!--/ End Modal -->

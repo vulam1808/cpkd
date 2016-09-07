@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cpkd-biz/cpkd-biz.iml" filepath="$PROJECT_DIR$/cpkd-biz/cpkd-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cpkd-ui/cpkd-ui.iml" filepath="$PROJECT_DIR$/cpkd-ui/cpkd-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cpkd-war/cpkd-war.iml" filepath="$PROJECT_DIR$/cpkd-war/cpkd-war.iml" />
+    </modules>
+  </component>
+</project>

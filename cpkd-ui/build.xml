@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cpkd-ui" basedir=".">
+	<property name="project-name" value="cpkd" />
+  <property name="deploy.dir" value="D:\LamLe\wildfly-10.0.0\standalone\module\cpkd"/>
+
+	<property name="js.dir" value="${basedir}/js" />
+	<property name="css.dir" value="${basedir}"/>
+	<property name="font.dir" value="${basedir}"/>
+	<property name="images.dir" value="${basedir}"/>
+	<property name="page.dir" value="${basedir}"/>
+	<property name="widget.dir" value="${basedir}"/>
+	<property name="message.dir" value="${basedir}"/>
+	<property name="viewer.dir" value="${basedir}"/>
+	
+	<property name="build.dir" value="${basedir}/target/build" />
+	<property name="target.dir" value="${basedir}/target" />
+
+    <property name="jsbuilder" location="D:\LamLe\jsbuilder.jar" />
+	<taskdef name="jsbuilder" classname="org.antz29.jsbuilder.ant.BuilderTask" classpath="${jsbuilder}" />
+	
+	<target name="clean">
+		<delete dir="${build.dir}" deleteonexit="true"/>
+		<delete dir="${target.dir}" deleteonexit="true"/>
+	</target>
+	
+	<target name="init" description="Create the build dir">
+		<delete dir="${target.dir}" deleteonexit="true"/>
+	  <mkdir dir="${build.dir}" />
+		<mkdir dir="${target.dir}"/>
+	</target>
+
+    <target name="inet-ui.compile" description="iNet UI" depends="init">
+        <delete dir="${build.dir}/js/inet/lib" failonerror="false" />
+        <jsbuilder dir="${build.dir}/js/inet/lib" pattern="{PACKAGE}.min.js">
+            <source path="${js.dir}/inet"/>
+        </jsbuilder>
+    </target>
+
+	<target name="jquery-plugins.compile" description="jQuery Plugins" depends="init">
+	    <delete dir="${build.dir}/js/jquery/plugins" failonerror="false" />
+	    <jsbuilder dir="${build.dir}/js/jquery/plugins" pattern="{MODULE}.min.js">
+	      <source path="${js.dir}/jquery/plugins"/>
+	    </jsbuilder>
+	</target>
+	
+  <target name="bootstrap-plugins.compile" description="Bootstrap Plugins" depends="init">
+      <delete dir="${build.dir}/js/bootstrap/plugins" failonerror="false" />
+      <jsbuilder dir="${build.dir}/js/bootstrap/plugins" pattern="{MODULE}.min.js">
+        <source path="${js.dir}/bootstrap/plugins"/>
+      </jsbuilder>
+  </target>
+	
+	<target name="zip" depends="inet-ui.compile,jquery-plugins.compile,bootstrap-plugins.compile">
+        <zip destfile="${target.dir}/${project-name}.zip">
+            <fileset dir="${build.dir}" includes="**/*.min.js"/>
+            <fileset dir="${basedir}" includes="js/inet/lib/*.min.js,js/bootstrap/**/*.min.js,js/jquery/**/*.min.js,*.profile,**/*-lang-*.js,js/storage/*.min.js"/>
+            <fileset dir="${css.dir}" includes="**/*.css"/>
+            <fileset dir="${font.dir}" includes="font/*.*"/>
+            <fileset dir="${images.dir}" includes="images/**/*.*"/>
+            <fileset dir="${widget.dir}" includes="widget/**/*.*"/>
+            <fileset dir="${page.dir}" includes="page/**/*.*"/>
+            <fileset dir="${message.dir}" includes="message/*.*"/>
+            <fileset dir="${viewer.dir}" includes="js/inet/pdfview/**/*.*"/>
+        </zip>
+	</target>
+	
+	<target name="deploy" depends="zip">
+		<copy todir="${deploy.dir}" file="${target.dir}/${project-name}.zip" overwrite="true"/>
+	</target>
+
+</project>
