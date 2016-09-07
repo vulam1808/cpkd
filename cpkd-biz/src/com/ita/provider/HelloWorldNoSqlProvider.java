@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  *****************************************************************/
-package com.inet.helloworld.provider;
+package com.ita.provider;
 
 import com.inet.xportal.nosql.web.provider.NoSQLDeployProvider;
 import com.inet.xportal.web.annotation.XPortalBigData;

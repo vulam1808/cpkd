@@ -13,15 +13,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  *****************************************************************/
-package com.inet.helloworld.service.account;
+package com.ita.service.account;
 
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.inet.helloworld.bo.AccountBo;
-import com.inet.helloworld.model.Account;
+import com.ita.bo.AccountBo;
+import com.ita.model.Account;
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
 import com.inet.xportal.web.annotation.XPortalDataService;

@@ -13,11 +13,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  *****************************************************************/
-package com.inet.helloworld.bo;
+package com.ita.bo;
 
 import javax.inject.Inject;
 
-import com.inet.helloworld.model.Account;
+import com.ita.model.Account;
 import com.inet.xportal.nosql.web.bf.MagicContentBF;
 import com.inet.xportal.nosql.web.bo.MagicContentBO;
 import com.inet.xportal.web.context.ContentContext;

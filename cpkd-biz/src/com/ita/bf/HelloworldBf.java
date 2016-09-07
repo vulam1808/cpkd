@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  *****************************************************************/
-package com.inet.helloworld.bf;
+package com.ita.bf;
 
 import javax.inject.Inject;
 import javax.inject.Named;
