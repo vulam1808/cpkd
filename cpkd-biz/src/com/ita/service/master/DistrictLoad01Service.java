@@ -24,7 +24,7 @@ import java.util.Map;
  */
 
 @Named("ita_district01_loadservice")
-@XPortalDataService(roles = {"cpkd.district.load"}, description = "Load Services")
+@XPortalDataService(roles = {"cpkd.master"}, description = "Load Services")
 @XPortalPageRequest(uri = "cpkd/district01/load", model = "com.ita.model.District", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class DistrictLoad01Service extends DistrictLoadService {
 

@@ -61,9 +61,9 @@ public class ProvinceUpdateService extends DataServiceMarker {
         // save account
         //district.setUuid(districtBo.add(district));
         provinceBo.update(id,province);
+        province.setUuid(id);
 
-
-        return new ObjectWebDataservice<String>("");
+        return new ObjectWebDataservice<Province>(province);
     }
 
 }

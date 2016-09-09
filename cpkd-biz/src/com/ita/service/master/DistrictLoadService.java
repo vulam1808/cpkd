@@ -42,7 +42,7 @@ import com.ita.model.District;
  * @since 1.0
  */
 @Named("ita_district_loadservice")
-@XPortalDataService(roles = {"ita.district.load"}, description = "Load Services")
+@XPortalDataService(roles = {"cpkd.master"}, description = "Load Services")
 @XPortalPageRequest(uri = "ita/district/load", model = "com.ita.model.District", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class DistrictLoadService extends DataServiceMarker {
     @Inject

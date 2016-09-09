@@ -55,7 +55,7 @@ $(function() {
                 type : 'text',
                 validate : function(v) {
                     if (iNet.isEmpty(v))
-                        return 'Name must not be empty';
+                        return 'Code must not be empty';
                 }
             },{
                 property : 'name',
@@ -64,7 +64,7 @@ $(function() {
                 type : 'text',
                 validate : function(v) {
                     if (iNet.isEmpty(v))
-                        return 'Code must not be empty';
+                        return 'Name must not be empty';
                 }
             },{
                 label : '',
@@ -78,14 +78,14 @@ $(function() {
                     labelCls: 'label label-info',
                     fn : function(record) {
                         console.log(record);
-                        me.getGrid().edit(record[me.getGrid().getIdProperty()]);
+                        me.grid().edit(record[me.grid().getIdProperty()]);
                     }
                 },{
                     text : 'Delete',
                     icon : 'icon-trash',
                     labelCls: 'label label-important',
                     fn : function(record) {
-                        me.getGrid().remove(record[me.getGrid().getIdProperty()]);
+                        me.grid().remove(record[me.grid().getIdProperty()]);
                     }
                 }]
             }]
@@ -111,13 +111,14 @@ $(function() {
             console.log('saved>>', __data);
 
             $.postJSON(url.save, __data, function (result) {
-                    if(!iNet.isEmpty(result))
+                var __result = result || {};
+                    if(!CommonService.isSuccess(__result))
                     {
-                        this.getGrid().insert(__data);
+                        this.grid.insert(__result);
+                        self.notifySuccess(resource.constant.save_title, resource.constant.save_success);
                     }
-                    else
-                    {
-                        this.getGrid().newRecord();
+                    else {
+                        self.notifyError(resource.constant.save_title, self.getNotifyContent(resource.constant.save_error, __result.errors || []));
                     }
 
 
@@ -129,9 +130,16 @@ $(function() {
 
             console.log('updated>>', __data);
             $.postJSON(url.update, __data, function (result) {
-
-                    this.getGrid().update(__data);
-                    this.getGrid().commit();
+                var __result = result || {};
+                if(!CommonService.isSuccess(__result))
+                {
+                    this.grid.update(__result);
+                    this.grid.commit();
+                    self.notifySuccess(resource.constant.save_title, resource.constant.save_success);
+                }
+                else {
+                    self.notifyError(resource.constant.save_title, self.getNotifyContent(resource.constant.save_error, __result.errors || []));
+                }
 
 
             });
