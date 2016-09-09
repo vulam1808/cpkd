@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cpkd">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cpkd-ui/target/cpkd.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="module">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/common.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/xgate.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/firmadmin.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

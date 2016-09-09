@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cmsapp">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/application/cmsapp.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

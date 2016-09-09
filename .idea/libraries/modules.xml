@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="modules">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cpkd-war/modules/common.zip!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/modules/firmadmin.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

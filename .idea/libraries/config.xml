@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="config">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/config/iwebos-ws-client.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/config/wfengine-ejb-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/config/icloud-ogate-web-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

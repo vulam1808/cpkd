@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="qti-biz-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../WORKING/qti/qti-biz/build/dist/qti-biz-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

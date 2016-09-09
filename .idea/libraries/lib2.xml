@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="lib2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/mongo-java-driver-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/unifiedpush-lib-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/cloud-docx-lib-3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/cloud-protocol-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/cloud-docx-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-web-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-nosql-web-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-plugin-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/javax.inject-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/xwork-2.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/slf4j-api-1.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/json-lib-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/slf4j-log4j12-1.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-core-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/com.inet.web-2.5.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/json-20090211.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-core-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-xdb-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-config-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/lib/com.inet.base-2.5.1.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
