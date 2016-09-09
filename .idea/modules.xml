@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../WORKING/xgate/bo-cloud-framecore/bo-cloud-framecore.iml" filepath="$PROJECT_DIR$/../WORKING/xgate/bo-cloud-framecore/bo-cloud-framecore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/bo-xportal-civil.iml" filepath="$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/bo-xportal-civil.iml" />
       <module fileurl="file://$PROJECT_DIR$/cpkd-biz/cpkd-biz.iml" filepath="$PROJECT_DIR$/cpkd-biz/cpkd-biz.iml" />
       <module fileurl="file://$PROJECT_DIR$/cpkd-ui/cpkd-ui.iml" filepath="$PROJECT_DIR$/cpkd-ui/cpkd-ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/cpkd-war/cpkd-war.iml" filepath="$PROJECT_DIR$/cpkd-war/cpkd-war.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../WORKING/qti/qti-biz/qti-biz.iml" filepath="$PROJECT_DIR$/../WORKING/qti/qti-biz/qti-biz.iml" />
     </modules>
   </component>
 </project>

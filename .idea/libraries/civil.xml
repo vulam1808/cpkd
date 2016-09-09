@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="civil">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../WORKING/civil/ui-civil/target/civil.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

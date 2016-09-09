@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="cloud-framecore-1.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/bo-cloud-framecore/build/dist/cloud-framecore-1.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

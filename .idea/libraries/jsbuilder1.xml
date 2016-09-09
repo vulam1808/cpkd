@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jsbuilder1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../WORKING/qti/qti-ui/tools/jsbuilder.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="cloud-civil-1.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/build/dist/cloud-civil-1.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

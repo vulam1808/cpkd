@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="xgate">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/ui-xgate/target/xgate.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

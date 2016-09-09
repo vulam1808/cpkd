@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jsbuilder">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/cpkd-ui/tools/jsbuilder.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

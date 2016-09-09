@@ -11,7 +11,7 @@
 	<property name="build.unjar.dir" value="${build.dir}/unjar" />
 	<property name="build.unjar.lib" value="${build.unjar.dir}/lib" />
 	<!--<property name="build.dist.dir" value="${build.dir}/dist" />-->
-	<property name="build.dist.dir" value="D:\LamLe\Project\cpkd\cpkd-war\WebContent\WEB-INF\lib" />
+	<property name="build.dist.dir" value="E:\allinet\cpkd\cpkd-war\WebContent\WEB-INF\lib" />
 
 	<property name="jboss.home.dir" value="D:\LamLe"/>
 	<property name="jboss.server.config.dir" value="default" />
