@@ -11,6 +11,7 @@ $(function() {
     this.id = this.id || 'employees-widget';
 
     iNet.ui.helloworld.EmployeesListWidget.superclass.constructor.call(this);
+
     var me= this;
     var dataSource = new iNet.ui.grid.DataSource({
       columns : [{
@@ -96,6 +97,7 @@ $(function() {
 
     this.grid.on('update', function(data, odata) {
       var __data = data || {};
+
       console.log('updated>>', __data);
       this.getGrid().update(__data);
       this.getGrid().commit();

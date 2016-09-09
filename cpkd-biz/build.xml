@@ -119,7 +119,7 @@
 	<selector id="select.web.libmodule">
 		<or>		
 			<and>
-				<filename name="com/inet/**"/>		
+				<filename name="com/ita/**"/>
 			</and>
 		</or>		
 	</selector>

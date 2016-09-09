@@ -18,7 +18,7 @@ public class DistrictBo extends MagicContentBO<District> {
      * @param contentBf the given {@link MagicContentBF}
      */
     @Inject
-    protected DistrictBo(@ContentContext(context = "cpkdNoSqlContext") MagicContentBF contentBf) {
+    protected DistrictBo(@ContentContext(context = "HelloworldNoSqlContext") MagicContentBF contentBf) {
         super(contentBf, "district");
     }
 
