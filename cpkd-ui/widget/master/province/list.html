@@ -1,0 +1,26 @@
+#theme("/common/css/grid.min")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+#script("/js/cpkd/inet/lib/province-list.min.js")
+<!--#xscript()
+    $(function(){
+        var wgProvince = new iNet.ui.ita.ProvinceListWidget();
+        wgProvince.show();
+    });
+
+#end-->
+<div id="province-widget" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="province-btn-add" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> Add
+        </button>
+        <button id="province-btn-add-office" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> Add Office
+        </button>
+        <button id="province-btn-add-dialog" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> Add Dialog
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="province-grid"></div>
+    </div>
+</div>
