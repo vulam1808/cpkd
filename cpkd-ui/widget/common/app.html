@@ -1,0 +1,18 @@
+#xscript()
+  $(function () {
+  
+    var header = new iNet.ui.common.Header({
+        title : "$text.getText('helloworld.common.title')",
+        iconCls: 'icon-adn',
+        autoDetect: true
+    });
+
+    var application = new iNet.app.Application({
+        title: 'Elearning',
+        header: header,
+        hideFooter: true,
+        defaultUrl: iNet.getUrl('/cpkd/page/index')
+    });
+    
+  });
+#end

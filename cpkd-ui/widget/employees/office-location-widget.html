@@ -1,0 +1,111 @@
+#script("/js/cpkd/inet/lib/helloworld-office-location.min.js")
+
+<div id="helloworld-office-form-widget" style="display: none">
+    <div class="wg-toolbar" class="navbar-fixed-top">
+        <button id="office-location-btn-back" type="button" class="btn btn-primary">
+            <i class="icon-arrow-left"></i> $text.getText("Back")
+        </button>
+        <button id="office-location-btn-create" class="btn btn-primary">
+            <i class="icon-plus"></i> $text.getText("Create")
+        </button>
+        <button id="office-location-btn-save" class="btn btn-success">
+            <i class="icon-save"></i> $text.getText("Save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <form id="form-service" class="form-horizontal">
+                <div class="row" style="margin: 0px">
+                    <div class="alert alert-info col-xs-12 col-sm-12" style="padding: 5px;">
+                        <strong><i class="icon-info-sign"></i> $text.getText("Office information")</strong>
+                    </div>
+                 </div>
+                <div class="row" style="margin: 0px">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-name">$text.getText("Name") (<span class="required"/>):</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-name" name="name" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-brief">$text.getText("Code") :</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-brief" name="brief" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-address">$text.getText("Address") (<span class="required"/>):</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="office-txt-address" name="address1" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-address2">$text.getText("Other address") :</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="office-txt-address2" name="address2" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-ward">$text.getText("Ward"):</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-ward" name="ward" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-district">$text.getText("District") :</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-district" name="district" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-ward">$text.getText("City"):</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-city" name="city" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-country">$text.getText("Country") :</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-country" name="country" value="" class="col-xs-12 col-sm-12" disabled="disabled">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-phone">$text.getText("Phone") :</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-phone" name="phone" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-fax">$text.getText("Fax") :</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-fax" name="fax" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-email">$text.getText("Email") :</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-email" name="email" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-txt-fax">$text.getText("Website") :</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="office-txt-website" name="website" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="office-select-member">$text.getText("Member") :</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="office-select-member" name="members" style="width: 100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

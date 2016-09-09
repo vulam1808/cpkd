@@ -1,0 +1,125 @@
+body{
+  font-family: Arial, Verdana, Geneva, Lucida, 'lucida grande', helvetica, sans-serif;
+  background-color: #FFF;
+}
+#page-content {
+    padding: 0px !important;
+}
+#wg-toolbar {
+    background-color: #f5f5f5;
+    padding: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    position: fixed;
+    width: 100%;
+    z-index: 777;
+}
+#wg-content {
+    padding: 44px 5px 0px 5px;
+}
+#wg-content-top {
+    /*background-color: #eff3f8;*/
+    padding-top: 5px;
+}
+.wg-toolbar {
+    background-color: #f5f5f5;
+    padding: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    position: fixed;
+    width: 100%;
+    z-index: 777;
+}
+.wg-content {
+    padding: 44px 5px 0px 5px;
+}
+#btn-scroll-up{
+    min-height: 20px !important;
+    height: 20px !important;
+}
+.hide {
+    display: none;
+}
+/**
+ * ============LOADING==============
+ */
+.widget-box-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    /*background-color: rgba(0,0,0,0.3);*/
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    z-index: 999999;
+}
+.widget-box-layer>[class*="icon-"] {
+    position:relative;
+    top:35%
+}
+.widget-box-layer>.icon-spin {
+    -moz-animation-duration: 1.2s;
+    -webkit-animation-duration: 1.2s;
+    -o-animation-duration: 1.2s;
+    -ms-animation-duration: 1.2s;
+    animation-duration: 1.2s
+}
+#loading-msg {
+    padding: 5px;
+    position: relative;
+    font-style: italic;
+}
+.ajax-loading-indicator {
+    border: 1px solid #a3bad9;
+    background-color:#ffffcc;
+    color: #444;
+    font-size: 13px;
+    padding: 10px;
+    margin: 0;
+    height: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px
+}
+
+.ajax-loading-indicator-overlay {
+    background-color: rgba(0,0,0,0.3);
+}
+
+/*
+ * ============COMMON CSS==============
+ */
+.error {
+    border: 1px solid #ff0000 !important;
+}
+.required:before {
+    color: #ff0000;
+    content: "*";
+}
+.ilabel{
+    padding-left: 5px;
+    padding-top: 5px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.select-icon{
+    color: #008080 !important;
+    cursor:pointer;
+}
+.text-right {
+    text-align:right !important;
+}
+.text-left {
+    text-align:left !important;
+}
+.text-center {
+    text-align:center !important;
+}
+.lbl-bold {
+    font-weight: bold;
+}
+.no-toolbar {
+    padding-top: 2px !important;
+}
+.modal-body {
+    width: 100%;
+    display: inline-block;
+}

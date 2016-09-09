@@ -2,6 +2,7 @@
 build.xml
 .idea/
 *.zip
+*.rar
 # Mobile Tools for Java (J2ME)
 #.mtj.tmp/
 

@@ -1,0 +1,26 @@
+#theme("/common/css/inet-core-3.0.min")
+#theme("/common/css/common")
+#theme("/common/css/jquery/jquery.pnotify")
+#theme("/common/css/bootstrap/bootstrap-modal-bs3patch")
+#theme("/common/css/bootstrap/bootstrap-modal")
+#theme("/cpkd/css/common")
+
+
+#script("::common/page/resources/plugin-zone")
+#script("/js/common/bootstrap/bs3/bootstrap.min.js")
+#script("/js/common/bootstrap/bs3/plugins/modal-bootstrap.min.js")
+#script("/js/common/inet/lib/inet-core.min.js")
+#script("/js/common/inet/lib/inet-ui.min.js")
+#script("/js/common/inet/lib/inet-utilities.min.js")
+#script("::common/page/resources/common-zone")
+#script("::cpkd/page/resources/common-zone")
+#script("/js/cpkd/inet/lib/ita-utils-service.min.js")
+#script("/js/xgate/inet/lib/application-widget-abstract-service.min.js")
+#xscript()
+    iNet.prefix="$ctx.site.prefix";
+    iNet.extension = "$ctx.extension()";
+    iNet.path = "$ctx.path()";
+    #if($ctx.pattern)
+    iNet.pattern = "$ctx.pattern";
+    #end
+#end
