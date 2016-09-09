@@ -1,0 +1,46 @@
+<component name="libraryTable">
+  <library name="lib7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/velocity-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/cloud-framecore-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/cloud-protocol-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/xwork-2.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/xercesImpl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/xercesImpl-2.9.1-jbossas-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/gson-2.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/jaxrs-api-1.2.1.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/xstream-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/com.inet.web-2.5.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/velocity-tools-generic-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/commons-io-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-workflow-web-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/json-20090211.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/mongo-2.10.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-nosql-web-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/mongo-java-driver-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/velocity-tools-view-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/jsoup-1.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-core-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/json-lib-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-config-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/velocity-tools-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/cloud-itask-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-plugin-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-xdb-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/slf4j-api-1.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-xdb-3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/shrinkwrap-service-1.0.0-cr-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/mongo-2.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/log4j-1.2.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-common-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/icloud-web-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/shiro-core-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/com.inet.base-2.5.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/slf4j-log4j12-1.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/civil/bo-xportal-civil/lib/shiro-web-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

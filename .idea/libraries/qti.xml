@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="qti">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../WORKING/qti/qti-ui/target/qti.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

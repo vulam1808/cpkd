@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="plugin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/plugin/khieunaitocao.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/plugin/xgate.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/plugin/hoithaohoinghinuocngoai.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../WORKING/xgate/web-local-xgate/module/plugin/dangkykinhdoanh.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

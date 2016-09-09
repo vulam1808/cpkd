@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cpkd-biz-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cpkd-biz/build/dist/cpkd-biz-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

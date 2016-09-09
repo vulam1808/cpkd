@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cloud-billing-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-common-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-xdb-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cloud-metaform-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-analysis-web-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cpkd-biz-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cloud-notify-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cloud-docx-lib-3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-nosql-web-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-checkout-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-web-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-plugin-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cloud-protocol-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/icloud-config-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/unifiedpush-lib-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/email-ldap-web-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cloud-docx-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
