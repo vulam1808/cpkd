@@ -38,7 +38,7 @@ public class AccountBo extends MagicContentBO<Account> {
    * @param contentBf the given {@link MagicContentBF}
    */
   @Inject
-  protected AccountBo(@ContentContext(context = "HelloworldNoSqlContext") MagicContentBF contentBf) {
+  protected AccountBo(@ContentContext(context = "cpkdNoSqlContext") MagicContentBF contentBf) {
     super(contentBf, "account");
   }
 

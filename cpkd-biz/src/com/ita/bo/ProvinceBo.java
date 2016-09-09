@@ -19,7 +19,7 @@ public class ProvinceBo extends MagicContentBO<Province> {
      * @param contentBf the given {@link MagicContentBF}
      */
     @Inject
-    protected ProvinceBo(@ContentContext(context = "HelloworldNoSqlContext") MagicContentBF contentBf) {
+    protected ProvinceBo(@ContentContext(context = "cpkdNoSqlContext") MagicContentBF contentBf) {
         super(contentBf, "province");
     }
 

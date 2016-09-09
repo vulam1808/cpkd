@@ -26,21 +26,33 @@
         <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/DistrictBo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
+              <caret line="20" column="68" selection-start-line="20" selection-start-column="68" selection-end-line="20" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#686#687#0" expanded="true" />
-                <element signature="e#723#724#0" expanded="true" />
+                <element signature="e#680#681#0" expanded="true" />
+                <element signature="e#717#718#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloWorldNoSqlProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/provider/HelloWorldNoSqlProvider.java">
+      <file leaf-file-name="cpkdNoSqlProvider.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/provider/cpkdNoSqlProvider.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="37" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="37" />
+              <caret line="31" column="38" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpkd-biz/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.91071427">
+              <caret line="12" column="54" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -50,8 +62,10 @@
         <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/model/Account.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-              <folding />
+              <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/ProvinceBo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+              <caret line="21" column="68" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -76,45 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProvinceDeleteService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/ProvinceDeleteService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProvinceLoadService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/ProvinceLoadService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="39" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProvinceUpdateService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/ProvinceUpdateService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AccountBo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/AccountBo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="71" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="71" />
+              <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,13 +102,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloworldBf.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bf/HelloworldBf.java">
+      <file leaf-file-name="cpkdBf.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bf/cpkdBf.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66487455">
-              <caret line="43" column="101" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="101" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1464#1465#0" expanded="true" />
+                <element signature="e#1489#1490#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SaveService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/account/SaveService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DistrictLoad01Service.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/DistrictLoad01Service.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.03046595">
+              <caret line="26" column="34" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1697#1705#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,11 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cpkd-ui/page/example2/index.html" />
-        <option value="$PROJECT_DIR$/cpkd-ui/page/example/form.html" />
-        <option value="$PROJECT_DIR$/cpkd-ui/page/example/index.html" />
-        <option value="$PROJECT_DIR$/cpkd-ui/page/example/table.html" />
-        <option value="$PROJECT_DIR$/cpkd-ui/page/example/typography.html" />
         <option value="$PROJECT_DIR$/cpkd-ui/page/employees/index.html" />
         <option value="$PROJECT_DIR$/cpkd-ui/widget/common/app.html" />
         <option value="$PROJECT_DIR$/cpkd-ui/widget/common/common.html" />
@@ -172,7 +174,6 @@
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/inet/helloworld/provider/HelloWorldNoSqlProvider.java" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/inet/helloworld/service/account/SaveService.java" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/inet/helloworld/bo/AccountBo.java" />
-        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/service/account/SaveService.java" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/model/Province.java" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/model/district.java" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/service/account/DistrictService.java" />
@@ -199,11 +200,17 @@
         <option value="$PROJECT_DIR$/cpkd-ui/page/master/province.html" />
         <option value="$PROJECT_DIR$/cpkd-ui/js/inet/ui/master/ProvinceListWidget.js" />
         <option value="$PROJECT_DIR$/cpkd-ui/widget/master/province/list.html" />
-        <option value="$PROJECT_DIR$/cpkd-biz/build.xml" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/DistrictLoad01Service.java" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/ProvinceUpdateService.java" />
-        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/DistrictBo.java" />
         <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/ProvinceBo.java" />
+        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/DistrictBo.java" />
+        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/AccountBo.java" />
+        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/bf/HelloworldBf.java" />
+        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/bf/cpkdBf.java" />
+        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/provider/HelloWorldNoSqlProvider.java" />
+        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/provider/cpkdNoSqlProvider.java" />
+        <option value="$PROJECT_DIR$/cpkd-biz/build.xml" />
+        <option value="$PROJECT_DIR$/cpkd-biz/src/com/ita/service/account/SaveService.java" />
       </list>
     </option>
   </component>
@@ -277,29 +284,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cpkd-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CPKD" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cpkd-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebContent" />
+              <option name="myItemId" value="cpkd-ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -464,10 +449,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -681,7 +662,7 @@
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="JAR_PATH" value="$PROJECT_DIR$/cpkd-biz/build/dist/cpkd-biz-1.0.jar" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/cpkd-war/WebContent/WEB-INF/lib/cpkd-biz-1.0.jar" />
       <envs />
       <method />
     </configuration>
@@ -757,12 +738,12 @@
       <workItem from="1473213131880" duration="14258000" />
       <workItem from="1473299360198" duration="4355000" />
       <workItem from="1473305597129" duration="18081000" />
-      <workItem from="1473386424698" duration="4055000" />
+      <workItem from="1473386424698" duration="5969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41321000" />
+    <option name="totallyTimeSpent" value="43235000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -778,10 +759,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24281392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24281392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -790,7 +772,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -977,13 +958,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-nosql-web-3.2.0.jar!/com/inet/xportal/nosql/web/bo/MagicContentBO.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3502825">
-          <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpkd-ui/widget/employees/office-dialog.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.65384614">
@@ -1118,41 +1092,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.034483">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/account/SaveService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/DistrictLoadService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="32" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/DistrictLoad01Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="34" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1697#1705#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1201,58 +1146,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/model/Account.java">
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/ProvinceBo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="68" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/provider/HelloWorldNoSqlProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="37" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/AccountBo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="71" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/DistrictBo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
+          <caret line="20" column="68" selection-start-line="20" selection-start-column="68" selection-end-line="20" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#717#718#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/ProvinceBo.java">
+    <entry file="jar://$PROJECT_DIR$/cpkd-biz/lib/icloud-nosql-web-3.2.0.jar!/com/inet/xportal/nosql/web/bo/MagicContentBO.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.30177516">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bf/HelloworldBf.java">
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/provider/cpkdNoSqlProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66487455">
-          <caret line="43" column="101" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="101" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="38" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.91071427">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/model/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bo/AccountBo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/bf/cpkdBf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1464#1465#0" expanded="true" />
+            <element signature="e#1489#1490#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/account/SaveService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpkd-biz/src/com/ita/service/master/DistrictLoad01Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03046595">
+          <caret line="26" column="34" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1697#1705#0" expanded="true" />
           </folding>
         </state>
       </provider>

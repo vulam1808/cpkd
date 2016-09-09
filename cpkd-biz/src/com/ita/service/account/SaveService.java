@@ -39,9 +39,9 @@ import com.inet.xportal.web.interfaces.WebDataService;
  *
  * @since 1.0
  */
-@Named("helloworld_account_saveservice")
-@XPortalDataService(roles = {"helloworld.account.save"}, description = "Save account")
-@XPortalPageRequest(uri = "helloworld/accounts/save", model = "com.inet.helloworld.model.Account", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+@Named("ita_account_saveservice")
+@XPortalDataService(roles = {"ita.account"}, description = "Save account")
+@XPortalPageRequest(uri = "ita/accounts/save", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class SaveService extends DataServiceMarker {
   @Inject
   private AccountBo accountBo;
