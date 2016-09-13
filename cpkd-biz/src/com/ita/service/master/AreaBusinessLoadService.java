@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by HS on 13/09/2016.
  */
 @Named("ita_areabusiness_loadservice")
-@XPortalDataService(roles = {"cpkd.master"}, description = "Danh M?c")
+@XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
 @XPortalPageRequest(uri = "ita/areabusiness/load", model = "com.ita.model.AreaBusiness", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class AreaBusinessLoadService extends DataServiceMarker {
     @Inject

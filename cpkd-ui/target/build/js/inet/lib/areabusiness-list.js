@@ -13,7 +13,7 @@ $(function() {
         view: iNet.getUrl('ita/areabusiness/load'),
         save: iNet.getUrl('ita/areabusiness/save'),
         update: iNet.getUrl('ita/areabusiness/update'),
-        "delete": iNet.getUrl('ita/areabusiness/delete')
+        del: iNet.getUrl('ita/areabusiness/delete')
     };
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.AreaBusinessListWidget = function (config) {
@@ -153,8 +153,8 @@ $(function() {
     };
 
     iNet.extend(iNet.ui.ita.AreaBusinessListWidget, iNet.ui.Widget);
-    var wgProvince = new iNet.ui.ita.AreaBusinessListWidget();
-    wgProvince.show();
+    var wgabc = new iNet.ui.ita.AreaBusinessListWidget();
+    wgabc.show();
 
 
 });

@@ -44,7 +44,7 @@ import com.ita.model.Province;
  * @since 1.0
  */
 @Named("ita_province_loadservice")
-@XPortalDataService(roles = {"cpkd.master"}, description = "Danh M?c")
+@XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
 @XPortalPageRequest(uri = "ita/province/load", model = "com.ita.model.Province", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class ProvinceLoadService extends DataServiceMarker {
     @Inject
