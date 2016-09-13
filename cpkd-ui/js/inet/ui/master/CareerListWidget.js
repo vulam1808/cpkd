@@ -60,6 +60,7 @@ $(function() {
                     }
                 },{
                     property : 'name',
+                    label : resource.common.name,
                     sortable : true,
                     type : 'text',
                     validate : function(v) {
