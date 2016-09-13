@@ -58,7 +58,7 @@ public class DistrictLoadService extends DataServiceMarker {
         // save account
         //district.setUuid(districtBo.add(district));
         SearchDTO<District> result= districtBo.query();
-        for ()
+       // for ()
 
         return new ObjectWebDataservice<SearchDTO<District>>(result);
     }
