@@ -13,7 +13,7 @@ $(function() {
         view: iNet.getUrl('ita/province/load'),
         save: iNet.getUrl('ita/province/save'),
         update: iNet.getUrl('ita/province/update'),
-        "delete": iNet.getUrl('ita/province/delete')
+        del: iNet.getUrl('ita/province/delete')
     };
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.ProvinceListWidget = function (config) {
@@ -51,7 +51,7 @@ $(function() {
                 width : 30
             },{
                 property : 'code',
-                label : resource.common.codeProvince,
+                label : resource.common.code,
                 sortable : true,
                 type : 'text',
                 validate : function(v) {
@@ -60,7 +60,7 @@ $(function() {
                 }
             },{
                 property : 'name',
-                label : resource.common.nameProvince,
+                label : resource.common.name,
                 sortable : true,
                 type : 'text',
                 validate : function(v) {
@@ -86,7 +86,23 @@ $(function() {
                     icon : 'icon-trash',
                     labelCls: 'label label-important',
                     fn : function(record) {
-                        me.grid.remove(record[me.grid.getIdProperty()]);
+                        var __data = record || {};
+
+                        var params = {
+                            uuid: record[me.grid.getIdProperty()]
+                        };
+                        console.log('delete>>', params);
+                        $.postJSON(url.del, params, function (result) {
+                            var __result = result || {};
+                            if (CommonService.isSuccess(__result)) {
+                                me.grid.remove(record[me.grid.getIdProperty()]);
+                                me.notifySuccess(resource.validate.save_title, resource.validate.delete_success);
+                            } else {
+
+                                me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.delete_error, __result.errors || []));
+                            }
+                        });
+
                     }
                 }]
             }]

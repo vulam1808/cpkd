@@ -1,22 +1,24 @@
 #zone({"inherit":"true"})
 	#scriptBundle("cpkd_message_common")
 	    iNet.ns(
-				'ita.resources.common',
-				'ita.resources.validate'
+				"ita.resources.common",
+				"ita.resources.validate"
 		);
 	    if (ita.resources.validate) {
 	        iNet.apply(ita.resources.validate, {
-					save_title : '$text.getText(common.save_title)',
-					save_success: '$text.getText(common.save_success)',
-					save_error: '$text.getText("common.save_error)',
-					update_success: '$text.getText(common.update_success)',
-					update_error: '$text.getText("common.update_error)',
+					save_title : '$text.getText("common.save_title")',
+					save_success: '$text.getText("common.save_success")',
+					save_error: '$text.getText("common.save_error")',
+					update_success: '$text.getText("common.update_success")',
+					update_error: '$text.getText("common.update_error")',
+					delete_success: '$text.getText("common.delete_success")',
+					delete_error: '$text.getText("common.delete_error")'
 	        });
-	    };
+	    }
 		if (ita.resources.common) {
 			iNet.apply(ita.resources.common, {
-				codeProvince : '$text.getText(common.codeProvince)',
-				nameProvince : '$text.getText(common.codeProvince)',
+				code : '$text.getText("common.code")',
+				name : '$text.getText("common.name")'
 			});
 		}
 	#end
