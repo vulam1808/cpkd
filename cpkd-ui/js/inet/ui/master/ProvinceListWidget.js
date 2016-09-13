@@ -132,10 +132,10 @@ $(function() {
                 if (CommonService.isSuccess(__result)) {
                     me.grid.update(__result);
                     me.grid.commit();
-                    me.notifySuccess(resource.common.save_title, resource.common.update_success);
+                    me.notifySuccess(resource.validate.save_title, resource.validate.update_success);
                 } else {
 
-                    me.notifyError(resource.common.save_title, me.getNotifyContent(resource.common.update_error, __result.errors || []));
+                    me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.update_error, __result.errors || []));
                 }
 
 
@@ -152,16 +152,16 @@ $(function() {
             me.grid.newRecord();
         }.createDelegate(this));
 
-        $('#employees-btn-add-office').on('click', function(){
+      /*  $('#employees-btn-add-office').on('click', function(){
             this.fireEvent('addoffice', this);
         }.createDelegate(this));
 
         $('#employees-btn-add-dialog').on('click', function(){
             this.fireEvent('adddialog', this);
-        }.createDelegate(this));
+        }.createDelegate(this));*/
     };
 
-    iNet.extend(iNet.ui.ita.ProvinceListWidget, iNet.ui.Widget);
+    iNet.extend(iNet.ui.ita.ProvinceListWidget, iNet.ui.app.widget);
     var wgProvince = new iNet.ui.ita.ProvinceListWidget();
     wgProvince.show();
 

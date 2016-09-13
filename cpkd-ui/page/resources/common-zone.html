@@ -6,17 +6,17 @@
 		);
 	    if (ita.resources.validate) {
 	        iNet.apply(ita.resources.validate, {
-					save_title : '$text.getText("common.save_title")',
-					save_success: '$text.getText("common.save_success")',
-					save_error: '$text.getText("common.save_error")',
-					update_success: '$text.getText("common.update_success")',
-					update_error: '$text.getText("common.update_error")',
+					save_title : '$text.getText(common.save_title)',
+					save_success: '$text.getText(common.save_success)',
+					save_error: '$text.getText("common.save_error)',
+					update_success: '$text.getText(common.update_success)',
+					update_error: '$text.getText("common.update_error)',
 	        });
 	    };
-		if (iNet.resources.common) {
-			iNet.apply(iNet.resources.common, {
-				codeProvince : '$text.getText("common.codeProvince")',
-				nameProvince : '$text.getText("common.codeProvince")',
+		if (ita.resources.common) {
+			iNet.apply(ita.resources.common, {
+				codeProvince : '$text.getText(common.codeProvince)',
+				nameProvince : '$text.getText(common.codeProvince)',
 			});
 		}
 	#end

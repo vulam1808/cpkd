@@ -3,6 +3,8 @@ build.xml
 .idea/
 *.zip
 *.rar
+*.iml
+cpkd-ui/target/
 # Mobile Tools for Java (J2ME)
 #.mtj.tmp/
 
@@ -10,8 +12,12 @@ build.xml
 #*.jar
 #*.war
 #*.ear
-.idea/
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+cpkd-war/WebContent/WEB-INF/lib/cpkd-biz-1.0.jar
+cpkd-war/build/cpkd.war
+cpkd-ui/target/build/js/inet/lib/province-list.min.js
 
