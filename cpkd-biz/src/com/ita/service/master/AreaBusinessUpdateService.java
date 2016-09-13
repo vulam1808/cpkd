@@ -1,5 +1,8 @@
 package com.ita.service.master;
+import javax.inject.Inject;
 
+import javax.inject.Named;
+import java.util.Map;
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
 import com.inet.xportal.web.annotation.XPortalDataService;
@@ -12,10 +15,7 @@ import com.inet.xportal.web.util.XParamUtils;
 import com.ita.bo.AreaBusinessBo;
 import com.ita.model.AreaBusiness;
 import com.ita.model.Province;
-import com.opensymphony.xwork2.inject.Inject;
 
-import javax.inject.Named;
-import java.util.Map;
 
 /**
  * Created by HS on 13/09/2016.

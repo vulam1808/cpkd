@@ -1,5 +1,8 @@
 package com.ita.service.master;
+import javax.inject.Inject;
 
+import javax.inject.Named;
+import java.util.Map;
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
 import com.inet.xportal.web.annotation.XPortalDataService;
@@ -10,16 +13,14 @@ import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
 import com.ita.bo.AreaBusinessBo;
-import com.opensymphony.xwork2.inject.Inject;
+import com.ita.model.AreaBusiness;
 
-import javax.inject.Named;
-import java.util.Map;
 
 /**
  * Created by HS on 13/09/2016.
  */
 @Named("ita_areabusiness_deleteservice")
-@XPortalDataService(roles = {"cpkd.master"}, description = "Danh M?c")
+@XPortalDataService(roles = {"cpkd.master"}, description = "Danh Muc")
 @XPortalPageRequest(uri = "ita/areabusiness/delete", model = "com.ita.model.AreaBusiness", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class AreaBusinessDeleteService extends DataServiceMarker {
     @Inject
@@ -37,6 +38,6 @@ public class AreaBusinessDeleteService extends DataServiceMarker {
         areabusinessBo.remove(id);
 
 
-        return new ObjectWebDataservice<String>("");
+        return new ObjectWebDataservice<String>(id);
     }
 }
