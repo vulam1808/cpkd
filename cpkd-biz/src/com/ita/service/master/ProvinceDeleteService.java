@@ -67,7 +67,7 @@ public class ProvinceDeleteService extends DataServiceMarker {
         provinceBo.remove(id);
 
 
-        return new ObjectWebDataservice<String>("");
+        return new ObjectWebDataservice<String>(id);
     }
 
 }
