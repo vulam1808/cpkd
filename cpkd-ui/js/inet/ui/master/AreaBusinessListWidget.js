@@ -13,6 +13,7 @@ $(function() {
         view: iNet.getUrl('ita/areabusiness/load'),
         save: iNet.getUrl('ita/areabusiness/save'),
         update: iNet.getUrl('ita/areabusiness/update'),
+        del: iNet.getUrl('ita/areabusiness/delete')
     };
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.AreaBusinessListWidget = function (config) {
