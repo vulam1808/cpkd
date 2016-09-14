@@ -1,4 +1,4 @@
-package com.ita.model;
+package com.ita.cpkd.model;
 
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.annotation.XPortalModel;

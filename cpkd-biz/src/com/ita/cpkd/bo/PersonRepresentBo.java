@@ -1,9 +1,9 @@
-package com.ita.bo;
+package com.ita.cpkd.bo;
 
 import com.inet.xportal.nosql.web.bf.MagicContentBF;
 import com.inet.xportal.nosql.web.bo.MagicContentBO;
 import com.inet.xportal.web.context.ContentContext;
-import com.ita.model.PersonRepresent;
+import com.ita.cpkd.model.PersonRepresent;
 
 
 import javax.inject.Inject;

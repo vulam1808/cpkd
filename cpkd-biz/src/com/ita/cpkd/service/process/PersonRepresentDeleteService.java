@@ -1,4 +1,4 @@
-package com.ita.service.master;
+package com.ita.cpkd.service.process;
 
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
@@ -9,7 +9,7 @@ import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
-import com.ita.bo.CareerBo;
+import com.ita.cpkd.bo.CareerBo;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,10 +19,10 @@ import java.util.Map;
 /**
  * Created by HS on 13/09/2016.
  */
-@Named("ita_career_deleteservice")
-@XPortalDataService(roles = {"cpkd.master"}, description = "Danh Muc")
-@XPortalPageRequest(uri = "ita/career/delete", model = "com.ita.model.Career", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
-public class CareerDeleteService extends DataServiceMarker {
+@Named("ita_personrepresent_deleteservice")
+@XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
+@XPortalPageRequest(uri = "ita/personrepresent/delete", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+public class PersonRepresentDeleteService extends DataServiceMarker {
     @Inject
     private CareerBo careerBo;
     @Override
