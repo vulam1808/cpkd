@@ -7,13 +7,13 @@
 $(function () {
 
         var header = new iNet.ui.common.Header({
-            title : "$text.getText('helloworld.common.title')",
+            title : "$text.getText('common.title')",
             iconCls: 'icon-adn',
             autoDetect: true
         });
 
         var application = new iNet.app.Application({
-            title: 'Elearning',
+            title: "$text.getText('common.title')",
             header: header,
             hideFooter: true,
             defaultUrl: iNet.getUrl('/cpkd/page/index')

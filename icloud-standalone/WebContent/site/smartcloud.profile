@@ -1,0 +1,23 @@
+{
+"cloudDomain" : "inetcloud.vn",
+"logo" : "",
+"phone" : "",
+"fax" : "",
+"website" : "",
+"shareDomain" : "icloud",
+"state" : "",
+"address1" : "115/100 Le Van Sy",
+"themes" : "/css/base",
+"address2" : "",
+"languageUsed" : "vi",
+"size" : 30,
+"city" : "HCM",
+"country" : "VN",
+"scripts" : "js/jquery/jquery-1.9.1.min.js",
+"district" : "Phu Nhuan",
+"name":"iNet Solutions",
+"prefix":"smartcloud",
+"email":"info@inetcloud.vn",
+"schema":"Pi8@Zo2@",
+"industry" : "IT"
+}

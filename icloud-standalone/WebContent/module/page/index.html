@@ -1,0 +1,55 @@
+#xhtml({"lang":"vi","dir":"ltr"})
+	#meta({
+        "title": "Cloud Platform Home",
+        "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    })
+        
+	#theme("/css/bootstrap.min")
+    #theme("/css/font-awesome.min")
+    #theme("/css/login")
+    
+    #script("/js/jquery-1.10.2.min.js")
+    #script("/js/bootstrap.min.js")
+    
+    #defined("link",{"rel":"icon","href":"images/favicon.ico","type":"image/x-icon"})
+    #body({"class":"account-bg mobile-body"})
+    #dataservice("systemhistory")
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <div class="navbar-header web-mode">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only"></span>
+                    <i class="fa fa-cog"></i>
+                </button>
+                <a href="javascript:;" class="navbar-brand navbar-brand-img">
+                    <i class="fa fa fa-building-o"></i> Công Ty Cổ Phần Tin Học Giải Pháp Tích Hợp Mở
+                </a>
+            </div>
+            <nav class="collapse navbar-collapse web-mode" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.inetcloud.vn"><i class="fa fa-question-circle"></i> &nbsp;Trợ giúp</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="mobile-mode mobile-header">iNet Solutions</h3>
+        </div>
+    </header>
+    
+    <div class="account-wrapper">
+        <div class="account-body">
+            <div id="logo" class="web-mode">
+                <sup><i class="fa fa-cloud"></i></sup>
+            </div>
+            <h3 class="web-mode">Welcome to iCloud Platform.</h3>
+            #foreach($item in $systemhistory.elements)
+            	<h5 style="color:#3A87AD" class="web-mode">$item</h5>
+            #end
+        </div>
+        <div class="account-footer">
+            <p>
+                Copyright &copy; 2006 - <span id="year">2016</span> iNet Solutions Corp., All rights reserved.
+            </p>
+        </div>
+    </div>
+#end

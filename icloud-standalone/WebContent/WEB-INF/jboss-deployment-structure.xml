@@ -1,0 +1,134 @@
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.0">
+    <ear-subdeployments-isolated>true</ear-subdeployments-isolated>
+	<deployment>
+		<dependencies>
+			<module name="org.apache.commons.logging" export="true" />
+			<module name="org.apache.log4j" export="true" />
+			<module name="org.slf4j" export="true" />
+			<module name="org.apache.commons.common" export="true" />
+			<module name="org.apache.commons.beanutils" export="true" />
+			<module name="org.apache.commons.codec" export="true" />
+			<module name="org.apache.commons.collections" export="true" />
+			<module name="org.apache.commons.configuration" export="true" />
+			<module name="org.apache.commons.digester" export="true" />
+			<module name="org.apache.commons.io" export="true" />
+			<module name="org.apache.commons.cli" export="true" />
+			<module name="org.apache.commons.lang" export="true" />
+			<module name="org.apache.commons.fileupload" export="true" />
+			<module name="org.apache.commons.validator" export="true" />
+			<module name="org.apache.commons.chain" export="true" />
+			<module name="org.apache.commons.httpclient" export="true" />
+			<module name="org.apache.commons.compress" export="true" />
+			<module name="org.apache.commons.xmlgraphics" export="true" />
+			<module name="org.apache.httpcomponents" export="true" />
+			<module name="org.apache.commons.discovery" export="true" />
+			<module name="org.apache.james.mime4j" export="true" />
+			<module name="org.apache.ws.xmlschema" export="true" />
+			<module name="org.quartz" export="true" />
+
+			<module name="org.apache.xerces" export="true" />
+			<module name="org.apache.velocity" export="true" />
+			<module name="org.apache.struts" export="true" />
+			<module name="org.apache.tiles" export="true" />
+			<module name="org.apache.shiro" export="true" />
+			<module name="org.apache.lucene" export="true" />
+			<module name="org.apache.solr" export="true" />
+			<module name="org.apache.tika" export="true" />
+			<module name="org.apache.pdf" export="true" />
+			<module name="org.apache.poi" export="true" />
+			<module name="org.apache.jxls" export="true" />
+			<module name="org.apache.axis" export="true" />
+			<module name="org.jasig" export="true" />
+			<module name="org.dom4j" export="true" />
+			<module name="org.jdom" export="true" />
+			<module name="org.antlr" export="true" />
+			<module name="org.jsoup" export="true" />
+			<module name="org.json" export="true" />
+			<module name="org.mvel" export="true" />
+			<module name="org.barcode4j" export="true" />
+			<module name="net.sourceforge.ical" export="true" />
+			<module name="com.checkout" export="true" />
+			<module name="org.jreport" export="true" />
+			<module name="org.spring" export="true" />
+			<module name="org.imgscalr" export="true" />
+
+			<module name="org.rhq" export="true" />
+			<module name="org.codehaus.xstream" export="true" />
+			<module name="org.codehaus.jettison" export="true" />
+			<module name="org.codehaus.jackson.jackson-core" export="true" />
+			<module name="org.stringtemplate" export="true" />
+			<module name="org.javassist" export="true" />
+			<module name="org.scannotation.scannotation" export="true" />
+			
+			<module name="org.jgroups" export="true" />
+			<module name="org.jboss.as.naming" export="true"/>
+            <module name="org.jboss.as.clustering.jgroups" export="true"/>
+            
+			<module name="org.infinispan" export="true" />
+			<module name="org.jboss.shrinkwrap.core" services="export" export="true" />
+			<module name="org.jboss.netty" export="true" />
+			<module name="org.jboss.resteasy.resteasy-jaxrs" export="true" />
+			<module name="javax.ws.rs.api" services="export" export="true" />
+			<module name="org.jboss.resteasy.resteasy-multipart-provider" services="export" export="true" />
+			<module name="org.jboss.resteasy.resteasy-jaxb-provider" services="export" export="true" />
+			<module name="org.bouncycastle" export="true" />
+			
+			<module name="org.jboss.dmr" export="true" />
+			<module name="org.jboss.as.controller" export="true" />
+			<module name="org.jboss.as.controller-client" export="true" />
+			<module name="org.jboss.remoting3" export="true"/>
+			<module name="org.jboss.xnio" export="true"/>
+			<module name="org.jboss.marshalling" export="true"/>
+			<module name="org.jboss.as.messaging" export="true"/>
+			<module name="net.sourceforge.cglib" export="true"/>
+			
+			<module name="org.hibernate" export="true" />
+			<module name="org.osgi.core" export="true" />
+			<module name="org.jboss.as.weld" export="true" />
+			<module name="gnu.javolution" export="true" />
+			<module name="gnu.javawork" export="true" />
+			<module name="gnu.mime" export="true" />
+			<module name="gnu.backport" export="true" />
+			<module name="nu.xom" export="true" />
+			<module name="asm.asm" export="true" />
+			<module name="com.sun.rome" export="true" />
+			<module name="com.sun.xml.bind" services="import" />
+			<module name="com.fr.xdocreport" export="true" />
+			<module name="com.opensymphony.xwork" export="true" />
+			<module name="com.google.guava" export="true" />
+			<module name="com.google.gson" export="true" />
+			<module name="com.google.htmlcompressor" export="true" />
+			<module name="com.google.useragent" export="true" />
+			<module name="com.google.sarasvati" export="true" />
+			<module name="com.google.guice" export="true" />
+			<module name="com.google.api" export="true"/>
+			<module name="com.ognl" export="true" />
+			<module name="com.eaio" export="true" />
+			<module name="org.calendar" export="true" />
+			<module name="net.sourceforge.json" export="true" />
+			<module name="net.sourceforge.ezmorph" export="true" />
+			<module name="net.sourceforge.oval" export="true" />
+			<module name="net.sourceforge.jodreports" export="true" />
+			<module name="net.sourceforge.cglib" export="true" />
+			<module name="net.coobird" export="true" />
+			<module name="javax.persistence.api" export="true" />
+			<module name="javax.ws.rs.api" export="true" />
+			<module name="javax.enterprise.api" export="true" />
+			<module name="javax.jms.api" export="true" />
+			<module name="javax.faces.api" export="true" />
+			<module name="javax.servlet.api" export="true" />
+			<module name="javax.activation.api" export="true" />
+			<module name="javax.servlet.jsp.api" export="true" />
+			<module name="javax.servlet.jstl.api" export="true" />
+			<module name="javax.xml.bind.api" export="true" />
+			
+			<module name="com.mongodb" export="true" />
+			<module name="com.inet.base" export="true" />
+			<module name="com.inet.core" export="true" />
+			<module name="com.inet.cloud" export="true" />
+			<module name="com.inet.onegate" export="true" />
+			<module name="com.inet.mercury" export="true" />
+		</dependencies>
+		
+	</deployment>
+</jboss-deployment-structure>

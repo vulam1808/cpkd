@@ -46,10 +46,6 @@ $(function() {
 
         var dataSource = new iNet.ui.grid.DataSource({
             columns : [{
-                type : 'selection',
-                align: 'center',
-                width : 30
-            },{
                 property : 'code',
                 label : resource.common.code,
                 sortable : true,
@@ -160,9 +156,9 @@ $(function() {
 
         }.createDelegate(this));
 
-        this.grid.on('selectionchange', function(sm, data){
+        /*this.grid.on('selectionchange', function(sm, data){
             console.log('selectionchange>>', sm, data);
-        });
+        });*/
 
         $('#province-btn-add').on('click', function(){
             me.grid.newRecord();

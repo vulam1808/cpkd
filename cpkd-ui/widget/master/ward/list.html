@@ -1,0 +1,30 @@
+#theme("/common/css/grid.min")
+#theme("/common/css/jquery/select2")
+
+
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+#script("/js/cpkd/inet/lib/ward-list.min.js")
+<!--#xscript()
+    $(function(){
+        var wgProvince = new iNet.ui.ita.ProvinceListWidget();
+        wgProvince.show();
+    });
+
+#end-->
+<div id="ward-widget" style="display: none;">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="ward-btn-add" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> Add
+        </button>
+        <!--<button id="province-btn-add-office" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> Add Office
+        </button>
+        <button id="province-btn-add-dialog" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> Add Dialog
+        </button>-->
+    </div>
+    <div class="wg-content">
+        <div id="ward-grid"></div>
+    </div>
+</div>
