@@ -10,7 +10,7 @@ import com.inet.xportal.web.annotation.XPortalModel;
 public class PersonRepresent {
     private String uuid;
     private String gender;
-    private String namerepresent;
+    private String nameRepresent;
     private String birthday;
     private String race;
     private String religion;
@@ -34,12 +34,12 @@ public class PersonRepresent {
         this.gender = gender;
     }
 
-    public String getNamerepresent() {
-        return namerepresent;
+    public String getNameRepresent() {
+        return nameRepresent;
     }
 
-    public void setNamerepresent(String namerepresent) {
-        this.namerepresent = namerepresent;
+    public void setNameRepresent(String nameRepresent) {
+        this.nameRepresent = nameRepresent;
     }
 
     public String getBirthday() {

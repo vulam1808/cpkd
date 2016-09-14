@@ -1,15 +1,15 @@
 // #PACKAGE:helloworld-new-office-modal-dialog
 // #MODULE: NewOfficeDialog
 $(function () {
-  iNet.ns("iNet.ui.hellloworld");
-  iNet.ui.hellloworld.NewOfficeDialog = function (config) {
+  iNet.ns("iNet.ui.helloworld");
+  iNet.ui.helloworld.NewOfficeDialog = function (config) {
     var __config = config || {};
     iNet.apply(this, __config);// apply configuration
     this.id = this.id || 'office-modal-create';
-    iNet.ui.hellloworld.NewOfficeDialog.superclass.constructor.call(this);
+    iNet.ui.helloworld.NewOfficeDialog.superclass.constructor.call(this);
     this.$element = $.getCmp(this.id);
   };
-  iNet.extend(iNet.ui.hellloworld.NewOfficeDialog, iNet.Component, {
+  iNet.extend(iNet.ui.helloworld.NewOfficeDialog, iNet.Component, {
     getEl: function () {
       return this.$element;
     },
