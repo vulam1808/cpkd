@@ -13,7 +13,7 @@ $(function() {
         view: iNet.getUrl('ita/areabusiness/load'),
         save: iNet.getUrl('ita/areabusiness/save'),
         update: iNet.getUrl('ita/areabusiness/update'),
-        "delete": iNet.getUrl('ita/areabusiness/delete')
+        del: iNet.getUrl('ita/areabusiness/delete')
     };
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.AreaBusinessListWidget = function (config) {
@@ -77,7 +77,23 @@ $(function() {
                     icon : 'icon-trash',
                     labelCls: 'label label-important',
                     fn : function(record) {
-                        me.grid.remove(record[me.grid.getIdProperty()]);
+                        var __data = record || {};
+
+                        var params = {
+                            uuid: record[me.grid.getIdProperty()]
+                        };
+                        console.log('delete>>', params);
+                        $.postJSON(url.del, params, function (result) {
+                            var __result = result || {};
+                            if (CommonService.isSuccess(__result)) {
+                                me.grid.remove(record[me.grid.getIdProperty()]);
+                                me.notifySuccess(resource.validate.save_title, resource.validate.delete_success);
+                            } else {
+
+                                me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.delete_error, __result.errors || []));
+                            }
+                        });
+
                     }
                 }]
             }]
@@ -143,18 +159,11 @@ $(function() {
             me.grid.newRecord();
         }.createDelegate(this));
 
-        $('#employees-btn-add-office').on('click', function(){
-            this.fireEvent('addoffice', this);
-        }.createDelegate(this));
-
-        $('#employees-btn-add-dialog').on('click', function(){
-            this.fireEvent('adddialog', this);
-        }.createDelegate(this));
     };
 
-    iNet.extend(iNet.ui.ita.AreaBusinessListWidget, iNet.ui.Widget);
-    var wgProvince = new iNet.ui.ita.AreaBusinessListWidget();
-    wgProvince.show();
+    iNet.extend(iNet.ui.ita.AreaBusinessListWidget, iNet.ui.app.widget);
+    var wgabc = new iNet.ui.ita.AreaBusinessListWidget();
+    wgabc.show();
 
 
 });

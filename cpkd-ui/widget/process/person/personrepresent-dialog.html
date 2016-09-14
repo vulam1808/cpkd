@@ -1,0 +1,76 @@
+#script("/js/cpkd/inet/lib/cpkd-new-personrepresent-modal-dialog.min.js")
+<div id="personrepresent-modal-create" class="modal fade" data-focus-on="input:first" data-width="650" tabindex="-1" style="display: none">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-group"></i> <span id="social-group-modal-lbl-title">$text.getText("Thêm người đại diện")</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-nameRepresent">$text.getText("Họ tên") (<span class="required"/>):</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" id="modal-txt-nameRepresent" name="nameRepresent" value="" class="col-xs-12 col-sm-12">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-gender">$text.getText("Giới tính"):</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="modal-txt-gender" name="gender" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-birthday">$text.getText("Ngày sinh") :</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="modal-txt-birthday" name="birthday" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-race">$text.getText("Dân tộc") :</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="modal-txt-race" name="race" value="" class="col-xs-12 col-sm-12">
+                    </div>
+
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-religion">$text.getText("Tôn giáo"):</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="modal-txt-religion" name="religion" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-idnumber">$text.getText("Số CMND") (<span class="required"/>):</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="modal-txt-idnumber" name="idnumber" value="" class="col-xs-12 col-sm-12">
+                    </div>
+
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-issueDate">$text.getText("Ngày cấp"):</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" id="modal-txt-issueDate" name="issueDate" value="" class="col-xs-12 col-sm-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-sm-2 no-padding-right lbl-bold" for="modal-txt-issuePlace">$text.getText("Nơi cấp") :</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" id="modal-txt-issuePlace" name="issuePlace" value="" class="col-xs-12 col-sm-12" >
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="personrepresent-modal-create-btn-save" type="button" class="btn btn-primary btn-small"><i class="icon-save"></i> $text.getText("Save")</button>
+        <button id="personrepresent-modal-create-btn-cancel" type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("Close")</button>
+    </div>
+</div><!--/ End Modal -->

@@ -1,5 +1,5 @@
-// #PACKAGE: areabusiness-list
-// #MODULE: AreaBusinessListWidget
+// #PACKAGE: career-list
+// #MODULE: CareerListWidget
 /**
  * Created by HS on 13/9/2016.
  */
@@ -10,16 +10,16 @@ $(function() {
     };
 
     var url = {
-        view: iNet.getUrl('ita/areabusiness/load'),
-        save: iNet.getUrl('ita/areabusiness/save'),
-        update: iNet.getUrl('ita/areabusiness/update'),
-        del: iNet.getUrl('ita/areabusiness/delete')
+        view: iNet.getUrl('ita/career/load'),
+        save: iNet.getUrl('ita/career/save'),
+        update: iNet.getUrl('ita/career/update'),
+        del: iNet.getUrl('ita/career/delete')
     };
     iNet.ns("iNet.ui", "iNet.ui.ita");
-    iNet.ui.ita.AreaBusinessListWidget = function (config) {
+    iNet.ui.ita.CareerListWidget = function (config) {
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
-        this.id = this.id || 'areabusiness-widget';
+        this.id = this.id || 'career-widget';
         /*var abc = this;
         var wgAddProvince = null;
 
@@ -31,7 +31,7 @@ $(function() {
             abc.hide();
         });*/
 
-        iNet.ui.ita.AreaBusinessListWidget.superclass.constructor.call(this);
+        iNet.ui.ita.CareerListWidget.superclass.constructor.call(this);
 
 
 
@@ -50,14 +50,32 @@ $(function() {
                 align: 'center',
                 width : 30
             },{
-                property : 'area',
-                label : resource.common.nameAreaBusiness,
+                    property : 'code',
+                    label : resource.common.code,
+                    sortable : true,
+                    type : 'text',
+                    validate : function(v) {
+                        if (iNet.isEmpty(v))
+                            return 'Code must not be empty';
+                    }
+                },{
+                    property : 'name',
+                    label : resource.common.name,
+                    sortable : true,
+                    type : 'text',
+                    validate : function(v) {
+                        if (iNet.isEmpty(v))
+                            return 'Name must not be empty';
+                    }
+                },{
+                property : 'detail',
+                label : resource.common.detail,
                 sortable : true,
-                type : 'text',
-                validate : function(v) {
+                type : 'text' /*,
+               validate : function(v) {
                     if (iNet.isEmpty(v))
                         return 'Name must not be empty';
-                }
+                }*/
             },{
                 label : '',
                 type : 'action',
@@ -100,7 +118,7 @@ $(function() {
         });
         //load grid
         this.grid = new iNet.ui.grid.Grid({
-            id : 'areabusiness-grid',
+            id : 'career-grid',
             dataSource : dataSource,
             url: url.view,
             firstLoad: true,
@@ -155,14 +173,14 @@ $(function() {
             console.log('selectionchange>>', sm, data);
         });
 
-        $('#areabusiness-btn-add').on('click', function(){
+        $('#career-btn-add').on('click', function(){
             me.grid.newRecord();
         }.createDelegate(this));
 
     };
 
-    iNet.extend(iNet.ui.ita.AreaBusinessListWidget, iNet.ui.app.widget);
-    var wgabc = new iNet.ui.ita.AreaBusinessListWidget();
+    iNet.extend(iNet.ui.ita.CareerListWidget, iNet.ui.app.widget);
+    var wgabc = new iNet.ui.ita.CareerListWidget();
     wgabc.show();
 
 

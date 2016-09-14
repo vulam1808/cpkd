@@ -20,7 +20,7 @@ $(function() {
 
   var createOfficeDialog = function(){
     if(!officeDialog) {
-      officeDialog= new iNet.ui.hellloworld.NewOfficeDialog();
+      officeDialog= new iNet.ui.helloworld.NewOfficeDialog();
     }
     return officeDialog;
   };

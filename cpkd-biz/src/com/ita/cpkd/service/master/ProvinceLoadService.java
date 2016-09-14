@@ -43,7 +43,9 @@ import com.ita.cpkd.model.Province;
  */
 @Named("ita_province_loadservice")
 @XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
+
 @XPortalPageRequest(uri = "ita/province/load", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+
 public class ProvinceLoadService extends DataServiceMarker {
     @Inject
     private ProvinceBo provinceBo;

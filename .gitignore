@@ -20,6 +20,6 @@ hs_err_pid*
 cpkd-war/WebContent/WEB-INF/lib/cpkd-biz-1.0.jar
 cpkd-war/build/cpkd.war
 cpkd-ui/target/build/js/inet/lib/province-list.min.js
-
+cpkd-ui/target/build/js/inet/lib/areabusiness-list.min.js
 cpkd-biz/cpkd-biz.iml
 icloud-standalone/build/
