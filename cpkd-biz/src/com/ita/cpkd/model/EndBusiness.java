@@ -3,7 +3,7 @@ package com.ita.cpkd.model;
 /**
  * Created by ACER on 9/14/2016.
  */
-public class EndHomeBusiness {
+public class EndBusiness {
     private String uuid;
     private String homeBusiness_ID;
     private String dateEnd;
