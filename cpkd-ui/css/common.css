@@ -123,3 +123,8 @@ body{
     width: 100%;
     display: inline-block;
 }
+
+.form-group .select2-container.form-control{
+    padding: 0;
+    height: auto;
+}

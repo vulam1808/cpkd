@@ -5,15 +5,15 @@
  */
 $(function() {
   var resource = {
-    common: ita.resources.common,
-    validate: ita.resources.validate
+      common: ita.resources.common,
+      validate: ita.resources.validate
   };
 
   var url = {
-  view: iNet.getUrl('ita/personrepresent/load'),
-    save: iNet.getUrl('ita/personrepresent/save'),
-    update: iNet.getUrl('ita/personrepresent/update'),
-    del: iNet.getUrl('ita/personrepresent/delete')
+        view: iNet.getUrl('ita/personrepresent/load'),
+          save: iNet.getUrl('ita/personrepresent/save'),
+          update: iNet.getUrl('ita/personrepresent/update'),
+          del: iNet.getUrl('ita/personrepresent/delete')
     /*  view: iNet.getUrl('ita/province/load'),
     save: iNet.getUrl('ita/province/save'),
     update: iNet.getUrl('ita/province/update'),

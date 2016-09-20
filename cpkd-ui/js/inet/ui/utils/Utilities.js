@@ -164,7 +164,7 @@ FormService = {
 
         var __config = {};
         __config.id = id;
-        __config.placeholder = iNet.resources.constant.placeholder || "Select value";
+        __config.placeholder = ita.resources.common.select_value || "Select value";
         __config.allowClear = __allowClear;
         __config.multiple = __multiple;
         __config.data = {
@@ -373,6 +373,14 @@ FormService = {
 
         isDate = (!isNaN(parseFloat(date)) && isFinite(date));
         return isDate;
+    },
+    displayContent : function($content, status){
+        status = status || '';
+        if ($content.hasClass('hide')){
+            if (status != 'hide') { $content.removeClass('hide'); }
+        } else {
+            if (status != 'show') { $content.addClass('hide'); }
+        }
     }
 };
 

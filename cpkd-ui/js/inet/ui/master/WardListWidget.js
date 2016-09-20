@@ -186,6 +186,7 @@ $(function() {
                     initSelection: function (element, callback) {
                         var id = $(element).val();
                         if (id == "") return;
+                        var ids = id.split(',');
                         if (__districtList.length > 0) {
                             var __items = [];
                             $.each(__districtList, function(i, obj){

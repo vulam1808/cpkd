@@ -22,6 +22,8 @@ public class HomeBusiness {
     private String businessCapital;
     private long dateSubmit;
     private String status;
+    private String infoChange;
+
 
     public String getUuid() {
         return uuid;
@@ -165,5 +167,13 @@ public class HomeBusiness {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getInfoChange() {
+        return infoChange;
+    }
+
+    public void setInfoChange(String infoChange) {
+        this.infoChange = infoChange;
     }
 }
