@@ -9,8 +9,13 @@ import com.inet.xportal.web.exception.WebOSBOException;
 import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
-import com.ita.cpkd.bo.CareerBo;
-import com.ita.cpkd.model.Career;
+import com.inet.xportal.web.util.XParamUtils;
+import com.inet.xportal.xdb.business.BaseDBStore;
+import com.inet.xportal.xdb.persistence.JSONDB;
+import com.inet.xportal.xdb.query.Query;
+import com.inet.xportal.xdb.query.impl.QueryImpl;
+import com.ita.cpkd.bo.PersonRepresentBo;
+import com.ita.cpkd.model.PersonRepresent;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,20 +30,26 @@ import java.util.Map;
 @XPortalPageRequest(uri = "ita/personrepresent/load", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class PersonRepresentLoadService extends DataServiceMarker {
     @Inject
-    private CareerBo careerBo;
+    private PersonRepresentBo personRepresentBo;
 
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         //District district = action.getModel(District.class);
-
+       PersonRepresent pes = new PersonRepresent();
+        String id = XParamUtils.getString("personID", params, "");
+        pes = personRepresentBo.load(id);
         // TODO check your required data
+        /*Query<JSONDB> query = new QueryImpl<JSONDB>();
+        query.field(BaseDBStore.ID_KEY).equal(BaseDBStore.getId(id));*/
+
 
         // save account
         //district.setUuid(districtBo.add(district));
-        SearchDTO<Career> result= careerBo.query();
+       // SearchDTO<PersonRepresent> result= personRepresentBo.query((QueryImpl<JSONDB>)query);
+       /* if(result.getTotal()>0)
+            pes = result.getItems().get(0);*/
 
-
-        return new ObjectWebDataservice<SearchDTO<Career>>(result);
+        return new ObjectWebDataservice<PersonRepresent>(pes);
     }
 }

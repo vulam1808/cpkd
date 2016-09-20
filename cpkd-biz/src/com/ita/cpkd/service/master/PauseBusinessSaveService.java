@@ -1,4 +1,5 @@
-package com.ita.cpkd.service.process;
+
+package com.ita.cpkd.service.master;
 
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
@@ -8,8 +9,8 @@ import com.inet.xportal.web.exception.WebOSBOException;
 import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
-import com.inet.xportal.web.util.XParamUtils;
-import com.ita.cpkd.bo.PersonRepresentBo;
+import com.ita.cpkd.bo.PauseBusinessBo;
+import com.ita.cpkd.model.PauseBusiness;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,25 +20,29 @@ import java.util.Map;
 /**
  * Created by HS on 13/09/2016.
  */
-@Named("ita_personrepresent_deleteservice")
+@Named("ita_pausebusiness_saveservice")
+
 @XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
-@XPortalPageRequest(uri = "ita/personrepresent/delete", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
-public class PersonRepresentDeleteService extends DataServiceMarker {
+@XPortalPageRequest(uri = "ita/pausebusiness/save", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+public class PauseBusinessSaveService extends DataServiceMarker{
+
     @Inject
-    private PersonRepresentBo careerBo;
+    private PauseBusinessBo pausebusinessBo;
+
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
-        //District district = action.getModel(District.class);
-        String id = XParamUtils.getString("uuid", params, "");
+        PauseBusiness arbmodel = action.getModel(PauseBusiness.class);
+
         // TODO check your required data
-       /* Query<JSONDB> query = new QueryImpl<JSONDB>();
-        query.field("code").equal(code);*/
+
         // save account
         //district.setUuid(districtBo.add(district));
-        careerBo.remove(id);
 
+        String uuid= pausebusinessBo.add(arbmodel);
+        arbmodel.setUuid(uuid);
 
-        return new ObjectWebDataservice<String>(id);
+        return new ObjectWebDataservice<PauseBusiness>(arbmodel);
     }
+
 }

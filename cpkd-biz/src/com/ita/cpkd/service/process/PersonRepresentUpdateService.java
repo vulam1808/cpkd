@@ -9,8 +9,8 @@ import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
-import com.ita.cpkd.bo.CareerBo;
-import com.ita.cpkd.model.Career;
+import com.ita.cpkd.bo.PersonRepresentBo;
+import com.ita.cpkd.model.PersonRepresent;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,11 +26,11 @@ import java.util.Map;
 public class PersonRepresentUpdateService extends DataServiceMarker{
 
     @Inject
-    private CareerBo careerBo;
+    private PersonRepresentBo careerBo;
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
-        Career areabusinessmodel = action.getModel(Career.class);
+        PersonRepresent areabusinessmodel = action.getModel(PersonRepresent.class);
         String id = XParamUtils.getString("uuid", params, "");
         // TODO check your required data
 
@@ -39,6 +39,6 @@ public class PersonRepresentUpdateService extends DataServiceMarker{
         careerBo.update(id,areabusinessmodel);
         areabusinessmodel.setUuid(id);
 
-        return new ObjectWebDataservice<Career>(areabusinessmodel);
+        return new ObjectWebDataservice<PersonRepresent>(areabusinessmodel);
     }
 }

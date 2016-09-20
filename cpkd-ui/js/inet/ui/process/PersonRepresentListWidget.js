@@ -23,7 +23,7 @@ $(function() {
   iNet.ui.ita.PersonRepresentListWidget = function (config) {
     var __config = config || {};
     iNet.apply(this, __config);// apply configuration
-    this.id = this.id || 'personrepresent-widget';
+    this.id = this.id || 'personrepresent-list-widget';
     /*var abc = this;
      var wgAddProvince = null;
 
@@ -213,6 +213,8 @@ $(function() {
      this.fireEvent('adddialog1', this);
      }.createDelegate(this));
   };
+
+
 
   iNet.extend(iNet.ui.ita.PersonRepresentListWidget, iNet.ui.app.widget);
   var wgProvince = new iNet.ui.ita.PersonRepresentListWidget();
