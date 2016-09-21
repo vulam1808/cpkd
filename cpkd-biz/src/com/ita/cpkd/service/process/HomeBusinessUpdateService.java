@@ -36,7 +36,7 @@ public class HomeBusinessUpdateService extends DataServiceMarker {
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         HomeBusiness arbmodel = action.getModel(HomeBusiness.class);
-        logger.debug("HomeBusiness status {}: ", arbmodel);
+        //logger.debug("HomeBusiness status {}: ", arbmodel);
         String id = XParamUtils.getString("idHomeBusiness", params, "");
         // TODO check your required data
 

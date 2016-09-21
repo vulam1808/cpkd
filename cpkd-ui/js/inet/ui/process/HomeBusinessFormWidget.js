@@ -82,7 +82,7 @@ $(function () {
             var __dataListChangeBusiness = [];
             $.postJSON(url.load_enum, {typeEnum: 'CHANGE'}, function (result) {
                 var __result = result || [];
-                console.log('CHANGE json>>>',__result);
+
                 $(__result).each(function(i,item){
                     __dataListChangeBusiness.push({id:item,name:resource.common[item]});
                 });
@@ -97,11 +97,11 @@ $(function () {
             var __dataTypeTaskBusiness  = [];
             $.postJSON(url.load_enum, {typeEnum: 'STATUS'}, function (result) {
                 var __result = result || [];
-                console.log('STATUS json>>>',__result);
+
                 $(__result).each(function(i,item){
                     __dataTypeTaskBusiness.push({id:item,name:resource.common[item]});
                 });
-                console.log('STATUS >>>',__dataTypeTaskBusiness);
+
                 $form.input_typeTask = FormService.createSelect('homebusiness-type-task', __dataTypeTaskBusiness, 'id', 1, false, false);
                 $form.input_typeTask.setValue('CAP_MOI');
                 $form.input_typeTask.on('change', function(){
@@ -272,14 +272,14 @@ $(function () {
         var pauseDateStart = $formTamNgung.input_dateStart.datepicker({
             format: 'dd/mm/yyyy'
         }).on('changeDate',function (ev) {
-            fromDate.hide();
+            pauseDateStart.hide();
         }).data('datepicker');
         $formTamNgung.input_dateStart.val(CommonService.getCurrentDate());
 
         var endDateEnd = $formChamDut.input_dateEnd.datepicker({
             format: 'dd/mm/yyyy'
         }).on('changeDate',function (ev) {
-            toDate.hide();
+            endDateEnd.hide();
         }).data('datepicker');
         $formChamDut.input_dateEnd.val(CommonService.getCurrentDate());
 
@@ -380,7 +380,7 @@ $(function () {
             console.log('check click',_data)
             if(!CommonService.isSuccess(_data.nameBusiness))
             {
-                this.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
+                me.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
                 me.__isCheckNameSave =false;
                 return false;
             }
@@ -391,9 +391,9 @@ $(function () {
                 if (CommonService.isSuccess(__result)) {
                     //var __listProvince = [];
                     var __item = __result[0];
-                    //$form.input_id_homebusiness.val(__item.uuid)
+
                     me.__id_homebusiness = __item.uuid;
-                    //console.log('input_id_homebusiness Value',__item.uuid)
+
                     if(valTypkeTask == "CAP_MOI") {
                         var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i> Đã tồn tại tên kinh doanh <button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết</button></p>';
                         $form.div_status_check.empty();
@@ -464,6 +464,9 @@ $(function () {
     };
 
     iNet.extend(iNet.ui.ita.HomeBusinessForm, iNet.ui.app.widget,{
+        clearData:function(){
+            this.__id_homebusiness = '';
+        },
          getDataCapMoi: function(){
             var __data = {};
             __data.nameBusiness = $form.input_nameBusiness.val();
@@ -476,33 +479,33 @@ $(function () {
             __data.email = $formCapMoi.input_email.val();
             __data.website = $formCapMoi.input_website.val();
             __data.areaBusiness_ID = $formCapMoi.input_areaBusiness.getValue();
-           // __data.dateSubmit = CommonService.getCurrentDate().longToDate();
+             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
             return __data;
         },
         getDataCapDoi: function(){
             var __data = {};
             __data.homeBusiness_ID = this.__id_homebusiness;
-            __data.infoChange = $formCapDoi.input_infoChange.getValue();
-            __data.dateSubmit = CommonService.getCurrentDate().longToDate();
+            __data.infoChange = $formCapDoi.input_infoChange.getValue().toString();
+            __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
 
             return __data;
         },
         getDataTamNgung: function(data){
             var __data = {};
             __data.homeBusiness_ID =  this.__id_homebusiness;
-            __data.dayofPause = $formTamNgung.input_dayofPause.getValue();
-            __data.dateStart = $formTamNgung.input_dateStart.getValue().longToDate();
+            __data.dayofPause = $formTamNgung.input_dayofPause.val();
+            __data.dateStart = $formTamNgung.input_dateStart.val().dateToLong();
             __data.reason = $formTamNgung.input_reason.val();
-            __data.dateSubmit = CommonService.getCurrentDate().longToDate();
+            __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
 
             return __data;
         },
         getDataChamDut: function(data){
             var __data = {};
             __data.homeBusiness_ID =  this.__id_homebusiness;
-            __data.dateEnd = $formChamDut.input_dateEnd.getValue();
+            __data.dateEnd = $formChamDut.input_dateEnd.val().dateToLong();
             __data.reason = $formChamDut.input_reason.val();
-            __data.dateSubmit = CommonService.getCurrentDate().longToDate();
+            __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
 
             return __data;
         },

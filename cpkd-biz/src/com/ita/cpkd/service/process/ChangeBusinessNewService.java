@@ -8,6 +8,7 @@ import com.inet.xportal.web.exception.WebOSBOException;
 import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
+import com.inet.xportal.web.util.XParamUtils;
 import com.ita.cpkd.bo.ChangeBusinessBo;
 import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.PersonRepresentBo;
@@ -17,6 +18,8 @@ import com.ita.cpkd.model.PersonRepresent;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -34,7 +37,13 @@ public class ChangeBusinessNewService extends DataServiceMarker {
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         ChangeBusiness arbmodel = action.getModel(ChangeBusiness.class);
-
+        String strInfoChange = XParamUtils.getString("infoChange", params, "");
+        String[] parts = strInfoChange.split(",");
+        List<String> lstInfoChange = new ArrayList<String>();
+        for (int i = 0; i <= parts.length-1; i++){
+            lstInfoChange.add(parts[i]);
+        }
+        arbmodel.setInfoChange(lstInfoChange);
         // TODO check your required data
 
         // save account
