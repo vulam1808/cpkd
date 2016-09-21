@@ -105,6 +105,7 @@ $(function () {
                 $form.input_typeTask = FormService.createSelect('homebusiness-type-task', __dataTypeTaskBusiness, 'id', 1, false, false);
                 $form.input_typeTask.setValue('CAP_MOI');
                 $form.input_typeTask.on('change', function(){
+                    me.__isCheckNameSave =false;
                     var valTypkeTask = $form.input_typeTask.getValue();
                     if(valTypkeTask == "CAP_MOI")
                     {
@@ -380,7 +381,7 @@ $(function () {
             if(!CommonService.isSuccess(_data.nameBusiness))
             {
                 this.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
-                __isCheckNameSave =false;
+                me.__isCheckNameSave =false;
                 return false;
             }
             $.postJSON(url.check_name_business, _data, function (result) {
@@ -396,7 +397,7 @@ $(function () {
                         var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i> Đã tồn tại tên kinh doanh <button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết</button></p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
-                        __isCheckNameSave = false;
+                        me.__isCheckNameSave = false;
                     }
                     else
                     {
@@ -404,7 +405,7 @@ $(function () {
                             '<button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết thông tin hộ kinh doanh </button></p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
-                        __isCheckNameSave = true;
+                        me.__isCheckNameSave = true;
                     }
                     // me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
                 }
@@ -415,7 +416,7 @@ $(function () {
                             ' Bạn có thể đăng ký kinh doanh với tên này </p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
-                        __isCheckNameSave = true;
+                        me.__isCheckNameSave = true;
                     }
                     else
                     {
@@ -423,14 +424,14 @@ $(function () {
                             ' Không tồn tại tên đăng ký kinh doanh </p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
-                        __isCheckNameSave = false;
+                        me.__isCheckNameSave = false;
                     }
                     // me.notifySuccess(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
                 }
             });
         }
         $form.input_nameBusiness.on('change',function(){
-            __isCheckNameSave = false;
+            me.__isCheckNameSave = false;
         }.createDelegate(this));
         $form.button_check.on('click', function(){
             checkNameBusiness();
@@ -506,7 +507,7 @@ $(function () {
         },
         checkSave: function(){
             var valTypkeTask = $form.input_typeTask.getValue();
-            if(__data.nameBusiness == "")
+            if($form.input_nameBusiness.val() == "")
             {
                 this.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
                 return false;

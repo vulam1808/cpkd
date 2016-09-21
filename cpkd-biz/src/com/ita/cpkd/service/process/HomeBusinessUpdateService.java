@@ -13,6 +13,8 @@ import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.PersonRepresentBo;
 import com.ita.cpkd.model.HomeBusiness;
 import com.ita.cpkd.model.PersonRepresent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,6 +28,7 @@ import java.util.Map;
 @XPortalDataService(roles = {"cpkd.create"}, description = "Tạo hồ sơ")
 @XPortalPageRequest(uri = "ita/homebusiness/update", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class HomeBusinessUpdateService extends DataServiceMarker {
+    protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
     @Inject
     private HomeBusinessBo homeBusinessBo;
 
@@ -33,7 +36,7 @@ public class HomeBusinessUpdateService extends DataServiceMarker {
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         HomeBusiness arbmodel = action.getModel(HomeBusiness.class);
-
+        logger.debug("HomeBusiness status {}: ", arbmodel);
         String id = XParamUtils.getString("idHomeBusiness", params, "");
         // TODO check your required data
 
