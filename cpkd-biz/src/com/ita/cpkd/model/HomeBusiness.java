@@ -21,8 +21,35 @@ public class HomeBusiness {
     private String cashCapital;
     private String businessCapital;
     private long dateSubmit;
-    private String status;
+    private String statusType;
+
+    public String getStatusType() {
+        return statusType;
+    }
+
+    public void setStatusType(String statusType) {
+        this.statusType = statusType;
+    }
+
+    public String getStatusProcess() {
+        return statusProcess;
+    }
+
+    public void setStatusProcess(String statusProcess) {
+        this.statusProcess = statusProcess;
+    }
+
+    public String getNumberBusiness() {
+        return numberBusiness;
+    }
+
+    public void setNumberBusiness(String numberBusiness) {
+        this.numberBusiness = numberBusiness;
+    }
+
+    private String statusProcess;
     private String infoChange;
+    private String numberBusiness;
 
 
     public String getUuid() {
@@ -161,13 +188,7 @@ public class HomeBusiness {
         this.dateSubmit = dateSubmit;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getInfoChange() {
         return infoChange;

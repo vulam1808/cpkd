@@ -128,6 +128,7 @@ CommonService = {
         }
         return __percent;
     }
+
 };
 
 FormService = {

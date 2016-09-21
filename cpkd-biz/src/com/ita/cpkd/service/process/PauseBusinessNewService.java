@@ -1,5 +1,5 @@
 
-package com.ita.cpkd.service.master;
+package com.ita.cpkd.service.process;
 
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
@@ -22,9 +22,9 @@ import java.util.Map;
  */
 @Named("ita_pausebusiness_saveservice")
 
-@XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
+@XPortalDataService(roles = {"cpkd.create"}, description = "Tạo hồ sơ")
 @XPortalPageRequest(uri = "ita/pausebusiness/save", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
-public class PauseBusinessSaveService extends DataServiceMarker{
+public class PauseBusinessNewService extends DataServiceMarker{
 
     @Inject
     private PauseBusinessBo pausebusinessBo;

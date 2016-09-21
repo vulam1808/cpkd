@@ -1,5 +1,5 @@
 
-package com.ita.cpkd.service.master;
+package com.ita.cpkd.service.process;
 
 
 import com.inet.xportal.nosql.web.data.SearchDTO;
@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by HS on 13/09/2016.
  */
 @Named("ita_pausebusiness_loadservice")
-@XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
+@XPortalDataService(roles = {"cpkd.create"}, description = "Tạo hồ sơ")
 @XPortalPageRequest(uri = "ita/pausebusiness/load",  result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 
 public class PauseBusinessLoadService extends DataServiceMarker {

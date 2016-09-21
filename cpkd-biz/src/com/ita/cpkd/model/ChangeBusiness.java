@@ -1,5 +1,8 @@
 package com.ita.cpkd.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ACER on 9/14/2016.
  */
@@ -23,6 +26,26 @@ public class ChangeBusiness {
     private String cashCapital;
     private String businessCapital;
     private long dateSubmit;
+    private String statusProcess;
+    private List<String> infoChange = new ArrayList<String>();
+
+    public List<String> getInfoChange() {
+        return infoChange;
+    }
+
+    public void setInfoChange(List<String> infoChange) {
+        this.infoChange = infoChange;
+    }
+
+    public String getStatusProcess() {
+        return statusProcess;
+    }
+
+    public void setStatusProcess(String statusProcess) {
+        this.statusProcess = statusProcess;
+    }
+
+
 
     public String getUuid() {
         return uuid;

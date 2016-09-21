@@ -9,6 +9,15 @@ public class EndBusiness {
     private String dateEnd;
     private String reason;
     private String dateSubmit;
+    private String statusProcess;
+
+    public String getStatusProcess() {
+        return statusProcess;
+    }
+
+    public void setStatusProcess(String statusProcess) {
+        this.statusProcess = statusProcess;
+    }
 
     public String getUuid() {
         return uuid;

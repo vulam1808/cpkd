@@ -1,8 +1,11 @@
 
 #theme("/common/css/grid.min")
 #theme("/common/css/jquery/select2")
+#theme("/common/css/bootstrap/bootstrap-timepicker")
+#theme("/common/css/bootstrap/bootstrap-datepicker")
 
-
+#script("/js/common/bootstrap/plugins/bootstrap-timepicker.min.js")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
 #script("/js/common/inet/lib/select.min.js")
 #script("/js/cpkd/inet/lib/homebusiness-form-widget.min.js")
 
@@ -146,48 +149,35 @@
 
 
             <div id="pausebusiness-item-create" class="hide">
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="pausebusiness-homeBusiness_ID" class="control-label">
-                            <span  class="">$text.getText('common.homeBusiness_ID') <span class="required"></span></span>
-                        </label>
-                        <div class="has-success ">
-                            <input id="pausebusiness-homeBusiness_ID" type="text" class="col-md-12 form-control"/>
-
-                        </div>
-
-                    </div>
-
-                </div>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="pausebusiness-dayofPause" class="control-label">
                             <span class="">$text.getText('common.dayofPause')</span>
                         </label>
-                        <input id="pausebusiness-dayofPause" type="text" class="col-md-12 form-control" />
+                        <input id="pausebusiness-dayofPause" type="number" class="col-md-6 form-control" />
 
                     </div>
 
+
+                </div>
+                <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="pausebusiness-dateStart" class="control-label">
-                            <span class="">$text.getText('common.dateStart')</span></span>
+                            <span class="">$text.getText('common.dateStartPause')</span></span>
                         </label>
-                        <input id="pausebusiness-dateStart" class="col-md-12 form-control"/>
+                        <input id="pausebusiness-dateStart" class="col-md-6 form-control"/>
 
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 form-group">
                         <label for="pausebusiness-reason" class="control-label">
                             <span  class="">$text.getText('common.reason') <span class="required"></span></span>
                         </label>
-                        <div class="has-success ">
-                            <input id="pausebusiness-reason" type="text" class="col-md-12 form-control"/>
+                        <textarea id="pausebusiness-reason" rows="3" class="form-control">
 
-                        </div>
-
+                        </textarea>
                     </div>
 
                 </div>
@@ -196,36 +186,22 @@
 
             <div id="endbusiness-item-create" class="hide">
                 <div class="row">
-                    <div class="col-md-12">
-                        <label for="endbusiness-homeBusiness_ID" class="control-label">
-                            <span  class="">$text.getText('common.homeBusiness_ID') <span class="required"></span></span>
-                        </label>
-                        <div class="has-success ">
-                            <input id="endbusiness-homeBusiness_ID" type="text" class="col-md-12 form-control"/>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="endbusiness-dateEnd" class="control-label">
                             <span class="">$text.getText('common.dateEnd')</span>
                         </label>
-                        <input id="endbusiness-dateEnd" type="text" class="col-md-12 form-control" />
+                        <input id="endbusiness-dateEnd" type="text" class="col-md-6 form-control" />
 
                     </div>
 
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
                         <label for="endbusiness-reason" class="control-label">
                             <span  class="">$text.getText('common.reason') <span class="required"></span></span>
                         </label>
-                        <div class="has-success ">
-                            <input id="endbusiness-reason" type="text" class="col-md-12 form-control"/>
 
-                        </div>
+                        <textarea id="endbusiness-reason" rows="3" class="form-control">
+
+                        </textarea>
 
                     </div>
                 </div>
@@ -236,18 +212,19 @@
             <div id="changebusiness-item-create" class="hide">
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 form-group">
                         <label for="changebusiness-infoChange" class="control-label">
                             <span  class="">$text.getText('common.infoChange') <span class="required"></span></span>
                         </label>
-                        <div class="has-success ">
-                            <input id="changebusiness-infoChange" type="text" class="col-md-12 form-control"/>
+                        <input id="changebusiness-infoChange" type="text" class="col-md-12 form-control" />
 
-                        </div>
+                        <!--<div id="changebusiness-infoChange" class="has-success ">
+
+                        </div>-->
                     </div>
                 </div>
 
-        </div>
+            </div>
 
         </div>
 </div>

@@ -105,6 +105,7 @@ $(function () {
       this.$input.$website.val(__data.website);
       this.$input.$name.val(__data.name).focus();
       FormUtils.showButton(this.$toolbar.SAVE, true);
+
       this.check();
     },
     resetData: function () {
