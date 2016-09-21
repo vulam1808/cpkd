@@ -14,7 +14,7 @@ $(function() {
   var url = {
     view: iNet.getUrl('ita/personrepresent/load'),
     save: iNet.getUrl('ita/personrepresent/save'),
-    update: iNet.getUrl('ita/homebusiness/update'),
+    update_taxCodeHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
     del: iNet.getUrl('ita/personrepresent/delete')
   };
 
@@ -29,21 +29,28 @@ $(function() {
 
     var me = this;
 
-    $('#taxcode-location-btn-update').on('click', function(){
-      getData();
-      var __data = me.setData() || {};
-      console.log('update>>', __data);
-
-      $.postJSON(url.update, __data, function (result) {
+    var updateTaxCodeHomeBusiness = function(taxcode){
+      var _taxcode = taxcode || '';
+      //var _data = {taxCode: _taxcode, idHomeBusiness:''};
+      var _data = {taxCode: _taxcode};
+      $.postJSON(url.update_taxCodeHomeBusiness, _data, function (result) {
         var __result = result || {};
         if (CommonService.isSuccess(__result)) {
-
-          me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
-        } else {
-
-          me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.save_error, __result.errors || []));
+          console.log('Update taxcode success'+taxcode+">>>>",_data);
+        }
+        else
+        {
+          console.log('Update taxcode error'+taxcode+">>>>",_data);
         }
       });
+    }
+
+    $('#taxcode-location-btn-update').on('click', function(){
+
+      var __data = me.getDataTaxCode() || {};
+      console.log('updateTaxCode>>', __data);
+
+      updateTaxCodeHomeBusiness(__data);
     }.createDelegate(this));
 
 
@@ -51,24 +58,13 @@ $(function() {
   };
 
   iNet.extend(iNet.ui.ita.TaxCodeWidget, iNet.ui.app.widget,{
-    getData: function () {
-      var __ownerData = this.ownerData || {};
+    getDataTaxCode: function () {
+
       var __data = {};
-      __data.taxCode = $input.$taxCode.val();
-      if(!iNet.isEmpty(__ownerData.uuid)){
-        __data.uuid = __ownerData.uuid;
-      }
-      return __data;
-    },
-    setData: function (data) {
-      var __data = data || {};
-     /* this.ownerData = __data;*/
-      $input.$taxCode.val(__data.taxCode);
 
+     // __data.homeBusiness_ID = $input.input_id_homebusiness.val();
+      __data.taxCode = $input.$taxCode.getValue();
 
-     /* if(!iNet.isEmpty(__ownerData.uuid)){
-       __data.uuid = __ownerData.uuid;
-       }*/
       return __data;
     }
   });
