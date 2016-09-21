@@ -1,0 +1,36 @@
+#script("/js/cpkd/inet/lib/capital-form-widget.min.js")
+<div id="capital-form-widget">
+    <div class="wg-toolbar" class="navbar-fixed-top">
+
+        <button id="capital-location-btn-update" class="btn btn-success">
+            <i class="icon-save"></i> $text.getText("Update")
+        </button>
+
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <form id="form-service" class="form-horizontal">
+
+                <div class="row" style="margin: 0px">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="capital-txt-cashCapital">$text.getText("Vốn tiền mặt") (<span class="required"/>):</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="capital-txt-cashCapital" name="name" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="capital-txt-assetCapital">$text.getText("Vốn tài sản") (<span class="required"/>):</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="capital-txt-assetCapital" name="name" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                            <label class="col-sm-2 no-padding-right lbl-bold" for="capital-txt-businessCapital">$text.getText("Vốn kinh doanh") (<span class="required"/>):</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="capital-txt-businessCapital" name="name" value="" class="col-xs-12 col-sm-12">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
