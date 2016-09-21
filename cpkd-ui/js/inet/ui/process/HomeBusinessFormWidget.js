@@ -288,6 +288,7 @@ $(function () {
             {
                 return;
             }
+
             var valTypkeTask = $form.input_typeTask.getValue();
             if(valTypkeTask == "CAP_MOI")
             {
@@ -372,10 +373,16 @@ $(function () {
                 }
             });
         }
-        $form.button_check.on('click', function(){
+        me.__isCheckNameSave = false;
+        var checkNameBusiness = function(){
             var _data = me.getDataCapMoi() || {};
             console.log('check click',_data)
-            if(CommonService.isSuccess(_data) )
+            if(!CommonService.isSuccess(_data.nameBusiness))
+            {
+                this.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
+                __isCheckNameSave =false;
+                return false;
+            }
             $.postJSON(url.check_name_business, _data, function (result) {
                 var __result = result.items || [];
                 console.log('__result check name',__result)
@@ -386,9 +393,10 @@ $(function () {
                     $form.input_id_homebusiness.val(__item.uuid)
                     console.log('input_id_homebusiness Value',__item.uuid)
                     if(valTypkeTask == "CAP_MOI") {
-                        var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i>Đã tồn tại tên kinh doanh <button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết</button></p>';
+                        var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i> Đã tồn tại tên kinh doanh <button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết</button></p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
+                        __isCheckNameSave = false;
                     }
                     else
                     {
@@ -396,8 +404,9 @@ $(function () {
                             '<button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết thông tin hộ kinh doanh </button></p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
+                        __isCheckNameSave = true;
                     }
-                   // me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
+                    // me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
                 }
                 else
                 {
@@ -406,6 +415,7 @@ $(function () {
                             ' Bạn có thể đăng ký kinh doanh với tên này </p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
+                        __isCheckNameSave = true;
                     }
                     else
                     {
@@ -413,10 +423,17 @@ $(function () {
                             ' Không tồn tại tên đăng ký kinh doanh </p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
+                        __isCheckNameSave = false;
                     }
-                   // me.notifySuccess(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                    // me.notifySuccess(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
                 }
             });
+        }
+        $form.input_nameBusiness.on('change',function(){
+            __isCheckNameSave = false;
+        }.createDelegate(this));
+        $form.button_check.on('click', function(){
+            checkNameBusiness();
         }.createDelegate(this));
       /*  $form.button_view_detail('click', function(){
             var _data = me.getData() || {};
@@ -489,15 +506,21 @@ $(function () {
         },
         checkSave: function(){
             var valTypkeTask = $form.input_typeTask.getValue();
+            if(__data.nameBusiness == "")
+            {
+                this.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
+                return false;
+            }
+            if(this.__isCheckNameSave == false)
+            {
+                this.notifyError(resource.validate.save_title, resource.validate.save_error_checkNameSave);
+                return false;
+            }
             if(valTypkeTask == "CAP_MOI")
             {
                 var __data =  this.getDataCapMoi();
-                if(__data.nameBusiness == "")
-                {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
-                    return false;
-                }
-                else if(__data.address == "")
+
+                if(__data.address == "")
                 {
                     this.notifyError(resource.validate.save_title, resource.validate.save_error_address);
                     return false;
