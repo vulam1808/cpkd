@@ -7,7 +7,7 @@ $(function() {
     validate: ita.resources.validate
   };
   var $input = {
-    $taxCode: $('#homebusiness-txt-taxCode')
+    taxCode: $('#homebusiness-txt-taxCode')
 
   };
 
@@ -28,19 +28,19 @@ $(function() {
 
 
     var me = this;
-
-    var updateTaxCodeHomeBusiness = function(taxcode){
-      var _taxcode = taxcode || '';
-      //var _data = {taxCode: _taxcode, idHomeBusiness:''};
-      var _data = {taxCode: _taxcode};
+   me.__id_homebusiness = "57e247003525e914ace2cb04";
+    //me.__id_homebusiness = '';
+    var updateTaxCodeHomeBusiness = function(data){
+      var _data = data || '';
+     // var _data = {taxCode: _taxcode};
       $.postJSON(url.update_taxCodeHomeBusiness, _data, function (result) {
         var __result = result || {};
         if (CommonService.isSuccess(__result)) {
-          console.log('Update taxcode success'+taxcode+">>>>",_data);
+          //console.log('Update Taxcode success'+data+">>>>",_data);
         }
         else
         {
-          console.log('Update taxcode error'+taxcode+">>>>",_data);
+          //console.log('Update Taxcode error'+data+">>>>",_data);
         }
       });
     }
@@ -62,8 +62,8 @@ $(function() {
 
       var __data = {};
 
-     // __data.homeBusiness_ID = $input.input_id_homebusiness.val();
-      __data.taxCode = $input.$taxCode.getValue();
+      __data.idHomeBusiness = this.__id_homebusiness;
+      __data.taxCode = $input.taxCode.val();
 
       return __data;
     }
