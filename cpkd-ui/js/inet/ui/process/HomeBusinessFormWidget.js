@@ -29,7 +29,7 @@ $(function () {
          del: iNet.getUrl('ita/province/delete')*/
     };
     var $form = {
-        input_id_homebusiness:$('#id-homebusiness'),
+        //input_id_homebusiness:$('#id-homebusiness'),
         input_typeTask: $('#homebusiness-type-task'),
         button_save: $('#homebusiness-save-btn'),
         div_title:$('#homebusiness-title'),
@@ -74,7 +74,7 @@ $(function () {
         this.id = this.id || 'homebusiness-div';
         iNet.ui.ita.HomeBusinessForm.superclass.constructor.call(this);
         var me= this;
-        me.rsSave = false;
+        me.__id_homebusiness = '';
 
 //Function load combobox ==========================================
         //Load info change
@@ -362,7 +362,7 @@ $(function () {
 
         var updateStatusHomeBusiness = function(status){
             var _status = status || '';
-            var _data = {statusType: _status, idHomeBusiness:$form.input_nameBusiness.val()};
+            var _data = {statusType: _status, idHomeBusiness:me.__id_homebusiness};
             $.postJSON(url.update_statusHomeBusiness, _data, function (result) {
                 var __result = result || {};
                 if (CommonService.isSuccess(__result)) {
@@ -391,8 +391,9 @@ $(function () {
                 if (CommonService.isSuccess(__result)) {
                     //var __listProvince = [];
                     var __item = __result[0];
-                    $form.input_id_homebusiness.val(__item.uuid)
-                    console.log('input_id_homebusiness Value',__item.uuid)
+                    //$form.input_id_homebusiness.val(__item.uuid)
+                    me.__id_homebusiness = __item.uuid;
+                    //console.log('input_id_homebusiness Value',__item.uuid)
                     if(valTypkeTask == "CAP_MOI") {
                         var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i> Đã tồn tại tên kinh doanh <button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết</button></p>';
                         $form.div_status_check.empty();
@@ -480,7 +481,7 @@ $(function () {
         },
         getDataCapDoi: function(){
             var __data = {};
-            __data.homeBusiness_ID = $form.input_id_homebusiness.val();
+            __data.homeBusiness_ID = this.__id_homebusiness;
             __data.infoChange = $formCapDoi.input_infoChange.getValue();
             __data.dateSubmit = CommonService.getCurrentDate().longToDate();
 
@@ -488,7 +489,7 @@ $(function () {
         },
         getDataTamNgung: function(data){
             var __data = {};
-            __data.homeBusiness_ID = $form.input_id_homebusiness.val();
+            __data.homeBusiness_ID =  this.__id_homebusiness;
             __data.dayofPause = $formTamNgung.input_dayofPause.getValue();
             __data.dateStart = $formTamNgung.input_dateStart.getValue().longToDate();
             __data.reason = $formTamNgung.input_reason.val();
@@ -498,7 +499,7 @@ $(function () {
         },
         getDataChamDut: function(data){
             var __data = {};
-            __data.homeBusiness_ID = $form.input_id_homebusiness.val();
+            __data.homeBusiness_ID =  this.__id_homebusiness;
             __data.dateEnd = $formChamDut.input_dateEnd.getValue();
             __data.reason = $formChamDut.input_reason.val();
             __data.dateSubmit = CommonService.getCurrentDate().longToDate();
@@ -551,6 +552,11 @@ $(function () {
             else if(valTypkeTask == "CAP_DOI")
             {
                 var __data =  this.getDataCapDoi();
+                if(__data.homeBusiness_ID == "")
+                {
+                    this.notifyError(resource.validate.save_title, resource.validate.save_error_changeHomeBusiness_ID);
+                    return false;
+                }
                 if(__data.infoChange == "")
                 {
                     this.notifyError(resource.validate.save_title, resource.validate.save_error_infoChange);
