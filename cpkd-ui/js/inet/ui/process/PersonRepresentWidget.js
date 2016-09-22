@@ -7,14 +7,14 @@ $(function() {
     validate: ita.resources.validate
   };
   var $input = {
-    $nameRepresent: $('#personrepresent-txt-nameRepresent'),
-    $birthday: $('#personrepresent-txt-birthday'),
-    $gender: $('#personrepresent-txt-gender'),
-    $race: $('#personrepresent-txt-race'),
-    $regilion: $('#personrepresent-txt-regilion'),
-    $idnumber: $('#personrepresent-txt-idnumber'),
-    $issueDate: $('#personrepresent-txt-issueDate'),
-    $issuePlace: $('#personrepresent-txt-issuePlace')
+    nameRepresent: $('#personrepresent-txt-nameRepresent'),
+    birthday: $('#personrepresent-txt-birthday'),
+    gender: $('#personrepresent-txt-gender'),
+    race: $('#personrepresent-txt-race'),
+    regilion: $('#personrepresent-txt-regilion'),
+    idnumber: $('#personrepresent-txt-idnumber'),
+    issueDate: $('#personrepresent-txt-issueDate'),
+    issuePlace: $('#personrepresent-txt-issuePlace')
   };
 
   var url = {
@@ -34,6 +34,30 @@ $(function() {
 
 
     var me = this;
+    var loadGender = function(){
+    var __result = [{id:'nu',name:resource.common.gender_nu},
+    {id:'nam',name:resource.common.gender_nam}];
+
+  $input.gender = FormService.createSelect('personrepresent-txt-gender', __result, 'id', 1, false, false);
+  $input.gender.setValue('nu');
+  console.log('load12121>>', __result);
+}
+    loadGender();
+//Load datetime
+
+    var birthday = $input.birthday.datepicker({
+      format: 'dd/mm/yyyy'
+    }).on('changeDate',function (ev) {
+      birthday.hide();
+    }).data('datepicker');
+    $input.birthday.val(CommonService.getCurrentDate());
+
+    var issueDate = $input.issueDate.datepicker({
+      format: 'dd/mm/yyyy'
+    }).on('changeDate',function (ev) {
+      issueDate.hide();
+    }).data('datepicker');
+    $input.issueDate.val(CommonService.getCurrentDate());
 
     $('#personrepresent-location-btn-save').on('click', function(){
       var __data = me.getData() || {};
@@ -53,15 +77,17 @@ $(function() {
 
     //load
     $('#personrepresent-location-btn-load').on('click', function(){
-      var __data = {personID : "57dfb34209206f1644d024b4"} || {};
+      var __data = {personID : "57e38efa4499d71aec2ae27e"} || {};
       console.log('load>>', __data);
 
       $.postJSON(url.view, __data, function (result) {
-        var __result = result || {};
-        console.log('load12121>>', __result);
+          loadGender();
+        var __result = me.loadData(result) || {};
+        console.log('update>>', __result);
+
         if (CommonService.isSuccess(__result)) {
 
-            me.loadData(__result);
+            //me.loadData(__result);
 
         }
       });
@@ -71,33 +97,34 @@ $(function() {
 
   iNet.extend(iNet.ui.ita.PersonRepresentWidget, iNet.ui.app.widget,{
     getData: function () {
-      var __ownerData = this.ownerData || {};
+      //var __ownerData = this.ownerData || {};
       var __data = {};
-      __data.nameRepresent = $input.$nameRepresent.val();
-      __data.birthday = $input.$birthday.val();
-      __data.gender = $input.$gender.val();
-      __data.race = $input.$race.val();
-      __data.regilion = $input.$regilion.val();
-      __data.idnumber = $input.$idnumber.val();
-      __data.issueDate = $input.$issueDate.val();
-      __data.issuePlace = $input.$issuePlace.val();
+      __data.nameRepresent = $input.nameRepresent.val();
+      __data.birthday = $input.birthday.val().dateToLong();
+      __data.gender = $input.gender.getValue();
+      __data.race = $input.race.val();
+      __data.regilion = $input.regilion.val();
+      __data.idnumber = $input.idnumber.val();
+      __data.issueDate = $input.issueDate.val().dateToLong();
 
-      if(!iNet.isEmpty(__ownerData.uuid)){
+      __data.issuePlace = $input.issuePlace.val();
+
+      /*if(!iNet.isEmpty(__ownerData.uuid)){
        __data.uuid = __ownerData.uuid;
-       }
+       }*/
       return __data;
     },
     loadData: function (data) {
       var __data = data || {};
      /* this.ownerData = __data;*/
-      $input.$nameRepresent.val(__data.nameRepresent);
-      $input.$birthday.val(__data.birthday);
-      $input.$gender.val( __data.gender);
-      $input.$race.val(__data.race);
-      $input.$regilion.val(__data.regilion);
-      $input.$idnumber.val(__data.idnumber);
-      $input.$issueDate.val( __data.issueDate);
-      $input.$issuePlace.val(__data.issuePlace);
+      $input.nameRepresent.val(__data.nameRepresent);
+        __data.birthday = $input.birthday.val().longToDate();
+      $input.gender.setValue(__data.gender);
+      $input.race.val(__data.race);
+      $input.regilion.val(__data.regilion);
+      $input.idnumber.val(__data.idnumber);
+      $input.issueDate.val(__data.issueDate).longToDate();
+      $input.issuePlace.val(__data.issuePlace);
 
      /* if(!iNet.isEmpty(__ownerData.uuid)){
        __data.uuid = __ownerData.uuid;

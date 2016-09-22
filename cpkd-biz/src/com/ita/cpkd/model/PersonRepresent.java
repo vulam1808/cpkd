@@ -11,13 +11,20 @@ public class PersonRepresent {
     private String uuid;
     private String gender;
     private String nameRepresent;
-    private String birthday;
+    private long birthday;
     private String race;
     private String religion;
     private String idnumber;
-    private String issueDate;
+    private long issueDate;
     private String issuePlace;
 
+    public void setBirthday(long birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setIssueDate(long issueDate) {
+        this.issueDate = issueDate;
+    }
     public String getUuid() {
         return uuid;
     }
@@ -42,13 +49,7 @@ public class PersonRepresent {
         this.nameRepresent = nameRepresent;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
     public String getRace() {
         return race;
@@ -74,13 +75,7 @@ public class PersonRepresent {
         this.idnumber = idnumber;
     }
 
-    public String getIssueDate() {
-        return issueDate;
-    }
 
-    public void setIssueDate(String issueDate) {
-        this.issueDate = issueDate;
-    }
 
     public String getIssuePlace() {
         return issuePlace;
