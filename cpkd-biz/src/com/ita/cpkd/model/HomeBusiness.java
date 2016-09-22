@@ -19,9 +19,18 @@ public class HomeBusiness {
     private String taxCode;
     private String type;
     private String cashCapital;
+    private String assetCapital;
     private String businessCapital;
     private long dateSubmit;
     private String statusType;
+
+    public String getAssetCapital() {
+        return assetCapital;
+    }
+
+    public void setAssetCapital(String assetCapital) {
+        this.assetCapital = assetCapital;
+    }
 
     public String getStatusType() {
         return statusType;

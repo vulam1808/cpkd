@@ -10,17 +10,17 @@ $(function() {
         validate: ita.resources.validate
     };
     var $input = {
-        $cashCapital: $('#capital-txt-cashCapital'),
-        $assetCapital: $('#capital-txt-assetCapital'),
-        $businessCapital: $('#capital-txt-businessCapital')
+        cashCapital: $('#capital-txt-cashCapital'),
+        assetCapital: $('#capital-txt-assetCapital'),
+        businessCapital: $('#capital-txt-businessCapital')
 
     };
 
     var url = {
-        view: iNet.getUrl('ita/personrepresent/load'),
-        save: iNet.getUrl('ita/personrepresent/save'),
-        update: iNet.getUrl('ita/homebusiness/update'),
-        del: iNet.getUrl('ita/personrepresent/delete')
+        //view: iNet.getUrl('ita/personrepresent/load'),
+       // save: iNet.getUrl('ita/personrepresent/save'),
+        update_capitalHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
+        del: iNet.getUrl('ita/homebusiness/delete')
     };
 
     iNet.ns("iNet.ui", "iNet.ui.ita");
@@ -34,21 +34,31 @@ $(function() {
 
         var me = this;
 
-        $('#capital-location-btn-update').on('click', function(){
-            getData();
-            var __data = me.setData() || {};
-            console.log('update>>', __data);
-
-            $.postJSON(url.update, __data, function (result) {
+        me.__id_homebusiness = "57e247003525e914ace2cb04";
+        //me.__id_homebusiness = '';
+        var updateCapitalHomeBusiness = function(data){
+            var _data = data || '';
+            // var _data = {taxCode: _taxcode};
+            $.postJSON(url.update_capitalHomeBusiness, _data, function (result) {
                 var __result = result || {};
                 if (CommonService.isSuccess(__result)) {
-
-                    me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
-                } else {
-
+                    //console.log('Update Taxcode success'+data+">>>>",_data);
+                    me.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
+                }
+                else
+                {
+                    //console.log('Update Taxcode error'+data+">>>>",_data);
                     me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.save_error, __result.errors || []));
                 }
             });
+        }
+
+        $('#capital-location-btn-update').on('click', function(){
+
+            var __data = me.getDataCapital() || {};
+            console.log('updateCapital>>', __data);
+
+            updateCapitalHomeBusiness(__data);
         }.createDelegate(this));
 
 
@@ -56,32 +66,20 @@ $(function() {
     };
 
     iNet.extend(iNet.ui.ita.CapitalFormWidget, iNet.ui.app.widget,{
-        getData: function () {
-            var __ownerData = this.ownerData || {};
-            var __data = {};
-            __data.cashCapital = $input.$cashCapital.val();
-            __data.assetCapital = $input.$assetCapital.val();
-            __data.businessCapital = $input.$businessCapital.val();
+        getDataCapital: function () {
 
-            if(!iNet.isEmpty(__ownerData.uuid)){
-                __data.uuid = __ownerData.uuid;
-            }
-            return __data;
-        },
-        setData: function (data) {
-            var __data = data || {};
-            /* this.ownerData = __data;*/
-            $input.$cashCapital.val(__data.cashCapital);
-            $input.$assetCapital.val(__data.assetCapital);
-            $input.$businessCapital.val(__data.businessCapital);
-            /* if(!iNet.isEmpty(__ownerData.uuid)){
-             __data.uuid = __ownerData.uuid;
-             }*/
+            var __data = {};
+
+            __data.idHomeBusiness = this.__id_homebusiness;
+            __data.cashCapital = $input.cashCapital.val();
+            __data.assetCapital = $input.assetCapital.val();
+            __data.businessCapital = $input.businessCapital.val();
+
             return __data;
         }
     });
 
-    var wgProvince = new iNet.ui.ita.TaxCodeWidget();
+    var wgProvince = new iNet.ui.ita.CapitalFormWidget();
     wgProvince.show();
 
 });

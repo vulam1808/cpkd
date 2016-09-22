@@ -12,10 +12,10 @@ $(function() {
   };
 
   var url = {
-    view: iNet.getUrl('ita/personrepresent/load'),
-    save: iNet.getUrl('ita/personrepresent/save'),
+    //view: iNet.getUrl('ita/personrepresent/load'),
+   // save: iNet.getUrl('ita/personrepresent/save'),
     update_taxCodeHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
-    del: iNet.getUrl('ita/personrepresent/delete')
+    del: iNet.getUrl('ita/homebusiness/delete')
   };
 
   iNet.ns("iNet.ui", "iNet.ui.ita");
@@ -37,10 +37,12 @@ $(function() {
         var __result = result || {};
         if (CommonService.isSuccess(__result)) {
           //console.log('Update Taxcode success'+data+">>>>",_data);
+          me.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
         }
         else
         {
           //console.log('Update Taxcode error'+data+">>>>",_data);
+          me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.save_error, __result.errors || []));
         }
       });
     }
