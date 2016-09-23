@@ -1,5 +1,5 @@
-// #PACKAGE: taxcode-widget
-// #MODULE: TaxCodeWidget
+// #PACKAGE: numberbusiness-widget
+// #MODULE: NumberBusinessWidget
 
 $(function() {
   var resource = {
@@ -7,33 +7,33 @@ $(function() {
     validate: ita.resources.validate
   };
   var $input = {
-    taxCode: $('#homebusiness-txt-taxCode')
+    numberBusiness: $('#homebusiness-txt-numberBusiness')
 
   };
 
   var url = {
     //view: iNet.getUrl('ita/personrepresent/load'),
    // save: iNet.getUrl('ita/personrepresent/save'),
-    update_taxCodeHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
+    update_numberBusinessHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
     del: iNet.getUrl('ita/homebusiness/delete')
   };
 
   iNet.ns("iNet.ui", "iNet.ui.ita");
-  iNet.ui.ita.TaxCodeWidget = function (config) {
+  iNet.ui.ita.NumberBusinessWidget = function (config) {
     var __config = config || {};
     iNet.apply(this, __config);// apply configuration
-    this.id = this.id || 'taxcode-widget';
+    this.id = this.id || 'numberbusiness-widget';
 
-    iNet.ui.ita.TaxCodeWidget.superclass.constructor.call(this);
+    iNet.ui.ita.NumberBusinessWidget.superclass.constructor.call(this);
 
 
     var me = this;
    me.__id_homebusiness = "57e49badec35b70960d34909";
     //me.__id_homebusiness = '';
-    var updateTaxCodeHomeBusiness = function(data){
+    var updateNumberBusinessHomeBusiness = function(data){
       var _data = data || '';
      // var _data = {taxCode: _taxcode};
-      $.postJSON(url.update_taxCodeHomeBusiness, _data, function (result) {
+      $.postJSON(url.update_numberBusinessHomeBusiness, _data, function (result) {
         var __result = result || {};
         if (CommonService.isSuccess(__result)) {
           //console.log('Update Taxcode success'+data+">>>>",_data);
@@ -47,31 +47,31 @@ $(function() {
       });
     }
 
-    $('#taxcode-location-btn-update').on('click', function(){
+    $('#numberbusiness-location-btn-update').on('click', function(){
 
-      var __data = me.getDataTaxCode() || {};
-      console.log('updateTaxCode>>', __data);
+      var __data = me.getDataNumberBusiness() || {};
+      console.log('updatenumberBusiness>>', __data);
 
-      updateTaxCodeHomeBusiness(__data);
+      updateNumberBusinessHomeBusiness(__data);
     }.createDelegate(this));
 
 
 
   };
 
-  iNet.extend(iNet.ui.ita.TaxCodeWidget, iNet.ui.app.widget,{
-    getDataTaxCode: function () {
+  iNet.extend(iNet.ui.ita.NumberBusinessWidget, iNet.ui.app.widget,{
+    getDataNumberBusiness: function () {
 
       var __data = {};
 
       __data.idHomeBusiness = this.__id_homebusiness;
-      __data.taxCode = $input.taxCode.val();
+      __data.numberBusiness = $input.numberBusiness.val();
 
       return __data;
     }
   });
 
-  var wgProvince = new iNet.ui.ita.TaxCodeWidget();
+  var wgProvince = new iNet.ui.ita.NumberBusinessWidget();
   wgProvince.show();
 
 });

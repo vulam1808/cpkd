@@ -77,7 +77,7 @@ $(function() {
 
     //load
     $('#personrepresent-location-btn-load').on('click', function(){
-      var __data = {personID : "57e38efa4499d71aec2ae27e"} || {};
+      var __data = {personID : "57e49badec35b70960d34909"} || {};
       console.log('load>>', __data);
 
       $.postJSON(url.view, __data, function (result) {
