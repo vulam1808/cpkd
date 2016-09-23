@@ -1,0 +1,100 @@
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/bootstrap/plugins/bootstrap-tab.min.js")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+
+#script("/js/common/jquery/plugins/jquery.timeago.min.js")
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+#script("/js/common/jquery/plugins/jquery.maskedinput.min.js")
+#script("/js/common/jquery/plugins/jquery.autoNumeric.min.js")
+
+#script("/js/xgate/jquery/plugins/jquery.filter-input.min.js")
+#script("/js/xgate/inet/lib/idesign-ui-t-builder-service.min.js")
+
+#script("/js/xgate/jquery/plugins/jquery.slimscroll.min.js")
+#script("/js/xgate/math/math.js")
+
+#script("/js/xgate/inet/lib/bfinformation.min.js")
+
+#theme("/xgate/css/listview")
+
+#set($roleIDesk = false)
+#visible($ctx.page("idesk/page/global/search-ed-instant"))
+#set($roleIDesk = true)
+#end
+
+<style>
+    html {
+        overflow: hidden;
+    }
+</style>
+
+#xscript()
+var recordID = '$ctx.value("recordID")';
+if (recordID.indexOf("ctx.value") > 0) { recordID = ""; }
+#end
+
+<div id="briefcase-information-div" class="hide">
+    <div>
+        <div id="briefcase-information-toolbar" class="hide">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-reorder"></i> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="briefcase-information-additional-btn"><i class="icon-plus"></i> $text.getText("itask.task.briefcase.additional")</a></li>
+                    <li><a href="#" id="briefcase-information-transfer-btn"><i class="icon-mail-forward"></i> $text.getText("itask.task.transfer")</a></li>
+                    <!--<li role="separator" class="divider"></li>-->
+                    <li><a href="#" id="briefcase-information-workflow-btn"><i class="icon-sitemap"></i> $text.getText("itask.task.workflow")</a></li>
+                    #if($roleIDesk)
+                    <li><a href="#" id="briefcase-information-idesk-btn"><i class="icon-desktop"></i> $text.getText("itask.task.briefcase.idesk")</a></li>
+                    #end
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button id="briefcase-information-mark-btn" style="min-width: 30px;" class="btn btn-info" description="$text.getText('itask.task.mark.description')" title="$text.getText('itask.task.mark')">
+                    <i class="icon-pushpin"></i>
+                </button>
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only"></span>
+                </button>
+                <ul class="dropdown-menu" data-id="briefcase-information-mark-list" style="padding: 10px; min-width: 320px;">
+                </ul>
+            </div>
+            <div class="btn-group hide">
+                <button id="briefcase-information-unmark-btn" style="min-width: 30px;" class="btn btn-info" title="$text.getText('itask.task.unmark')">
+                    <span class="icon-stack">
+                        <i class="icon-pushpin"></i>
+                        <i class="icon-ban-circle icon-stack-base"></i>
+                    </span>
+                </button>
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only"></span>
+                </button>
+                <ul class="dropdown-menu" data-id="briefcase-information-mark-list" style="padding: 10px; min-width: 320px;">
+                </ul>
+            </div>
+            <button id="briefcase-information-process-btn" style="min-width: 30px;" class="btn btn-primary" description="$text.getText('itask.task.process')" title="$text.getText('itask.task.process')">
+                <i class="icon-cogs"></i> $text.getText("itask.task.process")
+            </button>
+            <button id="briefcase-information-update-btn" style="min-width: 30px;" class="btn btn-info" description="$text.getText('itask.task.update.description')" title="$text.getText('itask.task.update')">
+                <i class="icon-suitcase"></i> $text.getText('itask.task.update')
+            </button>
+            <button id="briefcase-information-reject-btn" style="min-width: 30px;" class="btn btn-danger" description="$text.getText('itask.task.reject.description')" title="$text.getText('itask.task.reject')">
+                <i class="icon-archive"></i> $text.getText('itask.task.reject')
+            </button>
+        </div>
+        <div id="briefcase-information-subject-details" class="hide">
+        </div>
+        <div id="briefcase-information-sender-details" class="hide">
+            <div><span>$text.getText("itask.task.from")</span> <span id="briefcase-information-item-sender-details-author"></span> <a href=""><span id="briefcase-information-item-sender-details-email"></span></a></div>
+            <div><span>$text.getText("itask.task.sent")</span> <span id="briefcase-information-item-sender-details-timestamp"></span></div>
+        </div>
+        <div id="briefcase-information"></div>
+    </div>
+</div>
