@@ -3,5 +3,5 @@
   "-//JBoss//DTD Web Application 2.4//EN"
   "http://www.jboss.org/j2ee/dtd/jboss-web_4_0.dtd">
 <jboss-web>
-   <context-root>cpkd</context-root>
+   <context-root>lccpkd</context-root>
 </jboss-web>
