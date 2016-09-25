@@ -4,71 +4,72 @@
 // #PACKAGE: homebusiness-form-widget
 // #MODULE: HomeBusinessFormWidget
 $(function () {
-    var resource = {
-        common: ita.resources.common,
-        validate: ita.resources.validate
-    };
 
-    var url = {
-        load_province: iNet.getUrl('ita/province/load'),
-        load_district: iNet.getUrl('ita/district/load'),
-        load_ward: iNet.getUrl('ita/ward/load'),
-        load_areaBusiness: iNet.getUrl('ita/areabusiness/load'),
-
-        load_enum: iNet.getUrl('ita/enums/load'),
-
-        save_homebusiness: iNet.getUrl('ita/homebusiness/save'),
-        save_changebusiness: iNet.getUrl('ita/changebusiness/save'),
-        save_endbusiness: iNet.getUrl('ita/endbusiness/save'),
-        save_pausebusiness: iNet.getUrl('ita/pausebusiness/save'),
-        update_statusHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
-        check_name_business: iNet.getUrl('ita/homebusiness/checknamebusiness')
-        /*  view: iNet.getUrl('ita/province/load'),
-         save: iNet.getUrl('ita/province/save'),
-         update: iNet.getUrl('ita/province/update'),
-         del: iNet.getUrl('ita/province/delete')*/
-    };
-    var $form = {
-        //input_id_homebusiness:$('#id-homebusiness'),
-        input_typeTask: $('#homebusiness-type-task'),
-        button_save: $('#homebusiness-save-btn'),
-        div_title:$('#homebusiness-title'),
-        div_item:$('#homebusiness-item'),
-        div_homebusiness_create:$('#homebusiness-item-create'),
-        div_endbusiness_create:$('#endbusiness-item-create'),
-        div_changebusiness_create:$('#changebusiness-item-create'),
-        div_pausebusiness_create:$('#pausebusiness-item-create'),
-
-        button_view_detail:$('#view-detail-task'),
-        button_check: $('#btn-check-nameBusiness'),
-        div_status_check: $('#status-nameBusiness'),
-        input_nameBusiness: $('#homebusiness-nameBusiness')
-    };
-    var $formCapMoi = {
-        input_address: $('#homebusiness-address'),
-        input_province: $('#homebusiness-province'),
-        input_district: $('#homebusiness-district'),
-        input_ward: $('#homebusiness-ward'),
-        input_phone: $('#homebusiness-phone'),
-        input_fax: $('#homebusiness-fax'),
-        input_email: $('#homebusiness-email'),
-        input_website: $('#homebusiness-website'),
-        input_areaBusiness: $('#homebusiness-areaBusiness')
-    };
-    var $formCapDoi = {
-        input_infoChange: $('#changebusiness-infoChange')
-    };
-    var $formTamNgung = {
-        input_dayofPause: $('#pausebusiness-dayofPause'),
-        input_dateStart: $('#pausebusiness-dateStart'),
-        input_reason: $('#pausebusiness-reason')
-    };
-    var $formChamDut = {
-        input_dateEnd: $('#endbusiness-dateEnd'),
-        input_reason: $('#endbusiness-reason')
-    };
     iNet.ns("iNet.ui","iNet.ui.ita");
     iNet.ui.ita.HomeBusinessForm = function (config) {
+        var resource = {
+            common: ita.resources.common,
+            validate: ita.resources.validate
+        };
+
+        var url = {
+            load_province: iNet.getUrl('ita/province/load'),
+            load_district: iNet.getUrl('ita/district/load'),
+            load_ward: iNet.getUrl('ita/ward/load'),
+            load_areaBusiness: iNet.getUrl('ita/areabusiness/load'),
+
+            load_enum: iNet.getUrl('ita/enums/load'),
+
+            save_homebusiness: iNet.getUrl('ita/homebusiness/save'),
+            save_changebusiness: iNet.getUrl('ita/changebusiness/save'),
+            save_endbusiness: iNet.getUrl('ita/endbusiness/save'),
+            save_pausebusiness: iNet.getUrl('ita/pausebusiness/save'),
+            update_statusHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
+            check_name_business: iNet.getUrl('ita/homebusiness/checknamebusiness')
+            /*  view: iNet.getUrl('ita/province/load'),
+             save: iNet.getUrl('ita/province/save'),
+             update: iNet.getUrl('ita/province/update'),
+             del: iNet.getUrl('ita/province/delete')*/
+        };
+        var $form = {
+            //input_id_homebusiness:$('#id-homebusiness'),
+            input_typeTask: $('#homebusiness-type-task'),
+            button_save: $('#homebusiness-save-btn'),
+            div_title:$('#homebusiness-title'),
+            div_item:$('#homebusiness-item'),
+            div_homebusiness_create:$('#homebusiness-item-create'),
+            div_endbusiness_create:$('#endbusiness-item-create'),
+            div_changebusiness_create:$('#changebusiness-item-create'),
+            div_pausebusiness_create:$('#pausebusiness-item-create'),
+
+            button_view_detail:$('#view-detail-task'),
+            button_check: $('#btn-check-nameBusiness'),
+            div_status_check: $('#status-nameBusiness'),
+            input_nameBusiness: $('#homebusiness-nameBusiness')
+        };
+        var $formCapMoi = {
+            input_address: $('#homebusiness-address'),
+            input_province: $('#homebusiness-province'),
+            input_district: $('#homebusiness-district'),
+            input_ward: $('#homebusiness-ward'),
+            input_phone: $('#homebusiness-phone'),
+            input_fax: $('#homebusiness-fax'),
+            input_email: $('#homebusiness-email'),
+            input_website: $('#homebusiness-website'),
+            input_areaBusiness: $('#homebusiness-areaBusiness')
+        };
+        var $formCapDoi = {
+            input_infoChange: $('#changebusiness-infoChange')
+        };
+        var $formTamNgung = {
+            input_dayofPause: $('#pausebusiness-dayofPause'),
+            input_dateStart: $('#pausebusiness-dateStart'),
+            input_reason: $('#pausebusiness-reason')
+        };
+        var $formChamDut = {
+            input_dateEnd: $('#endbusiness-dateEnd'),
+            input_reason: $('#endbusiness-reason')
+        };
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
         this.id = this.id || 'homebusiness-div';

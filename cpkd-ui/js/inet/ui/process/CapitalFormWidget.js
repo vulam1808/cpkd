@@ -79,7 +79,5 @@ $(function() {
         }
     });
 
-    var wgProvince = new iNet.ui.ita.CapitalFormWidget();
-    wgProvince.show();
 
 });

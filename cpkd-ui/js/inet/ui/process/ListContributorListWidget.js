@@ -199,8 +199,6 @@ $(function() {
     };
 
     iNet.extend(iNet.ui.ita.ListContributorListWidget, iNet.ui.app.widget);
-    var wgabc = new iNet.ui.ita.ListContributorListWidget();
-    wgabc.show();
 
 
 });

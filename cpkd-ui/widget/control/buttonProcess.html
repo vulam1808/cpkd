@@ -1,0 +1,43 @@
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/bootstrap/plugins/bootstrap-tab.min.js")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+
+#script("/js/cpkd/inet/lib/button-process.min.js")
+<div id="business-process-toolbar">
+    <div class="btn-group">
+        <button id="action-process-back-btn" type="button" class="btn">
+            <i class="icon-arrow-left"></i>
+        </button>
+    </div>
+    <div id="action-dropdown"  class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="icon-reorder"></i> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#" id="action-dropdown-additional-btn"><i class="icon-plus"></i> $text.getText("itask.task.briefcase.additional")</a></li>
+            <li><a href="#" id="action-dropdown-transfer-btn"><i class="icon-mail-forward"></i> $text.getText("itask.task.transfer")</a></li>
+            <li><a href="#" id="action-dropdown-workflow-btn"><i class="icon-sitemap"></i> $text.getText("itask.task.workflow")</a></li>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button id="action-process-btn" class="btn btn-primary" title="Xử lý hồ sơ">
+            <i class="icon-cogs"></i> $text.getText('Xử lý hồ sơ')
+        </button>
+    </div>
+    <div class="btn-group">
+        <button id="action-process-taxcode-btn" class="hide btn btn-danger" title="Cập nhật mã số thuế">
+            <i class="icon-archive"></i> $text.getText('Cập nhật mã số thuế')
+        </button>
+    </div>
+    <div class="btn-group">
+        <button id="action-process-numberBusiness-btn" class="hide btn btn-danger" title="Cập nhật mã số thuế">
+            <i class="icon-archive"></i> $text.getText('Cập nhật mã số CN')
+        </button>
+    </div>
+
+</div>
+

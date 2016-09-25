@@ -2,30 +2,31 @@
 // #MODULE: PersonRepresentWidget
 
 $(function() {
-  var resource = {
-    common: ita.resources.common,
-    validate: ita.resources.validate
-  };
-  var $input = {
-    nameRepresent: $('#personrepresent-txt-nameRepresent'),
-    birthday: $('#personrepresent-txt-birthday'),
-    gender: $('#personrepresent-txt-gender'),
-    race: $('#personrepresent-txt-race'),
-    regilion: $('#personrepresent-txt-regilion'),
-    idnumber: $('#personrepresent-txt-idnumber'),
-    issueDate: $('#personrepresent-txt-issueDate'),
-    issuePlace: $('#personrepresent-txt-issuePlace')
-  };
 
-  var url = {
-    view: iNet.getUrl('ita/personrepresent/load'),
-    save: iNet.getUrl('ita/personrepresent/save'),
-    update: iNet.getUrl('ita/personrepresent/update'),
-    del: iNet.getUrl('ita/personrepresent/delete')
-  };
 
   iNet.ns("iNet.ui", "iNet.ui.ita");
   iNet.ui.ita.PersonRepresentWidget = function (config) {
+      var resource = {
+          common: ita.resources.common,
+          validate: ita.resources.validate
+      };
+      var $input = {
+          nameRepresent: $('#personrepresent-txt-nameRepresent'),
+          birthday: $('#personrepresent-txt-birthday'),
+          gender: $('#personrepresent-txt-gender'),
+          race: $('#personrepresent-txt-race'),
+          regilion: $('#personrepresent-txt-regilion'),
+          idnumber: $('#personrepresent-txt-idnumber'),
+          issueDate: $('#personrepresent-txt-issueDate'),
+          issuePlace: $('#personrepresent-txt-issuePlace')
+      };
+
+      var url = {
+          view: iNet.getUrl('ita/personrepresent/load'),
+          save: iNet.getUrl('ita/personrepresent/save'),
+          update: iNet.getUrl('ita/personrepresent/update'),
+          del: iNet.getUrl('ita/personrepresent/delete')
+      };
     var __config = config || {};
     iNet.apply(this, __config);// apply configuration
     this.id = this.id || 'personrepresent-widget';
@@ -36,12 +37,12 @@ $(function() {
     var me = this;
     var loadGender = function(){
     var __result = [{id:'nu',name:resource.common.gender_nu},
-    {id:'nam',name:resource.common.gender_nam}];
+        {id:'nam',name:resource.common.gender_nam}];
 
-  $input.gender = FormService.createSelect('personrepresent-txt-gender', __result, 'id', 1, false, false);
-  $input.gender.setValue('nu');
-  console.log('load12121>>', __result);
-}
+          $input.gender = FormService.createSelect('personrepresent-txt-gender', __result, 'id', 1, false, false);
+          $input.gender.setValue('nu');
+          console.log('load12121>>', __result);
+    };
     loadGender();
 //Load datetime
 
@@ -76,23 +77,26 @@ $(function() {
     }.createDelegate(this));
 
     //load
-    $('#personrepresent-location-btn-load').on('click', function(){
-      var __data = {personID : "57e49badec35b70960d34909"} || {};
-      console.log('load>>', __data);
-
-      $.postJSON(url.view, __data, function (result) {
-          loadGender();
-        var __result = me.loadData(result) || {};
-        console.log('update>>', __result);
-
-        if (CommonService.isSuccess(__result)) {
-
-            //me.loadData(__result);
-
+    var loadPerson = function(){
+        if(!CommonService.isSuccess(config.taskID ))
+        {
+            return;
         }
-      });
-    }.createDelegate(this));
+          var __data = {_taskID : config.taskID} || {};
+          console.log('load>>', __data);
 
+          $.postJSON(url.view, __data, function (result) {
+            var __result = me.loadData(result) || {};
+            console.log('update>>', __result);
+
+            if (CommonService.isSuccess(__result)) {
+
+                //me.loadData(__result);
+
+            }
+          });
+    };
+      loadPerson();
   };
 
   iNet.extend(iNet.ui.ita.PersonRepresentWidget, iNet.ui.app.widget,{
@@ -133,7 +137,6 @@ $(function() {
     }
   });
 
-  var wgProvince = new iNet.ui.ita.PersonRepresentWidget();
-  wgProvince.show();
+
 
 });

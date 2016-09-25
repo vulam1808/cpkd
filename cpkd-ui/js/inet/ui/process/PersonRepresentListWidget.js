@@ -4,23 +4,24 @@
  * Created by ntvy on 4/22/15.
  */
 $(function() {
-  var resource = {
-      common: ita.resources.common,
-      validate: ita.resources.validate
-  };
 
-  var url = {
-        view: iNet.getUrl('ita/personrepresent/load'),
-          save: iNet.getUrl('ita/personrepresent/save'),
-          update: iNet.getUrl('ita/personrepresent/update'),
-          del: iNet.getUrl('ita/personrepresent/delete')
-    /*  view: iNet.getUrl('ita/province/load'),
-    save: iNet.getUrl('ita/province/save'),
-    update: iNet.getUrl('ita/province/update'),
-    del: iNet.getUrl('ita/province/delete')*/
-  };
   iNet.ns("iNet.ui", "iNet.ui.ita");
   iNet.ui.ita.PersonRepresentListWidget = function (config) {
+    var resource = {
+      common: ita.resources.common,
+      validate: ita.resources.validate
+    };
+
+    var url = {
+      view: iNet.getUrl('ita/personrepresent/load'),
+      save: iNet.getUrl('ita/personrepresent/save'),
+      update: iNet.getUrl('ita/personrepresent/update'),
+      del: iNet.getUrl('ita/personrepresent/delete')
+      /*  view: iNet.getUrl('ita/province/load'),
+       save: iNet.getUrl('ita/province/save'),
+       update: iNet.getUrl('ita/province/update'),
+       del: iNet.getUrl('ita/province/delete')*/
+    };
     var __config = config || {};
     iNet.apply(this, __config);// apply configuration
     this.id = this.id || 'personrepresent-list-widget';

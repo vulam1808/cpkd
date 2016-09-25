@@ -1,0 +1,53 @@
+#html({"lang":"vi","dir":"ltr", "xmlns":"http://www.w3.org/1999/xhtml","secure":"$user"})
+#keyworks({"title":'Cấp phép kinh doanh'})
+#meta({ "title":"iCloud Platform","viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+#widget("/cpkd/widget/common/common")
+#script("/js/cpkd/inet/lib/homebusiness-process.min.js")
+#widget("/cpkd/widget/control/ajaxmask")
+<div id="business-process-div">
+    <div>
+        <div id="business-process-toolbar">
+            #widget("/cpkd/widget/control/buttonProcess")
+        </div>
+        <div id="business-process-subject-details">
+        </div>
+        <div id="business-process-sender-details">
+        </div>
+        <div id="business-process-data-content" >
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="business-process-tab">
+                    <li class="active" data-tab="tab01"><a href="#tab-business-info" data-toggle="tab">$text.getText("common.infoTask")</a></li>
+                    <li data-tab="tab02"><a href="#tab-business-infoProcess" data-toggle="tab">$text.getText("common.infoProcess")</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-business-info">
+                        #widget("/cpkd/widget/homeBusiness/detail-dialog")
+                    </div>
+                    <div class="tab-pane" id="tab-business-infoProcess">
+                        <div id="tab-infoProcess-person">
+                            #widget("/cpkd/widget/process/person/form")
+                        </div>
+                        <div id="tab-infoProcess-capital">
+                            #widget("/cpkd/widget/process/capital/form")
+                        </div>
+                        <div id="tab-infoProcess-listcontributor">
+                            #widget("/cpkd/widget/process/listcontributor/list")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="civil-process"></div>
+    </div>
+</div>
+
+#xscript()
+$(function(){
+    var homebusinessProcess = new iNet.ui.ita.HomeBusinessProcess();
+    homebusinessProcess.show();
+});
+#end
+
+#end

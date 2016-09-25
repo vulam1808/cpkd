@@ -1,0 +1,641 @@
+a:hover {
+    text-decoration: none;
+}
+
+.list-view {
+    float: left;
+    width: 30%;
+    padding-top: 0px;
+}
+
+.list-view.min {
+    display: none !important;
+}
+
+.list-view.menu {
+    position: absolute;
+    display: block;
+    z-index: 10;
+}
+
+.list-view-header {
+    background-color: rgb(245, 245, 245);
+    border-bottom: 1px solid rgb(229, 229, 229);
+    border-right: 1px solid rgb(229, 229, 229);
+    min-height: 40px;
+}
+
+.list-view-header .toolbar {
+    padding: 5px;
+}
+
+.list-view-content {
+}
+
+.list-view-content .border {
+    border: 1px solid #DDD;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.list-view-content .toolbar {
+    height: 48px;
+    background-color: #EEEEEE;
+}
+
+.list-view-content .toolbar .basic-search {
+    display: inline-flex;
+    width: 100%;
+    margin: 8px 0 0 5px;
+}
+
+.list-view-content .toolbar .advance-search {
+    top: 85px;
+    left: 5px;
+    width: 28%;
+    padding: 5px;
+    border-color: #bcd4e5;
+    box-shadow: 0 2px 4px;
+    background-color: #ECF2F7;
+    display: none;
+}
+
+.list-view-content .data-content {
+    background-color: #FFF;
+}
+
+.list-view-content .no-data {
+    text-align: center;
+    font-size: 14px;
+    line-height: 30px;
+    padding: 10px;
+    color: #999;
+}
+
+.list-view-content .data {
+    overflow: hidden;
+    position: relative;
+    height: 173px;
+    background: #FFF;
+    border-right: 1px solid #DDD;
+}
+
+.list-view-content .line-header,
+.list-view-content .line-footer {
+    background-color: #BBBBBB;
+    height: 1px;
+}
+
+.list-view-item {
+    background-color: #F9F9F9;
+    border: 0 solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 21px;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+}
+
+.list-view-item.selected {
+    background-color: #FFF5E2 !important;
+}/*
+
+.list-view-item.submitted {
+    background-color: #DFEFFF;
+}
+
+.list-view-item.updated,
+.list-view-item.item-yellow {
+    background-color: #faffd9;
+}
+
+.list-view-item.rejected,
+.list-view-item.item-red {
+    background-color: #ffd1d3;
+}*/
+
+.list-view-item .status {
+    background-color: #EEEEEE;
+    float: left;
+    height: 100%;
+    width: 6px;
+    position: absolute;
+}
+
+.selected .status {
+    background-color: #69A8F5;
+}
+
+.submitted .status,
+.item-blue .status {
+    background-color: #0002ff;
+}
+
+.updated .status,
+.item-yellow .status {
+    background-color: #fff803;
+}
+
+.rejected .status,
+.item-red .status {
+    background-color: #ff0511;
+}
+
+.completed .status,
+.item-gray .status {
+    background-color: #ede1ff;
+}
+
+.checked .status {
+    background-color: #69A8F5;
+}
+
+.submitted {
+    /*font-weight: bold;*/
+}
+
+.item-red {
+    font-weight: bold;
+}
+
+.list-view-item .line-header {
+    background-color: #999999;
+    display: block;
+    height: 1px;
+    opacity: 0.2;
+    position: relative;
+}
+
+.list-view-item .wrapper {
+    padding: 5px 0;
+}
+
+.list-view-item .wrapper .flag {
+    float: right;
+    padding: 0 18px 0 5px;
+    font-size: 15px;
+}
+
+.date-info,
+.sender-info {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.subject-info {
+
+}
+
+.subject-info .subject {
+    cursor: pointer;
+}
+
+.subject-info .subject.editable {
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #DDD;
+    background-color: #FFF;
+    border-radius: 5px;
+}
+
+.list-view-item .wrapper .date-info {
+    color: #999999;
+    float: right;
+    font-size: 11px;
+    margin: 0 5px;
+    position: relative;
+}
+
+.list-view-item .wrapper .check {
+    float: left;
+    font-size: 14px;
+    margin-top: 11px;
+    padding: 0 8px 0 6px;
+}
+
+.list-view-item .wrapper .sender-info {
+    display: block;
+    overflow: hidden;
+}
+
+.sender-info .reply,
+.sender-info .forward,
+.sender-info .threadsCount-info {
+    display: none;
+}
+
+.list-view-item .wrapper .attachment-info {
+    float: right;
+    margin: 2px 18px 0 0px;
+    position: relative;
+}
+
+.list-view-item .wrapper .comment-info {
+    float: right;
+    margin: 2px 0px 0 5px;
+    position: relative;
+}
+
+.attachment-info .attachment,
+.comment-info .comment {
+    color: #666666;
+    text-shadow: 0 1px 0 #EEEEEE;
+    font-size: 15px;
+    padding-right: 2px;
+}
+
+.list-view-item .wrapper .subject-info {
+
+}
+
+.list-view-footer {
+    background-color: #EEEEEE;
+    height: 40px;
+}
+
+.list-view-footer .pull-right {
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+.list-view-footer .pull-left {
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.item-view,
+.xform-view,
+.search-view,
+.process-view,
+.transfer-view,
+.additional-view,
+.workflow-view,
+.request-view {
+    float: left;
+    width: 70%;
+    box-shadow: 5px 0px 20px;
+    overflow: hidden;
+}
+
+.report-view,
+.user-profile-view,
+.schedule-view {
+
+}
+
+.screen .item-view,
+.screen .xform-view,
+.screen .search-view,
+.screen .process-view,
+.screen .transfer-view,
+.screen .additional-view,
+.screen .request-view,
+.screen .workflow-view{
+    float: left;
+    width: 100%;
+    box-shadow: 5px 0px 20px;
+    overflow: hidden;
+}
+
+.item-view.full,
+.transfer-view.full,
+.additional-view.full,
+.request-view.full,
+.workflow-view.full {
+    width: 100%;
+}
+
+.item-view.half,
+.xform-view.half,
+.search-view.half,
+.process-view.half {
+    width: 50%;
+}
+
+.xform-view.half,
+.search-view.half,
+.process-view.half {
+    float: left;
+    box-shadow: 5px 0px 20px;
+    overflow: hidden;
+}
+
+.item-view-header,
+.xform-view-header,
+.search-view-header,
+.process-view-header,
+.transfer-view-header,
+.additional-view-header,
+.request-view-header,
+.report-view-header,
+.user-profile-view-header,
+.schedule-view-header,
+.workflow-view-header {
+    background-color: rgb(245, 245, 245);
+    border-bottom: 1px solid rgb(229, 229, 229);
+    min-height: 40px;
+}
+
+.item-view-header .toolbar,
+.report-view-header .toolbar,
+.user-profile-view-header .toolbar,
+.schedule-view-header .toolbar,
+.xform-view-header .toolbar,
+.search-view-header .toolbar,
+.process-view-header .toolbar,
+.transfer-view-header .toolbar,
+.additional-view-header .toolbar,
+.request-view-header .toolbar,
+.workflow-view-header .toolbar{
+    padding: 5px;
+    min-height: 30px;
+}
+
+.item-view-header .toolbar .utility,
+.xform-view-header .toolbar .utility,
+.search-view-header .toolbar .utility,
+.process-view-header .toolbar .utility,
+.transfer-view-header .toolbar .utility,
+.additional-view-header .toolbar .utility,
+.request-view-header .toolbar .utility,
+.workflow-view-header .toolbar .utility {
+    line-height: normal;
+    float: right;
+}
+
+.item-view-content,
+.xform-view-content,
+.search-view-content,
+.process-view-content,
+.additional-view-content,
+.request-view-content {
+    background-color: #F8F8F8;
+    border-right: 1px solid #DDD;
+    overflow: auto;
+}
+
+
+.workflow-view-content {
+    background-color: #F8F8F8;
+    border-right: 1px solid #DDD;
+    overflow: hidden;
+}
+
+.user-profile-view-content,
+.request-view-content {
+    padding: 10px 0 0 5px;
+}
+
+.item-view-content .no-data,
+.search-view-content .no-data,
+.process-view-content .no-data,
+.workflow-view-content .no-data {
+    text-align: center;
+    font-size: 24px;
+    line-height: 30px;
+    padding-top: 125px;
+    color: #999;
+}
+
+.item-view-content .header-info,
+.search-view-content .header-info,
+.process-view-content .header-info,
+.workflow-view-content .header-info {
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #DDDDDD;
+    border-top: 0 none;
+    padding: 10px;
+}
+
+.item-view-content .header-info .subject-info {
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.item-view-content .header-info .subject-info .details {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.header-info .subject-info .attachment,
+.header-info .subject-info .comment {
+    float: right;
+    margin-right: 10px;
+}
+
+.item-view-content .header-info .sender-info {
+    margin-top: 10px;
+}
+
+.item-view-content .header-info .sender-info .short {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.item-view-content .header-info .sender-info .details {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 110%;
+}
+
+.item-view-content .body-info,
+.xform-view-content .body-info,
+.search-view-content .body-info,
+.process-view-content .body-info,
+.transfer-view-content .body-info,
+.additional-view-content .body-info {
+    padding: 10px;
+    background-color: #F8F8F8;
+}
+
+.workflow-view-content .body-info {
+    padding: 0px;
+    background-color: #F8F8F8;
+}
+
+.item-view-content .body-info .form-content,
+.xform-view-content .body-info .form-content,
+.search-view-content .body-info .form-content,
+.process-view-content .body-info .form-content,
+.transfer-view-content .body-info .form-content,
+.additional-view-content .body-info .form-content {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 0px;
+    overflow: auto;
+}
+.workflow-view-content .body-info .form-content {
+    background-color: #FFFFFF;
+    border: 0px solid #DDDDDD;
+    border-radius: 0px;
+    padding: 0px;
+    margin-bottom: 0px;
+    overflow: hidden;
+}
+
+.item-view-content .attachment-info {
+    border-top: 1px solid #DDDDDD;
+    line-height: 10px;
+}
+
+.item-view-content .attachment-info p {
+    padding: 5px 5px;
+    background: #DDF1FC;
+}
+
+.item-view-content .attachment-info .attachment-list {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.search-view-content .header-info .advance-search,
+.process-view-content .header-info .advance-search {
+    top: 112px;
+    left: 589px;
+    width: 48%;
+    padding: 5px;
+    border-color: #bcd4e5;
+    box-shadow: 0 2px 4px;
+    background-color: #ECF2F7;
+    display: none;
+}
+
+.file-box {
+    width: 150px;
+    line-height: 15px;
+}
+
+.file {
+    border: 1px solid #e7eaec;
+    padding: 0;
+    background-color: #ffffff;
+    position: relative;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.file .corner {
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 0.6em solid transparent;
+    border-right: 0.6em solid #f1f1f1;
+    border-bottom: 0.6em solid #f1f1f1;
+    right: 0em;
+    bottom: 0em;
+}
+
+.file .icon {
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.file .icon i {
+    font-size: 50px;
+    color: #dadada;
+}
+
+.file .file-name {
+    padding: 5px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e7eaec;
+}
+
+.file .file-name .file-text {
+    white-space: nowrap;
+    max-width: 128px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file .file-name .file-size {
+    color: #676a6c;
+    font-size: 10px;
+    padding-top: 3px;
+}
+
+.file img {
+    width: 198px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    content: "";
+}
+
+.item-view-content .comment-info {
+    border-top: 1px solid #DDDDDD;
+}
+
+.item-view-content .comment-info p {
+    padding: 5px 5px;
+    background: #DDF1FC;
+}
+
+.item-view-content .comment-info .comment-list {
+}
+
+.comment-info .border {
+    position: relative;
+    padding-left: 64px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.comment-info .border .avatar {
+    float: left;
+    margin-left: -55px;
+    border-radius: 30px;
+    width: 48px;
+    height: 48px;
+}
+
+.comment-info .border .content-box {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.content-box .comment-header {
+    padding-left: 5px;
+    padding-right: 15px;
+    color: #777;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #eee;
+    border-top-left-radius: 4px;
+}
+
+.content-box .comment-header .author {
+    font-weight: bold;
+    color: #555;
+}
+
+.content-box .comment-header .timestamp {
+    white-space: nowrap;
+    color: inherit;
+}
+
+.content-box .comment-content {
+    padding: 5px;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
