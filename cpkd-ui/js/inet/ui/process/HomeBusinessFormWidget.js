@@ -360,6 +360,8 @@ $(function () {
 
         }.createDelegate(this));
 
+
+
         var updateStatusHomeBusiness = function(status){
             var _status = status || '';
             var _data = {statusType: _status, idHomeBusiness:me.__id_homebusiness};
@@ -399,14 +401,16 @@ $(function () {
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
                         me.__isCheckNameSave = false;
+                        me.eventbuttoncheckname();
                     }
                     else
                     {
                         var html = '<p><i class="glyphicon glyphicon-ok form-control-feedback"></i>' +
-                            '<button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết thông tin hộ kinh doanh </button></p>';
+                            '<button id="view-detail-task" type="button"  class="btn btn-link">Xem chi tiết thông tin hộ kinh doanh </button></p>';
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
                         me.__isCheckNameSave = true;
+                        me.eventbuttoncheckname();
                     }
                     // me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
                 }
@@ -451,6 +455,17 @@ $(function () {
 
         }.createDelegate(this));
 
+        me.eventbuttoncheckname =function(){
+            $form.button_view_detail.on('click', function(){
+                console.log('ccccccccccccccccccc','kjhjjhg');
+                officeDialog= new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
+                //officeDialog.id =;
+
+                officeDialog.show();
+                //this.fireEvent('adddialog-detail', this);
+
+            }.createDelegate(this));
+        }
 
 
 

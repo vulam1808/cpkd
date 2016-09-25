@@ -1,4 +1,4 @@
-// #PACKAGE:cpkd-new-personrepresent-modal-dialog
+// #PACKAGE:cpkd-dialog
 // #MODULE: UtilsDialog
 $(function () {
   iNet.ns("iNet.ui", "iNet.ui.ita");
