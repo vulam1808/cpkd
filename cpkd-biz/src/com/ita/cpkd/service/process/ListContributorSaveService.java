@@ -24,7 +24,11 @@ import com.inet.xportal.web.exception.WebOSBOException;
 import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
+import com.inet.xportal.web.util.XParamUtils;
+import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.ListContributorBo;
+import com.ita.cpkd.enums.EnumStatus;
+import com.ita.cpkd.model.HomeBusiness;
 import com.ita.cpkd.model.ListContributor;
 import com.ita.cpkd.model.PersonRepresent;
 
@@ -48,19 +52,31 @@ import java.util.Map;
 public class ListContributorSaveService extends DataServiceMarker {
     @Inject
     private ListContributorBo listContributorBo;
-
+    private HomeBusinessBo homeBusinessBo;
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         ListContributor arbmodel = action.getModel(ListContributor.class);
+        String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
+        String statusType = XParamUtils.getString("statusType", params, "");
 
         // TODO check your required data
-
-        // save account
-        //district.setUuid(districtBo.add(district));
-        String uuid= listContributorBo.add(arbmodel);
-        arbmodel.setUuid(uuid);
-
+        if (statusType.equals(EnumStatus.CAP_DOI.toString()))
+        {
+            arbmodel.setChangeBusiness_ID(idHomeBusiness);
+            // save account
+            //district.setUuid(districtBo.add(district));
+            String uuid = listContributorBo.add(arbmodel);
+            arbmodel.setUuid(uuid);
+        }
+        else
+        {
+            arbmodel.setHomeBusiness_ID(idHomeBusiness);
+            // save account
+            //district.setUuid(districtBo.add(district));
+            String uuid = listContributorBo.add(arbmodel);
+            arbmodel.setUuid(uuid);
+        }
         return new ObjectWebDataservice<ListContributor>(arbmodel);
     }
 

@@ -5,77 +5,98 @@
 // #MODULE: CapitalFormWidget
 
 $(function() {
-    var resource = {
-        common: ita.resources.common,
-        validate: ita.resources.validate
-    };
-    var $input = {
-        cashCapital: $('#capital-txt-cashCapital'),
-        assetCapital: $('#capital-txt-assetCapital'),
-        businessCapital: $('#capital-txt-businessCapital')
 
-    };
-
-    var url = {
-        //view: iNet.getUrl('ita/personrepresent/load'),
-       // save: iNet.getUrl('ita/personrepresent/save'),
-        update_capitalHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
-        del: iNet.getUrl('ita/homebusiness/delete')
-    };
 
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.CapitalFormWidget = function (config) {
+        var resource = {
+            common: ita.resources.common,
+            validate: ita.resources.validate
+        };
+        this.$input = {
+            cashCapital: $('#capital-txt-cashCapital'),
+            assetCapital: $('#capital-txt-assetCapital'),
+            businessCapital: $('#capital-txt-businessCapital')
+
+        };
+
+        var url = {
+            update_capitalHomeBusiness: iNet.getUrl('ita/capital/update')
+        };
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
         this.id = this.id || 'capital-form-widget';
+
+        this.idHomeBusiness = __config.idHomeBusiness;
+        this.statusType = __config.statusType;
+        this.HomeBusiness = __config.HomeBusiness;
 
         iNet.ui.ita.CapitalFormWidget.superclass.constructor.call(this);
 
 
         var me = this;
 
-        me.__id_homebusiness = "57e247003525e914ace2cb04";
+
         //me.__id_homebusiness = '';
-        var updateCapitalHomeBusiness = function(data){
-            var _data = data || '';
+        me.updateCapitalHomeBusiness = function(){
+            var _data = me.getDataCapital() || {};
+            console.log('_data>>', _data);
             // var _data = {taxCode: _taxcode};
             $.postJSON(url.update_capitalHomeBusiness, _data, function (result) {
                 var __result = result || {};
+                console.log('__result>>', __result);
                 if (CommonService.isSuccess(__result)) {
-                    //console.log('Update Taxcode success'+data+">>>>",_data);
-                    me.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
+
                 }
                 else
                 {
-                    //console.log('Update Taxcode error'+data+">>>>",_data);
-                    me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.save_error, __result.errors || []));
+
                 }
             });
+        };
+
+        var loadCapitalHomeBusiness = function(){
+            me.setDataCapital();
         }
 
-        $('#capital-location-btn-update').on('click', function(){
-
-            var __data = me.getDataCapital() || {};
-            console.log('updateCapital>>', __data);
-
-            updateCapitalHomeBusiness(__data);
-        }.createDelegate(this));
-
-
-
+        loadCapitalHomeBusiness();
     };
 
     iNet.extend(iNet.ui.ita.CapitalFormWidget, iNet.ui.app.widget,{
+        setDisabled: function(){
+
+            this.$input.cashCapital.attr('disabled', 'disabled');
+            this.$input.assetCapital.attr('disabled', 'disabled');
+            this.$input.businessCapital.attr('disabled', 'disabled');
+        },
+        removeDisabled: function(){
+
+            this.$input.cashCapital.removeAttr("disabled");
+            this.$input.assetCapital.removeAttr("disabled");
+            this.$input.businessCapital.removeAttr("disabled");
+        },
         getDataCapital: function () {
 
             var __data = {};
 
-            __data.idHomeBusiness = this.__id_homebusiness;
-            __data.cashCapital = $input.cashCapital.val();
-            __data.assetCapital = $input.assetCapital.val();
-            __data.businessCapital = $input.businessCapital.val();
+            __data.idHomeBusiness = this.idHomeBusiness;
+            __data.statusType = this.statusType;
+
+            __data.cashCapital = this.$input.cashCapital.val();
+            __data.assetCapital = this.$input.assetCapital.val();
+            __data.businessCapital = this.$input.businessCapital.val();
 
             return __data;
+        },
+        setDataCapital: function () {
+
+            var __data = this.HomeBusiness || {};
+                this.$input.cashCapital.val(__data.cashCapital);
+                this.$input.assetCapital.val(__data.assetCapital);
+                this.$input.businessCapital.val(__data.businessCapital);
+                //this.setDisabled();
+                return __data;
+
         }
     });
 

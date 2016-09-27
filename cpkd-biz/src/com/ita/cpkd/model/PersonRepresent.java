@@ -13,10 +13,18 @@ public class PersonRepresent {
     private String nameRepresent;
     private long birthday;
     private String race;
-    private String religion;
+    private String regilion;
     private String idnumber;
     private long issueDate;
     private String issuePlace;
+
+    public long getBirthday() {
+        return birthday;
+    }
+
+    public long getIssueDate() {
+        return issueDate;
+    }
 
     public void setBirthday(long birthday) {
         this.birthday = birthday;
@@ -59,12 +67,12 @@ public class PersonRepresent {
         this.race = race;
     }
 
-    public String getReligion() {
-        return religion;
+    public String getRegilion() {
+        return regilion;
     }
 
-    public void setReligion(String religion) {
-        this.religion = religion;
+    public void setRegilion(String regilion) {
+        this.regilion = regilion;
     }
 
     public String getIdnumber() {

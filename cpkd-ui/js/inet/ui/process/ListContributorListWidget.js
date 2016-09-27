@@ -4,22 +4,25 @@
  * Created by HS on 13/9/2016.
  */
 $(function() {
-    var resource = {
-        common: ita.resources.common,
-        validate: ita.resources.validate
-    };
 
-    var url = {
-        view: iNet.getUrl('ita/listcontributor/load'),
-        save: iNet.getUrl('ita/listcontributor/save'),
-        update: iNet.getUrl('ita/listcontributor/update'),
-        del: iNet.getUrl('ita/listcontributor/delete')
-    };
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.ListContributorListWidget = function (config) {
+        var resource = {
+            common: ita.resources.common,
+            validate: ita.resources.validate
+        };
+
+        var url = {
+            view: iNet.getUrl('ita/listcontributor/load'),
+            save: iNet.getUrl('ita/listcontributor/save'),
+            update: iNet.getUrl('ita/listcontributor/update'),
+            del: iNet.getUrl('ita/listcontributor/delete')
+        };
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
         this.id = this.id || 'listcontributor-widget';
+        this.idHomeBusiness = __config.idHomeBusiness;
+        this.statusType = __config.statusType;
         /*var abc = this;
         var wgAddProvince = null;
 
@@ -139,6 +142,10 @@ $(function() {
             firstLoad: true,
             idProperty : 'uuid',
             pageSize: 10,
+            params: {
+                idHomeBusiness: me.idHomeBusiness,
+                statusType: me.statusType
+            },
             convertData: function (data) {
                 var __data = data || {};
                 var __items = __data.items || [];
@@ -149,6 +156,8 @@ $(function() {
 
         this.grid.on('save', function(data) {
             var __data = data || {};
+            __data.idHomeBusiness = me.idHomeBusiness;
+            __data.statusType = me.statusType;
             console.log('saved>>', __data);
 
             $.postJSON(url.save, __data, function (result) {

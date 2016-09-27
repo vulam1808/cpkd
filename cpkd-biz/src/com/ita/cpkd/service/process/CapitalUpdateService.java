@@ -9,8 +9,11 @@ import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
+import com.ita.cpkd.bo.ChangeBusinessBo;
 import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.PersonRepresentBo;
+import com.ita.cpkd.enums.EnumStatus;
+import com.ita.cpkd.model.ChangeBusiness;
 import com.ita.cpkd.model.HomeBusiness;
 import com.ita.cpkd.model.PersonRepresent;
 import org.slf4j.Logger;
@@ -24,34 +27,40 @@ import java.util.Map;
 /**
  * Created by HS on 13/09/2016.
  */
-@Named("ita_homebusiness_updateservice")
-@XPortalDataService(roles = {"cpkd.create"}, description = "Tạo hồ sơ")
-@XPortalPageRequest(uri = "ita/homebusiness/update", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
-public class HomeBusinessUpdateService extends DataServiceMarker {
+@Named("ita_capital_updateservice")
+@XPortalDataService(roles = {"cpkd.process"}, description = "Xử lý hồ sơ")
+@XPortalPageRequest(uri = "ita/capital/update", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+public class CapitalUpdateService extends DataServiceMarker {
     protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
     @Inject
     private HomeBusinessBo homeBusinessBo;
-
+    @Inject
+    private ChangeBusinessBo changeBusinessBo;
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
-        HomeBusiness arbmodel = action.getModel(HomeBusiness.class);
+
         //logger.debug("HomeBusiness status {}: ", arbmodel);
         String id = XParamUtils.getString("idHomeBusiness", params, "");
-        String taskID = XParamUtils.getString("taskID", params, "");
-        if(!taskID.equals(""))
+        String statusType = XParamUtils.getString("statusType", params, "");
+
+        if(statusType.equals(EnumStatus.CAP_DOI))
         {
-            HomeBusiness objHome = homeBusinessBo.loadHomeBusinessByTaskID(taskID);
-            id = objHome.getUuid();
+            ChangeBusiness arbmodel = action.getModel(ChangeBusiness.class);
+            changeBusinessBo.update(id,arbmodel);
+            arbmodel.setUuid(id);
+            return new ObjectWebDataservice<ChangeBusiness>(arbmodel);
         }
-        // TODO check your required data
+        else
+        {
+            HomeBusiness arbmodel = action.getModel(HomeBusiness.class);
 
-        // save account
-        //district.setUuid(districtBo.add(district));
-        homeBusinessBo.update(id,arbmodel);
-        arbmodel.setUuid(id);
+            homeBusinessBo.update(id,arbmodel);
+            arbmodel.setUuid(id);
+            return new ObjectWebDataservice<HomeBusiness>(arbmodel);
+        }
 
-        return new ObjectWebDataservice<HomeBusiness>(arbmodel);
+
     }
 
 }

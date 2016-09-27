@@ -7,8 +7,8 @@
 #script("/js/common/inet/lib/select.min.js")
 #script("/js/cpkd/inet/lib/personrepresent-widget.min.js")
 
-<div id="personrepresent-widget">
-    <div class="wg-toolbar" class="navbar-fixed-top">
+<div id="personrepresent-widget" class="hide">
+    <!--<div class="wg-toolbar" class="navbar-fixed-top" class="hide">
         <button id="office-location-btn-back" type="button" class="btn btn-primary">
             <i class="icon-arrow-left"></i> $text.getText("Back")
         </button>
@@ -21,74 +21,60 @@
         <button id="personrepresent-location-btn-load" class="btn btn-primary">
             <i class="icon-plus"></i> $text.getText("Load")
         </button>
-    </div>
-    <div class="wg-content">
+    </div>-->
+
         <div class="row-fluid">
-            <form id="form-service" class="form-horizontal">
-                <div class="row" style="margin: 0px">
+            <form id="form-service" >
+                <div class="row" style="">
                     <div class="alert alert-info col-xs-12 col-sm-12" style="padding: 5px;">
-                        <strong><i class="icon-info-sign"></i> $text.getText("PersonRepresent information")</strong>
+                        <strong><i class="icon-info-sign"></i> $text.getText("common.infoPersonrepresent")</strong>
                     </div>
                  </div>
-                <div class="row" style="margin: 0px">
+                <div class="row">
                     <div class="col-xs-12 col-sm-12">
-
-                        <div class="form-group">
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-nameRepresent">$text.getText("common.name") (<span class="required"/>):</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="personrepresent-txt-nameRepresent" name="name" value="" class="col-xs-12 form-control">
+                        <div class="row">
+                            <div class="col-sm-4 form-group">
+                                <label  for="personrepresent-txt-nameRepresent">$text.getText("common.name") (<span class="required"/>):</label>
+                                <input type="text" id="personrepresent-txt-nameRepresent" name="name" value="" class="form-control">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-gender">$text.getText("common.gender") (<span class="required"/>):</label>
-
-                            <div class="col-sm-4">
-                                <input id="personrepresent-txt-gender" class="col-xs-12 form-control">
+                            <div class="col-sm-4 form-group">
+                                <label for="personrepresent-txt-gender">$text.getText("common.gender") (<span class="required"/>):</label>
+                                <input id="personrepresent-txt-gender" class="col-xs-10 form-control">
                             </div>
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-birthday">$text.getText("common.birthday") :</label>
-
-                            <div class="col-sm-4">
-                                <input id="personrepresent-txt-birthday" name="birthday" class="span12">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-race">$text.getText("common.race"):</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" id="personrepresent-txt-race" name="race" value="" class="col-xs-12 form-control">
-                            </div>
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-regilion">$text.getText("common.religion"):</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" id="personrepresent-txt-regilion" name="regilion" value="" class="col-xs-12 form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-idnumber">$text.getText("common.idnumber"):</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" id="personrepresent-txt-idnumber" name="city" value="" class="col-xs-12 form-control">
-                            </div>
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-issueDate">$text.getText("common.issueDate") :</label>
-
-                            <div class="col-sm-4">
-                                <input class="span12" id="personrepresent-txt-issueDate">
+                            <div class="col-sm-4 form-group">
+                                <label for="personrepresent-txt-birthday">$text.getText("common.birthday") :</label>
+                                <input id="personrepresent-txt-birthday" name="birthday" class="form-control">
 
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-2 no-padding-right lbl-bold" for="personrepresent-txt-issuePlace">$text.getText("common.issuePlace") :</label>
-                            <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-4 form-group">
+                                <label  for="personrepresent-txt-race">$text.getText("common.race"):</label>
+                                <input type="text" id="personrepresent-txt-race" name="race" value="" class="form-control">
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label  for="personrepresent-txt-regilion">$text.getText("common.religion"):</label>
+                                <input type="text" id="personrepresent-txt-regilion" name="regilion" value="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 form-group">
+                                <label  for="personrepresent-txt-idnumber">$text.getText("common.idnumber"):</label>
+                                <input type="text" id="personrepresent-txt-idnumber" name="city" value="" class="form-control">
+                            </div>
+                            <div class="col-sm-4">
+                                <label  for="personrepresent-txt-issueDate">$text.getText("common.issueDate") :</label>
+                                <input id="personrepresent-txt-issueDate" name="issueDate" class="form-control">
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <label for="personrepresent-txt-issuePlace">$text.getText("common.issuePlace") :</label>
                                 <input type="text" id="personrepresent-txt-issuePlace" name="issuePlace" style="width: 100%">
                             </div>
                         </div>
+
                     </div>
                 </div>
             </form>
         </div>
-    </div>
 </div>

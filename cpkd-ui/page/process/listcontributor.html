@@ -6,5 +6,11 @@
     #widget("/cpkd/widget/common/common")
     #widget("/cpkd/widget/process/listcontributor/list")
 
-
+#xscript()
+$(function(){
+var _param = {taskID: '57e4a639dba6901894e3ac76'};
+this.wgabc = new iNet.ui.ita.ListContributorListWidget(_param);
+this.wgabc.show();
+});
+#end
 #end

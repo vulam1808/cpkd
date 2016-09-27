@@ -23,6 +23,15 @@ public class HomeBusiness {
     private String businessCapital;
     private long dateSubmit;
     private String statusType;
+    private String taskID;
+
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
 
     public String getAssetCapital() {
         return assetCapital;

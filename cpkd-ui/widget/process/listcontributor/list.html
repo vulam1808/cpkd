@@ -9,20 +9,19 @@
 
 #end-->
 <div id="listcontributor-widget" style="display: none;">
-    <div class="wg-toolbar navbar-fixed-top">
-        <button id="listcontributor-btn-add" class="btn btn-primary btn-small">
-            <i class="icon-plus"></i> Add
-        </button>
-<!--
-        <button id="province-btn-add-office" class="btn btn-primary btn-small">
-            <i class="icon-plus"></i> Add Office
-        </button>
-        <button id="province-btn-add-dialog" class="btn btn-primary btn-small">
-            <i class="icon-plus"></i> Add Dialog
-        </button>
--->
+    <div class="row" style="">
+        <div class="alert alert-info col-xs-12 col-sm-12" style="padding: 5px;">
+            <strong><i class="icon-info-sign"></i> $text.getText("common.listcontributor")</strong>
+        </div>
     </div>
-    <div class="wg-content">
+    <div class="row">
+        <div class="">
+
+            <button id="listcontributor-btn-add" class="btn btn-primary btn-small">
+                <i class="icon-plus"></i> Add
+            </button>
+
+        </div>
         <div id="listcontributor-grid"></div>
     </div>
 </div>

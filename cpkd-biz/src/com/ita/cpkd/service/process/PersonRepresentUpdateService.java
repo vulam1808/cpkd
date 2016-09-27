@@ -1,5 +1,6 @@
 package com.ita.cpkd.service.process;
 
+import com.inet.xportal.nosql.web.data.SearchDTO;
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
 import com.inet.xportal.web.annotation.XPortalDataService;
@@ -9,7 +10,15 @@ import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
+import com.inet.xportal.xdb.persistence.JSONDB;
+import com.inet.xportal.xdb.query.Query;
+import com.inet.xportal.xdb.query.impl.QueryImpl;
+import com.ita.cpkd.bo.ChangeBusinessBo;
+import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.PersonRepresentBo;
+import com.ita.cpkd.enums.EnumStatus;
+import com.ita.cpkd.model.ChangeBusiness;
+import com.ita.cpkd.model.HomeBusiness;
 import com.ita.cpkd.model.PersonRepresent;
 
 import javax.inject.Inject;
@@ -26,19 +35,44 @@ import java.util.Map;
 public class PersonRepresentUpdateService extends DataServiceMarker{
 
     @Inject
-    private PersonRepresentBo careerBo;
+    private PersonRepresentBo personBo;
+    @Inject
+    private HomeBusinessBo homeBusinessBo;
+    @Inject
+    private ChangeBusinessBo changeBusinessBo;
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
-        PersonRepresent areabusinessmodel = action.getModel(PersonRepresent.class);
-        String id = XParamUtils.getString("uuid", params, "");
-        // TODO check your required data
+        PersonRepresent peronmodel = action.getModel(PersonRepresent.class);
+        String idPersonRepresent = XParamUtils.getString("idPersonRepresent", params, "");
+        String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
+        String statusType = XParamUtils.getString("statusType", params, "");
+        //Neu da ton tai person thi update
+        if(!idPersonRepresent.equals("")) {
 
-        // save account
-        //district.setUuid(districtBo.add(district));
-        careerBo.update(id,areabusinessmodel);
-        areabusinessmodel.setUuid(id);
+            personBo.update(idPersonRepresent, peronmodel);
+            peronmodel.setUuid(idPersonRepresent);
+        }
+        else
+        {
+            String uuid = personBo.add(peronmodel);
+            peronmodel.setUuid(uuid);
+            if(statusType.equals(EnumStatus.CAP_DOI.toString()))
+            {
 
-        return new ObjectWebDataservice<PersonRepresent>(areabusinessmodel);
+                ChangeBusiness objchange = new ChangeBusiness();
+                objchange.setPersonRepresent_ID(uuid);
+                changeBusinessBo.update(idHomeBusiness, objchange);
+
+            }
+            else
+            {
+                HomeBusiness objHome = new HomeBusiness();
+                objHome.setPersonRepresent_ID(uuid);
+                homeBusinessBo.update(idHomeBusiness,objHome);
+            }
+        }
+
+        return new ObjectWebDataservice<PersonRepresent>(peronmodel);
     }
 }

@@ -15,6 +15,15 @@ public class ListContributor {
     private String permanentAddress;
     private String capitalValue;
     private String capitalProportion;
+    private String changeBusiness_ID;
+
+    public String getChangeBusiness_ID() {
+        return changeBusiness_ID;
+    }
+
+    public void setChangeBusiness_ID(String changeBusiness_ID) {
+        this.changeBusiness_ID = changeBusiness_ID;
+    }
 
     public String getUuid() {
         return uuid;

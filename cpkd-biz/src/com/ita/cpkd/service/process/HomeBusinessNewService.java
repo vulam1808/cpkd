@@ -8,6 +8,7 @@ import com.inet.xportal.web.exception.WebOSBOException;
 import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
+import com.inet.xportal.web.util.XParamUtils;
 import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.PersonRepresentBo;
 import com.ita.cpkd.model.HomeBusiness;
@@ -32,7 +33,8 @@ public class HomeBusinessNewService extends DataServiceMarker {
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         HomeBusiness arbmodel = action.getModel(HomeBusiness.class);
-
+        String taskID = XParamUtils.getString("taskID", params, "");
+        arbmodel.setTaskID(taskID);
         // TODO check your required data
 
         // save account

@@ -30,7 +30,7 @@ import java.util.Map;
 @Named("ita_homebusiness_checknameservice")
 @XPortalDataService(roles = {"cpkd.create"}, description = "Tạo hồ sơ")
 @XPortalPageRequest(uri = "ita/homebusiness/checknamebusiness", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
-public class HomeBusinessCheckNameService extends DataServiceMarker {
+public class BusinessCheckNameService extends DataServiceMarker {
     @Inject
     private HomeBusinessBo homeBusinessBo;
 

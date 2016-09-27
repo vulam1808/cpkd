@@ -7,7 +7,7 @@ $(function () {
 
     iNet.ns("iNet.ui","iNet.ui.ita");
     iNet.ui.ita.HomeBusinessForm = function (config) {
-        var resource = {
+        this.resource = {
             common: ita.resources.common,
             validate: ita.resources.validate
         };
@@ -31,7 +31,7 @@ $(function () {
              update: iNet.getUrl('ita/province/update'),
              del: iNet.getUrl('ita/province/delete')*/
         };
-        var $form = {
+        this.$form = {
             //input_id_homebusiness:$('#id-homebusiness'),
             input_typeTask: $('#homebusiness-type-task'),
             button_save: $('#homebusiness-save-btn'),
@@ -47,7 +47,7 @@ $(function () {
             div_status_check: $('#status-nameBusiness'),
             input_nameBusiness: $('#homebusiness-nameBusiness')
         };
-        var $formCapMoi = {
+        this.$formCapMoi = {
             input_address: $('#homebusiness-address'),
             input_province: $('#homebusiness-province'),
             input_district: $('#homebusiness-district'),
@@ -58,15 +58,15 @@ $(function () {
             input_website: $('#homebusiness-website'),
             input_areaBusiness: $('#homebusiness-areaBusiness')
         };
-        var $formCapDoi = {
+        this.$formCapDoi = {
             input_infoChange: $('#changebusiness-infoChange')
         };
-        var $formTamNgung = {
+        this.$formTamNgung = {
             input_dayofPause: $('#pausebusiness-dayofPause'),
             input_dateStart: $('#pausebusiness-dateStart'),
             input_reason: $('#pausebusiness-reason')
         };
-        var $formChamDut = {
+        this.$formChamDut = {
             input_dateEnd: $('#endbusiness-dateEnd'),
             input_reason: $('#endbusiness-reason')
         };
@@ -85,9 +85,9 @@ $(function () {
                 var __result = result || [];
 
                 $(__result).each(function(i,item){
-                    __dataListChangeBusiness.push({id:item,name:resource.common[item]});
+                    __dataListChangeBusiness.push({id:item,name:me.resource.common[item]});
                 });
-                $formCapDoi.input_infoChange= FormService.createSelect('changebusiness-infoChange',__dataListChangeBusiness , 'id', 1, false, true);
+                me.$formCapDoi.input_infoChange= FormService.createSelect('changebusiness-infoChange',__dataListChangeBusiness , 'id', 1, false, true);
             });
             console.log('CHANGE >>>',__dataListChangeBusiness);
 
@@ -100,43 +100,43 @@ $(function () {
                 var __result = result || [];
 
                 $(__result).each(function(i,item){
-                    __dataTypeTaskBusiness.push({id:item,name:resource.common[item]});
+                    __dataTypeTaskBusiness.push({id:item,name:me.resource.common[item]});
                 });
 
-                $form.input_typeTask = FormService.createSelect('homebusiness-type-task', __dataTypeTaskBusiness, 'id', 1, false, false);
-                $form.input_typeTask.setValue('CAP_MOI');
-                $form.input_typeTask.on('change', function(){
+                me.$form.input_typeTask = FormService.createSelect('homebusiness-type-task', __dataTypeTaskBusiness, 'id', 1, false, false);
+                me.$form.input_typeTask.setValue('CAP_MOI');
+                me.$form.input_typeTask.on('change', function(){
                     me.__isCheckNameSave =false;
-                    var valTypkeTask = $form.input_typeTask.getValue();
+                    var valTypkeTask = me.$form.input_typeTask.getValue();
                     if(valTypkeTask == "CAP_MOI")
                     {
-                        FormService.displayContent($form.div_homebusiness_create,'show');
-                        FormService.displayContent($form.div_endbusiness_create,'hide');
-                        FormService.displayContent($form.div_changebusiness_create,'hide');
-                        FormService.displayContent($form.div_pausebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_homebusiness_create,'show');
+                        FormService.displayContent(me.$form.div_endbusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_changebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_pausebusiness_create,'hide');
                     }
                     else if(valTypkeTask == "CAP_DOI")
                     {
-                        FormService.displayContent($form.div_homebusiness_create,'hide');
-                        FormService.displayContent($form.div_endbusiness_create,'hide');
-                        FormService.displayContent($form.div_changebusiness_create,'show');
-                        FormService.displayContent($form.div_pausebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_homebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_endbusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_changebusiness_create,'show');
+                        FormService.displayContent(me.$form.div_pausebusiness_create,'hide');
                     }
                     else if(valTypkeTask == "TAM_NGUNG")
                     {
-                        FormService.displayContent($form.div_homebusiness_create,'hide');
-                        FormService.displayContent($form.div_endbusiness_create,'hide');
-                        FormService.displayContent($form.div_changebusiness_create,'hide');
-                        FormService.displayContent($form.div_pausebusiness_create,'show');
+                        FormService.displayContent(me.$form.div_homebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_endbusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_changebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_pausebusiness_create,'show');
                     }
                     else if(valTypkeTask == "CHAM_DUT")
                     {
-                        FormService.displayContent($form.div_homebusiness_create,'hide');
-                        FormService.displayContent($form.div_endbusiness_create,'show');
-                        FormService.displayContent($form.div_changebusiness_create,'hide');
-                        FormService.displayContent($form.div_pausebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_homebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_endbusiness_create,'show');
+                        FormService.displayContent(me.$form.div_changebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_pausebusiness_create,'hide');
                     }
-                    //loadDistrict($form.input_province.getValue());
+                    //loadDistrict(me.$form.input_province.getValue());
                 });
             });
 
@@ -150,11 +150,11 @@ $(function () {
 
         me.__listProvince = [];
         var loadProvince = function(){
-            $formCapMoi.input_province = FormService.createSelect('homebusiness-province', [], 'id', 1, false, false);
-            //$formCapMoi.input_province.setValue("");
+            me.$formCapMoi.input_province = FormService.createSelect('homebusiness-province', [], 'id', 1, false, false);
+            //me.$formCapMoi.input_province.setValue("");
             if(CommonService.isSuccess(me.__listProvince))
             {
-                $formCapMoi.input_province = FormService.createSelect('homebusiness-province', me.__listProvince, 'id', 1, false, false);
+                me.$formCapMoi.input_province = FormService.createSelect('homebusiness-province', me.__listProvince, 'id', 1, false, false);
                 console.log('__listProvince_old>>',me.__listProvince);
             }
             else
@@ -166,20 +166,20 @@ $(function () {
                         $.each(__result.items || [], function(i, obj){
                             me.__listProvince.push({id: obj.uuid, code: obj.code, name: obj.name});
                         });
-                        $formCapMoi.input_province = FormService.createSelect('homebusiness-province', me.__listProvince, 'id', 1, false, false);
+                        me.$formCapMoi.input_province = FormService.createSelect('homebusiness-province', me.__listProvince, 'id', 1, false, false);
                         console.log('__listProvince>>',me.__listProvince);
                     }
                 });
             }
-            $formCapMoi.input_province.on('change', function(){
-                loadDistrict($formCapMoi.input_province.getValue());
+            me.$formCapMoi.input_province.on('change', function(){
+                loadDistrict(me.$formCapMoi.input_province.getValue());
             });
 
         };
         me.__listDistrict = [];
         var loadDistrict = function(idProvince){
-            $formCapMoi.input_district = FormService.createSelect('homebusiness-district', [], 'id', 1, false, false);
-            //$form.input_district.setValue(value || "");
+            me.$formCapMoi.input_district = FormService.createSelect('homebusiness-district', [], 'id', 1, false, false);
+            //me.$form.input_district.setValue(value || "");
 
             if(CommonService.isSuccess(me.__listDistrict))
             {
@@ -189,7 +189,7 @@ $(function () {
                         __listProvinceQuery.push({id: obj.id,province_ID: obj.province_ID, code: obj.code, name: obj.name});
                     }
                 });
-                $formCapMoi.input_district= FormService.createSelect('homebusiness-district', __listProvinceQuery, 'id', 1, false, false);
+                me.$formCapMoi.input_district= FormService.createSelect('homebusiness-district', __listProvinceQuery, 'id', 1, false, false);
                 console.log('__listProvinceQuery>>',__listProvinceQuery);
             }
             else
@@ -201,19 +201,19 @@ $(function () {
                         $.each(__result.items || [], function(i, obj){
                             me.__listDistrict.push({id: obj.uuid,province_ID: obj.province_ID, code: obj.code, name: obj.name});
                         });
-                        $formCapMoi.input_district = FormService.createSelect('homebusiness-district', me.__listDistrict, 'id', 1, false, false);
+                        me.$formCapMoi.input_district = FormService.createSelect('homebusiness-district', me.__listDistrict, 'id', 1, false, false);
                         console.log('__listDistrict>>',me.__listDistrict);
                     }
                 });
             }
-            $formCapMoi.input_district.on('change', function(){
-                loadWard($formCapMoi.input_district.getValue());
+            me.$formCapMoi.input_district.on('change', function(){
+                loadWard(me.$formCapMoi.input_district.getValue());
             });
         };
         me.__listWard = [];
         var loadWard = function(idDistrict){
-            $formCapMoi.input_ward = FormService.createSelect('homebusiness-ward', [], 'id', 1, false, false);
-            //$formCapMoi.input_ward.setValue(value || "");
+            me.$formCapMoi.input_ward = FormService.createSelect('homebusiness-ward', [], 'id', 1, false, false);
+            //me.$formCapMoi.input_ward.setValue(value || "");
 
             if(CommonService.isSuccess(me.__listWard))
             {
@@ -223,7 +223,7 @@ $(function () {
                         __listWardQuery.push({id: obj.id,district_ID: obj.district_ID, code: obj.code, name: obj.name});
                     }
                 });
-                $formCapMoi.input_ward= FormService.createSelect('homebusiness-ward', __listWardQuery, 'id', 1, false, false);
+                me.$formCapMoi.input_ward= FormService.createSelect('homebusiness-ward', __listWardQuery, 'id', 1, false, false);
                 console.log('__listWardQuery_change>>',me.__listWardQuery);
             }
             else
@@ -236,7 +236,7 @@ $(function () {
                             me.__listWard.push({id: obj.uuid,district_ID: obj.district_ID, code: obj.code, name: obj.name});
                         });
                         console.log('__listWard>>',me.__listWard);
-                        $formCapMoi.input_ward = FormService.createSelect('homebusiness-ward', me.__listWard, 'id', 1, false, false);
+                        me.$formCapMoi.input_ward = FormService.createSelect('homebusiness-ward', me.__listWard, 'id', 1, false, false);
                     }
                 });
             }
@@ -245,12 +245,12 @@ $(function () {
 
         me.__listAreaBusiness = [];
         var loadAreaBusiness = function(){
-            $formCapMoi.input_areaBusiness = FormService.createSelect('homebusiness-areaBusiness', [], 'id', 1, false, false);
-            //$form.input_areaBusiness.setValue(value || "");
+            me.$formCapMoi.input_areaBusiness = FormService.createSelect('homebusiness-areaBusiness', [], 'id', 1, false, false);
+            //me.$form.input_areaBusiness.setValue(value || "");
 
             if(CommonService.isSuccess(me.__listAreaBusiness))
             {
-                $formCapMoi.input_areaBusiness= FormService.createSelect('homebusiness-areaBusiness', me.__listAreaBusiness, 'id', 1, false, false);
+                me.$formCapMoi.input_areaBusiness= FormService.createSelect('homebusiness-areaBusiness', me.__listAreaBusiness, 'id', 1, false, false);
             }
             else
             {
@@ -261,7 +261,7 @@ $(function () {
                         $.each(__result.items || [], function(i, obj){
                             me.__listAreaBusiness.push({id: obj.uuid, code: obj.code, name: obj.area});
                         });
-                        $formCapMoi.input_areaBusiness = FormService.createSelect('homebusiness-areaBusiness',me.__listAreaBusiness, 'id', 1, false, false);
+                        me.$formCapMoi.input_areaBusiness = FormService.createSelect('homebusiness-areaBusiness',me.__listAreaBusiness, 'id', 1, false, false);
                         console.log('__listWard>>',me.__listAreaBusiness);
                     }
                 });
@@ -270,28 +270,28 @@ $(function () {
         };
 
 //Load datetime
-        var pauseDateStart = $formTamNgung.input_dateStart.datepicker({
+        var pauseDateStart = me.$formTamNgung.input_dateStart.datepicker({
             format: 'dd/mm/yyyy'
         }).on('changeDate',function (ev) {
             pauseDateStart.hide();
         }).data('datepicker');
-        $formTamNgung.input_dateStart.val(CommonService.getCurrentDate());
+        me.$formTamNgung.input_dateStart.val(CommonService.getCurrentDate());
 
-        var endDateEnd = $formChamDut.input_dateEnd.datepicker({
+        var endDateEnd = me.$formChamDut.input_dateEnd.datepicker({
             format: 'dd/mm/yyyy'
         }).on('changeDate',function (ev) {
             endDateEnd.hide();
         }).data('datepicker');
-        $formChamDut.input_dateEnd.val(CommonService.getCurrentDate());
+        me.$formChamDut.input_dateEnd.val(CommonService.getCurrentDate());
 
 //Event=================================================================================
-        $form.button_save.on('click', function(){
+        me.$form.button_save.on('click', function(){
             if(me.checkSave() == false)
             {
                 return;
             }
 
-            var valTypkeTask = $form.input_typeTask.getValue();
+            var valTypkeTask = me.$form.input_typeTask.getValue();
             if(valTypkeTask == "CAP_MOI")
             {
                 var _data = me.getDataCapMoi() || {};
@@ -300,11 +300,11 @@ $(function () {
                     var __result = result || {};
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
-                        me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
@@ -317,11 +317,11 @@ $(function () {
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
 
-                        me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
@@ -333,11 +333,11 @@ $(function () {
                     var __result = result || {};
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
-                        me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
@@ -349,11 +349,11 @@ $(function () {
                     var __result = result || {};
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
-                        me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
@@ -390,7 +390,7 @@ $(function () {
             $.postJSON(url.check_name_business, _data, function (result) {
                 var __result = result.items || [];
                 console.log('__result check name',__result)
-                var valTypkeTask = $form.input_typeTask.getValue();
+                var valTypkeTask = me.$form.input_typeTask.getValue();
                 if (CommonService.isSuccess(__result)) {
                     //var __listProvince = [];
                     var __item = __result[0];
@@ -399,8 +399,8 @@ $(function () {
 
                     if(valTypkeTask == "CAP_MOI") {
                         var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i> Đã tồn tại tên kinh doanh <button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết</button></p>';
-                        $form.div_status_check.empty();
-                        $form.div_status_check.append(html);
+                        me.$form.div_status_check.empty();
+                        me.$form.div_status_check.append(html);
                         me.__isCheckNameSave = false;
                         me.eventbuttoncheckname();
                     }
@@ -408,8 +408,8 @@ $(function () {
                     {
                         var html = '<p><i class="glyphicon glyphicon-ok form-control-feedback"></i>' +
                             '<button id="view-detail-task" type="button"  class="btn btn-link">Xem chi tiết thông tin hộ kinh doanh </button></p>';
-                        $form.div_status_check.empty();
-                        $form.div_status_check.append(html);
+                        me.$form.div_status_check.empty();
+                        me.$form.div_status_check.append(html);
                         me.__isCheckNameSave = true;
                         me.eventbuttoncheckname();
                     }
@@ -420,29 +420,29 @@ $(function () {
                     if(valTypkeTask == "CAP_MOI") {
                         var html = '<p><i class="glyphicon glyphicon-ok form-control-feedback"></i>' +
                             ' Bạn có thể đăng ký kinh doanh với tên này </p>';
-                        $form.div_status_check.empty();
-                        $form.div_status_check.append(html);
+                        me.$form.div_status_check.empty();
+                        me.$form.div_status_check.append(html);
                         me.__isCheckNameSave = true;
                     }
                     else
                     {
                         var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i>' +
                             ' Không tồn tại tên đăng ký kinh doanh </p>';
-                        $form.div_status_check.empty();
-                        $form.div_status_check.append(html);
+                        me.$form.div_status_check.empty();
+                        me.$form.div_status_check.append(html);
                         me.__isCheckNameSave = false;
                     }
                     // me.notifySuccess(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
                 }
             });
         }
-        $form.input_nameBusiness.on('change',function(){
+        me.$form.input_nameBusiness.on('change',function(){
             me.__isCheckNameSave = false;
         }.createDelegate(this));
-        $form.button_check.on('click', function(){
+        me.$form.button_check.on('click', function(){
             checkNameBusiness();
         }.createDelegate(this));
-      /*  $form.button_view_detail('click', function(){
+      /*  me.$form.button_view_detail('click', function(){
             var _data = me.getData() || {};
             console.log('check click',_data)
             $.postJSON(url.check_name_business, _data, function (result) {
@@ -451,13 +451,13 @@ $(function () {
 
             });
         }.createDelegate(this));*/
-        $form.div_title.on('click', function(){
-            FormService.displayContent($form.div_item);
+        me.$form.div_title.on('click', function(){
+            FormService.displayContent(me.$form.div_item);
 
         }.createDelegate(this));
 
         me.eventbuttoncheckname =function(){
-            $form.button_view_detail.on('click', function(){
+            me.$form.button_view_detail.on('click', function(){
                 console.log('ccccccccccccccccccc','kjhjjhg');
                 officeDialog= new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
                 //officeDialog.id =;
@@ -485,23 +485,24 @@ $(function () {
         },
          getDataCapMoi: function(){
             var __data = {};
-            __data.nameBusiness = $form.input_nameBusiness.val();
-            __data.address = $formCapMoi.input_address.val();
-            __data.province_ID = $formCapMoi.input_province.getValue();
-            __data.district_ID = $formCapMoi.input_district.getValue();
-            __data.ward_ID = $formCapMoi.input_ward.getValue();
-            __data.phone = $formCapMoi.input_phone.val();
-            __data.fax = $formCapMoi.input_fax.val();
-            __data.email = $formCapMoi.input_email.val();
-            __data.website = $formCapMoi.input_website.val();
-            __data.areaBusiness_ID = $formCapMoi.input_areaBusiness.getValue();
+            __data.nameBusiness = this.$form.input_nameBusiness.val();
+            __data.address = this.$formCapMoi.input_address.val();
+            __data.province_ID = this.$formCapMoi.input_province.getValue();
+            __data.district_ID = this.$formCapMoi.input_district.getValue();
+            __data.ward_ID = this.$formCapMoi.input_ward.getValue();
+            __data.phone = this.$formCapMoi.input_phone.val();
+            __data.fax = this.$formCapMoi.input_fax.val();
+            __data.email = this.$formCapMoi.input_email.val();
+            __data.website = this.$formCapMoi.input_website.val();
+            __data.areaBusiness_ID = this.$formCapMoi.input_areaBusiness.getValue();
              __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
+             __data.statusType= "CAP_MOI";
             return __data;
         },
         getDataCapDoi: function(){
             var __data = {};
             __data.homeBusiness_ID = this.__id_homebusiness;
-            __data.infoChange = $formCapDoi.input_infoChange.getValue().toString();
+            __data.infoChange = this.$formCapDoi.input_infoChange.getValue().toString();
             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
 
             return __data;
@@ -509,9 +510,9 @@ $(function () {
         getDataTamNgung: function(data){
             var __data = {};
             __data.homeBusiness_ID =  this.__id_homebusiness;
-            __data.dayofPause = $formTamNgung.input_dayofPause.val();
-            __data.dateStart = $formTamNgung.input_dateStart.val().dateToLong();
-            __data.reason = $formTamNgung.input_reason.val();
+            __data.dayofPause = this.$formTamNgung.input_dayofPause.val();
+            __data.dateStart = this.$formTamNgung.input_dateStart.val().dateToLong();
+            __data.reason = this.$formTamNgung.input_reason.val();
             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
 
             return __data;
@@ -519,22 +520,22 @@ $(function () {
         getDataChamDut: function(data){
             var __data = {};
             __data.homeBusiness_ID =  this.__id_homebusiness;
-            __data.dateEnd = $formChamDut.input_dateEnd.val().dateToLong();
-            __data.reason = $formChamDut.input_reason.val();
+            __data.dateEnd = this.$formChamDut.input_dateEnd.val().dateToLong();
+            __data.reason = this.$formChamDut.input_reason.val();
             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
 
             return __data;
         },
         checkSave: function(){
-            var valTypkeTask = $form.input_typeTask.getValue();
-            if($form.input_nameBusiness.val() == "")
+            var valTypkeTask = this.$form.input_typeTask.getValue();
+            if(this.$form.input_nameBusiness.val() == "")
             {
-                this.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
+                this.notifyError(this.resource.validate.save_title, resource.validate.save_error_namebusiness);
                 return false;
             }
             if(this.__isCheckNameSave == false)
             {
-                this.notifyError(resource.validate.save_title, resource.validate.save_error_checkNameSave);
+                this.notifyError(this.resource.validate.save_title, resource.validate.save_error_checkNameSave);
                 return false;
             }
             if(valTypkeTask == "CAP_MOI")
@@ -543,27 +544,27 @@ $(function () {
 
                 if(__data.address == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_address);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_address);
                     return false;
                 }
                 else if(__data.province_ID == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_provincebusiness);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_provincebusiness);
                     return false;
                 }
                 else if(__data.areaBusiness_ID == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_areabusiness);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_areabusiness);
                     return false;
                 }
                 else if(__data.district_ID == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_districtbusiness);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_districtbusiness);
                     return false;
                 }
                 else if(__data.ward_ID == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_wardbusiness);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_wardbusiness);
                     return false;
                 }
 
@@ -573,12 +574,12 @@ $(function () {
                 var __data =  this.getDataCapDoi();
                 if(__data.homeBusiness_ID == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_changeHomeBusiness_ID);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_changeHomeBusiness_ID);
                     return false;
                 }
                 if(__data.infoChange == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_infoChange);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_infoChange);
                     return false;
                 }
 
@@ -588,17 +589,17 @@ $(function () {
                 var __data =  this.getDataTamNgung();
                 if(__data.dayofPause == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_dayofPause);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_dayofPause);
                     return false;
                 }
                 else if(__data.dateStart == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_dateStartPause);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_dateStartPause);
                     return false;
                 }
                 else if(__data.reason == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_reason);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_reason);
                     return false;
                 }
             }
@@ -607,12 +608,12 @@ $(function () {
                 var __data =  this.getDataChamDut();
                 if(__data.dateEnd == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_end_dateEnd);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_end_dateEnd);
                     return false;
                 }
                 else if(__data.reason == "")
                 {
-                    this.notifyError(resource.validate.save_title, resource.validate.save_error_reason);
+                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_reason);
                     return false;
                 }
             }
