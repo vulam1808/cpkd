@@ -1,82 +1,88 @@
 #script("/js/cpkd/inet/lib/cpkd-dialog.min.js")
 <div id="homebusiness-detail-dialog" class="modal fade" data-focus-on="input:first" data-width="650" tabindex="-1" style="display: none">
-
-    <div class="row">
-        <div class="col-md-12 form-group">
-            <label for="homebusiness-areaBusiness" class=control-label">
-                <span class="">$text.getText('common.nameAreaBusiness')</span></span>
-            </label>
-
-            <label class="no-padding-right lbl-bold" id="homebusiness-areaBusiness"></label>
-        </div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-group"></i> <span id="social-group-modal-lbl-title">$text.getText("Thông tin hồ sơ đăng ký kinh doanh")</span></h4>
     </div>
-    <div class="row">
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-address" class="control-label">
-                <span class="">$text.getText('common.addressBusiness')</span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-address"></label>
+    <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="homebusiness-areaBusiness" class=control-label">
+                        <span class="">$text.getText('common.nameAreaBusiness')</span></span>
+                    </label>
+                    <input id="homebusiness-areaBusiness"  class="col-md-12 form-control"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-address" class="control-label">
+                        <span class="">$text.getText('common.addressBusiness')</span>
+                    </label>
+                    <input id="homebusiness-address" type="text" class="col-md-12 form-control" />
 
-        </div>
+                </div>
 
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-province" class="control-label">
-                <span class="">$text.getText('common.province')</span></span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-province"></label>
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-province" class="control-label">
+                        <span class="">$text.getText('common.province')</span></span>
+                    </label>
+                    <input id="homebusiness-province" class="col-md-12 form-control"/>
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-district" class="control-label">
-                <span class="">$text.getText('common.district')</span></span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-district"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-district" class="control-label">
+                        <span class="">$text.getText('common.district')</span></span>
+                    </label>
+                    <input id="homebusiness-district" class="col-md-12 form-control"/>
 
-        </div>
+                </div>
 
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-ward" class="control-label">
-                <span class="">$text.getText('common.ward')</span></span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-ward"></label>
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-ward" class="control-label">
+                        <span class="">$text.getText('common.ward')</span></span>
+                    </label>
+                    <input id="homebusiness-ward" class="col-md-12 form-control"/>
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-district" class="control-label">
-                <span class="">$text.getText('common.phone')</span></span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-phone"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-district" class="control-label">
+                        <span class="">$text.getText('common.phone')</span></span>
+                    </label>
+                    <input id="homebusiness-phone" type="text" class="col-md-12 form-control"/>
 
-        </div>
+                </div>
 
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-fax" class="control-label">
-                <span class="">$text.getText('common.fax')</span></span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-fax"></label>
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-fax" class="control-label">
+                        <span class="">$text.getText('common.fax')</span></span>
+                    </label>
+                    <input id="homebusiness-fax" type="text" class="col-md-12 form-control"/>
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-email" class="control-label">
-                <span class="">$text.getText('common.email')</span></span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-email"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-email" class="control-label">
+                        <span class="">$text.getText('common.email')</span></span>
+                    </label>
+                    <input id="homebusiness-email" type="email" class="col-md-12 form-control"/>
 
-        </div>
+                </div>
 
-        <div class="col-md-6 form-group">
-            <label for="homebusiness-website" class="control-label">
-                <span class="">$text.getText('common.website')</span></span>
-            </label>
-            <label class="no-padding-right lbl-bold" id="homebusiness-website"></label>
+                <div class="col-md-6 form-group">
+                    <label for="homebusiness-website" class="control-label">
+                        <span class="">$text.getText('common.website')</span></span>
+                    </label>
+                    <input id="homebusiness-website" type="text" class="col-md-12 form-control"/>
 
-        </div>
+                </div>
+
+
+            </div>
 
 
     </div>

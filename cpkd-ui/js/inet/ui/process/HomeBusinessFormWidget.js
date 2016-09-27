@@ -77,6 +77,8 @@ $(function () {
         var me= this;
         me.__id_homebusiness = '';
 
+
+
 //Function load combobox ==========================================
         //Load info change
         var listChangeBusiness = function() {
@@ -402,7 +404,7 @@ $(function () {
                         $form.div_status_check.empty();
                         $form.div_status_check.append(html);
                         me.__isCheckNameSave = false;
-                        me.eventbuttoncheckname();
+                       me.eventbuttoncheckname();
                     }
                     else
                     {
@@ -455,11 +457,23 @@ $(function () {
             FormService.displayContent($form.div_item);
 
         }.createDelegate(this));
+        $('#abc').on('click', function(){
 
-        me.eventbuttoncheckname =function(){
-            $form.button_view_detail.on('click', function(){
-                console.log('ccccccccccccccccccc','kjhjjhg');
-                officeDialog= new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
+            officeDialog = new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
+            //officeDialog.id =;
+
+            officeDialog.show();
+            var __data = {idhomebusines:'57e653999daa97153488d531'};
+
+            var wgProvince = new iNet.ui.ita.HomeBusinessDetailDialog(__data);
+            wgProvince.show();
+            //this.fireEvent('adddialog-detail', this);
+
+        }.createDelegate(this));
+       me.eventbuttoncheckname = function(){
+            $('#abc').on('click', function(){
+
+                officeDialog = new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
                 //officeDialog.id =;
 
                 officeDialog.show();
