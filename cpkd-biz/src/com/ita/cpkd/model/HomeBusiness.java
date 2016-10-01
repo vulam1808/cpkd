@@ -24,6 +24,9 @@ public class HomeBusiness {
     private long dateSubmit;
     private String statusType;
     private String taskID;
+    private String statusProcess;
+    private String infoChange;
+    private String numberBusiness;
 
     public String getTaskID() {
         return taskID;
@@ -65,9 +68,7 @@ public class HomeBusiness {
         this.numberBusiness = numberBusiness;
     }
 
-    private String statusProcess;
-    private String infoChange;
-    private String numberBusiness;
+
 
 
     public String getUuid() {

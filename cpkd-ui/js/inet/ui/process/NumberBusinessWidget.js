@@ -64,7 +64,7 @@ $(function() {
 
       var __data = {};
 
-      __data.idHomeBusiness = this.__id_homebusiness;
+      __data.HomeBusinessID = this.__id_homebusiness;
       __data.numberBusiness = $input.numberBusiness.val();
 
       return __data;

@@ -1,0 +1,35 @@
+#script("/js/cpkd/inet/lib/info-business.min.js")
+#script("/js/cpkd/inet/lib/cpkd-dialog.min.js")
+<div id="homebusiness-detail-dialog" class="modal fade" data-focus-on="input:first" data-width="80%" tabindex="-1" style="display: none">
+    <div class="modal-header" style="padding: 10px">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-group"></i>
+            <span id="social-group-modal-lbl-title">$text.getText("Tên đăng ký kinh doanh: ")</span>
+            <span id="social-group-modal-lbl-name"></span>
+        </h4>
+    </div>
+    <div class="">
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="business-process-tab">
+                <li class="active hide" data-tab="tab01" id="tab1"><a href="#tab-business-info" data-toggle="tab">$text.getText("common.infoTask")</a></li>
+                <li data-tab="tab02" id="tab2" class="hide"><a href="#tab-business-change1" data-toggle="tab" >$text.getText("common.changeBusiness1")</a></li>
+                <li data-tab="tab03" id="tab3" class="hide"><a href="#tab-business-change2" data-toggle="tab" >$text.getText("common.changeBusiness2")</a></li>
+
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane container-fluid active" id="tab-business-info">
+
+                </div>
+                <div class="tab-pane container-fluid" id="tab-business-change1">
+
+                </div>
+                <div class="tab-pane container-fluid" id="tab-business-change2">
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

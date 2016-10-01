@@ -28,56 +28,20 @@ import java.util.Map;
 /**
  * Created by HS on 13/09/2016.
  */
-@Named("ita_homebusiness_loadprocessservice")
+@Named("ita_business_loadprocessservice")
 @XPortalDataService(roles = {"cpkd.process"}, description = "Xử lý hồ sơ")
 @XPortalPageRequest(uri = "ita/homebusiness/loadprocess", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class BusinessLoadProcessService extends DataServiceMarker {
     protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
     @Inject
     private HomeBusinessBo homeBusinessBo;
-    @Inject
-    private ChangeBusinessBo changeBusinessBo;
-    @Inject
-    private PersonRepresentBo personRepresentBo;
+
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         JSONObject mainObj = new JSONObject();
         String taskID = XParamUtils.getString("taskID", params, "");
-        // TODO check your required data
-        HomeBusiness objHome = homeBusinessBo.loadHomeBusinessByTaskID(taskID);
-        if(objHome!=null)
-        {
-            String status = objHome.getStatusType();
-            logger.debug("getStatusType {}", status);
-            mainObj.put("statusType", status);
-            if(status.equals(EnumStatus.CAP_DOI.toString()))
-            {
-                ChangeBusiness objChange = changeBusinessBo.loadByHomeBusinessID(objHome.getUuid());
-                logger.debug("objChange uuid {}", objChange.getUuid());
-                mainObj.put("idHomeBusiness", objChange.getUuid());
-                mainObj.put("HomeBusiness", objChange);
-                String idPerson = objChange.getPersonRepresent_ID();
-                //Lấy thong tin nguoi dai dien
-                if(idPerson!=null) {
-                    PersonRepresent objperson = personRepresentBo.loadPersonRepresentByID(idPerson);
-                    mainObj.put("PersonRepresent", objperson);
-                }
-            }
-            else {
-                logger.debug("objHome uuid {}", objHome.getUuid());
-                mainObj.put("idHomeBusiness", objHome.getUuid());
-                mainObj.put("HomeBusiness", objHome);
-                String idPerson = objHome.getPersonRepresent_ID();
-                //logger.debug("idPerson uuid {}", idPerson);
-                //Lấy thong tin nguoi dai dien
-                if(idPerson!=null) {
-                    PersonRepresent objperson = personRepresentBo.loadPersonRepresentByID(idPerson);
-                    mainObj.put("PersonRepresent", objperson);
-                }
-            }
-            //logger.debug("idPerson uuid {}", "sadsad");
-        }
+        mainObj = homeBusinessBo.loadBusinessProcessByTaskID(taskID);
         return new ObjectWebDataservice<JSONObject>(mainObj);
     }
 

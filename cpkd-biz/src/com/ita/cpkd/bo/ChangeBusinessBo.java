@@ -12,8 +12,13 @@ import com.inet.xportal.web.exception.WebOSBOException;
 import com.inet.xportal.xdb.persistence.JSONDB;
 import com.inet.xportal.xdb.query.Query;
 import com.inet.xportal.xdb.query.impl.QueryImpl;
+import com.ita.cpkd.enums.EnumChangeInfo;
+import com.ita.cpkd.enums.EnumProcess;
 import com.ita.cpkd.model.ChangeBusiness;
 import com.ita.cpkd.model.HomeBusiness;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,6 +36,22 @@ public class ChangeBusinessBo extends MagicContentBO<ChangeBusiness> {
     protected ChangeBusinessBo(@ContentContext(context = "itaNoSqlContext") MagicContentBF contentBf) {
         super(contentBf, "changeBusiness");
     }
+    public ChangeBusiness addChangeBusiness(ChangeBusiness objchangeBusiness,String strInfoChange) throws WebOSBOException
+    {
+        String[] parts = strInfoChange.split(",");
+        List<String> lstInfoChange = new ArrayList<String>();
+        for (int i = 0; i <= parts.length-1; i++){
+            lstInfoChange.add(parts[i].toString());
+        }
+        objchangeBusiness.setInfoChange(lstInfoChange);
+        // TODO check your required data
+
+        // save account
+        //district.setUuid(districtBo.add(district));
+        String uuid= super.add(objchangeBusiness);
+        objchangeBusiness.setUuid(uuid);
+        return objchangeBusiness;
+    }
     public ChangeBusiness loadByHomeBusinessID(String idHomeBusiness) throws WebOSBOException
     {
         Query<JSONDB> query = new QueryImpl<JSONDB>();
@@ -44,6 +65,33 @@ public class ChangeBusinessBo extends MagicContentBO<ChangeBusiness> {
 
         return objChange;
     }
+    public ChangeBusiness loadByID(String changebusinessID) throws WebOSBOException
+    {
+        ChangeBusiness objChange = super.load(changebusinessID);
+        return objChange;
+    }
+   /* public ChangeBusiness loadInfoChangeByID(String changebusinessID) throws WebOSBOException
+    {
+        ChangeBusiness objChange = loadByID(changebusinessID);
+        List<String> lstInfoChange = objChange.getInfoChange();
+        for (String item : lstInfoChange)
+        {
+            if(item.equals(EnumChangeInfo.change_danhsachnganhnghe))
+            {
+
+            }
+            else if(item.equals(EnumChangeInfo.change_nguoidaidien))
+            {
+
+            }
+            else if(item.equals(EnumChangeInfo.change_danhsachnguoigopvon))
+            {
+
+            }
+
+        }
+        return objChange;
+    }*/
     @Override
     protected Class<ChangeBusiness> getClassConvetor() {
         return ChangeBusiness.class;

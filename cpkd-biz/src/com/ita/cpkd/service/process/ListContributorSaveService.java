@@ -52,7 +52,7 @@ import java.util.Map;
 public class ListContributorSaveService extends DataServiceMarker {
     @Inject
     private ListContributorBo listContributorBo;
-    private HomeBusinessBo homeBusinessBo;
+
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {

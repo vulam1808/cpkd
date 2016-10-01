@@ -45,7 +45,7 @@ public class EnumStatusLoadService extends DataServiceMarker {
         String type = XParamUtils.getString("typeEnum", params, "");
         List<String> lstRs = new ArrayList<String>();
 
-        logger.debug("typeEnum {}: compare CHANGE {}", type, type.equals("CHANGE"));
+        /*logger.debug("typeEnum {}: compare CHANGE {}", type, type.equals("CHANGE"));*/
         if(type.equals("CHANGE"))
         {
             for (EnumChangeInfo d: EnumChangeInfo.values())

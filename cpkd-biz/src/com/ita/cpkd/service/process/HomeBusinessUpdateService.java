@@ -41,7 +41,7 @@ public class HomeBusinessUpdateService extends DataServiceMarker {
         String taskID = XParamUtils.getString("taskID", params, "");
         if(!taskID.equals(""))
         {
-            HomeBusiness objHome = homeBusinessBo.loadHomeBusinessByTaskID(taskID);
+            HomeBusiness objHome = homeBusinessBo.updateHomeBusiness(id,arbmodel);
             id = objHome.getUuid();
         }
         // TODO check your required data

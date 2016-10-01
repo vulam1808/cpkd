@@ -20,7 +20,7 @@ $(function () {
             save_changebusiness: iNet.getUrl('ita/changebusiness/save'),
             save_endbusiness: iNet.getUrl('ita/endbusiness/save'),
             save_pausebusiness: iNet.getUrl('ita/pausebusiness/save'),
-            update_statusHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
+
             check_name_business: iNet.getUrl('ita/homebusiness/checknamebusiness')
         };
         var $form = {

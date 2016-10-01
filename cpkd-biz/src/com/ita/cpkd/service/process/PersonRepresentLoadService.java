@@ -31,9 +31,9 @@ import java.util.Map;
 @XPortalDataService(roles = {"cpkd.master"}, description = "Danh Mục")
 @XPortalPageRequest(uri = "ita/personrepresent/load", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class PersonRepresentLoadService extends DataServiceMarker {
-    @Inject
+  /*  @Inject
     private PersonRepresentBo personBo;
-    private HomeBusinessBo homeBusinessBo;
+    private HomeBusinessBo homeBusinessBo;*/
 
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
@@ -43,16 +43,16 @@ public class PersonRepresentLoadService extends DataServiceMarker {
         String taskID = XParamUtils.getString("taskID", params, "");
 
 
-        HomeBusiness objHome = homeBusinessBo.loadHomeBusinessByTaskID(taskID);
-        /*Query<JSONDB> query = new QueryImpl<JSONDB>();
+        /*HomeBusiness objHome = homeBusinessBo.loadBusinessProcessByTaskID(taskID);
+        *//*Query<JSONDB> query = new QueryImpl<JSONDB>();
         query.field("homeBusiness_ID").equal(objHome.getUuid());
-        SearchDTO<PersonRepresent> lstPerson = personBo.query((QueryImpl<JSONDB>) query);*/
-        if(objHome!=null) {
-            pes = personBo.load(objHome.getPersonRepresent_ID());
-            if (pes == null) {
-                pes = new PersonRepresent();
-            }
-        }
+        SearchDTO<PersonRepresent> lstPerson = personBo.query((QueryImpl<JSONDB>) query);*//*
+            if(objHome!=null) {
+                pes = personBo.load(objHome.getPersonRepresent_ID());
+                if (pes == null) {
+                    pes = new PersonRepresent();
+                }
+        }*/
        /* if(lstPerson.getTotal()>0)
         {
             pes = lstPerson.getItems().get(0);

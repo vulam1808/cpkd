@@ -10,6 +10,15 @@ public class EndBusiness {
     private String reason;
     private String dateSubmit;
     private String statusProcess;
+    private String taskID;
+
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
 
     public String getStatusProcess() {
         return statusProcess;

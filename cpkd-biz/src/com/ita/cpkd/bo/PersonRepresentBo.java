@@ -3,6 +3,7 @@ package com.ita.cpkd.bo;
 import com.inet.xportal.nosql.web.bf.MagicContentBF;
 import com.inet.xportal.nosql.web.bo.MagicContentBO;
 import com.inet.xportal.web.context.ContentContext;
+import com.inet.xportal.web.context.WebContext;
 import com.inet.xportal.web.exception.WebOSBOException;
 import com.ita.cpkd.enums.EnumStatus;
 import com.ita.cpkd.model.ChangeBusiness;
@@ -11,16 +12,15 @@ import com.ita.cpkd.model.PersonRepresent;
 
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by HS on 14/9/2016.
  */
+@Named("PersonRepresentBo")
 public class PersonRepresentBo extends MagicContentBO<PersonRepresent> {
 
-    @Inject
-    private ChangeBusinessBo changeBusinessBo;
-    @Inject
-    private HomeBusinessBo homeBusinessBo;
+
     /**
      * Create {@link AccountBo} instance
      *
@@ -50,7 +50,7 @@ public class PersonRepresentBo extends MagicContentBO<PersonRepresent> {
 
                 HomeBusiness objHome = new HomeBusiness();
                 objHome.setPersonRepresent_ID(uuid);
-                homeBusinessBo.update(idHomeBusiness, objHome);
+                WebContext.INSTANCE.cache().getBean(HomeBusinessBo.class).update(idHomeBusiness, objHome);
 
         }
         return peronmodel;
@@ -70,7 +70,7 @@ public class PersonRepresentBo extends MagicContentBO<PersonRepresent> {
 
                 ChangeBusiness objchange = new ChangeBusiness();
                 objchange.setPersonRepresent_ID(uuid);
-                changeBusinessBo.update(idHomeBusiness, objchange);
+            WebContext.INSTANCE.cache().getBean(ChangeBusinessBo.class).update(idHomeBusiness, objchange);
         }
         return peronmodel;
     }

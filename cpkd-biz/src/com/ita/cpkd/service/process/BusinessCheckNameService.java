@@ -13,8 +13,10 @@ import com.inet.xportal.web.util.XParamUtils;
 import com.inet.xportal.xdb.persistence.JSONDB;
 import com.inet.xportal.xdb.query.Query;
 import com.inet.xportal.xdb.query.impl.QueryImpl;
+import com.ita.cpkd.bo.BusinessDetailBo;
 import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.PersonRepresentBo;
+import com.ita.cpkd.model.BusinessDetail;
 import com.ita.cpkd.model.District;
 import com.ita.cpkd.model.HomeBusiness;
 import com.ita.cpkd.model.PersonRepresent;
@@ -27,12 +29,12 @@ import java.util.Map;
 /**
  * Created by HS on 13/09/2016.
  */
-@Named("ita_homebusiness_checknameservice")
+@Named("ita_business_checknameservice")
 @XPortalDataService(roles = {"cpkd.create"}, description = "Tạo hồ sơ")
 @XPortalPageRequest(uri = "ita/homebusiness/checknamebusiness", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class BusinessCheckNameService extends DataServiceMarker {
     @Inject
-    private HomeBusinessBo homeBusinessBo;
+    private BusinessDetailBo businessDetailBo;
 
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
@@ -41,18 +43,12 @@ public class BusinessCheckNameService extends DataServiceMarker {
         String name = XParamUtils.getString("nameBusiness", params, "");
         // TODO check your required data
 
-        // save account
-        //district.setUuid(districtBo.add(district));
-        Query<JSONDB> query = new QueryImpl<JSONDB>();
-        query.field("nameBusiness").equal(name);
-
-
-        SearchDTO<HomeBusiness> datas = homeBusinessBo.query((QueryImpl<JSONDB>)query);
+        BusinessDetail detail = businessDetailBo.checkName(name);
         //datas.getItems();
         //String uuid= homeBusinessBo.add(arbmodel);
         //arbmodel.setUuid(uuid);
 
-        return new ObjectWebDataservice<SearchDTO<HomeBusiness>>(datas);
+        return new ObjectWebDataservice<BusinessDetail>(detail);
     }
 
 }

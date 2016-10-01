@@ -20,10 +20,8 @@ $(function () {
 
             load_enum: iNet.getUrl('ita/enums/load'),
 
-            save_homebusiness: iNet.getUrl('ita/homebusiness/save'),
-            save_changebusiness: iNet.getUrl('ita/changebusiness/save'),
-            save_endbusiness: iNet.getUrl('ita/endbusiness/save'),
-            save_pausebusiness: iNet.getUrl('ita/pausebusiness/save'),
+            save_business: iNet.getUrl('ita/business/save'),
+
             update_statusHomeBusiness: iNet.getUrl('ita/homebusiness/update'),
             check_name_business: iNet.getUrl('ita/homebusiness/checknamebusiness')
             /*  view: iNet.getUrl('ita/province/load'),
@@ -44,6 +42,10 @@ $(function () {
 
             button_view_detail:$('#view-detail-task'),
             button_check: $('#btn-check-nameBusiness'),
+            div_status_check_capmoi: $('#status-nameBusiness-capmoi'),
+            div_status_check_view: $('#status-nameBusiness-view'),
+            div_status_check_info: $('#status-nameBusiness-info'),
+
             div_status_check: $('#status-nameBusiness'),
             input_nameBusiness: $('#homebusiness-nameBusiness')
         };
@@ -298,15 +300,15 @@ $(function () {
             {
                 var _data = me.getDataCapMoi() || {};
                 console.log('Save click - Type: CAP_MOI >>>',_data)
-                $.postJSON(url.save_homebusiness, _data, function (result) {
+                $.postJSON(url.save_business, _data, function (result) {
                     var __result = result || {};
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
-                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
@@ -314,16 +316,16 @@ $(function () {
             {
                 var _data = me.getDataCapDoi() || {};
                 console.log('Save click - Type: CAP_DOI >>>',_data)
-                $.postJSON(url.save_changebusiness, _data, function (result) {
+                $.postJSON(url.save_business, _data, function (result) {
                     var __result = result || {};
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
 
-                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
@@ -331,15 +333,15 @@ $(function () {
             {
                 var _data = me.getDataTamNgung() || {};
                 console.log('Save click - Type: TAM_NGUNG >>>',_data)
-                $.postJSON(url.save_pausebusiness, _data, function (result) {
+                $.postJSON(url.save_business, _data, function (result) {
                     var __result = result || {};
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
-                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
@@ -347,45 +349,31 @@ $(function () {
             {
                 var _data = me.getDataChamDut() || {};
                 console.log('Save click - Type: CHAM_DUT >>>',_data)
-                $.postJSON(url.save_endbusiness, _data, function (result) {
+                $.postJSON(url.save_business, _data, function (result) {
                     var __result = result || {};
                     if (CommonService.isSuccess(__result)) {
                         //var __listProvince = [];
-                        me.notifySuccess(me.resource.validate.save_title, resource.validate.save_success);
+                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
                     }
                     else
                     {
-                        me.notifyError(me.resource.validate.save_title, resource.validate.save_error, __result.errors || []);
+                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
                     }
                 });
             }
-            updateStatusHomeBusiness(valTypkeTask);
 
         }.createDelegate(this));
 
 
 
-        var updateStatusHomeBusiness = function(status){
-            var _status = status || '';
-            var _data = {statusType: _status, idHomeBusiness:me.__id_homebusiness};
-            $.postJSON(url.update_statusHomeBusiness, _data, function (result) {
-                var __result = result || {};
-                if (CommonService.isSuccess(__result)) {
-                    console.log('Update Status success'+status+">>>>",_data);
-                }
-                else
-                {
-                    console.log('Update Status error'+status+">>>>",_data);
-                }
-            });
-        }
+
         me.__isCheckNameSave = false;
         var checkNameBusiness = function(){
             var _data = me.getDataCapMoi() || {};
             console.log('check click',_data)
             if(!CommonService.isSuccess(_data.nameBusiness))
             {
-                me.notifyError(resource.validate.save_title, resource.validate.save_error_namebusiness);
+                me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error_namebusiness);
                 me.__isCheckNameSave =false;
                 return false;
             }
@@ -393,45 +381,54 @@ $(function () {
                 var __result = result.items || [];
                 console.log('__result check name',__result)
                 var valTypkeTask = me.$form.input_typeTask.getValue();
+                me.$form.div_status_check_info.empty();
                 if (CommonService.isSuccess(__result)) {
                     //var __listProvince = [];
                     var __item = __result[0];
-
+                    FormService.displayContent( me.$form.div_status_check_info,'hide');
                     me.__id_homebusiness = __item.uuid;
 
                     if(valTypkeTask == "CAP_MOI") {
-                        var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i> Đã tồn tại tên kinh doanh <button id="view-detail-task" type="button" class="btn btn-link">Xem chi tiết</button></p>';
+                        FormService.displayContent( me.$form.div_status_check_view,'hide');
+                        FormService.displayContent( me.$form.div_status_check_capmoi,'show');
+
+                       /* var html = '';
                         me.$form.div_status_check.empty();
-                        me.$form.div_status_check.append(html);
+                        me.$form.div_status_check.append(html);*/
                         me.__isCheckNameSave = false;
-                       me.eventbuttoncheckname();
+
                     }
                     else
                     {
-                        var html = '<p><i class="glyphicon glyphicon-ok form-control-feedback"></i>' +
-                            '<button id="view-detail-task" type="button"  class="btn btn-link">Xem chi tiết thông tin hộ kinh doanh </button></p>';
+                        FormService.displayContent( me.$form.div_status_check_view,'show');
+                        FormService.displayContent( me.$form.div_status_check_capmoi,'hide');
+
+                      /*  var html = '';
                         me.$form.div_status_check.empty();
-                        me.$form.div_status_check.append(html);
+                        me.$form.div_status_check.append(html);*/
                         me.__isCheckNameSave = true;
-                        me.eventbuttoncheckname();
+
                     }
                     // me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
                 }
                 else
                 {
+                    FormService.displayContent( me.$form.div_status_check_view,'hide');
+                    FormService.displayContent( me.$form.div_status_check_capmoi,'hide');
+                    FormService.displayContent( me.$form.div_status_check_info,'show');
                     if(valTypkeTask == "CAP_MOI") {
                         var html = '<p><i class="glyphicon glyphicon-ok form-control-feedback"></i>' +
                             ' Bạn có thể đăng ký kinh doanh với tên này </p>';
-                        me.$form.div_status_check.empty();
-                        me.$form.div_status_check.append(html);
+                        //me.$form.div_status_check.empty();
+                        me.$form.div_status_check_info.append(html);
                         me.__isCheckNameSave = true;
                     }
                     else
                     {
                         var html = '<p><i class="glyphicon glyphicon-remove form-control-feedback"></i>' +
                             ' Không tồn tại tên đăng ký kinh doanh </p>';
-                        me.$form.div_status_check.empty();
-                        me.$form.div_status_check.append(html);
+                        //me.$form.div_status_check.empty();
+                        me.$form.div_status_check_info.append(html);
                         me.__isCheckNameSave = false;
                     }
                     // me.notifySuccess(resource.validate.save_title, resource.validate.save_error, __result.errors || []);
@@ -457,27 +454,20 @@ $(function () {
             FormService.displayContent(me.$form.div_item);
 
         }.createDelegate(this));
-        $('#abc').on('click', function(){
+        $("#view-detail-task-1,#view-detail-task-2").on('click', function(){
 
-            officeDialog = new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
+            var info = new iNet.ui.ita.InfoBusinessWidget();
+            var officeDialog = new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
             //officeDialog.id =;
 
             officeDialog.show();
-            var __data = {idhomebusines:'57e653999daa97153488d531'};
+            var __data = {idhomebusines:me.__id_homebusiness};
 
-            var wgProvince = new iNet.ui.ita.HomeBusinessDetailDialog(__data);
-            wgProvince.show();
+            /*var wgProvince = new iNet.ui.ita.HomeBusinessDetailDialog(__data);
+            wgProvince.show();*/
             //this.fireEvent('adddialog-detail', this);
 
         }.createDelegate(this));
-
-            $('#abc').on('click', function(){
-                officeDialog = new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
-
-                officeDialog.show();
-                //this.fireEvent('adddialog-detail', this);
-
-            }.createDelegate(this));
 
 
 
@@ -513,41 +503,41 @@ $(function () {
         },
         getDataCapDoi: function(){
             var __data = {};
-            __data.homeBusiness_ID = this.__id_homebusiness;
+            __data.homebusinessID = this.__id_homebusiness;
             __data.infoChange = this.$formCapDoi.input_infoChange.getValue().toString();
             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
-
+            __data.statusType= "CAP_DOI";
             return __data;
         },
         getDataTamNgung: function(data){
             var __data = {};
-            __data.homeBusiness_ID =  this.__id_homebusiness;
+            __data.homebusinessID =  this.__id_homebusiness;
             __data.dayofPause = this.$formTamNgung.input_dayofPause.val();
             __data.dateStart = this.$formTamNgung.input_dateStart.val().dateToLong();
             __data.reason = this.$formTamNgung.input_reason.val();
             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
-
+            __data.statusType= "TAM_NGUNG";
             return __data;
         },
         getDataChamDut: function(data){
             var __data = {};
-            __data.homeBusiness_ID =  this.__id_homebusiness;
+            __data.homebusinessID =  this.__id_homebusiness;
             __data.dateEnd = this.$formChamDut.input_dateEnd.val().dateToLong();
             __data.reason = this.$formChamDut.input_reason.val();
             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
-
+            __data.statusType= "CHAM_DUT";
             return __data;
         },
         checkSave: function(){
             var valTypkeTask = this.$form.input_typeTask.getValue();
             if(this.$form.input_nameBusiness.val() == "")
             {
-                this.notifyError(this.resource.validate.save_title, resource.validate.save_error_namebusiness);
+                this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_namebusiness);
                 return false;
             }
             if(this.__isCheckNameSave == false)
             {
-                this.notifyError(this.resource.validate.save_title, resource.validate.save_error_checkNameSave);
+                this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_checkNameSave);
                 return false;
             }
             if(valTypkeTask == "CAP_MOI")
@@ -556,27 +546,27 @@ $(function () {
 
                 if(__data.address == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_address);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_address);
                     return false;
                 }
                 else if(__data.province_ID == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_provincebusiness);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_provincebusiness);
                     return false;
                 }
                 else if(__data.areaBusiness_ID == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_areabusiness);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_areabusiness);
                     return false;
                 }
                 else if(__data.district_ID == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_districtbusiness);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_districtbusiness);
                     return false;
                 }
                 else if(__data.ward_ID == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_wardbusiness);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_wardbusiness);
                     return false;
                 }
 
@@ -586,12 +576,12 @@ $(function () {
                 var __data =  this.getDataCapDoi();
                 if(__data.homeBusiness_ID == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_changeHomeBusiness_ID);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_changeHomeBusiness_ID);
                     return false;
                 }
                 if(__data.infoChange == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_infoChange);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_infoChange);
                     return false;
                 }
 
@@ -601,17 +591,17 @@ $(function () {
                 var __data =  this.getDataTamNgung();
                 if(__data.dayofPause == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_dayofPause);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_dayofPause);
                     return false;
                 }
                 else if(__data.dateStart == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_dateStartPause);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_dateStartPause);
                     return false;
                 }
                 else if(__data.reason == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_reason);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_reason);
                     return false;
                 }
             }
@@ -620,12 +610,12 @@ $(function () {
                 var __data =  this.getDataChamDut();
                 if(__data.dateEnd == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_end_dateEnd);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_end_dateEnd);
                     return false;
                 }
                 else if(__data.reason == "")
                 {
-                    this.notifyError(this.resource.validate.save_title, resource.validate.save_error_reason);
+                    this.notifyError(this.resource.validate.save_title, this.resource.validate.save_error_reason);
                     return false;
                 }
             }

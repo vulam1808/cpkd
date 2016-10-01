@@ -58,8 +58,7 @@ public class ListContributorLoadService extends DataServiceMarker {
     protected static final Logger logger = LoggerFactory.getLogger(ListContributorLoadService.class);
     @Inject
     private ListContributorBo listContributorBo;
-    @Inject
-    private HomeBusinessBo homeBusinessBo;
+
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
@@ -68,8 +67,8 @@ public class ListContributorLoadService extends DataServiceMarker {
         String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
         String statusType = XParamUtils.getString("statusType", params, "");
         // TODO check your required data
-        logger.debug("idHomeBusiness {}: ", idHomeBusiness);
-        logger.debug("statusType {}: ", statusType);
+        /*logger.debug("idHomeBusiness {}: ", idHomeBusiness);
+        logger.debug("statusType {}: ", statusType);*/
         if(statusType.equals(EnumStatus.CAP_DOI))
         {
                 Query<JSONDB> query = new QueryImpl<JSONDB>();

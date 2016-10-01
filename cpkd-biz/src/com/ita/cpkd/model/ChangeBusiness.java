@@ -27,6 +27,17 @@ public class ChangeBusiness {
     private String businessCapital;
     private long dateSubmit;
     private String statusProcess;
+    private String taskID;
+
+
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
+
     private List<String> infoChange = new ArrayList<String>();
 
     public List<String> getInfoChange() {
