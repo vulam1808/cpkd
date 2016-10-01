@@ -1,0 +1,31 @@
+#theme("/common/css/jquery/select2")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/cpkd/inet/lib/cpkd-dialog.min.js")
+<div id="listcareer-form-dialog" class="modal fade" data-focus-on="input:first" data-width="650" tabindex="-1" style="display: none">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><i class="icon-group"></i> <span id="social-group-modal-lbl-title">$text.getText("Danh sách ngành nghề được kinh doanh")</span></h4>
+    </div>
+    <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="career_id" class=control-label">
+                        <span class="">$text.getText('common.nameCareer')</span></span>
+                    </label>
+                    <input id="career_id"  class="col-md-12 form-control"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="detail" class=control-label">
+                        <span class="">$text.getText('common.detail')</span></span>
+                    </label>
+                    <textarea id="detail"  class="col-md-12 form-control"></textarea>
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button id="listcareer-modal-btn-save" type="button" class="btn btn-primary btn-small"><i class="icon-save"></i> $text.getText("Save")</button>
+        <button id="listcareer-modal-btn-cancel" type="button" data-dismiss="modal" class="btn btn-small"><i class="icon-remove"></i> $text.getText("Close")</button>
+    </div>
+</div>
