@@ -92,8 +92,6 @@ public class BusinessNewTaskService extends DataServiceMarker {
         }
         else if(statusType.equals(EnumStatus.CHAM_DUT.toString()))
         {
-
-
             String homebusinessID = XParamUtils.getString("homebusinessID", params, "");
             //update homebusiness status
             HomeBusiness objBusiness = new HomeBusiness();
