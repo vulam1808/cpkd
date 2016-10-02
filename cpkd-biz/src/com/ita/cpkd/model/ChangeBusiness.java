@@ -12,15 +12,20 @@ public class ChangeBusiness {
 
     private String nameBusiness;
     private String personRepresent_ID;
+    private PersonRepresent objPersonRepresent;
     private String address;
     private String province_ID;
+    private Province objProvince;
     private String district_ID;
+    private District objDistrict;
     private String ward_ID;
+    private Ward objWard;
     private String phone;
     private String fax;
     private String email;
     private String website;
     private String areaBusiness_ID;
+    private AreaBusiness objAreaBusiness;
     private String taxCode;
     private String type;
     private String cashCapital;
@@ -29,6 +34,45 @@ public class ChangeBusiness {
     private String statusProcess;
     private String taskID;
 
+    public PersonRepresent getObjPersonRepresent() {
+        return objPersonRepresent;
+    }
+
+    public void setObjPersonRepresent(PersonRepresent objPersonRepresent) {
+        this.objPersonRepresent = objPersonRepresent;
+    }
+
+    public Province getObjProvince() {
+        return objProvince;
+    }
+
+    public void setObjProvince(Province objProvince) {
+        this.objProvince = objProvince;
+    }
+
+    public District getObjDistrict() {
+        return objDistrict;
+    }
+
+    public void setObjDistrict(District objDistrict) {
+        this.objDistrict = objDistrict;
+    }
+
+    public Ward getObjWard() {
+        return objWard;
+    }
+
+    public void setObjWard(Ward objWard) {
+        this.objWard = objWard;
+    }
+
+    public AreaBusiness getObjAreaBusiness() {
+        return objAreaBusiness;
+    }
+
+    public void setObjAreaBusiness(AreaBusiness objAreaBusiness) {
+        this.objAreaBusiness = objAreaBusiness;
+    }
 
     public String getTaskID() {
         return taskID;
