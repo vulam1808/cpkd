@@ -19,6 +19,7 @@ $(function () {
             load_areaBusiness: iNet.getUrl('ita/areabusiness/load'),
 
             load_enum: iNet.getUrl('ita/enums/load'),
+            load_infoDetail: iNet.getUrl('ita/homebusiness/loadinfo'),
 
             save_business: iNet.getUrl('ita/business/save'),
 
@@ -378,15 +379,14 @@ $(function () {
                 return false;
             }
             $.postJSON(url.check_name_business, _data, function (result) {
-                var __result = result.items || [];
-                console.log('__result check name',__result)
+                var __item = result || {};
+                console.log('__result check name',__item)
                 var valTypkeTask = me.$form.input_typeTask.getValue();
                 me.$form.div_status_check_info.empty();
-                if (CommonService.isSuccess(__result)) {
-                    //var __listProvince = [];
-                    var __item = __result[0];
+                if (CommonService.isSuccess(__item)) {
+
                     FormService.displayContent( me.$form.div_status_check_info,'hide');
-                    me.__id_homebusiness = __item.uuid;
+                    me.__id_homebusiness = __item.homeBusiness_ID;
 
                     if(valTypkeTask == "CAP_MOI") {
                         FormService.displayContent( me.$form.div_status_check_view,'hide');
@@ -455,13 +455,25 @@ $(function () {
 
         }.createDelegate(this));
         $("#view-detail-task-1,#view-detail-task-2").on('click', function(){
+            var __data = {homeBusinessID:me.__id_homebusiness};
+            $.postJSON(url.load_infoDetail, __data, function (result) {
+                var __result = result || {};
+                console.log("Info Detail",__result);
+                if (CommonService.isSuccess(__result)) {
+                    
+                    var info = new iNet.ui.ita.InfoBusinessWidget(__result);
+                    var officeDialog = new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
+                    //officeDialog.id =;
 
-            var info = new iNet.ui.ita.InfoBusinessWidget();
-            var officeDialog = new iNet.ui.ita.UtilsDialog({id:'homebusiness-detail-dialog'});
-            //officeDialog.id =;
+                    officeDialog.show();
+                }
+                else
+                {
+                    me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
+                }
+            });
 
-            officeDialog.show();
-            var __data = {idhomebusines:me.__id_homebusiness};
+
 
             /*var wgProvince = new iNet.ui.ita.HomeBusinessDetailDialog(__data);
             wgProvince.show();*/

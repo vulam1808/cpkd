@@ -50,6 +50,10 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
     private WardBo wardBo;
     @Inject
     private AreaBusinessBo areaBusinessBo;
+    @Inject
+    private ListContributorBo listContributorBo;
+    @Inject
+    private ListCareerBo listCareerBo;
     /**
      * Create {@link AccountBo} instance
      *
@@ -143,11 +147,11 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
 
     public JSONObject loadBusinessInfoByHomeBusinessID(String homeBusinessID) throws WebOSBOException
     {
-        logger.debug("begin loadBusinessInfoByTaskID ", "");
+        //logger.debug("begin loadBusinessInfoByTaskID {}", "abcd");
         JSONObject mainObj = new JSONObject();
         BusinessDetail objDetail = businessDetailBo.loadBusinessDetailByHomeBusinessID(homeBusinessID);
-        HomeBusiness objHome = super.load(objDetail.getHomeBusiness_ID());
-        objHome
+        HomeBusiness objHome = super.load(homeBusinessID);
+        objHome = loadObjParent(objHome);
         mainObj.put("HomeBusiness", objHome);
         List<Detail> lstChange = objDetail.getList_changeBusiness_ID();
         int i = 0;
@@ -158,6 +162,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
             for (Detail item : lstChange) {
                 i++;
                 ChangeBusiness objChange = changeBusinessBo.loadByID(item.getParent_ID());
+                objChange = loadObjParent(objChange);
                 mainObj.put("ChangeBusiness" + i, objChange);
             }
         }
@@ -230,6 +235,17 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                 objhome.setObjAreaBusiness(area);
             }
         }
+        List<ListCareer> lstCar = listCareerBo.loadListCareerByHomeBusinessID(objhome.getUuid());
+        if(lstCar!=null)
+        {
+            objhome.setLstObjCareer(lstCar);
+        }
+        List<ListContributor> lstCon = listContributorBo.loadListContributorByHomeBusinessID(objhome.getUuid());
+        if(lstCon!=null)
+        {
+            objhome.setLstObjContributor(lstCon);
+        }
+
         return objhome;
     }
     public ChangeBusiness loadObjParent(ChangeBusiness objchange)
@@ -278,6 +294,17 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
             {
                 objchange.setObjAreaBusiness(area);
             }
+        }
+
+        List<ListCareer> lstCar = listCareerBo.loadListCareerByChangeBusinessID(objchange.getUuid());
+        if(lstCar!=null)
+        {
+            objchange.setLstObjCareer(lstCar);
+        }
+        List<ListContributor> lstCon = listContributorBo.loadListContributorByChangeBusinessID(objchange.getUuid());
+        if(lstCon!=null)
+        {
+            objchange.setLstObjContributor(lstCon);
         }
         return objchange;
     }

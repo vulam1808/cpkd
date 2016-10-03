@@ -31,6 +31,8 @@ import com.inet.xportal.web.context.ContentContext;
 import com.ita.cpkd.model.BusinessDetail;
 import com.ita.cpkd.model.Detail;
 import com.ita.cpkd.model.HomeBusiness;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,9 +46,9 @@ import java.util.List;
  *
  * @since 1.0
  */
-@Named("BusinessDetail")
+@Named("BusinessDetailBo")
 public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
-
+    protected static final Logger logger = LoggerFactory.getLogger(BusinessDetailBo.class);
     /**
      * Create {@link AccountBo} instance
      *
@@ -93,11 +95,14 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
     {
         Query<JSONDB> query = new QueryImpl<JSONDB>();
         query.field("nameBusiness").equal(name);
+
         SearchDTO<BusinessDetail> datas = super.query((QueryImpl<JSONDB>) query);
         BusinessDetail objdetail = new BusinessDetail();
         if(datas.getTotal()>0)
         {
+
             objdetail = datas.getItems().get(0);
+            //logger.debug("nameBusiness 2 {}", objdetail.getNameBusiness());
         }
         return objdetail;
     }

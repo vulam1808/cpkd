@@ -17,9 +17,13 @@ $(function() {
             tab1: $('#tab1'),
             tab2: $('#tab2'),
             tab3: $('#tab3'),
+            tab4: $('#tab4'),
+            tab5: $('#tab5'),
+            tab6: $('#tab6'),
             tab_business_info: $('#tab-business-info'),
             tab_business_change_1: $('#tab-business-change1'),
-            tab_business_change_2: $('#tab_business_change2')
+            tab_business_change_2: $('#tab_business_change2'),
+            span_name:$('#social-group-modal-lbl-name')
         };
 
         var url = {
@@ -31,14 +35,71 @@ $(function() {
 
 
         var loadInfo =  function(){
+            if (CommonService.isSuccess(__config)) {
+                span_name.html('')
+                var homeBusiness = __config.HomeBusiness;
+                if(CommonService.isSuccess(homeBusiness))
+                {
+                    FormService.displayContent($form.tab1,'show');
+                    var listView = new iNet.ui.ita.ViewInfoDetailWidget({
+                        id: "tab-business-info",
+                        statusType: "CAP_MOI",
+                        HomeBusiness: homeBusiness
+                    });
+                }
+                var changeBusiness1 = __config.ChangeBusiness1;
+                if(CommonService.isSuccess(changeBusiness1))
+                {
+                    FormService.displayContent($form.tab2,'show');
+                    var listView = new iNet.ui.ita.ViewInfoDetailWidget({
+                        id: "tab-business-change1",
+                        statusType: "CAP_DOI",
+                        HomeBusiness: changeBusiness1
+                    });
+                }
+                var changeBusiness2 = __config.ChangeBusiness2;
+                if(CommonService.isSuccess(changeBusiness2))
+                {
+                    FormService.displayContent($form.tab3,'show');
+                    var listView = new iNet.ui.ita.ViewInfoDetailWidget({
+                        id: "tab-business-change2",
+                        statusType: "CAP_DOI",
+                        HomeBusiness: changeBusiness2
+                    });
+                }
+                var changeBusiness3 = __config.ChangeBusiness3;
+                if(CommonService.isSuccess(changeBusiness3))
+                {
+                    FormService.displayContent($form.tab4,'show');
+                    var listView = new iNet.ui.ita.ViewInfoDetailWidget({
+                        id: "tab-business-change3",
+                        statusType: "CAP_DOI",
+                        HomeBusiness: changeBusiness3
+                    });
+                }
+                var pauseBusiness = __config.pauseBusiness;
+                if(CommonService.isSuccess(pauseBusiness))
+                {
+                    FormService.displayContent($form.tab5,'show');
+                    var listView = new iNet.ui.ita.ViewInfoDetailWidget({
+                        id: "tab-business-pause",
+                        statusType: "TAM_NGUNG",
+                        HomeBusiness: pauseBusiness,
 
-            FormService.displayContent($form.tab1,'show');
-            var listView = new iNet.ui.ita.ViewInfoDetailWidget({
-                id: "tab-business-info",
-                idHomeBusiness: "queue-list-item-ui",
-                statusType: url.update_capitalHomeBusiness,
-                HomeBusiness: {nameBusiness:'sdasdsa223',address:'232 34343'}
-            });
+                    });
+                }
+                var endBusiness = __config.pauseBusiness;
+                if(CommonService.isSuccess(endBusiness))
+                {
+                    FormService.displayContent($form.tab6,'show');
+                    var listView = new iNet.ui.ita.ViewInfoDetailWidget({
+                        id: "tab-business-end",
+                        statusType: "CHAM_DUT",
+                        HomeBusiness: endBusiness
+                    });
+                }
+            }
+
             //listView.setInfo({nameBusiness:'sdasdsa223',address:'232 34343'});
 
             FormService.displayContent($form.tab2,'show');

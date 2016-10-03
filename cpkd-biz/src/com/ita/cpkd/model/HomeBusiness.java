@@ -1,5 +1,7 @@
 package com.ita.cpkd.model;
 
+import com.ita.cpkd.bo.ListCareerBo;
+
 import java.util.List;
 
 /**
@@ -35,7 +37,23 @@ public class HomeBusiness {
     private String infoChange;
     private String numberBusiness;
     private List<ListContributor> lstObjContributor;
-    private List<ListC> lstObjContributor;
+    private List<ListCareer> lstObjCareer;
+
+    public List<ListContributor> getLstObjContributor() {
+        return lstObjContributor;
+    }
+
+    public void setLstObjContributor(List<ListContributor> lstObjContributor) {
+        this.lstObjContributor = lstObjContributor;
+    }
+
+    public List<ListCareer> getLstObjCareer() {
+        return lstObjCareer;
+    }
+
+    public void setLstObjCareer(List<ListCareer> lstObjCareer) {
+        this.lstObjCareer = lstObjCareer;
+    }
 
     public PersonRepresent getObjPersonRepresent() {
         return objPersonRepresent;

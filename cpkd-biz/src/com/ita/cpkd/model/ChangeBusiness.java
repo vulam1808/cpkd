@@ -33,6 +33,24 @@ public class ChangeBusiness {
     private long dateSubmit;
     private String statusProcess;
     private String taskID;
+    private List<ListContributor> lstObjContributor;
+    private List<ListCareer> lstObjCareer;
+
+    public List<ListContributor> getLstObjContributor() {
+        return lstObjContributor;
+    }
+
+    public void setLstObjContributor(List<ListContributor> lstObjContributor) {
+        this.lstObjContributor = lstObjContributor;
+    }
+
+    public List<ListCareer> getLstObjCareer() {
+        return lstObjCareer;
+    }
+
+    public void setLstObjCareer(List<ListCareer> lstObjCareer) {
+        this.lstObjCareer = lstObjCareer;
+    }
 
     public PersonRepresent getObjPersonRepresent() {
         return objPersonRepresent;

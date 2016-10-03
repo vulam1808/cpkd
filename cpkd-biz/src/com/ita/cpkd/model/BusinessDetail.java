@@ -17,9 +17,9 @@ public class BusinessDetail {
     private String nameBusiness;
     private String numberBusiness;
     private String taxCode;
-    private List<Detail> list_changeBusiness_ID = new ArrayList<Detail>();
-    private List<Detail> list_pauseBusiness_ID = new ArrayList<Detail>();
-    private List<Detail> list_endBusiness_ID = new ArrayList<Detail>();
+    private List<Detail> list_changeBusiness_ID;
+    private List<Detail> list_pauseBusiness_ID;
+    private List<Detail> list_endBusiness_ID;
 
     public String getNameBusiness() {
         return nameBusiness;

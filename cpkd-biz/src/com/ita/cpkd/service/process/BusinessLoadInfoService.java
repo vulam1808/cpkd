@@ -1,5 +1,6 @@
 package com.ita.cpkd.service.process;
 
+import com.inet.xportal.nosql.web.data.SearchDTO;
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
 import com.inet.xportal.web.annotation.XPortalDataService;
@@ -9,10 +10,15 @@ import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
+import com.inet.xportal.xdb.persistence.JSONDB;
+import com.inet.xportal.xdb.query.Query;
+import com.inet.xportal.xdb.query.impl.QueryImpl;
+import com.ita.cpkd.bo.BusinessDetailBo;
 import com.ita.cpkd.bo.ChangeBusinessBo;
 import com.ita.cpkd.bo.HomeBusinessBo;
 import com.ita.cpkd.bo.PersonRepresentBo;
 import com.ita.cpkd.enums.EnumStatus;
+import com.ita.cpkd.model.BusinessDetail;
 import com.ita.cpkd.model.ChangeBusiness;
 import com.ita.cpkd.model.HomeBusiness;
 import com.ita.cpkd.model.PersonRepresent;
@@ -35,13 +41,18 @@ public class BusinessLoadInfoService extends DataServiceMarker {
     protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
     @Inject
     private HomeBusinessBo homeBusinessBo;
-
+    @Inject
+    private BusinessDetailBo businessDetailBo;
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
         JSONObject mainObj = new JSONObject();
         String homeBusinessID = XParamUtils.getString("homeBusinessID", params, "");
+        //logger.debug("homeBusinessID {} ", homeBusinessID);
         mainObj = homeBusinessBo.loadBusinessInfoByHomeBusinessID(homeBusinessID);
+        //logger.debug("homeBusinessID {} ", mainObj);
+        //Test
+
         return new ObjectWebDataservice<JSONObject>(mainObj);
     }
 
