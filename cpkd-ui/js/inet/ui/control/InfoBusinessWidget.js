@@ -36,8 +36,9 @@ $(function() {
 
         var loadInfo =  function(){
             if (CommonService.isSuccess(__config)) {
-                span_name.html('')
-                var homeBusiness = __config.HomeBusiness;
+                console.log("infoBusinessWidget - Load Config",__config)
+                $form.span_name.html('').append(__config.NameBusiness);
+                var homeBusiness = __config.HomeBusiness || {};
                 if(CommonService.isSuccess(homeBusiness))
                 {
                     FormService.displayContent($form.tab1,'show');
@@ -47,7 +48,7 @@ $(function() {
                         HomeBusiness: homeBusiness
                     });
                 }
-                var changeBusiness1 = __config.ChangeBusiness1;
+                var changeBusiness1 = __config.ChangeBusiness1 || {};
                 if(CommonService.isSuccess(changeBusiness1))
                 {
                     FormService.displayContent($form.tab2,'show');
@@ -57,7 +58,7 @@ $(function() {
                         HomeBusiness: changeBusiness1
                     });
                 }
-                var changeBusiness2 = __config.ChangeBusiness2;
+                var changeBusiness2 = __config.ChangeBusiness2 || {};
                 if(CommonService.isSuccess(changeBusiness2))
                 {
                     FormService.displayContent($form.tab3,'show');
@@ -67,7 +68,7 @@ $(function() {
                         HomeBusiness: changeBusiness2
                     });
                 }
-                var changeBusiness3 = __config.ChangeBusiness3;
+                var changeBusiness3 = __config.ChangeBusiness3 || {};
                 if(CommonService.isSuccess(changeBusiness3))
                 {
                     FormService.displayContent($form.tab4,'show');
@@ -77,18 +78,18 @@ $(function() {
                         HomeBusiness: changeBusiness3
                     });
                 }
-                var pauseBusiness = __config.pauseBusiness;
+                var pauseBusiness = __config.pauseBusiness || {};
                 if(CommonService.isSuccess(pauseBusiness))
                 {
                     FormService.displayContent($form.tab5,'show');
                     var listView = new iNet.ui.ita.ViewInfoDetailWidget({
                         id: "tab-business-pause",
                         statusType: "TAM_NGUNG",
-                        HomeBusiness: pauseBusiness,
+                        HomeBusiness: pauseBusiness
 
                     });
                 }
-                var endBusiness = __config.pauseBusiness;
+                var endBusiness = __config.pauseBusiness || {};
                 if(CommonService.isSuccess(endBusiness))
                 {
                     FormService.displayContent($form.tab6,'show');
@@ -99,17 +100,6 @@ $(function() {
                     });
                 }
             }
-
-            //listView.setInfo({nameBusiness:'sdasdsa223',address:'232 34343'});
-
-            FormService.displayContent($form.tab2,'show');
-            var listView = new iNet.ui.ita.ViewInfoDetailWidget({
-                id: "tab-business-change1",
-                idHomeBusiness: "queue-list-item-ui",
-                statusType: url.update_capitalHomeBusiness,
-                HomeBusiness: {nameBusiness:'sdasdsa223',address:'232 342222343'}
-            });
-
         };
 
         loadInfo();

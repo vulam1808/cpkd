@@ -31,7 +31,7 @@ $(function() {
         this.id = this.id || 'personrepresent-widget';
         this.idHomeBusiness = __config.idHomeBusiness;
         this.statusType = __config.statusType;
-        this.PersonRepresent = __config.PersonRepresent;
+        this.PersonRepresent = __config.PersonRepresent || {};
         this.idPersonRepresent= __config.PersonRepresent.uuid;
     iNet.ui.ita.PersonRepresentWidget.superclass.constructor.call(this);
 
@@ -87,27 +87,27 @@ $(function() {
   };
 
   iNet.extend(iNet.ui.ita.PersonRepresentWidget, iNet.ui.app.widget,{
-      setDisabled: function(){
-          this.$input.nameRepresent.attr('disabled', 'disabled');
-          this.$input.birthday.attr('disabled', 'disabled');
-          this.$input.gender.attr('disabled', 'disabled');
-          this.$input.race.attr('disabled', 'disabled');
-          this.$input.regilion.attr('disabled', 'disabled');
-          this.$input.idnumber.attr('disabled', 'disabled');
-          this.$input.issueDate.attr('disabled', 'disabled');
-          this.$input.issuePlace.attr('disabled', 'disabled');
+      setReadonly: function(){
+          this.$input.nameRepresent.prop('readonly', true);
+          this.$input.birthday.prop('readonly', true);
+          this.$input.gender.prop('readonly', true);
+          this.$input.race.prop('readonly', true);
+          this.$input.regilion.prop('readonly', true);
+          this.$input.idnumber.prop('readonly', true);
+          this.$input.issueDate.prop('readonly', true);
+          this.$input.issuePlace.prop('readonly', true);
 
 
       },
-      removeDisabled: function(){
-          this.$input.nameRepresent.removeAttr("disabled");
-          this.$input.birthday.removeAttr("disabled");
-          this.$input.gender.removeAttr("disabled");
-          this.$input.race.removeAttr("disabled");
-          this.$input.regilion.removeAttr("disabled");
-          this.$input.idnumber.removeAttr("disabled");
-          this.$input.issueDate.removeAttr("disabled");
-          this.$input.issuePlace.removeAttr("disabled");
+      removeReadonly: function(){
+          this.$input.nameRepresent.prop('readonly', false);
+          this.$input.birthday.prop('readonly', false);
+          this.$input.gender.prop('readonly', false);
+          this.$input.race.prop('readonly', false);
+          this.$input.regilion.prop('readonly', false);
+          this.$input.idnumber.prop('readonly', false);
+          this.$input.issueDate.prop('readonly', false);
+          this.$input.issuePlace.prop('readonly', false);
       },
         getData: function () {
               //var __ownerData = this.ownerData || {};

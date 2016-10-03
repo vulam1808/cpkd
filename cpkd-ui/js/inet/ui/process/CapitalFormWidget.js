@@ -63,17 +63,17 @@ $(function() {
     };
 
     iNet.extend(iNet.ui.ita.CapitalFormWidget, iNet.ui.app.widget,{
-        setDisabled: function(){
+        setReadonly: function(){
 
-            this.$input.cashCapital.attr('disabled', 'disabled');
-            this.$input.assetCapital.attr('disabled', 'disabled');
-            this.$input.businessCapital.attr('disabled', 'disabled');
+            this.$input.cashCapital.prop('readonly', true);
+            this.$input.assetCapital.prop('readonly', true);
+            this.$input.businessCapital.prop('readonly', true);
         },
-        removeDisabled: function(){
+        removeReadonly: function(){
 
-            this.$input.cashCapital.removeAttr("disabled");
-            this.$input.assetCapital.removeAttr("disabled");
-            this.$input.businessCapital.removeAttr("disabled");
+            this.$input.cashCapital.prop('readonly', false);
+            this.$input.assetCapital.prop('readonly', false);
+            this.$input.businessCapital.prop('readonly', false);
         },
         getDataCapital: function () {
 

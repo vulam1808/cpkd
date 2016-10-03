@@ -21,7 +21,8 @@ $(function() {
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
         this.id = this.id || 'listcareer-widget';
-
+        this.idHomeBusiness = __config.idHomeBusiness;
+        this.statusType = __config.statusType;
         iNet.ui.ita.ListCareerListWidget.superclass.constructor.call(this);
 
         var me= this;
@@ -164,6 +165,10 @@ $(function() {
             firstLoad: true,
             idProperty : 'uuid',
             pageSize: 10,
+            params: {
+                idHomeBusiness: me.idHomeBusiness,
+                statusType: me.statusType
+            },
             convertData: function (data) {
                 var __data = data || {};
                 var __items = __data.items || [];
@@ -223,7 +228,7 @@ $(function() {
             //officeDialog.id =;
 
             listcareerDialog.show();
-            var __data = {idhomebusines1:'57e653999daa97153488d531'};
+            var __data = {idHomeBusiness:me.idHomeBusiness};
 
             var wgLCD = new iNet.ui.ita.ListCareerFormDialog(__data);
             wgLCD.show();
@@ -236,7 +241,6 @@ $(function() {
     };
 
     iNet.extend(iNet.ui.ita.ListCareerListWidget, iNet.ui.app.widget);
-    var wg = new iNet.ui.ita.ListCareerListWidget();
-    wg.show();
+
 
 });

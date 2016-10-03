@@ -45,7 +45,7 @@ CommonService = {
     },
     isSuccess: function (data) {
         var __data = data;
-        var __uuid = iNet.isEmpty(__data.uuid) ? "" : __data.uuid;
+        var __uuid = iNet.isEmpty(__data.uuid || '') ? "" : __data.uuid;
         var __intl = iNet.isEmpty(__data.intl) ? "" : __data.intl;
 
         if (!iNet.isEmpty(__data) && JSON.stringify(__data) != "{}" && !data.hasOwnProperty("errors") && __uuid != "ERROR!" && iNet.isEmpty(__intl)) {

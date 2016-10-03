@@ -24,8 +24,14 @@ import com.inet.xportal.web.exception.WebOSBOException;
 import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
+import com.inet.xportal.web.util.XParamUtils;
+import com.inet.xportal.xdb.persistence.JSONDB;
+import com.inet.xportal.xdb.query.Query;
+import com.inet.xportal.xdb.query.impl.QueryImpl;
 import com.ita.cpkd.bo.ListCareerBo;
+import com.ita.cpkd.enums.EnumStatus;
 import com.ita.cpkd.model.ListCareer;
+import com.ita.cpkd.model.ListContributor;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -57,10 +63,29 @@ public class ListCareerLoadService extends DataServiceMarker {
 
         // save account
         //district.setUuid(districtBo.add(district));
-        SearchDTO<ListCareer> result= listCareerBo.query();
 
+        SearchDTO<ListCareer> listCareer = new SearchDTO<ListCareer>();
+        String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
+        String statusType = XParamUtils.getString("statusType", params, "");
+        // TODO check your required data
+        /*logger.debug("idHomeBusiness {}: ", idHomeBusiness);
+        logger.debug("statusType {}: ", statusType);*/
+        if(statusType.equals(EnumStatus.CAP_DOI))
+        {
+            Query<JSONDB> query = new QueryImpl<JSONDB>();
+            query.field("changeBusiness_ID").equal(idHomeBusiness);
+            listCareer = listCareerBo.query((QueryImpl<JSONDB>) query);
 
-        return new ObjectWebDataservice<SearchDTO<ListCareer>>(result);
+        }
+        else
+        {
+            Query<JSONDB> query = new QueryImpl<JSONDB>();
+            query.field("homeBusiness_ID").equal(idHomeBusiness);
+            listCareer = listCareerBo.query((QueryImpl<JSONDB>) query);
+
+        }
+
+        return new ObjectWebDataservice<SearchDTO<ListCareer>>(listCareer);
     }
 
 }

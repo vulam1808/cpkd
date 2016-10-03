@@ -150,6 +150,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
         //logger.debug("begin loadBusinessInfoByTaskID {}", "abcd");
         JSONObject mainObj = new JSONObject();
         BusinessDetail objDetail = businessDetailBo.loadBusinessDetailByHomeBusinessID(homeBusinessID);
+        mainObj.put("NameBusiness", objDetail.getNameBusiness());
         HomeBusiness objHome = super.load(homeBusinessID);
         objHome = loadObjParent(objHome);
         mainObj.put("HomeBusiness", objHome);
