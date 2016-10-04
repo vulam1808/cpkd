@@ -111,36 +111,42 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
 
     public JSONObject loadBusinessProcessByTaskID(String taskID) throws WebOSBOException
     {
-        BusinessDetail objDetail = businessDetailBo.loadBusinessDetailByTaskID(taskID);
-        HomeBusiness objHome = super.load(objDetail.getHomeBusiness_ID());
-        String status = objHome.getStatusType();
-
-            logger.debug("getStatusType {}", status);
-            JSONObject mainObj = new JSONObject();
-            mainObj.put("statusType", status);
-            if (status.equals(EnumStatus.CAP_DOI.toString())) {
-                ChangeBusiness objChange = changeBusinessBo.loadByHomeBusinessID(objHome.getUuid());
-                logger.debug("objChange uuid {}", objChange.getUuid());
-                mainObj.put("idHomeBusiness", objChange.getUuid());
-                mainObj.put("HomeBusiness", objChange);
-                String idPerson = objChange.getPersonRepresent_ID();
-                //Lấy thong tin nguoi dai dien
-                if (idPerson != null) {
-                    PersonRepresent objperson = personRepresentBo.loadPersonRepresentByID(idPerson);
-                    mainObj.put("PersonRepresent", objperson);
-                }
-            } else {
-                logger.debug("objHome uuid {}", objHome.getUuid());
-                mainObj.put("idHomeBusiness", objHome.getUuid());
-                mainObj.put("HomeBusiness", objHome);
-                String idPerson = objHome.getPersonRepresent_ID();
-                //logger.debug("idPerson uuid {}", idPerson);
-                //Lấy thong tin nguoi dai dien
-                if (idPerson != null) {
-                    PersonRepresent objperson = personRepresentBo.loadPersonRepresentByID(idPerson);
-                    mainObj.put("PersonRepresent", objperson);
-                }
-            }
+        JSONObject objDetail = businessDetailBo.loadBusinessDetailByTaskID(taskID);
+        String ID = (String)objDetail.get("homebusiness_ID");
+        String statusType=(String)objDetail.get("statusType");
+        JSONObject mainObj = new JSONObject();
+        if(statusType.equals(EnumStatus.CAP_MOI.toString()))
+        {
+            HomeBusiness objHome = super.load(ID);
+            objHome = loadObjParent(objHome);
+            mainObj.put("idHomeBusiness", ID);
+            mainObj.put("objBusiness", objHome);
+            mainObj.put("statusType", statusType);
+        }
+        else if(statusType.equals(EnumStatus.CAP_DOI.toString()))
+        {
+            ChangeBusiness objHome = changeBusinessBo.load(ID);
+            objHome = loadObjParent(objHome);
+            mainObj.put("idHomeBusiness", objHome.getHomeBusiness_ID());
+            mainObj.put("objBusiness", objHome);
+            mainObj.put("statusType", statusType);
+        }
+        else if(statusType.equals(EnumStatus.TAM_NGUNG.toString()))
+        {
+            PauseBusiness objHome = pauseBusinessBo.load(ID);
+            //objHome = loadObjParent(objHome);
+            mainObj.put("idHomeBusiness", objHome.getHomeBusiness_ID());
+            mainObj.put("objBusiness", objHome);
+            mainObj.put("statusType", statusType);
+        }
+        else if(statusType.equals(EnumStatus.CHAM_DUT.toString()))
+        {
+            EndBusiness objHome = endBusinessBo.load(ID);
+            //objHome = loadObjParent(objHome);
+            mainObj.put("idHomeBusiness", objHome.getHomeBusiness_ID());
+            mainObj.put("objBusiness", objHome);
+            mainObj.put("statusType", statusType);
+        }
 
         return mainObj;
     }

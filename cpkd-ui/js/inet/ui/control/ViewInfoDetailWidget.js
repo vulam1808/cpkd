@@ -14,59 +14,72 @@ $(function() {
 
         this.id = __config.id || 'view-info-div';
         this.idInterface = 'view-info-detail';
-        this.objBusiness = __config.HomeBusiness || {};
-        this.idHomeBusiness = __config.idHomeBusiness;
-        this.statusType = __config.statusType;
-        iNet.ui.ita.ViewInfoDetailWidget.superclass.constructor.call(this);
+
+        var me = this;
+        me.HomeBusiness = __config.HomeBusiness || {};
+        me.idHomeBusiness = me.HomeBusiness.uuid||'';
+        me.statusType = __config.statusType || '';
         var loadInfoList = function()
         {
-            if (CommonService.isSuccess(this.objBusiness)) {
+            if (CommonService.isSuccess(me.HomeBusiness)) {
+                console.log('id view info detail',me.idHomeBusiness);
+                console.log('statusType view info detail',me.statusType);
+                console.log('HomeBusiness view info detail',me.HomeBusiness);
                 var $div = {
                     div_Person: $('#content-person'),
                     div_listcareer: $('#content-listcareer'),
                     div_listcontributor: $('#content-listcontributor'),
                     div_capital: $('#content-capital')
                 };
-                var Person = this.objBusiness.objPersonRepresent || {};
-                var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget');
-                if (CommonService.isSuccess(Person)) {
-                    var jsPerson = new iNet.ui.ita.PersonRepresentWidget({PersonRepresent: Person});
+                var Person = me.HomeBusiness.objPersonRepresent || {};
+                var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
+                $div.div_Person.html('').append($div_id_person.html());
+                $div_id_person.remove();
+                    var jsPerson = new iNet.ui.ita.PersonRepresentWidget({
+                        PersonRepresent: Person});
                     jsPerson.setReadonly();
                     jsPerson.show();
-                    $div.div_Person.html('').append($div_id_person.html());
-                }
-                var Capital = this.objBusiness || {};
-                var $div_id_capital = $.getCmp(__config.divIDCapital || 'capital-form-widget');
-                if (CommonService.isSuccess(Capital)) {
-                    var jsCapital = new iNet.ui.ita.PersonRepresentWidget({HomeBusiness: Capital});
+
+
+
+
+                var $div_id_capital = $.getCmp(__config.divIDCapital || 'capital-form-widget-content');
+                $div.div_capital.html('').append($div_id_capital.html());
+                $div_id_capital.remove();
+                    var jsCapital = new iNet.ui.ita.CapitalFormWidget({
+                        HomeBusiness: me.HomeBusiness});
                     jsCapital.setReadonly();
                     jsCapital.show();
-                    $div.div_capital.html('').append($div_id_capital.html());
-                }
 
 
-                var $div_id_listcareer = $.getCmp(__config.divIDlistCareer || 'listcareer-widget');
 
-                var jslistcareer = new iNet.ui.ita.PersonRepresentWidget({
-                    idHomeBusiness: this.idHomeBusiness,
-                    statusType: this.statusType
-                });
-                jslistcareer.show();
+
+                var $div_id_listcareer = $.getCmp(__config.divIDlistCareer || 'listcareer-widget-content');
                 $div.div_listcareer.html('').append($div_id_listcareer.html());
-
-
-                var $div_id_listcontributor = $.getCmp(__config.divIDlistContributor || 'listcontributor-widget');
-
-                var jslistcareer = new iNet.ui.ita.PersonRepresentWidget({
-                    idHomeBusiness: this.idHomeBusiness,
-                    statusType: this.statusType
+                $div_id_listcareer.remove();
+                var jslistcareer = new iNet.ui.ita.ListCareerListWidget({
+                    idHomeBusiness: me.idHomeBusiness,
+                    statusType: me.statusType
                 });
+                jslistcareer.setHideButtonAdd();
                 jslistcareer.show();
-                $div.div_listcareer.html('').append($div_id_listcontributor.html());
+
+
+
+                var $div_id_listcontributor = $.getCmp(__config.divIDlistContributor || 'listcontributor-widget-content');
+                $div.div_listcontributor.html('').append($div_id_listcontributor.html());
+                $div_id_listcontributor.remove();
+                var jslistcontributor = new iNet.ui.ita.ListContributorListWidget({
+                    idHomeBusiness: me.idHomeBusiness,
+                    statusType: me.statusType
+                });
+                jslistcontributor.setHideButtonAdd();
+                jslistcontributor.show();
+
             }
         };
         loadInfoList();
-        var me = this;
+
 
         var $itemDetail = $.getCmp(me.id);
         var $interface = $.getCmp(me.idInterface);
@@ -95,20 +108,30 @@ $(function() {
         var url = {
             update_capitalHomeBusiness: iNet.getUrl('ita/capital/update')
         };
-        me.idHomeBusiness = __config.idHomeBusiness;
-        me.statusType = __config.statusType;
-        me.HomeBusiness = __config.HomeBusiness;
+
         var loadInfoDetail = function(){
             me.setInfo(me.HomeBusiness);
 
-
+            me.setReadonly();
         };
         loadInfoDetail();
-
+        iNet.ui.ita.ViewInfoDetailWidget.superclass.constructor.call(this);
 
     };
 
     iNet.extend(iNet.ui.ita.ViewInfoDetailWidget, iNet.Component,{
+        setReadonly: function(){
+
+            this.$form.input_areaBusiness.prop('readonly', true);
+            this.$form.input_address.prop('readonly', true);
+            this.$form.input_province.prop('readonly', true);
+            this.$form.input_district.prop('readonly', true);
+            this.$form.input_ward.prop('readonly', true);
+            this.$form.input_phone.prop('readonly', true);
+            this.$form.input_fax.prop('readonly', true);
+            this.$form.input_email.prop('readonly', true);
+            this.$form.input_website.prop('readonly', true);
+        },
         setInfo : function (data) {
 
             var __data = data || {};

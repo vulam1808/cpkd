@@ -4,28 +4,33 @@
  * Created by HS on 13/9/2016.
  */
 $(function() {
-    var resource = {
-        common: ita.resources.common,
-        validate: ita.resources.validate
-    };
 
-    var url = {
-        load_cbbcareer: iNet.getUrl('ita/career/load'),
-        view: iNet.getUrl('ita/listcareer/load'),
-        save: iNet.getUrl('ita/listcareer/save'),
-        update: iNet.getUrl('ita/listcareer/update'),
-        del: iNet.getUrl('ita/listcareer/delete')
-    };
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.ListCareerListWidget = function (config) {
+        var resource = {
+            common: ita.resources.common,
+            validate: ita.resources.validate
+        };
+
+        var url = {
+            load_cbbcareer: iNet.getUrl('ita/career/load'),
+            view: iNet.getUrl('ita/listcareer/load'),
+            save: iNet.getUrl('ita/listcareer/save'),
+            update: iNet.getUrl('ita/listcareer/update'),
+            del: iNet.getUrl('ita/listcareer/delete')
+        };
+        this.$form = {
+            btn_add: $('#button-listcareer')
+        }
         var __config = config || {};
+        var me= this;
+
         iNet.apply(this, __config);// apply configuration
         this.id = this.id || 'listcareer-widget';
-        this.idHomeBusiness = __config.idHomeBusiness;
-        this.statusType = __config.statusType;
+        me.idHomeBusiness = __config.idHomeBusiness;
+        me.statusType = __config.statusType;
         iNet.ui.ita.ListCareerListWidget.superclass.constructor.call(this);
 
-        var me= this;
 
         var __careerList = [];
         $.postJSON(url.load_cbbcareer, {}, function (result) {
@@ -158,7 +163,7 @@ $(function() {
             }]
         });
         //load grid
-        this.grid = new iNet.ui.grid.Grid({
+        me.grid = new iNet.ui.grid.Grid({
             id : 'listcareer-grid',
             dataSource : dataSource,
             url: url.view,
@@ -171,6 +176,7 @@ $(function() {
             },
             convertData: function (data) {
                 var __data = data || {};
+                console.log('ListCareer Data',__data );
                 var __items = __data.items || [];
                 $.each(__items, function(i, item){
                     item.career_id = convertCareerList(item.career_id);
@@ -222,13 +228,13 @@ $(function() {
             console.log('selectionchange>>', sm, data);
         });*/
 
-        $('#ddd').on('click', function(){
+        this.$form.btn_add.on('click', function(){
            // me.grid.newRecord();
-            listcareerDialog = new iNet.ui.ita.UtilsDialog({id:'listcareer-form-dialog'});
-            //officeDialog.id =;
 
+            //officeDialog.id =;
+            listcareerDialog = new iNet.ui.ita.UtilsDialog({id:'listcareer-form-dialog'});
             listcareerDialog.show();
-            var __data = {idHomeBusiness:me.idHomeBusiness};
+            var __data = {idHomeBusiness:me.idHomeBusiness,statusType: me.statusType};
 
             var wgLCD = new iNet.ui.ita.ListCareerFormDialog(__data);
             wgLCD.show();
@@ -240,7 +246,11 @@ $(function() {
 
     };
 
-    iNet.extend(iNet.ui.ita.ListCareerListWidget, iNet.ui.app.widget);
+    iNet.extend(iNet.ui.ita.ListCareerListWidget, iNet.ui.app.widget,{
+        setHideButtonAdd: function () {
+            this.$form.btn_add.hide();
+        }
+    });
 
 
 });

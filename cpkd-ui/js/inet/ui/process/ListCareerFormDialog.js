@@ -80,6 +80,19 @@ $(function () {
         //click button save on form dialog
         $('#listcareer-modal-btn-save').on('click', function(){
             var __data = me.getData() || {};
+            if(me.statusType=="CAP_MOI")
+            {
+                __data.homeBusiness_ID = me.idHomeBusiness;
+            }
+            else if(me.statusType=="CAP_DOI")
+            {
+                __data.changeBusiness_ID = me.idHomeBusiness;
+            }
+            else
+            {
+                me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.save_error));
+                return;
+            }
             console.log('saved>>', __data);
 
             $.postJSON(url.save, __data, function (result) {
@@ -87,7 +100,12 @@ $(function () {
                 if (CommonService.isSuccess(__result)) {
 
                     me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
-                    me.ListCareerFormDialog().hide();
+                    var wglistcareer = new iNet.ui.ita.ListCareerListWidget({
+                        idHomeBusiness : me.idHomeBusiness,
+                        statusType : me.statusType
+                    })
+                    wglistcareer.grid.load();
+                    this.listcareerDialog.hide();
                 } else {
 
                     me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.save_error, __result.errors || []));

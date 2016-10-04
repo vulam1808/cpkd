@@ -40,11 +40,11 @@ $(function() {
 
         var me= this;
         var dataSource = new iNet.ui.grid.DataSource({
-            columns : [{
+            columns : [/*{
                 type : 'selection',
                 align: 'center',
                 width : 30
-            },{
+            },*/{
                 property : 'name',
                 label : resource.common.name,
                 sortable : true,
@@ -207,7 +207,11 @@ $(function() {
 
     };
 
-    iNet.extend(iNet.ui.ita.ListContributorListWidget, iNet.ui.app.widget);
+    iNet.extend(iNet.ui.ita.ListContributorListWidget, iNet.ui.app.widget,{
+        setHideButtonAdd: function () {
+            $('#listcontributor-btn-add').hide();
+        }
+    });
 
 
 });

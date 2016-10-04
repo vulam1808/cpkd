@@ -6,11 +6,12 @@ $(function() {
 
   iNet.ns("iNet.ui", "iNet.ui.ita");
   iNet.ui.ita.PersonRepresentWidget = function (config) {
+      var me = this;
       var resource = {
           common: ita.resources.common,
           validate: ita.resources.validate
       };
-      this.$input = {
+      me.$input = {
           nameRepresent: $('#personrepresent-txt-nameRepresent'),
           birthday: $('#personrepresent-txt-birthday'),
           gender: $('#personrepresent-txt-gender'),
@@ -26,24 +27,26 @@ $(function() {
           update: iNet.getUrl('ita/personrepresent/update')
 
       };
+
     var __config = config || {};
     iNet.apply(this, __config);// apply configuration
-        this.id = this.id || 'personrepresent-widget';
-        this.idHomeBusiness = __config.idHomeBusiness;
-        this.statusType = __config.statusType;
-        this.PersonRepresent = __config.PersonRepresent || {};
-        this.idPersonRepresent= __config.PersonRepresent.uuid;
-    iNet.ui.ita.PersonRepresentWidget.superclass.constructor.call(this);
+      me.id = this.id || 'personrepresent-widget';
+      me.idHomeBusiness = __config.idHomeBusiness || '';
+      me.statusType = __config.statusType || '';
+      me.PersonRepresent = __config.PersonRepresent || {};
+      me.idPersonRepresent= me.PersonRepresent.uuid || '';
 
 
-    var me = this;
+
+
     var loadGender = function(){
         var __result = [{id:'NU',name:resource.common.gender_nu},
         {id:'NAM',name:resource.common.gender_nam}];
-
-          me.$input.gender = FormService.createSelect('personrepresent-txt-gender', __result, 'id', 1, false, false);
+        me.$input.gender = FormService.createSelect('personrepresent-txt-gender', __result, 'id', 1, false, false);
         me.$input.gender.setValue('NAM');
+       /* if($('#personrepresent-txt-gender').length<=0) {
 
+        }*/
     };
     loadGender();
 //Load datetime
@@ -68,6 +71,7 @@ $(function() {
 //Update with taskID ===================================================================
       me.updatePerson = function() {
           var __data = me.getData() || {};
+          console.log('updatePerson>>', __data);
           $.postJSON(url.update, __data, function (result) {
               var __result = me.loadData(result) || {};
               console.log('update>>', __result);
@@ -84,13 +88,14 @@ $(function() {
 
     };
     loadPerson();
+      iNet.ui.ita.PersonRepresentWidget.superclass.constructor.call(this);
   };
 
   iNet.extend(iNet.ui.ita.PersonRepresentWidget, iNet.ui.app.widget,{
       setReadonly: function(){
           this.$input.nameRepresent.prop('readonly', true);
           this.$input.birthday.prop('readonly', true);
-          this.$input.gender.prop('readonly', true);
+          $('#personrepresent-txt-gender').prop('readonly', true);
           this.$input.race.prop('readonly', true);
           this.$input.regilion.prop('readonly', true);
           this.$input.idnumber.prop('readonly', true);
@@ -102,7 +107,7 @@ $(function() {
       removeReadonly: function(){
           this.$input.nameRepresent.prop('readonly', false);
           this.$input.birthday.prop('readonly', false);
-          this.$input.gender.prop('readonly', false);
+          $('#personrepresent-txt-gender').prop('readonly', false);
           this.$input.race.prop('readonly', false);
           this.$input.regilion.prop('readonly', false);
           this.$input.idnumber.prop('readonly', false);

@@ -60,13 +60,13 @@ public class ListCareerSaveService extends DataServiceMarker {
         //district.setUuid(districtBo.add(district));
 
 
-        String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
+        //String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
         String statusType = XParamUtils.getString("statusType", params, "");
 
         // TODO check your required data
         if (statusType.equals(EnumStatus.CAP_DOI.toString()))
         {
-            arbmodel.setChangeBusiness_ID(idHomeBusiness);
+            //arbmodel.setChangeBusiness_ID(idHomeBusiness);
             // save account
             //district.setUuid(districtBo.add(district));
             String uuid = listCareerBo.add(arbmodel);
@@ -74,7 +74,7 @@ public class ListCareerSaveService extends DataServiceMarker {
         }
         else
         {
-            arbmodel.setHomeBusiness_ID(idHomeBusiness);
+            //arbmodel.setHomeBusiness_ID(idHomeBusiness);
             // save account
             //district.setUuid(districtBo.add(district));
             String uuid = listCareerBo.add(arbmodel);

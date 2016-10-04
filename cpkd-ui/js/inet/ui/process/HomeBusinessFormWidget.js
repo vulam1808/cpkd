@@ -297,71 +297,39 @@ $(function () {
             }
 
             var valTypkeTask = me.$form.input_typeTask.getValue();
+            var _data = {};
             if(valTypkeTask == "CAP_MOI")
             {
-                var _data = me.getDataCapMoi() || {};
-                console.log('Save click - Type: CAP_MOI >>>',_data)
-                $.postJSON(url.save_business, _data, function (result) {
-                    var __result = result || {};
-                    if (CommonService.isSuccess(__result)) {
-                        //var __listProvince = [];
-                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
-                    }
-                    else
-                    {
-                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
-                    }
-                });
+                _data = me.getDataCapMoi() || {};
+                console.log('Save click - Type: CAP_MOI >>>',_data);
             }
             else if(valTypkeTask == "CAP_DOI")
             {
-                var _data = me.getDataCapDoi() || {};
-                console.log('Save click - Type: CAP_DOI >>>',_data)
-                $.postJSON(url.save_business, _data, function (result) {
-                    var __result = result || {};
-                    if (CommonService.isSuccess(__result)) {
-                        //var __listProvince = [];
-
-                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
-                    }
-                    else
-                    {
-                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
-                    }
-                });
+                _data = me.getDataCapDoi() || {};
+                console.log('Save click - Type: CAP_DOI >>>',_data);
             }
             else if(valTypkeTask == "TAM_NGUNG")
             {
-                var _data = me.getDataTamNgung() || {};
-                console.log('Save click - Type: TAM_NGUNG >>>',_data)
-                $.postJSON(url.save_business, _data, function (result) {
-                    var __result = result || {};
-                    if (CommonService.isSuccess(__result)) {
-                        //var __listProvince = [];
-                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
-                    }
-                    else
-                    {
-                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
-                    }
-                });
+                _data = me.getDataTamNgung() || {};
+                console.log('Save click - Type: TAM_NGUNG >>>',_data);
             }
             else if(valTypkeTask == "CHAM_DUT")
             {
-                var _data = me.getDataChamDut() || {};
-                console.log('Save click - Type: CHAM_DUT >>>',_data)
-                $.postJSON(url.save_business, _data, function (result) {
-                    var __result = result || {};
-                    if (CommonService.isSuccess(__result)) {
-                        //var __listProvince = [];
-                        me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
-                    }
-                    else
-                    {
-                        me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
-                    }
-                });
+                _data = me.getDataChamDut() || {};
+                console.log('Save click - Type: CHAM_DUT >>>',_data);
             }
+            $.postJSON(url.save_business, _data, function (result) {
+                console.log('Save Business OK >>>',__result);
+                var __result = result || {};
+                if (CommonService.isSuccess(__result)) {
+                    //var __listProvince = [];
+                    me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
+                }
+                else
+                {
+                    me.notifyError(me.resource.validate.save_title, me.resource.validate.save_error, __result.errors || []);
+                }
+            });
 
         }.createDelegate(this));
 

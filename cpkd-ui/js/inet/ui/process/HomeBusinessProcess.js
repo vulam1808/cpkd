@@ -11,7 +11,9 @@ $(function () {
         //get form velocity
         this.$form = {
             button_info_edit: $('#btn-infoprocess-load'), //get data from widget
-            button_info_save: $('#btn-infoprocess-save')//get data from widget
+            button_info_save: $('#btn-infoprocess-save'),//get data from widget
+            tab_info : $('#tab-info'),
+            tab_process: $('#tab-process')
         };
 
         var resource = {
@@ -23,51 +25,64 @@ $(function () {
             load_processHomeBusiness: iNet.getUrl('ita/homebusiness/loadprocess') //task, direction, note
         };
 
-        //MENU VIEW ===========================================
-        var $taskMenu = iNet.getLayout().window.parent.taskMenu;
 
-
-        //LIST VIEW ===========================================
-        var $taskFrame = iNet.getLayout().window.taskFrame;
-
-
-        //MODAL VIEW ==========================================
-        //var $taskModal = new iNet.ui.modalview();
 
 
         //info view
         var wgBFInformation = null;
         var taskView = function(){
-            var __taskInfo = '57ea5636fe53c91790f85ffd';//$taskFrame.getTaskDataIndex();
+            var __taskInfo = '57f2665b703f902f0c8944f8';//$taskFrame.getTaskDataIndex();
 
             var __taskUuid = ((__taskInfo || {}).history || {}).taskID || '';
             var __graphUuid = ((__taskInfo || {}).history || {}).graphID || "";
             var __requestStatus = ((__taskInfo || {}).request || {}).status || '';
             var _param = {taskID: __taskInfo};
-
+            me.wgBtnProcess =  new  iNet.ui.ita.ButtonProcess();
+            me.wgBtnProcess.show();
             $.postJSON(url.load_processHomeBusiness, _param, function (result) {
                 var __result = result || {};
+
                 console.log('load process home business>>', __result);
                 if (CommonService.isSuccess(__result)) {
-                    this.idHomeBusiness = __result.idHomeBusiness || '';
-                    this.statusType = __result.statusType || '';
+                    me.idHomeBusiness = __result.idHomeBusiness || '';
+                    me.statusType = __result.statusType || '';
+                    var objBusiness = __result.objBusiness || {};
+                    if(me.statusType == "CAP_MOI" || me.statusType == "CAP_DOI")
+                    {
+                        FormService.displayContent(me.$form.tab_process,'show');
 
-                    //Load nguoi dai dien
-                    var __objPersonRepresent = __result.PersonRepresent || {};
-                    me.wgPerson = new iNet.ui.ita.PersonRepresentWidget({statusType: this.statusType ,idHomeBusiness:this.idHomeBusiness,PersonRepresent:__objPersonRepresent});
-                    me.wgPerson.show();
+                        //Load nguoi dai dien
+                        var __objPersonRepresent = __result.objBusiness.objPersonRepresent || {};
+                        me.wgPerson = new iNet.ui.ita.PersonRepresentWidget({
+                            statusType: me.statusType ,
+                            idHomeBusiness:me.idHomeBusiness,
+                            idPersonRepresent:__result.objBusiness.personRepresent_ID,
+                            PersonRepresent:__objPersonRepresent});
+                        me.wgPerson.show();
 
-                    //Load von dieu le
-                    var __objHomeBusiness = __result.HomeBusiness || {};
-                    me.wgCapital = new iNet.ui.ita.CapitalFormWidget({statusType: this.statusType,idHomeBusiness:this.idHomeBusiness,HomeBusiness:__objHomeBusiness});
-                    me.wgCapital.show();
+                        //Load von dieu le
+                        var __objHomeBusiness = objBusiness || {};
+                        me.wgCapital = new iNet.ui.ita.CapitalFormWidget({
+                            statusType: me.statusType,
+                            idHomeBusiness:me.idHomeBusiness,
+                            HomeBusiness:__objHomeBusiness});
+                        me.wgCapital.show();
+
+                        me.wglistcareer = new iNet.ui.ita.ListCareerListWidget({
+                            idHomeBusiness: me.idHomeBusiness,
+                            statusType: me.statusType
+                        });
+                        me.wglistcareer.show();
+
+                        me.wgabc = new iNet.ui.ita.ListContributorListWidget({
+                            statusType: me.statusType,
+                            idHomeBusiness:me.idHomeBusiness
+                        });
+                        me.wgabc.show();
+                    }
 
 
-                    me.wgBtnProcess =  new  iNet.ui.ita.ButtonProcess();
-                    me.wgBtnProcess.show();
 
-                    me.wgabc = new iNet.ui.ita.ListContributorListWidget({statusType: this.statusType, idHomeBusiness:this.idHomeBusiness});
-                    me.wgabc.show();
 
 
 

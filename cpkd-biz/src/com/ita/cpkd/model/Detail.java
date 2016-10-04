@@ -12,6 +12,15 @@ public class Detail {
     private String parent_ID;
     private long dateSubmit;
     private String statusProcess;
+    private String taskID;
+
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
 
     public String getUuid() {
         return uuid;

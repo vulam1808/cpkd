@@ -13,13 +13,22 @@ import java.util.List;
 public class BusinessDetail {
     private String uuid;
     private String homeBusiness_ID;
-    private String taskProcessID;
+    private String taskID;
     private String nameBusiness;
     private String numberBusiness;
     private String taxCode;
+    private String statusProcess;
     private List<Detail> list_changeBusiness_ID;
     private List<Detail> list_pauseBusiness_ID;
     private List<Detail> list_endBusiness_ID;
+
+    public String getStatusProcess() {
+        return statusProcess;
+    }
+
+    public void setStatusProcess(String statusProcess) {
+        this.statusProcess = statusProcess;
+    }
 
     public String getNameBusiness() {
         return nameBusiness;
@@ -45,12 +54,12 @@ public class BusinessDetail {
         this.taxCode = taxCode;
     }
 
-    public String getTaskProcessID() {
-        return taskProcessID;
+    public String getTaskID() {
+        return taskID;
     }
 
-    public void setTaskProcessID(String taskProcessID) {
-        this.taskProcessID = taskProcessID;
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
     }
 
     public String getUuid() {

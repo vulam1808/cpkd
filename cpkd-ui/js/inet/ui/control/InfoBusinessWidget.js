@@ -104,15 +104,6 @@ $(function() {
 
         loadInfo();
         var me = this;
-
-
-
-
-
-
-
-
-
         iNet.ui.ita.InfoBusinessWidget.superclass.constructor.call(this);
     };
 

@@ -32,6 +32,8 @@ import com.ita.cpkd.bo.ListCareerBo;
 import com.ita.cpkd.enums.EnumStatus;
 import com.ita.cpkd.model.ListCareer;
 import com.ita.cpkd.model.ListContributor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -51,6 +53,7 @@ import java.util.Map;
 @XPortalPageRequest(uri = "ita/listcareer/load", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 
 public class ListCareerLoadService extends DataServiceMarker {
+    protected static final Logger logger = LoggerFactory.getLogger(ListCareerLoadService.class);
     @Inject
     private ListCareerBo listCareerBo;
 
@@ -68,8 +71,8 @@ public class ListCareerLoadService extends DataServiceMarker {
         String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
         String statusType = XParamUtils.getString("statusType", params, "");
         // TODO check your required data
-        /*logger.debug("idHomeBusiness {}: ", idHomeBusiness);
-        logger.debug("statusType {}: ", statusType);*/
+        logger.debug("idHomeBusiness {}: ", idHomeBusiness);
+        logger.debug("statusType {}: ", statusType);
         if(statusType.equals(EnumStatus.CAP_DOI))
         {
             Query<JSONDB> query = new QueryImpl<JSONDB>();

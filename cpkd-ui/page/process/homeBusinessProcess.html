@@ -4,6 +4,8 @@
 #widget("/cpkd/widget/common/common")
 #script("/js/cpkd/inet/lib/homebusiness-process.min.js")
 #widget("/cpkd/widget/control/ajaxmask")
+#widget("/cpkd/widget/process/listcareer/form-dialog")
+#script("/js/cpkd/inet/lib/listcareer-form-dialog.min.js")
 <div id="business-process-div">
     <div>
         <div id="business-process-toolbar" class="wg-toolbar navbar-fixed-top">
@@ -18,8 +20,8 @@
                 <div role="tabpanel">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="business-process-tab">
-                        <li class="active" data-tab="tab01"><a href="#tab-business-info" data-toggle="tab">$text.getText("common.infoTask")</a></li>
-                        <li data-tab="tab02"><a href="#tab-business-infoProcess" data-toggle="tab">$text.getText("common.infoProcess")</a></li>
+                        <li class="active" data-tab="tab01" id="tab-info"><a href="#tab-business-info" data-toggle="tab">$text.getText("common.infoTask")</a></li>
+                        <li data-tab="tab02" id="tab-process" class="hide"><a href="#tab-business-infoProcess" data-toggle="tab">$text.getText("common.infoProcess")</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -40,6 +42,10 @@
                             </div>
                             <div id="tab-infoProcess-capital">
                                 #widget("/cpkd/widget/process/capital/form")
+
+                            </div>
+                            <div id="tab-infoProcess-career">
+                                #widget("/cpkd/widget/process/listcareer/list")
                             </div>
                             <div id="tab-infoProcess-listcontributor">
                                 #widget("/cpkd/widget/process/listcontributor/list")
