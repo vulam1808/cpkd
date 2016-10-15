@@ -38,7 +38,7 @@ import java.util.Map;
 @XPortalDataService(roles = {"cpkd.process"}, description = "Xử lý hồ sơ")
 @XPortalPageRequest(uri = "ita/homebusiness/loadinfo", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class BusinessLoadInfoService extends DataServiceMarker {
-    protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
+    protected static final Logger logger = LoggerFactory.getLogger(BusinessLoadInfoService.class);
     @Inject
     private HomeBusinessBo homeBusinessBo;
     @Inject
@@ -48,7 +48,7 @@ public class BusinessLoadInfoService extends DataServiceMarker {
             throws WebOSBOException {
         JSONObject mainObj = new JSONObject();
         String homeBusinessID = XParamUtils.getString("homeBusinessID", params, "");
-        //logger.debug("homeBusinessID {} ", homeBusinessID);
+        logger.debug("homeBusinessID {} ", homeBusinessID);
         mainObj = homeBusinessBo.loadBusinessInfoByHomeBusinessID(homeBusinessID);
         //logger.debug("homeBusinessID {} ", mainObj);
         //Test

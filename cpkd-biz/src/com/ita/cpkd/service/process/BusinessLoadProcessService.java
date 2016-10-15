@@ -35,7 +35,7 @@ import java.util.Map;
 @XPortalDataService(roles = {"cpkd.process"}, description = "Xử lý hồ sơ")
 @XPortalPageRequest(uri = "ita/homebusiness/loadprocess", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class BusinessLoadProcessService extends DataServiceMarker {
-    protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
+    protected static final Logger logger = LoggerFactory.getLogger(BusinessLoadProcessService.class);
     @Inject
     private HomeBusinessBo homeBusinessBo;
     @Inject

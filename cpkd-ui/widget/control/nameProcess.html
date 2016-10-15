@@ -1,0 +1,47 @@
+
+
+#script("/js/cpkd/inet/lib/nameProcess-widget.min.js")
+<!--#xscript()
+    $(function(){
+        var wgProvince = new iNet.ui.ita.ProvinceListWidget();
+        wgProvince.show();
+    });
+
+#end-->
+<div id="nameProcess-widget-content" >
+    <div id="nameProcess-widget" style="display: none;">
+
+       <!-- <div class="row" style="">
+            <div class="alert alert-info col-xs-12 col-sm-12" style="padding: 5px;">
+                <strong><i class="icon-info-sign"></i> $text.getText("common.listCareer")</strong>
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-md-12">
+                <label for="changebusiness-nameBusiness" class="control-label">
+                    <span  class="">$text.getText('common.changeNameBusiness') <span class="required"></span></span>
+                </label>
+                <div class="has-success ">
+                    <input id="changebusiness-nameBusiness" style="text-transform: uppercase" name="homebusiness-nameBusiness" type="text" class="col-md-12 form-control"/>
+
+                </div>
+            </div>
+        </div>
+        <div class="row form-group"  >
+            <div class="col-md-2">
+                <button id="btn-check-nameBusiness" class="btn btn-warning">
+                    <i class="icon-ok-sign"></i> $text.getText("common.button.check")
+                </button>
+            </div>
+            <div id="status-nameBusiness" class="col-md-10 has-error">
+                <div id="status-nameBusiness-info" class="hide">
+                </div>
+                <div id="status-nameBusiness-capmoi" class="hide"><p><i class="glyphicon glyphicon-remove form-control-feedback"></i> Đã tồn tại tên kinh doanh
+                    <button id="view-detail-task-1" type="button" class="btn btn-link">Xem chi tiết</button>
+                </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

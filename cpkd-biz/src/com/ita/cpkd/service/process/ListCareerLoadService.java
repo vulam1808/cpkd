@@ -73,7 +73,7 @@ public class ListCareerLoadService extends DataServiceMarker {
         // TODO check your required data
         logger.debug("idHomeBusiness {}: ", idHomeBusiness);
         logger.debug("statusType {}: ", statusType);
-        if(statusType.equals(EnumStatus.CAP_DOI))
+        if(statusType.equals(EnumStatus.CAP_DOI.toString()))
         {
             Query<JSONDB> query = new QueryImpl<JSONDB>();
             query.field("changeBusiness_ID").equal(idHomeBusiness);

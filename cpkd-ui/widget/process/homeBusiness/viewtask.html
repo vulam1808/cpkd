@@ -1,26 +1,17 @@
 
 #theme("/common/css/grid.min")
-#theme("/common/css/jquery/select2")
-#theme("/common/css/bootstrap/bootstrap-timepicker")
-#theme("/common/css/bootstrap/bootstrap-datepicker")
 
-#script("/js/common/bootstrap/plugins/bootstrap-timepicker.min.js")
-#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
-#script("/js/common/inet/lib/select.min.js")
 #script("/js/cpkd/inet/lib/homebusiness-form-view.min.js")
 
 <div id="homebusiness-div-view" class="">
-    <div id="homebusiness-view" class="wg-content">
-
-        <div class="row  alert alert-info bold" id="homebusiness-title" style="cursor: pointer;">
-                        <span class="col-md-12">
-                            <span id="homebusiness-info" style="float: left;display: flex;">
-                                <span><i class="icon-plus"></i> $text.getText('common.homebusiness.info'): </span>
-
-                              </span>
-                        </span>
+    <div id="homebusiness-view" class="">
+        <div class="row" style="">
+            <div class="alert alert-info col-xs-12 col-sm-12" style="padding: 5px;">
+                <strong><span><i class="icon-plus"></i> $text.getText('common.homebusiness.info'): </span></strong>
+            </div>
         </div>
-        <div id="homebusiness-item" class="container-fluid">
+
+        <div id="homebusiness-item" class="">
 
             <div class="row form-group">
                 <div class="col-md-12">
@@ -28,7 +19,7 @@
                         <span  class="">$text.getText('common.type_task')</span>
                     </label>
                     <div class="has-success ">
-                        <input id="homebusiness-type-task" class="col-md-12 form-control"/>
+                        <input id="homebusiness-type-task" disabled="disabled" class="col-md-12 form-control"/>
 
                     </div>
 
@@ -194,8 +185,8 @@
                         <label for="changebusiness-infoChange" class="control-label">
                             <span  class="">$text.getText('common.infoChange') <span class="required"></span></span>
                         </label>
-                        <input disabled="disabled" id="changebusiness-infoChange" type="text" class="col-md-12 form-control" />
-
+                        <!--<input disabled="disabled"  type="text" class="col-md-12 form-control" />-->
+                        <div id="changebusiness-infoChange" class="col-md-12"></div>
                         <!--<div id="changebusiness-infoChange" class="has-success ">
 
                         </div>-->

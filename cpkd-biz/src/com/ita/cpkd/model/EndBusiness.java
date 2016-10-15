@@ -8,7 +8,7 @@ public class EndBusiness {
     private String homeBusiness_ID;
     private String dateEnd;
     private String reason;
-    private String dateSubmit;
+    private long dateSubmit=System.currentTimeMillis();
     private String statusProcess;
     private String taskID;
 
@@ -60,11 +60,11 @@ public class EndBusiness {
         this.reason = reason;
     }
 
-    public String getDateSubmit() {
+    public long getDateSubmit() {
         return dateSubmit;
     }
 
-    public void setDateSubmit(String dateSubmit) {
+    public void setDateSubmit(long dateSubmit) {
         this.dateSubmit = dateSubmit;
     }
 }

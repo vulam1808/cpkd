@@ -6,14 +6,14 @@ import com.inet.xportal.web.annotation.XPortalModel;
 /**
  * Created by ACER on 9/28/2016.
  */
-@XPortalModel(name = "ita-detail", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
-public class Detail {
+
+public class Details {
     private String uuid;
     private String parent_ID;
-    private long dateSubmit;
+    private long dateSubmit =System.currentTimeMillis();
     private String statusProcess;
     private String taskID;
-
+    public Details() {}
     public String getTaskID() {
         return taskID;
     }

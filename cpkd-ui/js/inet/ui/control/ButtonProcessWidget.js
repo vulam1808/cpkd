@@ -9,19 +9,8 @@ $(function () {
             validate: ita.resources.validate
         };
         var url = {
-            load_province: iNet.getUrl('ita/province/load'),
-            load_district: iNet.getUrl('ita/district/load'),
-            load_ward: iNet.getUrl('ita/ward/load'),
-            load_areaBusiness: iNet.getUrl('ita/areabusiness/load'),
+            update_statusProcess: iNet.getUrl('ita/businessprocess/updatestatus')
 
-            load_enum: iNet.getUrl('ita/enums/load'),
-
-            save_homebusiness: iNet.getUrl('ita/homebusiness/save'),
-            save_changebusiness: iNet.getUrl('ita/changebusiness/save'),
-            save_endbusiness: iNet.getUrl('ita/endbusiness/save'),
-            save_pausebusiness: iNet.getUrl('ita/pausebusiness/save'),
-
-            check_name_business: iNet.getUrl('ita/homebusiness/checknamebusiness')
         };
         var $form = {
             //input_id_homebusiness:$('#id-homebusiness'),
@@ -36,13 +25,26 @@ $(function () {
             button_process_taxcode: $('#action-process-taxcode-btn')
         };
         this.id = 'business-process-toolbar';
+        var me = this;
         var __config = config || {};
+         me.idHomeBusiness = __config.idHomeBusiness;
+            me.statusProcess= __config.statusProcess;
+             me.parent_ID=__config.parent_ID;
+            me.act = __config.act;
         var self = this;
         var parentPage = null;
 //EVENT Button click ==========================================================
         $form.button_back.on('click',function(){
+            buttonBack();
 
-        });
+        }.createDelegate(this));
+
+        var buttonBack = function(){
+            console.log("Show ACT>>>", me.act);
+            var __url = iNet.getUrl('cpkd/page/index')+'#menu-process-business';
+            iNet.getLayout().window.location.href = __url;
+            iNet.getLayout().parentParams={act: me.act};
+        };
         $form.button_dropdown_additional.on('click',function(){
 
         });
@@ -53,7 +55,16 @@ $(function () {
 
         });
         $form.button_process.on('click',function(){
-
+            var __data = {
+                idHomeBusiness: me.idHomeBusiness,
+                statusProcess:me.act,
+                statusType:me.statusType,
+                parent_ID:me.parent_ID};
+            $.postJSON(url.update_statusProcess, __data, function (result) {
+                var __result = result || {};
+                console.log("__result button process?>>>", __result);
+                buttonBack();
+            });
         });
         $form.button_process_numberBusiness.on('click',function(){
 
@@ -62,7 +73,14 @@ $(function () {
 
         });
 
-
+        this.disabledButtonProcess = function()
+        {
+            $form.button_process.addClass('disabled');
+        }
+        this.enableButtonProcess = function()
+        {
+            $form.button_process.removeClass('disabled');
+        }
         iNet.ui.ita.ButtonProcess.superclass.constructor.call(this);
     };
 

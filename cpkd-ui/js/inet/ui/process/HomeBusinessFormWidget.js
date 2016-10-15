@@ -467,7 +467,7 @@ $(function () {
         },
          getDataCapMoi: function(){
             var __data = {};
-            __data.nameBusiness = this.$form.input_nameBusiness.val();
+            __data.nameBusiness = this.$form.input_nameBusiness.val().toUpperCase();
             __data.address = this.$formCapMoi.input_address.val();
             __data.province_ID = this.$formCapMoi.input_province.getValue();
             __data.district_ID = this.$formCapMoi.input_district.getValue();

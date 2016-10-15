@@ -29,12 +29,32 @@ public class ChangeBusiness {
     private String taxCode;
     private String type;
     private String cashCapital;
+    private String assetCapital;
     private String businessCapital;
-    private long dateSubmit;
+    private long dateSubmit =System.currentTimeMillis();
     private String statusProcess;
     private String taskID;
+    private String numberBusiness;
     private List<ListContributor> lstObjContributor;
     private List<ListCareer> lstObjCareer;
+    private List<String> infoChange = new ArrayList<String>();
+
+
+    public String getAssetCapital() {
+        return assetCapital;
+    }
+
+    public void setAssetCapital(String assetCapital) {
+        this.assetCapital = assetCapital;
+    }
+
+    public String getNumberBusiness() {
+        return numberBusiness;
+    }
+
+    public void setNumberBusiness(String numberBusiness) {
+        this.numberBusiness = numberBusiness;
+    }
 
     public List<ListContributor> getLstObjContributor() {
         return lstObjContributor;
@@ -100,7 +120,6 @@ public class ChangeBusiness {
         this.taskID = taskID;
     }
 
-    private List<String> infoChange = new ArrayList<String>();
 
     public List<String> getInfoChange() {
         return infoChange;

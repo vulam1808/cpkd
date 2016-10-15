@@ -14,6 +14,7 @@ import com.inet.xportal.xdb.persistence.JSONDB;
 import com.inet.xportal.xdb.query.Query;
 import com.inet.xportal.xdb.query.impl.QueryImpl;
 import com.ita.cpkd.bo.*;
+import com.ita.cpkd.enums.EnumChangeInfo;
 import com.ita.cpkd.enums.EnumProcess;
 import com.ita.cpkd.enums.EnumStatus;
 import com.ita.cpkd.model.*;
@@ -34,7 +35,7 @@ import java.util.Map;
  */
 @Named("ita_business_updatestatusprocessservice")
 @XPortalDataService(roles = {"cpkd.process"}, description = "Xử lý hồ sơ")
-@XPortalPageRequest(uri = "ita/business/save", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+@XPortalPageRequest(uri = "ita/businessprocess/updatestatus", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class BusinessUpdateStatusProcessService extends DataServiceMarker {
     protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
 
@@ -48,7 +49,24 @@ public class BusinessUpdateStatusProcessService extends DataServiceMarker {
         String idHomeBusiness = XParamUtils.getString("idHomeBusiness", params, "");
         String parent_ID = XParamUtils.getString("parent_ID", params, "");
         String status = XParamUtils.getString("statusProcess", params, "");
-        BusinessDetail obj =businessDetailBo.updateStatusProcess(status, idHomeBusiness, parent_ID);
+        String statusType = XParamUtils.getString("statusType", params, "");
+        if(idHomeBusiness.equals(parent_ID))
+        {
+            parent_ID="";
+        }
+        if(status.equals(EnumProcess.PROCESS.toString()))
+        {
+            status = EnumProcess.PROCESS_TAX.toString();
+        }
+        else if(status.equals(EnumProcess.PROCESS_TAX.toString()))
+        {
+            status = EnumProcess.PROCESS_ID.toString();
+        }
+        else if(status.equals(EnumProcess.PROCESS_TAX.toString()))
+        {
+            status = EnumProcess.DONE.toString();
+        }
+        BusinessDetail obj =businessDetailBo.updateStatusProcess(statusType,status, idHomeBusiness, parent_ID);
 
         return new ObjectWebDataservice<BusinessDetail>(obj);
     }

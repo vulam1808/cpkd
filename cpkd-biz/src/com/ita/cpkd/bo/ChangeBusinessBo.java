@@ -36,6 +36,14 @@ public class ChangeBusinessBo extends MagicContentBO<ChangeBusiness> {
     protected ChangeBusinessBo(@ContentContext(context = "itaNoSqlContext") MagicContentBF contentBf) {
         super(contentBf, "changeBusiness");
     }
+    public ChangeBusiness updateName(String name, String id) throws WebOSBOException
+    {
+
+        ChangeBusiness datas = super.load(id);
+        datas.setNameBusiness(name);
+        super.update(id, datas);
+        return datas;
+    }
     public ChangeBusiness addChangeBusiness(ChangeBusiness objchangeBusiness,String strInfoChange) throws WebOSBOException
     {
         String[] parts = strInfoChange.split(",");

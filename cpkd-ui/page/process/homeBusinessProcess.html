@@ -1,11 +1,20 @@
 #html({"lang":"vi","dir":"ltr", "xmlns":"http://www.w3.org/1999/xhtml","secure":"$user"})
 #keyworks({"title":'Cấp phép kinh doanh'})
 #meta({ "title":"iCloud Platform","viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+<!--
+#xscript()
+iNet.act = $ctx.value('act');
+iNet.taskID = $ctx.value('taskID');
+#end
+-->
+
 #widget("/cpkd/widget/common/common")
 #script("/js/cpkd/inet/lib/homebusiness-process.min.js")
 #widget("/cpkd/widget/control/ajaxmask")
 #widget("/cpkd/widget/process/listcareer/form-dialog")
 #script("/js/cpkd/inet/lib/listcareer-form-dialog.min.js")
+#widget("/cpkd/widget/control/viewInfoDetail")
+#widget("/cpkd/widget/control/infoBusiness")
 <div id="business-process-div">
     <div>
         <div id="business-process-toolbar" class="wg-toolbar navbar-fixed-top">
@@ -20,22 +29,25 @@
                 <div role="tabpanel">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="business-process-tab">
-                        <li class="active" data-tab="tab01" id="tab-info"><a href="#tab-business-info" data-toggle="tab">$text.getText("common.infoTask")</a></li>
+                        <li class="active" data-tab="tab01" id="tab-info"><a href="#tab-business-infoTask" data-toggle="tab">$text.getText("common.infoTask")</a></li>
                         <li data-tab="tab02" id="tab-process" class="hide"><a href="#tab-business-infoProcess" data-toggle="tab">$text.getText("common.infoProcess")</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div class="tab-pane active container-fluid" id="tab-business-info">
-                            #widget("/cpkd/widget/homeBusiness/detail-dialog")
+                        <div class="tab-pane active container-fluid" id="tab-business-infoTask">
+                            #widget("/cpkd/widget/process/homeBusiness/viewtask")
                         </div>
                         <div class="tab-pane container-fluid" id="tab-business-infoProcess">
                             <div id="tab-button-proess" class="row" >
-                                <button id="btn-infoprocess-load" class="btn btn-info" title="Xử lý hồ sơ">
+                                <!--<button id="btn-infoprocess-load" class="btn btn-info" title="Xử lý hồ sơ">
                                     <i class="icon-edit"></i> $text.getText('common.button.update')
-                                </button>
+                                </button>-->
                                 <button id="btn-infoprocess-save" class="btn btn-warning" title="Xử lý hồ sơ">
                                     <i class="icon-ok-sign"></i> $text.getText('common.button.save')
                                 </button>
+                            </div>
+                            <div id="tab-infoProcess-nameChange">
+                                #widget("/cpkd/widget/control/nameProcess")
                             </div>
                             <div id="tab-infoProcess-person">
                                 #widget("/cpkd/widget/process/person/form")

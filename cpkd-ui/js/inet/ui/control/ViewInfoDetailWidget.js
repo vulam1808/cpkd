@@ -34,8 +34,9 @@ $(function() {
                 var Person = me.HomeBusiness.objPersonRepresent || {};
                 var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
                 $div.div_Person.html('').append($div_id_person.html());
-                $div_id_person.remove();
+               // $div_id_person.remove();
                     var jsPerson = new iNet.ui.ita.PersonRepresentWidget({
+                        id : me.id,
                         PersonRepresent: Person});
                     jsPerson.setReadonly();
                     jsPerson.show();
@@ -45,8 +46,9 @@ $(function() {
 
                 var $div_id_capital = $.getCmp(__config.divIDCapital || 'capital-form-widget-content');
                 $div.div_capital.html('').append($div_id_capital.html());
-                $div_id_capital.remove();
+               // $div_id_capital.remove();
                     var jsCapital = new iNet.ui.ita.CapitalFormWidget({
+                        id : me.id,
                         HomeBusiness: me.HomeBusiness});
                     jsCapital.setReadonly();
                     jsCapital.show();
@@ -56,8 +58,9 @@ $(function() {
 
                 var $div_id_listcareer = $.getCmp(__config.divIDlistCareer || 'listcareer-widget-content');
                 $div.div_listcareer.html('').append($div_id_listcareer.html());
-                $div_id_listcareer.remove();
+                //$div_id_listcareer.remove();
                 var jslistcareer = new iNet.ui.ita.ListCareerListWidget({
+                    id : me.id,
                     idHomeBusiness: me.idHomeBusiness,
                     statusType: me.statusType
                 });
@@ -68,8 +71,9 @@ $(function() {
 
                 var $div_id_listcontributor = $.getCmp(__config.divIDlistContributor || 'listcontributor-widget-content');
                 $div.div_listcontributor.html('').append($div_id_listcontributor.html());
-                $div_id_listcontributor.remove();
+                //$div_id_listcontributor.remove();
                 var jslistcontributor = new iNet.ui.ita.ListContributorListWidget({
+                    id : me.id,
                     idHomeBusiness: me.idHomeBusiness,
                     statusType: me.statusType
                 });

@@ -1,6 +1,5 @@
 package com.ita.cpkd.service.process;
 
-import com.inet.xportal.nosql.web.data.SearchDTO;
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
 import com.inet.xportal.web.annotation.XPortalDataService;
@@ -10,9 +9,6 @@ import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
-import com.inet.xportal.xdb.persistence.JSONDB;
-import com.inet.xportal.xdb.query.Query;
-import com.inet.xportal.xdb.query.impl.QueryImpl;
 import com.ita.cpkd.bo.*;
 import com.ita.cpkd.enums.EnumProcess;
 import com.ita.cpkd.enums.EnumStatus;
@@ -23,9 +19,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 
@@ -68,7 +61,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
             {
                 taskID = arbmodel.getUuid();
             }
-            businessDetailBo.saveBusinessDetail(arbmodel.getNameBusiness(),arbmodel.getUuid(),taskID,statusType,new Detail());
+            businessDetailBo.saveBusinessDetail(arbmodel.getNameBusiness(),arbmodel.getUuid(),taskID,statusType,new Details());
             return new ObjectWebDataservice<HomeBusiness>(arbmodel);
         }
         else if(statusType.equals(EnumStatus.CAP_DOI.toString()))
@@ -93,7 +86,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
 
 
             String changeBusinessID = objchange.getUuid();
-            Detail _objDetail =new Detail();
+            Details _objDetail =new Details();
             _objDetail.setParent_ID(changeBusinessID);
             _objDetail.setStatusProcess(EnumProcess.PROCESS.toString());
             //_objDetail.setDateSubmit();
@@ -123,7 +116,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
             EndBusiness objEnd = endBusinessBo.addEndBusiness(objmodel);
 
             String endBusinessID = objEnd.getUuid();
-            Detail _objDetail =new Detail();
+            Details _objDetail =new Details();
             _objDetail.setParent_ID(endBusinessID);
             _objDetail.setStatusProcess(EnumProcess.PROCESS.toString());
             if(taskID == null || taskID.equals(""))
@@ -151,7 +144,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
             PauseBusiness objpause = pauseBusinessBo.addPauseBusiness(objmodel);
 
             String pauseBusinessID = objpause.getUuid();
-            Detail _objDetail =new Detail();
+            Details _objDetail =new Details();
             _objDetail.setParent_ID(pauseBusinessID);
             _objDetail.setStatusProcess(EnumProcess.PROCESS.toString());
             if(taskID == null || taskID.equals(""))

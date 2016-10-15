@@ -30,7 +30,7 @@ public class HomeBusiness {
     private String cashCapital;
     private String assetCapital;
     private String businessCapital;
-    private long dateSubmit;
+    private long dateSubmit=System.currentTimeMillis();
     private String statusType;
     private String taskID;
     private String statusProcess;
