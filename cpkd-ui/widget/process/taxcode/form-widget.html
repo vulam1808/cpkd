@@ -1,11 +1,13 @@
 #script("/js/cpkd/inet/lib/taxcode-widget.min.js")
-<div id="taxcode-widget">
-    <div class="wg-toolbar" class="navbar-fixed-top">
+<div id="taxcode-widget" class="modal fade" data-focus-on="input:first" data-width="650" tabindex="-1" style="display: none">
+    <div class="modal-header">
 
         <button id="taxcode-location-btn-update" class="btn btn-success">
             <i class="icon-save"></i> $text.getText("Update")
         </button>
-
+        <button id="action-process-btn" class="hide btn btn-primary" title="Xử lý hồ sơ">
+            <i class="icon-cogs"></i> $text.getText('Xử lý hồ sơ')
+        </button>
     </div>
     <div class="wg-content">
         <div class="row-fluid">

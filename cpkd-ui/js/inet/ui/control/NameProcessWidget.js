@@ -15,7 +15,8 @@ $(function () {
         var url = {
 
             check_name_business: iNet.getUrl('ita/homebusiness/checknamebusiness'),
-            update_name: iNet.getUrl('ita/homebusiness/changenamebusiness')
+            update_name: iNet.getUrl('ita/homebusiness/changenamebusiness'),
+            load_infoDetail: iNet.getUrl('ita/homebusiness/loadinfo')
 
         };
         this.$form = {
@@ -38,9 +39,14 @@ $(function () {
         this.id = this.id || 'nameProcess-widget';
         this.idHomeBusiness = __config.idHomeBusiness;
         this.idChangeBusiness = __config.idChangeBusiness;
+        this.nameBusiness = __config.nameBusiness;
         iNet.ui.ita.ChangeNameBusinessForm.superclass.constructor.call(this);
         var me= this;
-
+        var loadNameBusiness= function(){
+            console.log(me.nameBusiness);
+            me.setData(me.nameBusiness);
+        };
+        loadNameBusiness();
 
 
 
@@ -82,18 +88,19 @@ $(function () {
                     me.__id_homebusiness = __item.homeBusiness_ID;
                     FormService.displayContent( me.$form.div_status_check_capmoi,'show');
 
-
+                    console.log('if',__item)
                     // me.notifySuccess(resource.validate.save_title, resource.validate.save_success);
                 }
                 else
                 {
 
+                    FormService.displayContent( me.$form.div_status_check_info,'show');
                     FormService.displayContent( me.$form.div_status_check_capmoi,'hide');
-
 
                         var html = '<p><i class="glyphicon glyphicon-ok form-control-feedback"></i>' +
                             ' Bạn có thể đăng ký kinh doanh với tên này </p>';
                         //me.$form.div_status_check.empty();
+                    console.log('else',html)
                         me.$form.div_status_check_info.append(html);
                         me.__isCheckNameSave = true;
 
@@ -116,7 +123,7 @@ $(function () {
          }.createDelegate(this));*/
 
         $("#view-detail-task-1").on('click', function(){
-            var __data = {homeBusinessID:me.__id_homebusiness};
+            var __data = {homeBusinessID:me.idHomeBusiness};
             $.postJSON(url.load_infoDetail, __data, function (result) {
                 var __result = result || {};
                 console.log("Info Detail",__result);

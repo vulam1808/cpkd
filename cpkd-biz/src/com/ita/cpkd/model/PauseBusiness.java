@@ -9,7 +9,7 @@ public class PauseBusiness {
     private String dayofPause;
     private String dateStart;
     private String reason;
-    private long dateSubmit=System.currentTimeMillis();
+    private String dateSubmit;//=System.currentTimeMillis();
     private String statusProcess;
     private String taskID;
 
@@ -70,11 +70,11 @@ public class PauseBusiness {
         this.reason = reason;
     }
 
-    public long getDateSubmit() {
+    public String getDateSubmit() {
         return dateSubmit;
     }
 
-    public void setDateSubmit(long dateSubmit) {
+    public void setDateSubmit(String dateSubmit) {
         this.dateSubmit = dateSubmit;
     }
 }

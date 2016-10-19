@@ -1,8 +1,26 @@
+
+#set($process = false)
+#set($master = false)
+#set($create = false)
+
+#hasRole("cpkd.process") #set($process = true) #end
+#hasRole("cpkd.master") #set($master = true) #end
+#hasRole("cpkd.create") #set($create = true) #end
+
+#xscript()
+iNet.roles = {
+    process: $process,
+    master: $master,
+    create: $create
+};
+#end
+
 <a id="imenu-toggler" href="javascript:;"><span></span></a>
 <div id="sidebar" class="fixed">
    <div id="sidebar-shortcuts">
     </div>
     <ul class="nav nav-list">
+        #if($create)
         <li class="active">
         <a href="javascript:;"> <i class="icon-book"></i> <span>$text.getText("common.tiepnhan")</span> <b class="arrow icon-angle-down"></b></a>
 	        <ul class="submenu">
@@ -18,6 +36,8 @@
 	            <li id="elearning-menu-example2" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/example2/index')"><i class="icon-double-angle-right"></i> <span>$text.getText("Example 2")</span> <span data-type="number" class="badge badge-primary"></span></a></li>-->
 	        </ul>
         </li>
+        #end
+        #if($process)
         <li>
         <a href="javascript:;"> <i class="icon-cogs"></i> <span>$text.getText("common.process")</span> <b class="arrow icon-angle-down"></b></a>
           <ul class="submenu">
@@ -25,7 +45,7 @@
               <li id="menu-taxcode-business" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/list/listprocessbusiness', 'act=PROCESS_TAX')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.list_taxcode_business")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
               <li id="menu-task-business" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/list/listprocessbusiness', 'act=DONE')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.list_task_business")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
 
-              <li id="menu-process-homebusines" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/process/homeBusinessProcess')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.chuyenvienxuly")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
+              <li id="menu-process-homebusines" class="hide active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/process/homeBusinessProcess')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.chuyenvienxuly")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
              <!-- <li id="menu-process-taxcode" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/process/taxCode')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.taxCode")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
               <li id="menu-process-capital" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/process/capital')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.capital")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
               <li id="menu-process-person" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/process/person')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.personrepresent")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
@@ -35,6 +55,8 @@
               <li id="menu-process-listcareer" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/process/listcareer')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.listcareer")</span> <span data-type="number" class="badge badge-primary"></span></a></li>-->
           </ul>
         </li>
+        #end
+        #if($master)
         <li>
             <a href="javascript:;"> <i class="icon-tag"></i> <span>Danh Mục</span> <b class="arrow icon-angle-down"></b></a>
             <ul class="submenu">
@@ -49,6 +71,7 @@
 
             </ul>
         </li>
+        #end
     </ul>
     <div id="sidebar-collapse">
       <i class="icon-double-angle-left"></i>

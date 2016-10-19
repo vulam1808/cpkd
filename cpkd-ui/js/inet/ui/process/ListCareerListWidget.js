@@ -7,6 +7,13 @@ $(function() {
 
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.ListCareerListWidget = function (config) {
+        var __config = config || {};
+        var me= this;
+
+        iNet.apply(this, __config);// apply configuration
+        me.id = this.id || 'listcareer-widget';
+        me.idHomeBusiness = __config.idHomeBusiness;
+        me.statusType = __config.statusType;
         var resource = {
             common: ita.resources.common,
             validate: ita.resources.validate
@@ -20,15 +27,9 @@ $(function() {
             del: iNet.getUrl('ita/listcareer/delete')
         };
         this.$form = {
-            btn_add: $('#button-listcareer')
+            btn_add: $('#'+me.id + ' #button-listcareer')
         }
-        var __config = config || {};
-        var me= this;
-
-        iNet.apply(this, __config);// apply configuration
-        this.id = this.id || 'listcareer-widget';
-        me.idHomeBusiness = __config.idHomeBusiness;
-        me.statusType = __config.statusType;
+        $('#'+me.id + ' #listcareer-grid').prop('id', 'listcareer-grid-'+me.id );
         iNet.ui.ita.ListCareerListWidget.superclass.constructor.call(this);
 
 
@@ -164,7 +165,7 @@ $(function() {
         });
         //load grid
         me.grid = new iNet.ui.grid.Grid({
-            id : 'listcareer-grid',
+            id : 'listcareer-grid-'+me.id,
             dataSource : dataSource,
             url: url.view,
             firstLoad: true,

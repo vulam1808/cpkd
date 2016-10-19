@@ -47,7 +47,8 @@ import java.util.List;
  */
 @Named("BusinessDetailBo")
 public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
-    protected static final Logger logger = LoggerFactory.getLogger(BusinessDetailBo.class);
+    //protected static final Logger logger = LoggerFactory.getLogger(BusinessDetailBo.class);
+    private static final Logger logger = LoggerFactory.getLogger(BusinessDetailBo.class);
     /**
      * Create {@link AccountBo} instance
      *
@@ -173,6 +174,7 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
             return  objdetail;
             //logger.debug("nameBusiness 2 {}", objdetail.getNameBusiness());
         }
+
         return objdetail;
     }
 
@@ -215,52 +217,73 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
             else if(statusType.equals(EnumStatus.CAP_DOI.toString())) {
                 List<Details> lstChange = objbusinessDetail.getList_changeBusiness_ID();
                 if (lstChange != null) {
+                    List<Details> lstDetail = new ArrayList<Details>();
                     for (Object childNode : lstChange) {
                         JSONObject fromObject = JSONObject.fromObject(childNode);
                         Details item = (Details) JSONObject.toBean(fromObject,
                                 Details.class);
                         String parentID = item.getTaskID();
-                        if (parentID == prant_id) {
+                        if (parentID.equals(prant_id)) {
                             item.setStatusProcess(status);
-                            //break;
-                            super.update(uuid, objbusinessDetail);
-                            return objbusinessDetail;
+                            lstDetail.add(item);
+                            logger.debug("lstChange Count 2: {}", lstChange.size());
+
+                        }
+                        else {
+                            lstDetail.add(item);
                         }
                     }
+                    objbusinessDetail.setList_changeBusiness_ID(lstDetail);
+                    //break;
+                    super.update(uuid, objbusinessDetail);
+                    return objbusinessDetail;
                 }
             }
             else if(statusType.equals(EnumStatus.TAM_NGUNG.toString())) {
                 List<Details> lstPause = objbusinessDetail.getList_pauseBusiness_ID();
                 if (lstPause != null) {
+                    List<Details> lstDetail = new ArrayList<Details>();
                     for (Object childNode : lstPause) {
                         JSONObject fromObject = JSONObject.fromObject(childNode);
                         Details item = (Details) JSONObject.toBean(fromObject,
                                 Details.class);
                         String parentID = item.getTaskID();
-                        if (parentID == prant_id) {
+                        if (parentID.equals(prant_id)) {
                             item.setStatusProcess(status);
+                            lstDetail.add(item);
                             //break;
-                            super.update(uuid, objbusinessDetail);
-                            return objbusinessDetail;
+
+                        }
+                        else {
+                            lstDetail.add(item);
                         }
                     }
+                    objbusinessDetail.setList_pauseBusiness_ID(lstDetail);
+                    super.update(uuid, objbusinessDetail);
+                    return objbusinessDetail;
                 }
             }
             else if(statusType.equals(EnumStatus.CHAM_DUT.toString())) {
                 List<Details> lstEnd = objbusinessDetail.getList_endBusiness_ID();
                 if (lstEnd != null) {
+                    List<Details> lstDetail = new ArrayList<Details>();
                     for (Object childNode : lstEnd) {
                         JSONObject fromObject = JSONObject.fromObject(childNode);
                         Details item = (Details) JSONObject.toBean(fromObject,
                                 Details.class);
                         String parentID = item.getTaskID();
-                        if (parentID == prant_id) {
+                        if (parentID.equals(prant_id)) {
                             item.setStatusProcess(status);
                             //break;
-                            super.update(uuid, objbusinessDetail);
-                            return objbusinessDetail;
+                            lstDetail.add(item);
+                        }
+                        else {
+                            lstDetail.add(item);
                         }
                     }
+                    objbusinessDetail.setList_endBusiness_ID(lstDetail);
+                    super.update(uuid, objbusinessDetail);
+                    return objbusinessDetail;
                 }
             }
 
@@ -326,6 +349,7 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
                             String _stPro = dt.getStatusProcess()!=null?dt.getStatusProcess():"";
                             if(_stPro.equals(status)) {
                                 JSONObject obj = setObjectTaskProcess(dt.getTaskID(),EnumStatus.CAP_DOI.toString(),status,item,lstward,lstper,lstareaBusiness);
+                                obj.put("parent_ID",dt.getParent_ID());
                                 obj.put("dateSubmit",dt.getDateSubmit());
                                 lstObj.add(obj);
 
@@ -342,7 +366,8 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
                                     Details.class);
                             String _stPro = dt.getStatusProcess()!=null?dt.getStatusProcess():"";
                             if(_stPro.equals(status)) {
-                                JSONObject obj = setObjectTaskProcess(dt.getTaskID(),EnumStatus.CAP_DOI.toString(),status,item,lstward,lstper,lstareaBusiness);
+                                JSONObject obj = setObjectTaskProcess(dt.getTaskID(),EnumStatus.TAM_NGUNG.toString(),status,item,lstward,lstper,lstareaBusiness);
+                                obj.put("parent_ID",dt.getParent_ID());
                                 obj.put("dateSubmit", dt.getDateSubmit());
                                 lstObj.add(obj);
                                 //break;
@@ -353,13 +378,14 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
                     }
                     List<Details> lstEnd =item.getList_endBusiness_ID();
                     if(lstEnd!=null ) {
-                        for (Object childNode : lstPause) {
+                        for (Object childNode : lstEnd) {
                             JSONObject fromObject = JSONObject.fromObject(childNode);
                             Details dt = (Details) JSONObject.toBean(fromObject,
                                     Details.class);
                             String _stPro = dt.getStatusProcess()!=null?dt.getStatusProcess():"";
                             if(_stPro.equals(status)) {
                                 JSONObject obj = setObjectTaskProcess(dt.getTaskID(),EnumStatus.CHAM_DUT.toString(),status,item,lstward,lstper,lstareaBusiness);
+                                obj.put("parent_ID",dt.getParent_ID());
                                 obj.put("dateSubmit",dt.getDateSubmit());
                                 lstObj.add(obj);
                                 //break;
@@ -422,7 +448,8 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
         obj.put("namePeprensent",strPer);
         obj.put("statusProcess",statusProcess);
         obj.put("statusType",statusType);
-
+        obj.put("taxCode",item.getTaxCode()!=null?item.getTaxCode():"");
+        obj.put("numberBusiness",item.getNumberBusiness()!=null?item.getNumberBusiness():"");
         obj.put("idHomeBusiness",item.getHomeBusiness_ID());
         obj.put("taskID",taskID);
 
@@ -448,6 +475,7 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
             objbusinessDetail = datas.getItems().get(0);
             String uuid = objbusinessDetail.getUuid();
             objdetail.setTaskID(taskID);
+            objdetail.setDateSubmit(Long.toString(System.currentTimeMillis()));
             if(status.equals(EnumStatus.CAP_DOI.toString()))
             {
                 List<Details> lst =objbusinessDetail.getList_changeBusiness_ID();
@@ -455,6 +483,7 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
                     lst = new ArrayList<Details>();
                 lst.add(objdetail);
                 objbusinessDetail.setList_changeBusiness_ID(lst);
+
                 //Set name thay doi
                 /*if(nameBusiness != null || !nameBusiness.isEmpty() ) {
                     objbusinessDetail.setNameBusiness(nameBusiness);
@@ -491,6 +520,7 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
             objbusinessDetail.setStatusProcess(EnumProcess.PROCESS.toString());
             objbusinessDetail.setHomeBusiness_ID(homeBusinessID);
             objbusinessDetail.setTaskID(taskID);
+            objbusinessDetail.setDateSubmit(Long.toString(System.currentTimeMillis()));
             String uuid = super.add(objbusinessDetail);
             objbusinessDetail.setUuid(uuid);
         }

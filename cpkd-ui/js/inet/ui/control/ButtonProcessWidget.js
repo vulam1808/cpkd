@@ -28,7 +28,7 @@ $(function () {
         var me = this;
         var __config = config || {};
          me.idHomeBusiness = __config.idHomeBusiness;
-            me.statusProcess= __config.statusProcess;
+            me.statusType= __config.statusType;
              me.parent_ID=__config.parent_ID;
             me.act = __config.act;
         var self = this;
@@ -60,12 +60,30 @@ $(function () {
                 statusProcess:me.act,
                 statusType:me.statusType,
                 parent_ID:me.parent_ID};
-            $.postJSON(url.update_statusProcess, __data, function (result) {
+            console.log("button_process data?>>>", __data);
+            confirmDialog.params  = __data;
+            //confirmDialog.setContent(String.format(resource.constant.del_content, record.name));
+            confirmDialog.show();
+            /*$.postJSON(url.update_statusProcess, __data, function (result) {
                 var __result = result || {};
                 console.log("__result button process?>>>", __result);
                 buttonBack();
-            });
+            });*/
         });
+        var confirmDialog = me.confirmDialog(
+            resource.validate.process_title, me.getNotifyContent(resource.validate.sure_process, ''), function () {
+                if (!iNet.isEmpty(confirmDialog.params || {})) {
+                    confirmDialog.hide();
+                    $.postJSON(url.update_statusProcess, confirmDialog.params, function (result) {
+                        var __result = result || {};
+                        console.log("__result button process?>>>", __result);
+                        buttonBack();
+                    }/*, {
+                        mask: me.getMask(),
+                        msg: iNet.validate.process_success
+                    }*/);
+                }
+            });
         $form.button_process_numberBusiness.on('click',function(){
 
         });

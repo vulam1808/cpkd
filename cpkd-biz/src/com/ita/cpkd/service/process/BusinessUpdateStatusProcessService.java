@@ -37,7 +37,7 @@ import java.util.Map;
 @XPortalDataService(roles = {"cpkd.process"}, description = "Xử lý hồ sơ")
 @XPortalPageRequest(uri = "ita/businessprocess/updatestatus", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class BusinessUpdateStatusProcessService extends DataServiceMarker {
-    protected static final Logger logger = LoggerFactory.getLogger(EnumStatusLoadService.class);
+    protected static final Logger logger = LoggerFactory.getLogger(BusinessUpdateStatusProcessService.class);
 
     @Inject
     private BusinessDetailBo businessDetailBo;
@@ -54,20 +54,25 @@ public class BusinessUpdateStatusProcessService extends DataServiceMarker {
         {
             parent_ID="";
         }
-        if(status.equals(EnumProcess.PROCESS.toString()))
-        {
-            status = EnumProcess.PROCESS_TAX.toString();
+        if(statusType.equals(EnumStatus.CAP_MOI.toString())) {
+            if (status.equals(EnumProcess.PROCESS.toString())) {
+                status = EnumProcess.PROCESS_TAX.toString();
+            } else if (status.equals(EnumProcess.PROCESS_TAX.toString())) {
+                status = EnumProcess.PROCESS_ID.toString();
+            } else if (status.equals(EnumProcess.PROCESS_ID.toString())) {
+                status = EnumProcess.DONE.toString();
+            }
         }
-        else if(status.equals(EnumProcess.PROCESS_TAX.toString()))
-        {
-            status = EnumProcess.PROCESS_ID.toString();
-        }
-        else if(status.equals(EnumProcess.PROCESS_TAX.toString()))
+        else
         {
             status = EnumProcess.DONE.toString();
         }
+        logger.debug("statusProcess  {}",status);
+        logger.debug("idHomeBusiness  {}",idHomeBusiness);
+        logger.debug("parent_ID  {}",parent_ID);
+        logger.debug("statusType  {}",statusType);
         BusinessDetail obj =businessDetailBo.updateStatusProcess(statusType,status, idHomeBusiness, parent_ID);
-
+        logger.debug("statusType  {}",obj.getStatusProcess());
         return new ObjectWebDataservice<BusinessDetail>(obj);
     }
 

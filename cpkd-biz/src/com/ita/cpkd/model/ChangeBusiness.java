@@ -31,13 +31,13 @@ public class ChangeBusiness {
     private String cashCapital;
     private String assetCapital;
     private String businessCapital;
-    private long dateSubmit =System.currentTimeMillis();
+    private String dateSubmit;// =System.currentTimeMillis();
     private String statusProcess;
     private String taskID;
     private String numberBusiness;
     private List<ListContributor> lstObjContributor;
     private List<ListCareer> lstObjCareer;
-    private List<String> infoChange = new ArrayList<String>();
+    private List<String> infoChange;// = new ArrayList<String>();
 
 
     public String getAssetCapital() {
@@ -275,11 +275,11 @@ public class ChangeBusiness {
         this.businessCapital = businessCapital;
     }
 
-    public long getDateSubmit() {
+    public String getDateSubmit() {
         return dateSubmit;
     }
 
-    public void setDateSubmit(long dateSubmit) {
+    public void setDateSubmit(String dateSubmit) {
         this.dateSubmit = dateSubmit;
     }
 }

@@ -11,26 +11,26 @@ public class PersonRepresent {
     private String uuid;
     private String gender;
     private String nameRepresent;
-    private long birthday;
+    private String birthday;
     private String race;
     private String regilion;
     private String idnumber;
-    private long issueDate;
+    private String issueDate;
     private String issuePlace;
 
-    public long getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public long getIssueDate() {
+    public String getIssueDate() {
         return issueDate;
     }
 
-    public void setBirthday(long birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public void setIssueDate(long issueDate) {
+    public void setIssueDate(String issueDate) {
         this.issueDate = issueDate;
     }
     public String getUuid() {

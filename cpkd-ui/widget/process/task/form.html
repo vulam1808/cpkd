@@ -1,22 +1,6 @@
-#script("/js/cpkd/inet/lib/view-info-detail.min.js")
-<div id="view-info-detail" class="hide">
-    <div id="info-detail">
-        <div id="div-dateSubmit" class="hide row">
-            <h5><i class="icon-calendar"></i>
-                <span id="dateSubmit-title">$text.getText("common.dateSubmit")</span>
-                <span id="dateSubmit-name"></span>
-            </h5>
-        </div>
-        <div id="div-changeInfo" class="hide row">
-            <h5><i class="fa fa-cog"></i>
-                <span id="changeInfo-title">$text.getText("common.infoChange")</span>
-                <span id="changeInfo-name"></span>
-            </h5>
-        </div>
-
-    </div>
-
-    <div id="content-detail">
+#script("/js/cpkd/inet/lib/task-process.min.js")
+<div id="task-proccess-widget-content">
+    <div id="task-proccess-widget"  class="hide">
         <div class="row" style="">
             <div class="alert alert-info col-xs-12 col-sm-12" style="padding: 5px;">
                 <strong><i class="icon-info-sign"></i> $text.getText("common.infotask")</strong>
@@ -27,7 +11,7 @@
                 <label  class=control-label">
                     <span class="">$text.getText('common.nameAreaBusiness')</span></span>
                 </label>
-                <input data-id="homebusiness-areaBusiness"  class="col-md-12 form-control"/>
+                <input id="homebusiness-areaBusiness-task" data-id="homebusiness-areaBusiness"  class="col-md-12 form-control"/>
             </div>
         </div>
         <div class="row">
@@ -35,7 +19,7 @@
                 <label  class="control-label">
                     <span class="">$text.getText('common.addressBusiness')</span>
                 </label>
-                <input data-id="homebusiness-address" type="text" class="col-md-12 form-control" />
+                <input id="homebusiness-address-task" data-id="homebusiness-address" type="text" class="col-md-12 form-control" />
 
             </div>
 
@@ -43,7 +27,7 @@
                 <label class="control-label">
                     <span class="">$text.getText('common.province')</span></span>
                 </label>
-                <input data-id="homebusiness-province" class="col-md-12 form-control"/>
+                <input id="homebusiness-province-task" data-id="homebusiness-province" class="col-md-12 form-control"/>
 
             </div>
         </div>
@@ -52,7 +36,7 @@
                 <label class="control-label">
                     <span class="">$text.getText('common.district')</span></span>
                 </label>
-                <input data-id="homebusiness-district" class="col-md-12 form-control"/>
+                <input id="homebusiness-district-task" data-id="homebusiness-district" class="col-md-12 form-control"/>
 
             </div>
 
@@ -60,7 +44,7 @@
                 <label class="control-label">
                     <span class="">$text.getText('common.ward')</span></span>
                 </label>
-                <input data-id="homebusiness-ward" class="col-md-12 form-control"/>
+                <input id="homebusiness-ward-task" data-id="homebusiness-ward" class="col-md-12 form-control"/>
 
             </div>
         </div>
@@ -101,22 +85,4 @@
 
         </div>
     </div>
-    <div id="content-pauseBusiness">
-
     </div>
-    <div id="content-endBusiness">
-
-    </div>
-    <div id="content-person">
-
-    </div>
-    <div id="content-capital">
-
-    </div>
-    <div id="content-listcareer">
-
-    </div>
-    <div id="content-listcontributor">
-
-    </div>
-</div>

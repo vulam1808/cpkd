@@ -9,20 +9,6 @@ $(function() {
 
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.CapitalFormWidget = function (config) {
-        var resource = {
-            common: ita.resources.common,
-            validate: ita.resources.validate
-        };
-        this.$input = {
-            cashCapital: $('#capital-txt-cashCapital'),
-            assetCapital: $('#capital-txt-assetCapital'),
-            businessCapital: $('#capital-txt-businessCapital')
-
-        };
-
-        var url = {
-            update_capitalHomeBusiness: iNet.getUrl('ita/capital/update')
-        };
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
         this.id = this.id || 'capital-form-widget';
@@ -30,11 +16,27 @@ $(function() {
         this.idHomeBusiness = __config.idHomeBusiness;
         this.statusType = __config.statusType;
         this.HomeBusiness = __config.HomeBusiness;
+        var me = this;
+        var resource = {
+            common: ita.resources.common,
+            validate: ita.resources.validate
+        };
+        this.$input = {
+            cashCapital: $('#'+me.id + ' #capital-txt-cashCapital'),
+            assetCapital: $('#'+me.id + ' #capital-txt-assetCapital'),
+            businessCapital: $('#'+me.id + ' #capital-txt-businessCapital')
+
+        };
+
+        var url = {
+            update_capitalHomeBusiness: iNet.getUrl('ita/capital/update')
+        };
+
 
         iNet.ui.ita.CapitalFormWidget.superclass.constructor.call(this);
 
 
-        var me = this;
+
 
 
         //me.__id_homebusiness = '';

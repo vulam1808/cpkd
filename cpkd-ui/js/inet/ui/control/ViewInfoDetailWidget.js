@@ -13,83 +13,143 @@ $(function() {
         iNet.apply(this, __config);// apply configuration
 
         this.id = __config.id || 'view-info-div';
+        //this.idTab = __config.idTab || 'view-info-div';
         this.idInterface = 'view-info-detail';
-
         var me = this;
-        me.HomeBusiness = __config.HomeBusiness || {};
-        me.idHomeBusiness = me.HomeBusiness.uuid||'';
-        me.statusType = __config.statusType || '';
-        var loadInfoList = function()
-        {
-            if (CommonService.isSuccess(me.HomeBusiness)) {
-                console.log('id view info detail',me.idHomeBusiness);
-                console.log('statusType view info detail',me.statusType);
-                console.log('HomeBusiness view info detail',me.HomeBusiness);
-                var $div = {
-                    div_Person: $('#content-person'),
-                    div_listcareer: $('#content-listcareer'),
-                    div_listcontributor: $('#content-listcontributor'),
-                    div_capital: $('#content-capital')
-                };
-                var Person = me.HomeBusiness.objPersonRepresent || {};
-                var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
-                $div.div_Person.html('').append($div_id_person.html());
-               // $div_id_person.remove();
-                    var jsPerson = new iNet.ui.ita.PersonRepresentWidget({
-                        id : me.id,
-                        PersonRepresent: Person});
-                    jsPerson.setReadonly();
-                    jsPerson.show();
-
-
-
-
-                var $div_id_capital = $.getCmp(__config.divIDCapital || 'capital-form-widget-content');
-                $div.div_capital.html('').append($div_id_capital.html());
-               // $div_id_capital.remove();
-                    var jsCapital = new iNet.ui.ita.CapitalFormWidget({
-                        id : me.id,
-                        HomeBusiness: me.HomeBusiness});
-                    jsCapital.setReadonly();
-                    jsCapital.show();
-
-
-
-
-                var $div_id_listcareer = $.getCmp(__config.divIDlistCareer || 'listcareer-widget-content');
-                $div.div_listcareer.html('').append($div_id_listcareer.html());
-                //$div_id_listcareer.remove();
-                var jslistcareer = new iNet.ui.ita.ListCareerListWidget({
-                    id : me.id,
-                    idHomeBusiness: me.idHomeBusiness,
-                    statusType: me.statusType
-                });
-                jslistcareer.setHideButtonAdd();
-                jslistcareer.show();
-
-
-
-                var $div_id_listcontributor = $.getCmp(__config.divIDlistContributor || 'listcontributor-widget-content');
-                $div.div_listcontributor.html('').append($div_id_listcontributor.html());
-                //$div_id_listcontributor.remove();
-                var jslistcontributor = new iNet.ui.ita.ListContributorListWidget({
-                    id : me.id,
-                    idHomeBusiness: me.idHomeBusiness,
-                    statusType: me.statusType
-                });
-                jslistcontributor.setHideButtonAdd();
-                jslistcontributor.show();
-
-            }
-        };
-        loadInfoList();
-
 
         var $itemDetail = $.getCmp(me.id);
         var $interface = $.getCmp(me.idInterface);
         if (iNet.isEmpty($itemDetail.html().replace(/ /gi, "").replace(/\n/gi, ""))){
             $itemDetail.html('').append($interface.html());
         }
+
+
+        var $div = {
+            div_content_detail:$('#'+me.id + ' #content-detail'),
+            div_Person: $('#'+me.id + ' #content-person'),
+            div_listcareer: $('#'+me.id + ' #content-listcareer'),
+            div_listcontributor: $('#'+me.id + ' #content-listcontributor'),
+            div_capital: $('#'+me.id + ' #content-capital'),
+            div_endbusiness: $('#'+me.id + ' #content-endBusiness'),
+            div_pausebusiness: $('#'+me.id + ' #content-pauseBusiness'),
+            div_dateSubmit: $('#'+me.id + ' #div-dateSubmit'),
+            div_changeInfo: $('#'+me.id + ' #div-changeInfo'),
+            name_dateSubmit: $('#'+me.id + ' #dateSubmit-name'),
+            name_changeInfo: $('#'+me.id + ' #changeInfo-name')
+        };
+
+        me.HomeBusiness = __config.HomeBusiness || {};
+        me.idHomeBusiness = me.HomeBusiness.uuid||'';
+        me.statusType = __config.statusType || '';
+
+        var loadInfoList = function()
+        {
+            if (CommonService.isSuccess(me.HomeBusiness)) {
+                /*console.log('id view info detail',me.idHomeBusiness);
+                console.log('statusType view info detail',me.statusType);
+                console.log('HomeBusiness view info detail',me.HomeBusiness)*/;
+                var dateSumit = me.HomeBusiness.dateSubmit || "";
+                if(dateSumit!="" && dateSumit>0)
+                {
+                    $div.div_dateSubmit.removeClass('hide');
+                    $div.name_dateSubmit.html('').append(dateSumit.longToDate());
+                }
+                var changeInfo = me.HomeBusiness.infoChange || [];
+                if(changeInfo.length > 0)
+                {
+                    $div.div_changeInfo.removeClass('hide');
+                    var str = "";
+                    for ( var i=0, len=changeInfo.length; i < len; i++ ){
+                        var strInfo = changeInfo[i];
+                        console.log("_info>>>>",strInfo);
+                        str += '<label class="label label-sm label-success arrowed-in">"'+ita.resources.common[strInfo]+'"</label>'
+                    }
+                    $div.name_changeInfo.html('').append(str);
+                }
+                if(me.statusType=="CAP_MOI" || me.statusType=="CAP_DOI" ){
+                    var Person = me.HomeBusiness.objPersonRepresent || {};
+                    //iNet.extend(__config.divIDPerson, iNet.Component);
+                    var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
+                    $div.div_Person.html('').append($div_id_person.html());
+                    //$div_id_person.remove();
+                    var jsPerson = new iNet.ui.ita.PersonRepresentWidget({
+                        id : me.id ,
+                        PersonRepresent: Person
+                    });
+                    //jsPerson.id = me.id;
+                    jsPerson.setReadonly();
+                    //jsPerson.show();
+                    $('#'+me.id + ' #personrepresent-widget').removeClass('hide');
+
+
+                    var $div_id_capital = $.getCmp(__config.divIDCapital || 'capital-form-widget-content');
+                    $div.div_capital.html('').append($div_id_capital.html());
+                    // $div_id_capital.remove();
+                    var jsCapital = new iNet.ui.ita.CapitalFormWidget({
+                        id : me.id,
+                        HomeBusiness: me.HomeBusiness
+                    });
+                    jsCapital.setReadonly();
+                    //jsCapital.show();
+                    $('#'+me.id + ' #capital-form-widget').removeClass('hide');
+
+                    var $div_id_listcareer = $.getCmp(__config.divIDlistCareer || 'listcareer-widget-content');
+                    $div.div_listcareer.html('').append($div_id_listcareer.html());
+                    //$div_id_listcareer.remove();
+                    var jslistcareer = new iNet.ui.ita.ListCareerListWidget({
+                        id : me.id,
+                        idHomeBusiness: me.idHomeBusiness,
+                        statusType: me.statusType
+                    });
+                    jslistcareer.setHideButtonAdd();
+                    //jslistcareer.show();
+                    $('#'+me.id + ' #listcareer-widget').removeClass('hide');
+
+                    var $div_id_listcontributor = $.getCmp(__config.divIDlistContributor || 'listcontributor-widget-content');
+                    $div.div_listcontributor.html('').append($div_id_listcontributor.html());
+                    //$div_id_listcontributor.remove();
+                    var jslistcontributor = new iNet.ui.ita.ListContributorListWidget({
+                        id : me.id,
+                        idHomeBusiness: me.idHomeBusiness,
+                        statusType: me.statusType
+                    });
+                    jslistcontributor.setHideButtonAdd();
+                    //jslistcontributor.show();
+                    $('#'+me.id + ' #listcontributor-widget').removeClass('hide');
+                }
+                else if(me.statusType=="TAM_NGUNG"){
+                    var $div_pausebusiness = $.getCmp(__config.divIDPauseBusiness || 'pausebusiness-widget-content');
+                    $div.div_pausebusiness.html('').append($div_pausebusiness.html());
+                    // $div_id_capital.remove();
+                    var jsPause = new iNet.ui.ita.PauseBusinessFormWidget({
+                        id : me.id,
+                        PauseBusiness: me.HomeBusiness
+                    });
+                    jsPause.setReadonly();
+                    //jsPause.show();
+                    $('#'+me.id + ' #pausebusiness-widget').removeClass('hide');
+
+                    $div.div_content_detail.addClass('hide');
+                }
+                else if(me.statusType=="CHAM_DUT"){
+                    var $div_endbusiness = $.getCmp(__config.divIDEndBusiness || 'endbusiness-widget-content');
+                    $div.div_endbusiness.html('').append($div_endbusiness.html());
+                    // $div_id_capital.remove();
+                    var jsEnd = new iNet.ui.ita.EndBusinessFormWidget({
+                        id : me.id,
+                        EndBusiness: me.HomeBusiness
+                    });
+                    jsEnd.setReadonly();
+                    //jsEnd.show();
+                    $('#'+me.id + ' #endbusiness-widget').removeClass('hide');
+                    $div.div_content_detail.addClass('hide');
+                }
+            }
+        };
+        loadInfoList();
+
+
+
 
         var resource = {
             common: ita.resources.common,
@@ -140,24 +200,24 @@ $(function() {
 
             var __data = data || {};
 
-            var objareaBusiness = __data.objAreaBusiness;
+            var objareaBusiness = __data.objAreaBusiness || {};
             if(CommonService.isSuccess(objareaBusiness))
             {
                 this.$form.input_areaBusiness.val(objareaBusiness.area);
             }
 
             this.$form.input_address.val(__data.address);
-            var objprovince = __data.objProvince;
+            var objprovince = __data.objProvince || {};
             if(CommonService.isSuccess(objprovince))
             {
                 this.$form.input_province.val(objprovince.name);
             }
-            var objdistrict = __data.objDistrict;
+            var objdistrict = __data.objDistrict || {};
             if(CommonService.isSuccess(objdistrict))
             {
                 this.$form.input_district.val(objdistrict.name);
             }
-            var objward = __data.objWard;
+            var objward = __data.objWard || {};
             if(CommonService.isSuccess(objward))
             {
                 this.$form.input_ward.val(objward.name);

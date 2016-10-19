@@ -1,15 +1,15 @@
 {
 	"version":"1.0",
-	"address":"115/100 Le Van Sy St. - Ward 13 - Phu Nhuan Dist.",
-	"brief":"Elearning Module",
-	"author":"iNet Solutions",
-	"city":"HCM",
+	"address":"75 Mai Xuân Thưởng, TP.Quy Nhơn, Bình Định",
+	"brief":"Cấp phép kinh doanh",
+	"author":"ITA Solution",
+	"city":"Quy Nhơn",
 	"country":"VN",
-	"email":"support@inetcloud.vn ",
+	"email":"support@itacenter.vn ",
 	"fax":"(84.8) 3 991 9152 ",
 	"phone":"(84.8) 3 991 9150",
-	"www":"www.inetcloud.vn",
+	"www":"www.itacenter.vn",
 	"homeurl": "page/index",
-	"homeicon": "images/iwebos.gif",
-	"homename": "Hello World"
+	"homeicon": "images/cpkd.png",
+	"homename": "Cấp phép kinh doanh"
 }

@@ -323,6 +323,7 @@ $(function () {
                 var __result = result || {};
                 if (CommonService.isSuccess(__result)) {
                     //var __listProvince = [];
+                    me.__isCheckNameSave = false;
                     me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
                 }
                 else

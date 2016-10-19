@@ -23,7 +23,11 @@ $(function() {
             tab_business_info: $('#tab-business-info'),
             tab_business_change_1: $('#tab-business-change1'),
             tab_business_change_2: $('#tab_business_change2'),
-            span_name:$('#social-group-modal-lbl-name')
+            span_name:$('#social-group-modal-lbl-name'),
+            div_numberBusiness:$('#div-numberBusiness'),
+            div_taxCode:$('#div-taxCode'),
+            name_taxCode:$('#taxCode-name'),
+            name_numberBusiness:$('#numberBusiness-name')
         };
 
         var url = {
@@ -32,12 +36,32 @@ $(function() {
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
         this.id = this.id || 'homebusiness-detail-dialog';
-
+        var me = this;
+        me.taxCode = __config.taxCode;
+        me.numberBusiness= __config.numberBusiness;
 
         var loadInfo =  function(){
+            FormService.displayContent($form.tab1,'hide');
+            FormService.displayContent($form.tab2,'hide');
+            FormService.displayContent($form.tab3,'hide');
+            FormService.displayContent($form.tab4,'hide');
+            FormService.displayContent($form.tab5,'hide');
+            FormService.displayContent($form.tab6,'hide');
             if (CommonService.isSuccess(__config)) {
+                //Load header
                 console.log("infoBusinessWidget - Load Config",__config)
                 $form.span_name.html('').append(__config.NameBusiness);
+                if(me.taxCode!="")
+                {
+                    $form.div_taxCode.removeClass("hide");
+                    $form.name_taxCode.html('').append(me.taxCode);
+                }
+                if(me.numberBusiness!="")
+                {
+                    $form.div_numberBusiness.removeClass("hide");
+                    $form.name_numberBusiness.html('').append(me.numberBusiness);
+                }
+                //Load content
                 var homeBusiness = __config.HomeBusiness || {};
                 if(CommonService.isSuccess(homeBusiness))
                 {
@@ -78,7 +102,7 @@ $(function() {
                         HomeBusiness: changeBusiness3
                     });
                 }
-                var pauseBusiness = __config.pauseBusiness || {};
+                var pauseBusiness = __config.PauseBusiness1 || {};
                 if(CommonService.isSuccess(pauseBusiness))
                 {
                     FormService.displayContent($form.tab5,'show');
@@ -89,7 +113,7 @@ $(function() {
 
                     });
                 }
-                var endBusiness = __config.pauseBusiness || {};
+                var endBusiness = __config.EndBusiness1 || {};
                 if(CommonService.isSuccess(endBusiness))
                 {
                     FormService.displayContent($form.tab6,'show');
@@ -103,7 +127,7 @@ $(function() {
         };
 
         loadInfo();
-        var me = this;
+
         iNet.ui.ita.InfoBusinessWidget.superclass.constructor.call(this);
     };
 

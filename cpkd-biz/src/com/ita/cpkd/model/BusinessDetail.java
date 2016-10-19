@@ -17,17 +17,18 @@ public class BusinessDetail {
     private String numberBusiness;
     private String taxCode;
     private String statusProcess;
-    private long dateSubmit =System.currentTimeMillis();
+    private String dateSubmit;//=  System.currentTimeMillis();;
     private List<Details> list_changeBusiness_ID;//= new ArrayList<Details>();
     private List<Details> list_pauseBusiness_ID;//= new ArrayList<Details>();
     private List<Details> list_endBusiness_ID;//= new ArrayList<Details>();
 
-    public long getDateSubmit() {
+
+    public String getDateSubmit() {
         return dateSubmit;
     }
 
-    public void setDateSubmit(long dateSubmit) {
-        this.dateSubmit = dateSubmit;
+    public void setDateSubmit(String dateSubmit) {
+        this.dateSubmit =dateSubmit;
     }
 
     public String getStatusProcess() {

@@ -55,6 +55,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
             arbmodel.setTaskID(taskID);
             arbmodel.setStatusType(statusType);
             arbmodel.setStatusProcess(EnumProcess.PROCESS.toString());
+            arbmodel.setDateSubmit(Long.toString(System.currentTimeMillis()));
             //arbmodel.setDateSubmit(Date);
             arbmodel = homeBusinessBo.addHomeBusiness(arbmodel);
             if(taskID == null || taskID.equals(""))
@@ -79,6 +80,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
             objmodel.setTaskID(taskID);
             objmodel.setHomeBusiness_ID(homebusinessID);
             objmodel.setStatusProcess(EnumProcess.PROCESS.toString());
+            objmodel.setDateSubmit(Long.toString(System.currentTimeMillis()));
             ChangeBusiness objchange = changeBusinessBo.addChangeBusiness(objmodel,strInfoChange);
 
 
@@ -113,6 +115,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
             objmodel.setTaskID(taskID);
             objmodel.setHomeBusiness_ID(homebusinessID);
             objmodel.setStatusProcess(EnumProcess.PROCESS.toString());
+            objmodel.setDateSubmit(Long.toString(System.currentTimeMillis()));
             EndBusiness objEnd = endBusinessBo.addEndBusiness(objmodel);
 
             String endBusinessID = objEnd.getUuid();
@@ -141,6 +144,7 @@ public class BusinessNewTaskService extends DataServiceMarker {
             objmodel.setTaskID(taskID);
             objmodel.setHomeBusiness_ID(homebusinessID);
             objmodel.setStatusProcess(EnumProcess.PROCESS.toString());
+            objmodel.setDateSubmit(Long.toString(System.currentTimeMillis()));
             PauseBusiness objpause = pauseBusinessBo.addPauseBusiness(objmodel);
 
             String pauseBusinessID = objpause.getUuid();

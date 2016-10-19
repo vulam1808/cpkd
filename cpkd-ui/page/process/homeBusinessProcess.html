@@ -15,6 +15,8 @@ iNet.taskID = $ctx.value('taskID');
 #script("/js/cpkd/inet/lib/listcareer-form-dialog.min.js")
 #widget("/cpkd/widget/control/viewInfoDetail")
 #widget("/cpkd/widget/control/infoBusiness")
+#widget("/cpkd/widget/process/endbusiness/form")
+#widget("/cpkd/widget/process/pausebusiness/form")
 <div id="business-process-div">
     <div>
         <div id="business-process-toolbar" class="wg-toolbar navbar-fixed-top">
@@ -48,6 +50,9 @@ iNet.taskID = $ctx.value('taskID');
                             </div>
                             <div id="tab-infoProcess-nameChange">
                                 #widget("/cpkd/widget/control/nameProcess")
+                            </div>
+                            <div id="tab-infoProcess-taskInfo">
+                                #widget("/cpkd/widget/process/task/form")
                             </div>
                             <div id="tab-infoProcess-person">
                                 #widget("/cpkd/widget/process/person/form")

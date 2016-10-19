@@ -155,6 +155,8 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
         JSONObject mainObj = new JSONObject();
         BusinessDetail objDetail = businessDetailBo.loadBusinessDetailByHomeBusinessID(homeBusinessID);
         mainObj.put("NameBusiness", objDetail.getNameBusiness());
+        mainObj.put("taxCode", objDetail.getTaxCode()!=null?objDetail.getTaxCode():"");
+        mainObj.put("numberBusiness", objDetail.getNumberBusiness()!=null?objDetail.getNumberBusiness():"");
         HomeBusiness objHome = super.load(homeBusinessID);
         objHome = loadObjParent(objHome);
         mainObj.put("HomeBusiness", objHome);
@@ -269,7 +271,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
         if(lstChange!=null)
         {
             for (String itemChange : lstChange) {
-                if(itemChange.equals(EnumChangeInfo.change_tendangkykinhdoanh))
+                if(itemChange.equals(EnumChangeInfo.change_tendangkykinhdoanh.toString()))
                 {
                     String name = objchange.getNameBusiness();
                     if(name != null && !name.equals(""))
@@ -278,7 +280,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                     }
 
                 }
-                else  if(itemChange.equals(EnumChangeInfo.change_danhsachnganhnghe)) {
+                else  if(itemChange.equals(EnumChangeInfo.change_danhsachnganhnghe.toString())) {
 
                     List<ListCareer> lstCar = listCareerBo.loadListCareerByChangeBusinessID(objchange.getUuid());
                     if(lstCar!=null)
@@ -286,7 +288,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                         obj.setLstObjCareer(lstCar);
                     }
                 }
-                else  if(itemChange.equals(EnumChangeInfo.change_danhsachnguoigopvon)) {
+                else  if(itemChange.equals(EnumChangeInfo.change_danhsachnguoigopvon.toString())) {
 
                     List<ListContributor> lstCon = listContributorBo.loadListContributorByChangeBusinessID(objchange.getUuid());
                     if(lstCon!=null)
@@ -294,7 +296,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                         obj.setLstObjContributor(lstCon);
                     }
                 }
-                else  if(itemChange.equals(EnumChangeInfo.change_vondieule)) {
+                else  if(itemChange.equals(EnumChangeInfo.change_vondieule.toString())) {
 
                     String strCashCapital = objchange.getCashCapital();
                     if(strCashCapital != null && !strCashCapital.equals(""))
@@ -314,7 +316,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                         obj.setBusinessCapital(strBusinessCapital);
                     }
                 }
-                else  if(itemChange.equals(EnumChangeInfo.change_nguoidaidien)) {
+                else  if(itemChange.equals(EnumChangeInfo.change_nguoidaidien.toString())) {
 
                     String personRepresent_ID = objchange.getPersonRepresent_ID();
                     if(personRepresent_ID!=null)
@@ -327,7 +329,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                         }
                     }
                 }
-                else  if(itemChange.equals(EnumChangeInfo.change_thongtindangkykinhdoanh)) {
+                else  if(itemChange.equals(EnumChangeInfo.change_thongtindangkykinhdoanh.toString())) {
 
                     String district_ID = objchange.getDistrict_ID();
                     if(district_ID!=null)

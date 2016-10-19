@@ -7,6 +7,12 @@ $(function () {
 
     iNet.ns("iNet.ui","iNet.ui.ita");
     iNet.ui.ita.HomeBusinessViewTask = function (config) {
+        var __config = config || {};
+        iNet.apply(this, __config);// apply configuration
+        this.id = this.id || 'homebusiness-div-view';
+        iNet.ui.ita.HomeBusinessViewTask.superclass.constructor.call(this);
+        var me= this;
+
         var resource = {
             common: ita.resources.common,
             validate: ita.resources.validate
@@ -35,49 +41,45 @@ $(function () {
         };
         var $form = {
             //input_id_homebusiness:$('#id-homebusiness'),
-            input_typeTask: $('#homebusiness-type-task'),
-            button_save: $('#homebusiness-save-btn'),
-            div_title:$('#homebusiness-title'),
-            div_item:$('#homebusiness-item'),
-            div_homebusiness_create:$('#homebusiness-item-create'),
-            div_endbusiness_create:$('#endbusiness-item-create'),
-            div_changebusiness_create:$('#changebusiness-item-create'),
-            div_pausebusiness_create:$('#pausebusiness-item-create'),
+            input_typeTask: $('#'+me.id+' #homebusiness-type-task'),
+            button_save: $('#'+me.id+' #homebusiness-save-btn'),
+            div_title:$('#'+me.id+' #homebusiness-title'),
+            div_item:$('#'+me.id+' #homebusiness-item'),
+            div_homebusiness_create:$('#'+me.id+' #homebusiness-item-create'),
+            div_endbusiness_create:$('#'+me.id+' #endbusiness-item-create'),
+            div_changebusiness_create:$('#'+me.id+' #changebusiness-item-create'),
+            div_pausebusiness_create:$('#'+me.id+' #pausebusiness-item-create'),
 
-            button_view_detail:$('#view-detail-task'),
-            button_check: $('#btn-check-nameBusiness'),
-            div_status_check: $('#status-nameBusiness'),
-            input_nameBusiness: $('#homebusiness-nameBusiness')
+            button_view_detail:$('#'+me.id+' #view-detail-task'),
+            button_check: $('#'+me.id+' #btn-check-nameBusiness'),
+            div_status_check: $('#'+me.id+' #status-nameBusiness'),
+            input_nameBusiness: $('#'+me.id+' #homebusiness-nameBusiness')
         };
         this.$formCapMoi = {
-            input_address: $('#homebusiness-address'),
-            input_province: $('#homebusiness-province'),
-            input_district: $('#homebusiness-district'),
-            input_ward: $('#homebusiness-ward'),
-            input_phone: $('#homebusiness-phone'),
-            input_fax: $('#homebusiness-fax'),
-            input_email: $('#homebusiness-email'),
-            input_website: $('#homebusiness-website'),
+            input_address: $('#'+me.id+' #homebusiness-address'),
+            input_province: $('#'+me.id+' #homebusiness-province'),
+            input_district: $('#'+me.id+' #homebusiness-district'),
+            input_ward: $('#'+me.id+' #homebusiness-ward'),
+            input_phone: $('#'+me.id+' #homebusiness-phone'),
+            input_fax: $('#'+me.id+' #homebusiness-fax'),
+            input_email: $('#'+me.id+' #homebusiness-email'),
+            input_website: $('#'+me.id+' #homebusiness-website'),
             //dateSubmit:$('homebusiness-dateSubmit'),
-            input_areaBusiness: $('#homebusiness-areaBusiness')
+            input_areaBusiness: $('#'+me.id+' #homebusiness-areaBusiness')
         };
         this.$formCapDoi = {
-            input_infoChange: $('#changebusiness-infoChange')
+            input_infoChange: $('#'+me.id+' #changebusiness-infoChange')
         };
         this.$formTamNgung = {
-            input_dayofPause: $('#pausebusiness-dayofPause'),
-            input_dateStart: $('#pausebusiness-dateStart'),
-            input_reason: $('#pausebusiness-reason')
+            input_dayofPause: $('#'+me.id+' #pausebusiness-dayofPause'),
+            input_dateStart: $('#'+me.id+' #pausebusiness-dateStart'),
+            input_reason: $('#'+me.id+' #pausebusiness-reason')
         };
         this.$formChamDut = {
-            input_dateEnd: $('#endbusiness-dateEnd'),
-            input_reason: $('#endbusiness-reason')
+            input_dateEnd: $('#'+me.id+' #endbusiness-dateEnd'),
+            input_reason: $('#'+me.id+' #endbusiness-reason')
         };
-        var __config = config || {};
-        iNet.apply(this, __config);// apply configuration
-        this.id = this.id || 'homebusiness-div-view';
-        iNet.ui.ita.HomeBusinessViewTask.superclass.constructor.call(this);
-        var me= this;
+
         me.statusType = __config.statusType;
         me.nameBusiness = __config.nameBusiness;
         me.objBusiness = __config.objBusiness;
@@ -182,6 +184,7 @@ $(function () {
         },
         setDataTamNgung:function(data){
             var __data = data || {};
+            console.log("setDataTamNgung",__data);
             this.$formTamNgung.input_dayofPause.val( __data.dayofPause);
             this.$formTamNgung.input_dateStart.val(__data.dateStart.longToDate());
             this.$formTamNgung.input_reason.val( __data.reason);

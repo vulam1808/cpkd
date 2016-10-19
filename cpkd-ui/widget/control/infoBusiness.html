@@ -3,10 +3,22 @@
 <div id="homebusiness-detail-dialog" class="modal fade" data-focus-on="input:first" data-width="80%" tabindex="-1" style="display: none">
     <div class="modal-header" style="padding: 10px">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3><i class="icon-group"></i>
+        <h3 style="margin-top:0px"><i class="icon-group"></i>
             <span id="social-group-modal-lbl-title">$text.getText("Tên đăng ký kinh doanh: ")</span>
             <span id="social-group-modal-lbl-name"></span>
         </h3>
+        <div id="div-numberBusiness" class="hide" style="padding-left:30px">
+            <h5><i class="icon-pushpin"></i>
+            <span id="numberBusiness-title">$text.getText("Số giấy phép kinh doanh: ")</span>
+            <span id="numberBusiness-name"></span>
+            </h5>
+        </div>
+        <div id="div-taxCode" class="hide" style="padding-left:30px">
+            <h5><i class="icon-pushpin"></i>
+                <span id="taxCode-title">$text.getText("Mã số thuế: ")</span>
+                <span id="taxCode-name"></span>
+            </h5>
+        </div>
     </div>
     <div class="">
         <div role="tabpanel">

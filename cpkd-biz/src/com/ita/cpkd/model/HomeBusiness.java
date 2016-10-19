@@ -30,7 +30,7 @@ public class HomeBusiness {
     private String cashCapital;
     private String assetCapital;
     private String businessCapital;
-    private long dateSubmit=System.currentTimeMillis();
+    private String dateSubmit;//=System.currentTimeMillis();
     private String statusType;
     private String taskID;
     private String statusProcess;
@@ -266,11 +266,11 @@ public class HomeBusiness {
         this.businessCapital = businessCapital;
     }
 
-    public long getDateSubmit() {
+    public String getDateSubmit() {
         return dateSubmit;
     }
 
-    public void setDateSubmit(long dateSubmit) {
+    public void setDateSubmit(String dateSubmit) {
         this.dateSubmit = dateSubmit;
     }
 

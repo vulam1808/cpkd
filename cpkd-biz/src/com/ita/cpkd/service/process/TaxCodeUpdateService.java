@@ -1,6 +1,5 @@
 package com.ita.cpkd.service.process;
 
-import com.inet.xportal.nosql.web.data.SearchDTO;
 import com.inet.xportal.web.WebConstant;
 import com.inet.xportal.web.action.AbstractBaseAction;
 import com.inet.xportal.web.annotation.XPortalDataService;
@@ -10,9 +9,6 @@ import com.inet.xportal.web.interfaces.DataServiceMarker;
 import com.inet.xportal.web.interfaces.ObjectWebDataservice;
 import com.inet.xportal.web.interfaces.WebDataService;
 import com.inet.xportal.web.util.XParamUtils;
-import com.inet.xportal.xdb.persistence.JSONDB;
-import com.inet.xportal.xdb.query.Query;
-import com.inet.xportal.xdb.query.impl.QueryImpl;
 import com.ita.cpkd.bo.BusinessDetailBo;
 import com.ita.cpkd.bo.ChangeBusinessBo;
 import com.ita.cpkd.bo.HomeBusinessBo;
@@ -22,38 +18,45 @@ import com.ita.cpkd.model.BusinessDetail;
 import com.ita.cpkd.model.ChangeBusiness;
 import com.ita.cpkd.model.HomeBusiness;
 import com.ita.cpkd.model.PersonRepresent;
-import net.sf.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
 /**
  * Created by HS on 13/09/2016.
  */
-@Named("ita_business_loadinforvice")
-@XPortalDataService(roles = {"cpkd"}, description = "CPKD")
-@XPortalPageRequest(uri = "ita/homebusiness/loadinfo", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
-public class BusinessLoadInfoService extends DataServiceMarker {
-    protected static final Logger logger = LoggerFactory.getLogger(BusinessLoadInfoService.class);
-    @Inject
-    private HomeBusinessBo homeBusinessBo;
+@Named("ita_taxcodbusiness_updateservice")
+@XPortalDataService(roles = {"cpkd.process"}, description = "Tạo hồ sơ")
+@XPortalPageRequest(uri = "ita/business/updatetaxcode", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+public class TaxCodeUpdateService extends DataServiceMarker {
     @Inject
     private BusinessDetailBo businessDetailBo;
+    @Inject
+    private HomeBusinessBo homeBusinessBo;
+
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
             throws WebOSBOException {
-        JSONObject mainObj = new JSONObject();
-        String homeBusinessID = XParamUtils.getString("homeBusinessID", params, "");
-        logger.debug("homeBusinessID {} ", homeBusinessID);
-        mainObj = homeBusinessBo.loadBusinessInfoByHomeBusinessID(homeBusinessID);
-        //logger.debug("homeBusinessID {} ", mainObj);
-        //Test
+        String taxCode = XParamUtils.getString("taxCode", params, "");
+        String ID = XParamUtils.getString("idHomeBusiness", params, "");
 
-        return new ObjectWebDataservice<JSONObject>(mainObj);
+        BusinessDetail detail = businessDetailBo.loadBusinessDetailByHomeBusinessID(ID);
+        detail.setTaxCode(taxCode);
+        businessDetailBo.update(detail.getUuid(), detail);
+
+        HomeBusiness home = homeBusinessBo.load(ID);
+        home.setTaxCode(taxCode);
+        homeBusinessBo.update(ID,home);
+
+        return new ObjectWebDataservice<HomeBusiness>(home);
+
+
+
+
     }
 
 }

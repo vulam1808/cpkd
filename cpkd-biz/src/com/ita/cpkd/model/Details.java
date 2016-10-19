@@ -10,7 +10,7 @@ import com.inet.xportal.web.annotation.XPortalModel;
 public class Details {
     private String uuid;
     private String parent_ID;
-    private long dateSubmit =System.currentTimeMillis();
+    private String dateSubmit;// =System.currentTimeMillis();
     private String statusProcess;
     private String taskID;
     public Details() {}
@@ -38,11 +38,11 @@ public class Details {
         this.parent_ID = parent_ID;
     }
 
-    public long getDateSubmit() {
+    public String getDateSubmit() {
         return dateSubmit;
     }
 
-    public void setDateSubmit(long dateSubmit) {
+    public void setDateSubmit(String dateSubmit) {
         this.dateSubmit = dateSubmit;
     }
 

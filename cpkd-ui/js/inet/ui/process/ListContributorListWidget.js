@@ -7,6 +7,13 @@ $(function() {
 
     iNet.ns("iNet.ui", "iNet.ui.ita");
     iNet.ui.ita.ListContributorListWidget = function (config) {
+        var __config = config || {};
+        iNet.apply(this, __config);// apply configuration
+        this.id = this.id || 'listcontributor-widget';
+        this.idHomeBusiness = __config.idHomeBusiness;
+        this.statusType = __config.statusType;
+        var me= this;
+        $('#'+me.id + ' #listcontributor-grid').prop('id', 'listcontributor-grid-'+me.id );
         var resource = {
             common: ita.resources.common,
             validate: ita.resources.validate
@@ -18,11 +25,8 @@ $(function() {
             update: iNet.getUrl('ita/listcontributor/update'),
             del: iNet.getUrl('ita/listcontributor/delete')
         };
-        var __config = config || {};
-        iNet.apply(this, __config);// apply configuration
-        this.id = this.id || 'listcontributor-widget';
-        this.idHomeBusiness = __config.idHomeBusiness;
-        this.statusType = __config.statusType;
+
+
         /*var abc = this;
         var wgAddProvince = null;
 
@@ -38,7 +42,7 @@ $(function() {
 
 
 
-        var me= this;
+
         var dataSource = new iNet.ui.grid.DataSource({
             columns : [/*{
                 type : 'selection',
@@ -136,7 +140,7 @@ $(function() {
         });
         //load grid
         this.grid = new iNet.ui.grid.Grid({
-            id : 'listcontributor-grid',
+            id : 'listcontributor-grid-'+me.id,
             dataSource : dataSource,
             url: url.view,
             firstLoad: true,
@@ -197,7 +201,7 @@ $(function() {
             console.log('selectionchange>>', sm, data);
         });
 
-        $('#listcontributor-btn-add').on('click', function(){
+        $('#'+me.id + ' #listcontributor-btn-add').on('click', function(){
             me.grid.newRecord();
         }.createDelegate(this));
 
@@ -209,7 +213,7 @@ $(function() {
 
     iNet.extend(iNet.ui.ita.ListContributorListWidget, iNet.ui.app.widget,{
         setHideButtonAdd: function () {
-            $('#listcontributor-btn-add').hide();
+            $('#'+this.id + ' #listcontributor-btn-add').hide();
         }
     });
 

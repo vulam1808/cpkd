@@ -48,6 +48,15 @@ CommonService = {
         var __uuid = iNet.isEmpty(__data.uuid || '') ? "" : __data.uuid;
         var __intl = iNet.isEmpty(__data.intl) ? "" : __data.intl;
 
+        //var obj = JSON.parse(data);
+        var length = Object.keys(data).length;
+        if(length == 1)
+        {
+            if(data.hasOwnProperty("dateSubmit"))
+            {
+                return false;
+            }
+        }
         if (!iNet.isEmpty(__data) && JSON.stringify(__data) != "{}" && !data.hasOwnProperty("errors") && __uuid != "ERROR!" && iNet.isEmpty(__intl)) {
             return true;
         }

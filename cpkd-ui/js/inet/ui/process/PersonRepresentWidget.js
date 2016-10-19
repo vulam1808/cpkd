@@ -7,30 +7,32 @@ $(function() {
   iNet.ns("iNet.ui", "iNet.ui.ita");
   iNet.ui.ita.PersonRepresentWidget = function (config) {
       var me = this;
+      var __config = config || {};
+      iNet.apply(this, __config);// apply configuration
+      me.id = this.id || 'personrepresent-widget';
       var resource = {
           common: ita.resources.common,
           validate: ita.resources.validate
       };
       me.$input = {
-          nameRepresent: $('#personrepresent-txt-nameRepresent'),
-          birthday: $('#personrepresent-txt-birthday'),
-          gender: $('#personrepresent-txt-gender'),
-          race: $('#personrepresent-txt-race'),
-          regilion: $('#personrepresent-txt-regilion'),
-          idnumber: $('#personrepresent-txt-idnumber'),
-          issueDate: $('#personrepresent-txt-issueDate'),
-          issuePlace: $('#personrepresent-txt-issuePlace')
+          nameRepresent: $('#'+me.id+' #personrepresent-txt-nameRepresent'),
+          birthday: $('#'+me.id+' #personrepresent-txt-birthday'),
+          gender: $('#'+me.id+' #personrepresent-txt-gender'),
+          race: $('#'+me.id+' #personrepresent-txt-race'),
+          regilion: $('#'+me.id+' #personrepresent-txt-regilion'),
+          idnumber: $('#'+me.id+' #personrepresent-txt-idnumber'),
+          issueDate: $('#'+me.id+' #personrepresent-txt-issueDate'),
+          issuePlace: $('#'+me.id+' #personrepresent-txt-issuePlace')
       };
-
+console.log("this.id",me.id);
       var url = {
           view: iNet.getUrl('ita/personrepresent/load'),
           update: iNet.getUrl('ita/personrepresent/update')
 
       };
 
-    var __config = config || {};
-    iNet.apply(this, __config);// apply configuration
-      me.id = this.id || 'personrepresent-widget';
+
+
       me.idHomeBusiness = __config.idHomeBusiness || '';
       me.statusType = __config.statusType || '';
       me.PersonRepresent = __config.PersonRepresent || {};
@@ -42,7 +44,7 @@ $(function() {
     var loadGender = function(){
         var __result = [{id:'NU',name:resource.common.gender_nu},
         {id:'NAM',name:resource.common.gender_nam}];
-        me.$input.gender = FormService.createSelect('personrepresent-txt-gender', __result, 'id', 1, false, false);
+        me.$input.gender = FormService.createSelect(me.id+' #personrepresent-txt-gender', __result, 'id', 1, false, false);
         me.$input.gender.setValue('NAM');
        /* if($('#personrepresent-txt-gender').length<=0) {
 
@@ -95,7 +97,7 @@ $(function() {
       setReadonly: function(){
           this.$input.nameRepresent.prop('readonly', true);
           this.$input.birthday.prop('readonly', true);
-          $('#personrepresent-txt-gender').prop('readonly', true);
+          $('#'+this.id+' #personrepresent-txt-gender').prop('readonly', true);
           this.$input.race.prop('readonly', true);
           this.$input.regilion.prop('readonly', true);
           this.$input.idnumber.prop('readonly', true);
@@ -107,7 +109,7 @@ $(function() {
       removeReadonly: function(){
           this.$input.nameRepresent.prop('readonly', false);
           this.$input.birthday.prop('readonly', false);
-          $('#personrepresent-txt-gender').prop('readonly', false);
+          $('#'+this.id+' #personrepresent-txt-gender').prop('readonly', false);
           this.$input.race.prop('readonly', false);
           this.$input.regilion.prop('readonly', false);
           this.$input.idnumber.prop('readonly', false);
