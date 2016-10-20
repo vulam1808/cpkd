@@ -28,7 +28,7 @@ import com.inet.xportal.web.context.ApplicationContext;
  * @since 1.0
  */
 @ApplicationContext(context = "itaNoSqlProvider")
-@XPortalBigData(context = "ita")
+@XPortalBigData(context = "cpkd")
 public class itaNoSqlProvider extends NoSQLDeployProvider {
 
 }
