@@ -7,7 +7,7 @@ iNet.act = $ctx.value('act');
 iNet.taskID = $ctx.value('taskID');
 #end
 -->
-
+#cmsNav("Chuyên viên xử lý hồ sơ CPKD", false);
 #widget("/cpkd/widget/common/common")
 #script("/js/cpkd/inet/lib/homebusiness-process.min.js")
 #widget("/cpkd/widget/control/ajaxmask")
@@ -17,10 +17,25 @@ iNet.taskID = $ctx.value('taskID');
 #widget("/cpkd/widget/control/infoBusiness")
 #widget("/cpkd/widget/process/endbusiness/form")
 #widget("/cpkd/widget/process/pausebusiness/form")
+
+#widget("/xgate/widget/control/ajaxmask")
+#widget("/xgate/widget/control/itemview")
+#widget("/xgate/widget/control/fileview")
+#widget("/xgate/widget/control/signature")
+#widget("/xgate/widget/control/modalview")
+
+#script("::/xgate/page/resources/BfWorkflow")
+#script("::/xgate/page/workflow/tool/zone")
+
+
+#script("::/xgate/page/task/zone")
+#script("::/xgate/page/common/zone")
 <div id="business-process-div">
     <div>
         <div id="business-process-toolbar" class="wg-toolbar navbar-fixed-top">
-            #widget("/cpkd/widget/control/buttonProcess")
+           <!-- #widget("/cpkd/widget/control/buttonProcess")-->
+
+            #widget("/xgate/widget/briefcase/process")
         </div>
         <div class="wg-content">
             <div id="business-process-subject-details">
@@ -33,6 +48,7 @@ iNet.taskID = $ctx.value('taskID');
                     <ul class="nav nav-tabs" id="business-process-tab">
                         <li class="active" data-tab="tab01" id="tab-info"><a href="#tab-business-infoTask" data-toggle="tab">$text.getText("common.infoTask")</a></li>
                         <li data-tab="tab02" id="tab-process" class="hide"><a href="#tab-business-infoProcess" data-toggle="tab">$text.getText("common.infoProcess")</a></li>
+                        <li  data-tab="tab03" id="tab-info1"><a href="#tab-business-infoTask1" data-toggle="tab">$text.getText("common.infoTask")</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -68,6 +84,9 @@ iNet.taskID = $ctx.value('taskID');
                                 #widget("/cpkd/widget/process/listcontributor/list")
                             </div>
                         </div>
+                        <div class="tab-pane active container-fluid" id="tab-business-infoTask1">
+                            #widget("/xgate/widget/briefcase/information")
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,8 +96,8 @@ iNet.taskID = $ctx.value('taskID');
 
 #xscript()
 $(function(){
-    var homebusinessProcess = new iNet.ui.ita.HomeBusinessProcess();
-    homebusinessProcess.show();
+var homebusinessProcess = new iNet.ui.ita.HomeBusinessProcess();
+homebusinessProcess.show();
 });
 #end
 

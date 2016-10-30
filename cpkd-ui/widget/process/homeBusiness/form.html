@@ -38,7 +38,7 @@
                         <span  class="">$text.getText('common.type_task') <span class="required"></span></span>
                     </label>
                     <div class="has-success ">
-                        <input id="homebusiness-type-task" name="homebusiness-type-task" class="col-md-12 form-control"/>
+                        <input id="homebusiness-type-task" name="statusType" class="col-md-12 form-control"/>
 
                     </div>
 
@@ -51,8 +51,8 @@
                         <span  class="">$text.getText('common.nameBusiness') <span class="required"></span></span>
                     </label>
                     <div class="has-success ">
-                        <input id="homebusiness-nameBusiness" style="text-transform: uppercase" name="homebusiness-nameBusiness" type="text" class="col-md-12 form-control"/>
-                        <input id="id-homebusiness" type="text" name="id-homebusiness" class="hide"/>
+                        <input id="homebusiness-nameBusiness" style="text-transform: uppercase" name="nameBusiness" type="text" class="col-md-12 form-control"/>
+                        <input id="id-homebusiness" type="text" name="homebusinessID" class="hide"/>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                         <label for="homebusiness-areaBusiness" class=control-label">
                             <span class="">$text.getText('common.nameAreaBusiness')</span></span>
                         </label>
-                        <input id="homebusiness-areaBusiness" name="homebusiness-areaBusiness"  class="col-md-12 form-control"/>
+                        <input id="homebusiness-areaBusiness" name="areaBusiness_ID"  class="col-md-12 form-control"/>
                     </div>
                 </div>
                 <div class="row">
@@ -90,7 +90,7 @@
                                             <label for="homebusiness-address" class="control-label">
                                                 <span class="">$text.getText('common.addressBusiness')</span>
                                             </label>
-                                            <input id="homebusiness-address" name="homebusiness-address" type="text" class="col-md-12 form-control" />
+                                            <input id="homebusiness-address" name="address" type="text" class="col-md-12 form-control" />
 
                                         </div>
 
@@ -98,7 +98,7 @@
                                             <label for="homebusiness-province" class="control-label">
                                                 <span class="">$text.getText('common.province')</span></span>
                                             </label>
-                                            <input id="homebusiness-province" name="homebusiness-province" class="col-md-12 form-control"/>
+                                            <input id="homebusiness-province" name="province_ID" class="col-md-12 form-control"/>
 
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                             <label for="homebusiness-district" class="control-label">
                                                 <span class="">$text.getText('common.district')</span></span>
                                             </label>
-                                            <input id="homebusiness-district" name="homebusiness-district" class="col-md-12 form-control"/>
+                                            <input id="homebusiness-district" name="district_ID" class="col-md-12 form-control"/>
 
                                         </div>
 
@@ -115,7 +115,7 @@
                                             <label for="homebusiness-ward" class="control-label">
                                                 <span class="">$text.getText('common.ward')</span></span>
                                             </label>
-                                            <input id="homebusiness-ward" name="homebusiness-ward" class="col-md-12 form-control"/>
+                                            <input id="homebusiness-ward" name="ward_ID" class="col-md-12 form-control"/>
 
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                             <label for="homebusiness-district" class="control-label">
                                                 <span class="">$text.getText('common.phone')</span></span>
                                             </label>
-                                            <input id="homebusiness-phone" name="homebusiness-phone" type="text" class="col-md-12 form-control"/>
+                                            <input id="homebusiness-phone" name="phone" type="text" class="col-md-12 form-control"/>
 
                                         </div>
 
@@ -132,7 +132,7 @@
                                             <label for="homebusiness-fax" class="control-label">
                                                 <span class="">$text.getText('common.fax')</span></span>
                                             </label>
-                                            <input id="homebusiness-fax" name="homebusiness-fax" type="text" class="col-md-12 form-control"/>
+                                            <input id="homebusiness-fax" name="fax" type="text" class="col-md-12 form-control"/>
 
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                                             <label for="homebusiness-email" class="control-label">
                                                 <span class="">$text.getText('common.email')</span></span>
                                             </label>
-                                            <input id="homebusiness-email" name="homebusiness-email" type="email" class="col-md-12 form-control"/>
+                                            <input id="homebusiness-email" name="email" type="email" class="col-md-12 form-control"/>
 
                                         </div>
 
@@ -149,7 +149,7 @@
                                             <label for="homebusiness-website" class="control-label">
                                                 <span class="">$text.getText('common.website')</span></span>
                                             </label>
-                                            <input id="homebusiness-website" name="homebusiness-website" type="text" class="col-md-12 form-control"/>
+                                            <input id="homebusiness-website" name="website" type="text" class="col-md-12 form-control"/>
 
                                         </div>
 
@@ -165,7 +165,7 @@
                         <label for="pausebusiness-dayofPause" class="control-label">
                             <span class="">$text.getText('common.dayofPause')</span>
                         </label>
-                        <input id="pausebusiness-dayofPause" name="pausebusiness-dayofPause" type="number" class="col-md-6 form-control" />
+                        <input id="pausebusiness-dayofPause" name="dayofPause" type="number" class="col-md-6 form-control" />
 
                     </div>
 
@@ -176,7 +176,7 @@
                         <label for="pausebusiness-dateStart" class="control-label">
                             <span class="">$text.getText('common.dateStartPause')</span></span>
                         </label>
-                        <input id="pausebusiness-dateStart" name="pausebusiness-dateStart" class="col-md-6 form-control"/>
+                        <input id="pausebusiness-dateStart" name="dateStart" class="col-md-6 form-control"/>
 
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                         <label for="pausebusiness-reason" class="control-label">
                             <span  class="">$text.getText('common.reason') <span class="required"></span></span>
                         </label>
-                        <textarea id="pausebusiness-reason" name="pausebusiness-reason" rows="3" class="form-control"></textarea>
+                        <textarea id="pausebusiness-reason" name="pauseReason" rows="3" class="form-control"></textarea>
                     </div>
 
                 </div>
@@ -198,7 +198,7 @@
                         <label for="endbusiness-dateEnd" class="control-label">
                             <span class="">$text.getText('common.dateEnd')</span>
                         </label>
-                        <input id="endbusiness-dateEnd" name="endbusiness-dateEnd" type="text" class="col-md-6 form-control" />
+                        <input id="endbusiness-dateEnd" name="dateEnd" type="text" class="col-md-6 form-control" />
 
                     </div>
 
@@ -207,7 +207,7 @@
                             <span  class="">$text.getText('common.reason') <span class="required"></span></span>
                         </label>
 
-                        <textarea id="endbusiness-reason" name="endbusiness-reason" rows="3" class="form-control"></textarea>
+                        <textarea id="endbusiness-reason" name="endReason" rows="3" class="form-control"></textarea>
 
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                         <label for="changebusiness-infoChange" class="control-label">
                             <span  class="">$text.getText('common.infoChange') <span class="required"></span></span>
                         </label>
-                        <input id="changebusiness-infoChange" name="changebusiness-infoChange" type="text" class="col-md-12 form-control" />
+                        <input id="changebusiness-infoChange" name="infoChange" type="text" class="col-md-12 form-control" />
 
                         <!--<div id="changebusiness-infoChange" class="has-success ">
 

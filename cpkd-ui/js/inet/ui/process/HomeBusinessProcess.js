@@ -5,11 +5,11 @@ $(function () {
     iNet.ui.ita.HomeBusinessProcess = function (config) {
         this.id = 'business-process-div';
         var __config = config || {};
-        this.taskID = iNet.getLayout().parentParams.taskID || "";
-        this.act = iNet.getLayout().parentParams.act || "";
+        //this.taskID = iNet.getLayout().parentParams.taskID || "";
+        //this.act = iNet.getLayout().parentParams.act || "";
         var me = this;
         /*me.taskID = iNet.taskID;
-        me.act = iNet.act;*/
+         me.act = iNet.act;*/
         var parentPage = null;
 
         //get form velocity
@@ -34,16 +34,48 @@ $(function () {
 
 
         //info view
+        var parent = null;
         var wgBFInformation = null;
-        var taskView = function(){
-            var __taskInfo = me.taskID;//'57f2665b703f902f0c8944f8';//$taskFrame.getTaskDataIndex();
-            console.log("me.taskID>>>>", me.taskID);
-            console.log("me.act>>>>", me.act);
-            var __taskUuid = ((__taskInfo || {}).history || {}).taskID || '';
-            var __graphUuid = ((__taskInfo || {}).history || {}).graphID || "";
-            var __requestStatus = ((__taskInfo || {}).request || {}).status || '';
-            var _param = {taskID: __taskInfo};
+        var $taskFrame = iNet.getLayout().window.taskFrame;
+        var taskViewInfo = function(){
+            if (wgBFInformation == null){
+                wgBFInformation = new iNet.ui.xgate.BfInformation();
+                wgBFInformation.setType('full');
+                wgBFInformation.on('changeview', function(data){
+                    var __data = data || {};
+                    if (!iNet.isEmpty(__data.type || "")){
+                        switch (__data.type){
+                            case "process":
+                                processView();
+                                break;
+                            case "additional":
+                                additionalView();
+                                break;
+                            case "transfer":
+                                transferView();
+                                break;
+                            case "workflow":
+                                workflowView();
+                                break;
+                        }
+                    }
+                });
+            }
 
+            parent = wgBFInformation;
+           // self.hide();
+            wgBFInformation.show();
+            wgBFInformation.load();
+        };
+        var taskView = function(){
+            var __taskIndex = $taskFrame.getTaskDataIndex();
+            //var __taskInfo = __taskIndex.taskID;//'57f2665b703f902f0c8944f8';//$taskFrame.getTaskDataIndex();
+
+            var __requestID = ((__taskIndex || {}).request || {}).uuid || '';
+            console.log("__taskIndex>>>>", __taskIndex);
+            console.log("me.act>>>>", __requestID);
+            var _param = {taskID: __requestID};
+            taskViewInfo();
             $.postJSON(url.load_processHomeBusiness, _param, function (result) {
                 var __result = result || {};
 
@@ -54,14 +86,21 @@ $(function () {
                     me.statusType = __result.statusType || '';
                     me.objBusiness = __result.objBusiness || {};
 
-                    me.wgBtnProcess =  new  iNet.ui.ita.ButtonProcess({
+                    /*me.wgBtnProcess =  new  iNet.ui.ita.ButtonProcess({
                         act:me.act,
                         idHomeBusiness: me.idHomeBusiness,
                         parent_ID: me.objBusiness.uuid,
                         statusType: me.statusType
                     });
-                    me.wgBtnProcess.show();
-                   // me.wgBtnProcess.disabledButtonProcess();
+                    me.wgBtnProcess.show();*/
+
+                    var wgBFProcess = new iNet.ui.xgate.BfProcess();
+                    wgBFProcess.setType('full');
+                    //parent.hide();
+                    wgBFProcess.setPageBack(parent);
+                    wgBFProcess.show();
+                    wgBFProcess.load();
+                    // me.wgBtnProcess.disabledButtonProcess();
 
                     me.wgViewTask =  new  iNet.ui.ita.HomeBusinessViewTask({
                         statusType : me.statusType,
@@ -83,7 +122,7 @@ $(function () {
                         me.wgPerson.show();
 
                         //Load von dieu le
-                       // var __objHomeBusiness = me.objBusiness || {};
+                        // var __objHomeBusiness = me.objBusiness || {};
                         me.wgCapital = new iNet.ui.ita.CapitalFormWidget({
                             statusType: me.statusType,
                             idHomeBusiness:me.idHomeBusiness,
@@ -121,62 +160,62 @@ $(function () {
                         var _info = me.objBusiness.infoChange || [];
                         for ( var i=0, len=_info.length; i < len; i++ ){
                             var str = _info[i];
-                           if(str == 'change_tendangkykinhdoanh')
-                           {
-                              me.ChangeName = new iNet.ui.ita.ChangeNameBusinessForm({
-                                  idChangeBusiness: me.objBusiness.uuid ,
-                                  idHomeBusiness:me.idHomeBusiness,
-                                  nameBusiness: me.objBusiness.nameBusiness || ''
-                                 });
-                               me.ChangeName.show();
-                               me.$form.button_info_save.removeClass('hide');
-                           }
+                            if(str == 'change_tendangkykinhdoanh')
+                            {
+                                me.ChangeName = new iNet.ui.ita.ChangeNameBusinessForm({
+                                    idChangeBusiness: me.objBusiness.uuid ,
+                                    idHomeBusiness:me.idHomeBusiness,
+                                    nameBusiness: me.objBusiness.nameBusiness || ''
+                                });
+                                me.ChangeName.show();
+                                me.$form.button_info_save.removeClass('hide');
+                            }
                             else if(str == 'change_nguoidaidien')
-                           {
-                               var __objPersonRepresent = me.objBusiness.objPersonRepresent || {};
-                               me.wgPerson = new iNet.ui.ita.PersonRepresentWidget({
-                                   statusType: me.statusType ,
-                                   idHomeBusiness: idChange,
-                                   idPersonRepresent:me.objBusiness.personRepresent_ID,
-                                   PersonRepresent:__objPersonRepresent});
-                               me.wgPerson.show();
-                               me.$form.button_info_save.removeClass('hide');
-                           }
-                           else if(str == 'change_danhsachnguoigopvon')
-                           {
-                               me.wgabc = new iNet.ui.ita.ListContributorListWidget({
-                                   statusType: me.statusType,
-                                   idHomeBusiness:idChange
-                               });
-                               me.wgabc.show();
-                           }
-                           else if(str == 'change_danhsachnganhnghe')
-                           {
-                               me.wglistcareer = new iNet.ui.ita.ListCareerListWidget({
-                                   idHomeBusiness: idChange,
-                                   statusType: me.statusType
-                               });
-                               me.wglistcareer.show();
-                           }
-                           else if(str == 'change_vondieule')
-                           {
-                               me.wgCapital = new iNet.ui.ita.CapitalFormWidget({
-                                   statusType: me.statusType,
-                                   idHomeBusiness:idChange,
-                                   HomeBusiness:me.objBusiness});
-                               me.wgCapital.show();
-                               me.$form.button_info_save.removeClass('hide');
-                           }
-                           else if(str == 'change_thongtindangkykinhdoanh')
-                           {
-                               me.wgTask = new iNet.ui.ita.TaskProcessWidget({
-                                   statusType: me.statusType,
-                                   idHomeBusiness:idChange,
-                                   HomeBusiness:me.objBusiness});
-                               me.wgTask.show();
+                            {
+                                var __objPersonRepresent = me.objBusiness.objPersonRepresent || {};
+                                me.wgPerson = new iNet.ui.ita.PersonRepresentWidget({
+                                    statusType: me.statusType ,
+                                    idHomeBusiness: idChange,
+                                    idPersonRepresent:me.objBusiness.personRepresent_ID,
+                                    PersonRepresent:__objPersonRepresent});
+                                me.wgPerson.show();
+                                me.$form.button_info_save.removeClass('hide');
+                            }
+                            else if(str == 'change_danhsachnguoigopvon')
+                            {
+                                me.wgabc = new iNet.ui.ita.ListContributorListWidget({
+                                    statusType: me.statusType,
+                                    idHomeBusiness:idChange
+                                });
+                                me.wgabc.show();
+                            }
+                            else if(str == 'change_danhsachnganhnghe')
+                            {
+                                me.wglistcareer = new iNet.ui.ita.ListCareerListWidget({
+                                    idHomeBusiness: idChange,
+                                    statusType: me.statusType
+                                });
+                                me.wglistcareer.show();
+                            }
+                            else if(str == 'change_vondieule')
+                            {
+                                me.wgCapital = new iNet.ui.ita.CapitalFormWidget({
+                                    statusType: me.statusType,
+                                    idHomeBusiness:idChange,
+                                    HomeBusiness:me.objBusiness});
+                                me.wgCapital.show();
+                                me.$form.button_info_save.removeClass('hide');
+                            }
+                            else if(str == 'change_thongtindangkykinhdoanh')
+                            {
+                                me.wgTask = new iNet.ui.ita.TaskProcessWidget({
+                                    statusType: me.statusType,
+                                    idHomeBusiness:idChange,
+                                    HomeBusiness:me.objBusiness});
+                                me.wgTask.show();
 
-                               me.$form.button_info_save.removeClass('hide');
-                           }
+                                me.$form.button_info_save.removeClass('hide');
+                            }
                         }
 
                     }
