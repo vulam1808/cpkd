@@ -1,0 +1,104 @@
+#html({"lang":"vi","dir":"ltr", "xmlns":"http://www.w3.org/1999/xhtml","secure":"$user"})
+#keyworks({"title":'Cấp phép kinh doanh'})
+#meta({ "title":"iCloud Platform","viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+
+#cmsNav("Chuyên viên xử lý hồ sơ CPKD", false)
+#widget("/cpkd/widget/common/common")
+#script("/js/cpkd/inet/lib/homebusiness-process.min.js")
+#widget("/cpkd/widget/control/ajaxmask")
+#widget("/cpkd/widget/process/listcareer/form-dialog")
+#script("/js/cpkd/inet/lib/listcareer-form-dialog.min.js")
+#widget("/cpkd/widget/control/viewInfoDetail")
+#widget("/cpkd/widget/control/infoBusiness")
+#widget("/cpkd/widget/process/endbusiness/form")
+#widget("/cpkd/widget/process/pausebusiness/form")
+
+#widget("/xgate/widget/control/ajaxmask")
+#widget("/xgate/widget/control/itemview")
+#widget("/xgate/widget/control/fileview")
+#widget("/xgate/widget/control/signature")
+#widget("/xgate/widget/control/modalview")
+
+#widget("/xgate/widget/briefcase/process")
+#widget("/xgate/widget/briefcase/transfer")
+#widget("/xgate/widget/briefcase/additional")
+
+#widget("/xgate/widget/briefcase/workflow")
+#script("::/xgate/page/resources/BfWorkflow")
+#script("::/xgate/page/workflow/tool/zone")
+
+
+#script("::/xgate/page/task/zone")
+#script("::/xgate/page/common/zone")
+<div id="business-process-div">
+    <div>
+        <div id="business-process-toolbar" class="wg-toolbar navbar-fixed-top">
+            #widget("/cpkd/widget/control/buttonProcessXGate")
+
+            <!--#widget("/xgate/widget/briefcase/process_s")-->
+        </div>
+        <div class="wg-content">
+            <div id="business-process-subject-details">
+            </div>
+            <div id="business-process-sender-details">
+            </div>
+            <div id="business-process-data-content" >
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="business-process-tab">
+                        <li class="active" data-tab="tab01" id="tab-info"><a href="#tab-business-infoTask" data-toggle="tab">$text.getText("common.infoTask")</a></li>
+                        <li data-tab="tab02" id="tab-process" class="hide"><a href="#tab-business-infoProcess" data-toggle="tab">$text.getText("common.infoProcess")</a></li>
+                        <li  data-tab="tab03" id="tab-info1"><a href="#tab-business-infoTask1" data-toggle="tab">$text.getText("common.infoTask")</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active container-fluid" id="tab-business-infoTask">
+                            #widget("/cpkd/widget/process/homeBusiness/viewtask")
+                        </div>
+                        <div class="tab-pane container-fluid" id="tab-business-infoProcess">
+                            <div id="tab-button-proess" class="row" >
+                                <!--<button id="btn-infoprocess-load" class="btn btn-info" title="Xử lý hồ sơ">
+                                    <i class="icon-edit"></i> $text.getText('common.button.update')
+                                </button>-->
+                                <button id="btn-infoprocess-save" class="btn btn-warning" title="Xử lý hồ sơ">
+                                    <i class="icon-ok-sign"></i> $text.getText('common.button.save')
+                                </button>
+                            </div>
+                            <div id="tab-infoProcess-nameChange">
+                                #widget("/cpkd/widget/control/nameProcess")
+                            </div>
+                            <div id="tab-infoProcess-taskInfo">
+                                #widget("/cpkd/widget/process/task/form")
+                            </div>
+                            <div id="tab-infoProcess-person">
+                                #widget("/cpkd/widget/process/person/form")
+                            </div>
+                            <div id="tab-infoProcess-capital">
+                                #widget("/cpkd/widget/process/capital/form")
+
+                            </div>
+                            <div id="tab-infoProcess-career">
+                                #widget("/cpkd/widget/process/listcareer/list")
+                            </div>
+                            <div id="tab-infoProcess-listcontributor">
+                                #widget("/cpkd/widget/process/listcontributor/list")
+                            </div>
+                        </div>
+                        <div class="tab-pane active container-fluid" id="tab-business-infoTask1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+#xscript()
+$(function(){
+var homebusinessProcessXGate = new iNet.ui.ita.HomeBusinessProcessXGate();
+homebusinessProcessXGate.show();
+});
+#end
+
+#end
