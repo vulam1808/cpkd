@@ -13,7 +13,6 @@ $(function () {
         };
 
         var url = {
-
             check_name_business: iNet.getUrl('ita/homebusiness/checknamebusiness'),
             update_name: iNet.getUrl('ita/homebusiness/changenamebusiness'),
             load_infoDetail: iNet.getUrl('ita/homebusiness/loadinfo')
@@ -22,6 +21,7 @@ $(function () {
         this.$form = {
 
 
+            div_checkNameBusiness:$('#div-checkNameBusiness'),
             button_view_detail:$('#view-detail-task'),
             button_check: $('#btn-check-nameBusiness'),
             div_status_check_capmoi: $('#status-nameBusiness-capmoi'),
@@ -47,7 +47,9 @@ $(function () {
             me.setData(me.nameBusiness);
         };
         loadNameBusiness();
-
+        var hiddenButtonCheckName = function(){
+            me.$form.div_checkNameBusiness.addClass("hide");
+        };
 
 
 //Function load combobox ==========================================

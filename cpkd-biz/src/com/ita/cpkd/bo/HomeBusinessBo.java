@@ -6,8 +6,12 @@ import javax.inject.Named;
 
 import com.inet.xportal.nosql.web.bf.MagicContentBF;
 import com.inet.xportal.nosql.web.bo.MagicContentBO;
+import com.inet.xportal.nosql.web.data.SearchDTO;
 import com.inet.xportal.web.context.ContentContext;
 import com.inet.xportal.web.exception.WebOSBOException;
+import com.inet.xportal.xdb.persistence.JSONDB;
+import com.inet.xportal.xdb.query.Query;
+import com.inet.xportal.xdb.query.impl.QueryImpl;
 import com.ita.cpkd.enums.EnumChangeInfo;
 import com.ita.cpkd.enums.EnumStatus;
 import com.ita.cpkd.lib.Utility;
@@ -16,7 +20,9 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -48,6 +54,8 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
     private ListContributorBo listContributorBo;
     @Inject
     private ListCareerBo listCareerBo;
+    @Inject
+    private CareerBo careerBo;
     /**
      * Create {@link AccountBo} instance
      *
@@ -202,6 +210,138 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                 mainObj.put("EndBusiness" + i, objChange);
             }
         }
+        return mainObj;
+    }
+    public JSONObject loadReportLicenseByHomeBusinessID(String homeBusinessID) throws WebOSBOException
+    {
+        //logger.debug("begin loadBusinessInfoByTaskID {}", "abcd");
+        JSONObject mainObj = new JSONObject();
+
+        HomeBusiness obj = super.load(homeBusinessID);
+        mainObj.put("numberBusiness", obj.getNumberBusiness());
+        mainObj.put("nameBusiness", obj.getNameBusiness());
+        String addressBusiness = obj.getAddress()!= null?obj.getAddress():"";
+        mainObj.put("address", addressBusiness);
+        //get ward
+        String wardid = obj.getWard_ID();
+        String nameward ="";
+        if(wardid !=null)
+        {
+            Ward objWard = wardBo.load(wardid);
+            nameward = objWard.getName();
+        }
+        mainObj.put("nameWard", nameward);
+        if(!nameward.equals(""))
+        {
+            addressBusiness = addressBusiness+", "+ nameward;
+        }
+
+        //get district
+        String districtid = obj.getDistrict_ID();
+        String namedistrict ="";
+        if(districtid !=null)
+        {
+            District objDistrict = districtBo.load(districtid);
+            namedistrict = objDistrict.getName();
+        }
+        mainObj.put("nameDistrict", namedistrict);
+        if(!namedistrict.equals(""))
+        {
+            addressBusiness = addressBusiness+", "+ namedistrict;
+        }
+        //get Province
+        String provinceid = obj.getProvince_ID();
+        String nameprovince ="";
+        if(provinceid !=null)
+        {
+            Province objProvince = provinceBo.load(provinceid);
+            nameprovince = objProvince.getName();
+        }
+        mainObj.put("nameProvince", nameprovince);
+        if(nameprovince.equals(""))
+        {
+            addressBusiness = addressBusiness+", "+ nameprovince;
+        }
+        mainObj.put("addressBusiness", addressBusiness);
+        mainObj.put("phoneBusiness", obj.getPhone()!= null?obj.getPhone():"");
+        mainObj.put("faxBusiness", obj.getFax()!= null?obj.getFax():"");
+        mainObj.put("emailBusiness", obj.getEmail()!= null?obj.getEmail():"");
+        mainObj.put("websiteBusiness", obj.getWebsite()!= null?obj.getWebsite():"");
+
+        //get nganh nghe kinh doanh
+        String careerBusiness = "";
+        List<ListCareer> lstCar = listCareerBo.loadListCareerByHomeBusinessID(obj.getUuid());
+        if(lstCar!=null)
+        {
+            for (ListCareer childNode : lstCar) {
+                Career objCareer = careerBo.load(childNode.getCareer_id());
+                if(objCareer != null)
+                {
+                    if(careerBusiness.equals("")) {
+                        careerBusiness = objCareer.getName();
+                    }
+                    else{
+                        careerBusiness = careerBusiness+ ", "+ objCareer.getName();
+                    }
+                }
+
+
+            }
+        }
+        //get von kinh doanh
+        mainObj.put("capitalBusiness",obj.getBusinessCapital()!=null?obj.getBusinessCapital():"");
+
+        //get nguoi dai dien
+        PersonRepresent per = personRepresentBo.loadPersonRepresentByID(obj.getPersonRepresent_ID());
+        //Ten nguoi dai dien
+        mainObj.put("nameRepresent",per.getNameRepresent()!=null?per.getNameRepresent().toUpperCase():"");
+
+        //Gioi tinh
+        String sex = per.getGender()!=null?per.getGender():"";
+        if(sex == "NAM")
+        {
+            mainObj.put("genderRepresent","Nam");
+        }
+        else if(sex == "NU")
+        {
+            mainObj.put("genderRepresent","Nữ");
+        }
+        //Ngay sinh
+        String birthday = per.getBirthday()!=null?per.getBirthday():"";
+        if(!birthday.equals("") && !birthday.equals("0"))
+        {
+            long val = Long.parseLong(birthday);
+            Date date=new Date(val);
+            SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+            String dateText = df2.format(date);
+
+            mainObj.put("birthdayRepresent",dateText);
+
+        }
+
+        //Dan toc
+        mainObj.put("raceRepresent",per.getRace()!=null?per.getRace():"");
+
+        //Chung minh nhan dan
+        mainObj.put("cmndRepresent",per.getIdnumber());
+
+        //ngay cap
+        String cnmdDate = per.getIssueDate()!=null?per.getIssueDate():"";
+        if(!cnmdDate.equals("") && !cnmdDate.equals("0"))
+        {
+            long val = Long.parseLong(cnmdDate);
+            Date date=new Date(val);
+            SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+            String dateText = df2.format(date);
+
+            mainObj.put("cmndDateRepresent",dateText);
+
+        }
+        //ho khau thuong tru
+        mainObj.put("residenceRepresent",per.getAddressResidence()!=null?per.getAddressResidence():"");
+        //cho o hien tai
+        mainObj.put("currentRepresent",per.getAddressCurrent()!=null?per.getAddressCurrent():"");
+
         return mainObj;
     }
     public HomeBusiness loadObjParent(HomeBusiness objhome)

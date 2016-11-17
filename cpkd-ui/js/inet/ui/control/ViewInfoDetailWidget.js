@@ -54,19 +54,8 @@ $(function() {
                     $div.div_dateSubmit.removeClass('hide');
                     $div.name_dateSubmit.html('').append(dateSumit.longToDate());
                 }
-                var changeInfo = me.HomeBusiness.infoChange || [];
-                if(changeInfo.length > 0)
-                {
-                    $div.div_changeInfo.removeClass('hide');
-                    var str = "";
-                    for ( var i=0, len=changeInfo.length; i < len; i++ ){
-                        var strInfo = changeInfo[i];
-                        console.log("_info>>>>",strInfo);
-                        str += '<label class="label label-sm label-success arrowed-in">"'+ita.resources.common[strInfo]+'"</label>'
-                    }
-                    $div.name_changeInfo.html('').append(str);
-                }
-                if(me.statusType=="CAP_MOI" || me.statusType=="CAP_DOI" ){
+
+                if(me.statusType=="CAP_MOI"){
                     var Person = me.HomeBusiness.objPersonRepresent || {};
                     //iNet.extend(__config.divIDPerson, iNet.Component);
                     var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
@@ -116,6 +105,98 @@ $(function() {
                     jslistcontributor.setHideButtonAdd();
                     //jslistcontributor.show();
                     $('#'+me.id + ' #listcontributor-widget').removeClass('hide');
+                }
+                else if(me.statusType=="CAP_DOI"){
+                    var changeInfo = me.HomeBusiness.infoChange || [];
+                    if(changeInfo.length > 0)
+                    {
+                        $div.div_changeInfo.removeClass('hide');
+                        var str = "";
+                        for ( var i=0, len=changeInfo.length; i < len; i++ ){
+                            var strInfo = changeInfo[i];
+                            console.log("_info>>>>",strInfo);
+                            str += '<label class="label label-sm label-success arrowed-in">"'+ita.resources.common[strInfo]+'"</label>'
+
+                            if(strInfo == 'change_tendangkykinhdoanh')
+                            {
+                                me.ChangeName = new iNet.ui.ita.ChangeNameBusinessForm({
+                                    idChangeBusiness: me.objBusiness.uuid ,
+                                    idHomeBusiness:me.idHomeBusiness,
+                                    nameBusiness: me.objBusiness.nameBusiness || ''
+                                });
+                                me.ChangeName.show();
+                                me.$form.button_info_save.removeClass('hide');
+                            }
+                            else if(strInfo == 'change_nguoidaidien')
+                            {
+                                var Person = me.HomeBusiness.objPersonRepresent || {};
+                                //iNet.extend(__config.divIDPerson, iNet.Component);
+                                var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
+                                $div.div_Person.html('').append($div_id_person.html());
+                                //$div_id_person.remove();
+                                var jsPerson = new iNet.ui.ita.PersonRepresentWidget({
+                                    id : me.id ,
+                                    PersonRepresent: Person
+                                });
+                                //jsPerson.id = me.id;
+                                jsPerson.setReadonly();
+                                //jsPerson.show();
+                                $('#'+me.id + ' #personrepresent-widget').removeClass('hide');
+                            }
+                            else if(strInfo == 'change_danhsachnguoigopvon')
+                            {
+                                var $div_id_listcontributor = $.getCmp(__config.divIDlistContributor || 'listcontributor-widget-content');
+                                $div.div_listcontributor.html('').append($div_id_listcontributor.html());
+                                //$div_id_listcontributor.remove();
+                                var jslistcontributor = new iNet.ui.ita.ListContributorListWidget({
+                                    id : me.id,
+                                    idHomeBusiness: me.idHomeBusiness,
+                                    statusType: me.statusType
+                                });
+                                jslistcontributor.setHideButtonAdd();
+                                //jslistcontributor.show();
+                                $('#'+me.id + ' #listcontributor-widget').removeClass('hide');
+                            }
+                            else if(strInfo == 'change_danhsachnganhnghe')
+                            {
+                                var $div_id_listcareer = $.getCmp(__config.divIDlistCareer || 'listcareer-widget-content');
+                                $div.div_listcareer.html('').append($div_id_listcareer.html());
+                                //$div_id_listcareer.remove();
+                                var jslistcareer = new iNet.ui.ita.ListCareerListWidget({
+                                    id : me.id,
+                                    idHomeBusiness: me.idHomeBusiness,
+                                    statusType: me.statusType
+                                });
+                                jslistcareer.setHideButtonAdd();
+                                //jslistcareer.show();
+                                $('#'+me.id + ' #listcareer-widget').removeClass('hide');
+                            }
+                            else if(strInfo == 'change_vondieule')
+                            {
+                                var $div_id_capital = $.getCmp(__config.divIDCapital || 'capital-form-widget-content');
+                                $div.div_capital.html('').append($div_id_capital.html());
+                                // $div_id_capital.remove();
+                                var jsCapital = new iNet.ui.ita.CapitalFormWidget({
+                                    id : me.id,
+                                    HomeBusiness: me.HomeBusiness
+                                });
+                                jsCapital.setReadonly();
+                                //jsCapital.show();
+                                $('#'+me.id + ' #capital-form-widget').removeClass('hide');
+                            }
+                            else if(strInfo == 'change_thongtindangkykinhdoanh')
+                            {
+                                me.wgTask = new iNet.ui.ita.TaskProcessWidget({
+                                    statusType: me.statusType,
+                                    idHomeBusiness:idChange,
+                                    HomeBusiness:me.objBusiness});
+                                me.wgTask.show();
+
+                                me.$form.button_info_save.removeClass('hide');
+                            }
+                        }
+                        $div.name_changeInfo.html('').append(str);
+                    }
                 }
                 else if(me.statusType=="TAM_NGUNG"){
                     var $div_pausebusiness = $.getCmp(__config.divIDPauseBusiness || 'pausebusiness-widget-content');

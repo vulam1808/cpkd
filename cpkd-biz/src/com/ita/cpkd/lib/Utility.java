@@ -1,7 +1,12 @@
 package com.ita.cpkd.lib;
 
 import com.inet.base.util.ReflectionUtils;
+import com.ita.cpkd.bo.DistrictBo;
+import com.ita.cpkd.bo.ProvinceBo;
+import com.ita.cpkd.bo.WardBo;
+import com.ita.cpkd.model.Province;
 
+import javax.inject.Inject;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,5 +60,22 @@ public class Utility {
             }
         }
         return result;
+    }
+    @Inject
+    private DistrictBo districtBo;
+    @Inject
+    private ProvinceBo provinceBo;
+    @Inject
+    private WardBo wardBo;
+    public String getAddress(String address,String provinceid,String districtid, String wardid)
+    {
+        String _address = address;
+        String province= "";
+        if(provinceid !=null)
+        {
+            Province objProvince = provinceBo.load(provinceid);
+            province = objProvince.getName();
+        }
+
     }
 }

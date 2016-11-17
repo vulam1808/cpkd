@@ -22,7 +22,9 @@ $(function() {
           regilion: $('#'+me.id+' #personrepresent-txt-regilion'),
           idnumber: $('#'+me.id+' #personrepresent-txt-idnumber'),
           issueDate: $('#'+me.id+' #personrepresent-txt-issueDate'),
-          issuePlace: $('#'+me.id+' #personrepresent-txt-issuePlace')
+          issuePlace: $('#'+me.id+' #personrepresent-txt-issuePlace'),
+          addressResidence: $('#'+me.id+' #personrepresent-txt-addressResidence'),
+          addressCurrent: $('#'+me.id+' #personrepresent-txt-addressCurrent')
       };
 console.log("this.id",me.id);
       var url = {
@@ -103,6 +105,8 @@ console.log("this.id",me.id);
           this.$input.idnumber.prop('readonly', true);
           this.$input.issueDate.prop('readonly', true);
           this.$input.issuePlace.prop('readonly', true);
+          this.$input.addressResidence.prop('readonly', true);
+          this.$input.addressCurrent.prop('readonly', true);
 
 
       },
@@ -115,6 +119,8 @@ console.log("this.id",me.id);
           this.$input.idnumber.prop('readonly', false);
           this.$input.issueDate.prop('readonly', false);
           this.$input.issuePlace.prop('readonly', false);
+          this.$input.addressCurrent.prop('readonly', false);
+          this.$input.addressResidence.prop('readonly', false);
       },
         getData: function () {
               //var __ownerData = this.ownerData || {};
@@ -132,7 +138,8 @@ console.log("this.id",me.id);
               __data.idnumber = this.$input.idnumber.val();
               __data.issueDate = (this.$input.issueDate.val()||0).dateToLong();
               __data.issuePlace = this.$input.issuePlace.val();
-
+            __data.addressCurrent = this.$input.addressCurrent.val();
+            __data.addressResidence = this.$input.addressResidence.val();
               /*if(!iNet.isEmpty(__ownerData.uuid)){
                __data.uuid = __ownerData.uuid;
                }*/
@@ -149,6 +156,9 @@ console.log("this.id",me.id);
             this.$input.idnumber.val(__data.idnumber);
             this.$input.issueDate.val((__data.issueDate||0).longToDate());
             this.$input.issuePlace.val(__data.issuePlace);
+            this.$input.addressCurrent.val(__data.addressCurrent);
+            this.$input.addressResidence.val(__data.addressResidence);
+
 
              /* if(!iNet.isEmpty(__ownerData.uuid)){
                __data.uuid = __ownerData.uuid;

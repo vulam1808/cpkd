@@ -1,13 +1,15 @@
 #html({"lang":"vi","dir":"ltr", "xmlns":"http://www.w3.org/1999/xhtml","secure":"$user"})
 #keyworks({"title":'Cấp phép kinh doanh'})
 #meta({ "title":"iCloud Platform","viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+
 <!--
 #xscript()
 iNet.act = $ctx.value('act');
 iNet.taskID = $ctx.value('taskID');
 #end
 -->
-#cmsNav("Chuyên viên xử lý hồ sơ CPKD", false);
+
+
 #widget("/cpkd/widget/common/common")
 #script("/js/cpkd/inet/lib/homebusiness-process.min.js")
 #widget("/cpkd/widget/control/ajaxmask")
@@ -18,13 +20,7 @@ iNet.taskID = $ctx.value('taskID');
 #widget("/cpkd/widget/process/endbusiness/form")
 #widget("/cpkd/widget/process/pausebusiness/form")
 
-#widget("/xgate/widget/control/ajaxmask")
-#widget("/xgate/widget/control/itemview")
-#widget("/xgate/widget/control/fileview")
-#widget("/xgate/widget/control/signature")
-#widget("/xgate/widget/control/modalview")
 
-#script("::/xgate/page/resources/BfWorkflow")
 #script("::/xgate/page/workflow/tool/zone")
 
 
@@ -33,9 +29,9 @@ iNet.taskID = $ctx.value('taskID');
 <div id="business-process-div">
     <div>
         <div id="business-process-toolbar" class="wg-toolbar navbar-fixed-top">
-           <!-- #widget("/cpkd/widget/control/buttonProcess")-->
+            #widget("/cpkd/widget/control/buttonProcess")
 
-            #widget("/xgate/widget/briefcase/process")
+
         </div>
         <div class="wg-content">
             <div id="business-process-subject-details">

@@ -17,6 +17,24 @@ public class PersonRepresent {
     private String idnumber;
     private String issueDate;
     private String issuePlace;
+    private String addressResidence;
+    private String addressCurrent;
+
+    public String getAddressCurrent() {
+        return addressCurrent;
+    }
+
+    public void setAddressCurrent(String addressCurrent) {
+        this.addressCurrent = addressCurrent;
+    }
+
+    public String getAddressResidence() {
+        return addressResidence;
+    }
+
+    public void setAddressResidence(String addressResidence) {
+        this.addressResidence = addressResidence;
+    }
 
     public String getBirthday() {
         return birthday;

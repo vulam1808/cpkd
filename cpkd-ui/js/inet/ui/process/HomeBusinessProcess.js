@@ -5,8 +5,8 @@ $(function () {
     iNet.ui.ita.HomeBusinessProcess = function (config) {
         this.id = 'business-process-div';
         var __config = config || {};
-        //this.taskID = iNet.getLayout().parentParams.taskID || "";
-        //this.act = iNet.getLayout().parentParams.act || "";
+        this.taskID = iNet.getLayout().parentParams.taskID || "";
+        this.act = iNet.getLayout().parentParams.act || "";
         var me = this;
         /*me.taskID = iNet.taskID;
          me.act = iNet.act;*/
@@ -68,14 +68,11 @@ $(function () {
             wgBFInformation.load();
         };
         var taskView = function(){
-            var __taskIndex = $taskFrame.getTaskDataIndex();
-            //var __taskInfo = __taskIndex.taskID;//'57f2665b703f902f0c8944f8';//$taskFrame.getTaskDataIndex();
 
-            var __requestID = ((__taskIndex || {}).request || {}).uuid || '';
-            console.log("__taskIndex>>>>", __taskIndex);
+            var __requestID = me.taskID;
             console.log("me.act>>>>", __requestID);
             var _param = {taskID: __requestID};
-            taskViewInfo();
+            //taskViewInfo();
             $.postJSON(url.load_processHomeBusiness, _param, function (result) {
                 var __result = result || {};
 
@@ -86,21 +83,21 @@ $(function () {
                     me.statusType = __result.statusType || '';
                     me.objBusiness = __result.objBusiness || {};
 
-                    /*me.wgBtnProcess =  new  iNet.ui.ita.ButtonProcess({
+                    me.wgBtnProcess =  new  iNet.ui.ita.ButtonProcess({
                         act:me.act,
                         idHomeBusiness: me.idHomeBusiness,
                         parent_ID: me.objBusiness.uuid,
                         statusType: me.statusType
                     });
-                    me.wgBtnProcess.show();*/
+                    me.wgBtnProcess.show();
 
-                    var wgBFProcess = new iNet.ui.xgate.BfProcess();
+                   /* var wgBFProcess = new iNet.ui.xgate.BfProcess();
                     wgBFProcess.setType('full');
                     //parent.hide();
                     wgBFProcess.setPageBack(parent);
                     wgBFProcess.show();
                     wgBFProcess.load();
-                    // me.wgBtnProcess.disabledButtonProcess();
+                    // me.wgBtnProcess.disabledButtonProcess();*/
 
                     me.wgViewTask =  new  iNet.ui.ita.HomeBusinessViewTask({
                         statusType : me.statusType,
