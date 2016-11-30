@@ -1,0 +1,58 @@
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+
+#script("/js/xgate/inet/lib/idesign-ui-t-published-service.min.js")
+
+
+<div id="published-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="published-back-btn" type="button" class="btn btn-primary btn-small hide">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+    </div>
+    <div class="wg-content">
+        <form id="published-form" method="post" enctype="multipart/form-data">
+            <div class="row-fluid">
+                <span class="span1"></span>
+                <span class="span7">
+                    <div class="row-fluid">
+                        <input id="published-page-txt" name="page" type="text" class="span12 hide">
+                    </div>
+                    <div class="row-fluid">
+                        <span class="span2"><label class="ilabel control-label span12" for="published-application-txt">$text.getText('idesign.storage.application') <span class="required"></span></label></span>
+                        <span class="span10"><input id="published-application-txt" name="application" type="text" class="span12"></span>
+                    </div>
+                    <div class="row-fluid">
+                        <span class="span2"><label class="ilabel control-label span12" for="published-category-txt">$text.getText('idesign.storage.category') <span class="required"></span></label></span>
+                        <span class="span10 input-icon input-icon-right dropdown">
+                            <input id="published-category-txt" name="category" type="text" class="span12">
+                            <i id="published-search-btn" class="icon-search dropdown-toggle" data-toggle="dropdown"></i>
+                            <ul id="published-category-list" class="dropdown-menu" style="margin: 0; padding: 0;max-height: 200px;overflow: auto;width: 100%;">
+                            </ul>
+                        </span>
+                    </div>
+                    <div class="row-fluid">
+                        <span class="span2"><label class="ilabel control-label span12">$text.getText('idesign.storage.picture') <span class="required"></span></label></span>
+                        <div class="span10">
+                            <span class="span12" id="published-file-container" data-container>
+                                <div class="ace-file-input">
+                                    <label data-title="Click here">
+                                        <span data-title="..."><i class="icon-upload-alt"></i></span>
+                                    </label>
+                                </div>
+                            </span>
+                            <input id="published-file" class="hide" type="file" name="file" accept="image/jpeg, image/png"/>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <span class="span2">
+                            <span id="published-submit-btn" class="actionIcon" style="padding-top: 15px;"><i class="icon-cloud-upload"></i></span>
+                        </span>
+                        <span class="span10">
+                            <img id="published-image" src="" style="width: 300px;height: 300px;border: 1px dashed #5EB6FF;">
+                        </span>
+                    </div>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

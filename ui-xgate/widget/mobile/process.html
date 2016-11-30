@@ -1,0 +1,214 @@
+#dataservice("cloudwflarcruleengine")
+#set($data = $cloudwflarcruleengine)
+#set($taskID = $ctx.value('task'))
+#set($isFinish = $ctx.value("isFinish"))
+#set($late = $ctx.value('late'))
+<div class="m-panel bottom popup" e-controller="taskProcess" e-events="click">
+    <style>
+        .add-person {
+            font-size:20px;
+            height: 100%;
+            width: 45px;
+            left: 0;
+            text-align: center;
+            border-right: 1px solid #ddd;
+        }
+        .list-person-process {
+            border: none;
+            margin-top: 10px!important;
+        }
+    </style>
+    <div class="m-header m-theme-a">
+        <i class="btn icon ion-chevron-left" data-close></i>
+        <i e-click="onSubmit" class="icon ion-checkmark btn right" style="font-size: 20px"></i>
+        <h1>Thông tin quy trình xử lý</h1>
+    </div>
+    #if(!!$data)
+    <div class="m-content">
+        <form data-type="Form" e-id="form">
+            <label>$text.getText("mobile.orbizflow.flow"):</label>
+
+            <ul id="list" data-type="ListSelect" e-id="list" data-param={"multiple":$data.multiDecision} class="m-list inset thumb-20 has-icon">
+                #foreach($key in $data.lines.keySet())
+                <li name="$key" style="padding-left: 55px">
+                    <i data-name="$key" e-click="onAddPerson" class="icon ion-person-add list-menu-image add-person"></i>
+                    <h2>$key</h2>
+                </li>
+                #end
+            </ul>
+            <ul e-id="listPersonProcess" data-type="ListSelect" class="m-list inset list-person-process" id="list-person-process" data-param={"multiple":true}>
+
+            </ul>
+            <label>Nội dung trao đổi:</label>
+            <textarea name="note" rows="2" class="form-control" data-type="TextArea"></textarea>
+            #if($late == "yes")
+            <div id="note-late">
+                <label>Lý do trể ( <span style="color: red">*</span> ):</label>
+                <textarea name="noteLate" rows="2" class="form-control" data-type="TextArea"></textarea>
+            </div>
+            #end
+            <label>$text.getText("itask.task.exclusive"):</label>
+            <div data-type="SelectCrazy" e-id="select" class="select-crazy form-control">
+
+            </div>
+        </form>
+        #if($isFinish == "true")
+        <div class="m-footer m-color-a  has-text">
+            <div class="btn" style="width: 100%">
+                <i class="icon ion-checkmark-circled" style="line-height: 30px"></i>
+                <p class="footer-text">Kết thúc hồ sơ</p>
+            </div>
+        </div>
+        #end
+
+    </div>
+    <script>
+        eNet.controller('taskProcess', function (controller) {
+
+
+            var callback = iNet.generateUUID();
+            window[callback] = function (data) {
+                controller.select.addItem(data);
+            };
+            this.on('destroy', function () {
+                delete window[callback];
+            });
+
+            var _urlPersonProcess = iNet.getUrl('cloud/workflow/arc2node'),
+                __note= this.findEl('textarea[name="note"]'),
+                personProcess = this.findEl('#list-person-process'),
+                isCollapse = false,
+                nodeName = '';
+            var __noteLate = this.findEl('#note-late'), __noteLateText;
+            if(__noteLate.length) {
+                __noteLateText = __noteLate.find('textarea').val();
+            } else  {
+                __noteLateText = "";
+            }
+
+
+
+            controller.onAddPerson = function () {
+                var direction = $(this).next().text();
+
+                if(!isCollapse) {
+                    var param = {
+                        task: '$taskID',
+                        direction: direction
+                    };
+                    if(nodeName !== direction) {
+                        personProcess.show();
+                        $.get(_urlPersonProcess, param, function (data) {
+                            var __data = data || {};
+                            var __members = __data.members || [];
+                            var html = '';
+
+                            for(var i = 0, len = __members.length; i < len; i++) {
+                                html += '<li name="' + __data.nodeName + '" value="'+ __members[i].usercode + '"><h2>' + __members[i].username + '</h2></li>';
+                            }
+                            personProcess.html(html);
+                            isCollapse = false;
+                            controller.listPersonProcess.init();
+                        });
+                    } else {
+                        personProcess.hide();
+                        isCollapse = true;
+                    }
+
+                    nodeName = direction;
+                }
+                else {
+                    personProcess.show();
+                    isCollapse = false;
+                }
+            };
+
+            // Todo: remove after next version
+            controller.listPersonProcess.getValueArray = function () {
+                var data = [];
+                controller.listPersonProcess.getActive().each(function () {
+                    if(this.hasAttribute('name')){
+                        data.push({
+                            name: this.getAttribute('name'),
+                            value: this.getAttribute('value')
+                        });
+                    }
+                });
+                return data;
+            };
+
+            // Todo: remove after 2.2.8
+            controller.list.active(0);
+            controller.list.getValue = function () {
+                var data = {};
+                this.getActive().each(function () {
+                    if(this.hasAttribute('name')){
+                        data[this.getAttribute('name')] = this.getAttribute('value') || true;
+                    }
+                });
+                return data;
+            };
+
+            controller.select.getInput().hide();
+            controller.select.getEl().on('click', function (e) {
+                if(this.isSameNode(e.target)){
+                    controller.router.fireAction('panel', {
+                        url: 'xgate/page/mobile/users',
+                        callback: callback
+                    });
+                }
+            });
+
+            controller.onSubmit = function () {
+                if(__noteLate.length) {
+                    if (!__noteLateText.val()) {
+                        alert('Lý do trể không được trống!')
+                    }
+                }
+                var params = controller.form.getFormData(),
+                    direction = '',
+                    members = [],
+                    list = controller.listPersonProcess.getValueArray();
+                members.length = 0;
+                for (var key in controller.list.getValue()) {
+                    direction += key + ',';
+                }
+                for(var i = 0, len = list.length; i < len; i++) {
+                    members.push({
+                        username: list[i].value,
+                        role: '',
+                        direction: controller.list.getActive().find('h2').text(),
+                        nodeName: list[i].name
+                    });
+                }
+                if (direction) {
+                    params.direction = direction.slice(0, direction.length - 1);
+                    params.task = '$taskID';
+                    params.exclusive = controller.select.getValue().join(',');
+                    params.note = __note.val() || '';
+                    params.members = JSON.stringify(members);
+                    if(__noteLate.length) {
+                        $.postJSON(iNet.getUrl('firmtask/process/latemark'), {task: '$taskID', reason: __noteLateText});
+                    }
+                    $.postJSON(iNet.getUrl('firmtask/process/executor'), params, function (data) {
+                        controller.router.getPagePrev().fireEvent('refresh');
+                        controller.router.backPage();
+                        if(iNet.isFunction(window.itaskReload)){
+                            window.itaskReload();
+                        }
+                    });
+                } else {
+                    alert('$text.getText("mobile.orbizflow.process_none")');
+                }
+            }
+        });
+    </script>
+    #else
+    <div class="m-content">
+        <div class="social-no-feed">
+            <div><i class="icon ion-chatbox-working"></i></div>
+            $text.getText("mobile.nodata")
+        </div>
+    </div>
+    #end
+</div>

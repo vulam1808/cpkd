@@ -1,0 +1,31 @@
+<div class="row-fluid">
+    <label class="span4 control-label">Tên hộ kinh doanh: </label>
+    <span class="span8">
+        <input name="frmdata_tenhokinhdoanh" type="text" class="span12"/>
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span4 control-label">Địa điểm kinh doanh: </label>
+    <span class="span8">
+        <input name="frmdata_diadiemkinhdoanh" class="span12" type="text" />
+    </span>
+</div>
+
+<script type="application/javascript">
+    var fnSave = function(){
+        console.log(">>call save function>>");
+
+        $.postJSON(iNet.getUrl('onegate/prodlist'), {}, function (result) {
+            console.log(">> call save function result >>", result);
+        });
+    };
+
+    var fnDelete = function(){
+        console.log(">>call delete function>>");
+
+        $.postJSON(iNet.getUrl('onegate/expwayavailable'), {}, function (result) {
+            console.log(">> call delete function result >>", result);
+        });
+    };
+</script>
+

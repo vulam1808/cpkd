@@ -1,0 +1,63 @@
+## firmtask/process/formlist
+##dataservice("firmtaskprocessformlist")
+##set($listItem = $firmtaskprocessformlist.items)
+<div class="m-page" e-controller="ogbizflow">
+    <div class="m-header m-theme-a">
+        <i class="icon ion-navicon-round btn" data-action="menu"></i>
+        <h1>$text.getText("xgate.title")</h1>
+    </div>
+    <div class="m-content" data-type="Pull">
+        <ul class="m-list" id="list-task"  data-type="Collapse">
+            <li class="collapse divider">
+                <!--<i class="icon ion-ios7-cog list-menu-image" style="font-size:20px"></i>-->
+                <h2>$text.getText("itask.task.title")</h2>
+            </li>
+            <ul class="m-list thumb-20 has-icon"  style="margin: -1px 0 0">
+                <li id=#command("open-task",{"url":"xgate/page/mobile/task-open"}) data-action="page">
+                    <i class="icon ion-ios7-filing list-menu-image" style="font-size:20px"></i>
+                    <div id="notify" class="notify has-icon"></div>
+                    <h2>$text.getText("itask.open.title")</h2>
+                    <i class="icon ion-chevron-right m-icon"></i>
+                </li>
+            </ul>
+            <li style="display: none" id=#command("request-task",{"url":"xgate/page/mobile/task-request"}) data-action="page">
+                <i class="icon ion-navigate list-menu-image" style="font-size:24px"></i>
+                <h2 class="full-text">$text.getText('mobile.orbizflow.request')</h2>
+            </li>
+            ##foreach ($item in $listItem)
+            <!--<li data-text="$item.brief" id=#command("$item.graphID",{"url":"xgate/page/mobile/task-form","graph":"$item.graphID","form":"$item.uuid"}) data-action="page">-->
+                <!--<i class="icon ion-clipboard list-menu-image"></i>-->
+                ##if($item.count > 0)
+                <!--<div class="notify show">$item.count</div>-->
+                ##end
+                <!--<h2 class="full-text">$item.brief</h2>-->
+            <!--</li>-->
+            ##end
+        </ul>
+    </div>
+    <script>
+        eNet.controller('ogbizflow', function(controller){
+            window.itaskReload = function () {
+                controller.page.fireEvent('refresh');
+            };
+            $.getJSON(iNet.getUrl('firmtask/process/openlist'), function (data) {
+                var size = data.elements.length;
+                if(size > 0){
+                    controller.page.findEl('#notify').html(size).show();
+                }
+            });
+            ##if($listItem.size() > 0)
+//                this.getElInPage("#list-task").on("click", "li", function () {
+//                    window.__ogbizTitle = this.getAttribute('data-text');
+//                });
+            ##end
+            this.onRefresh = function () {
+                iNet.Loading.disable();
+                this.fireEvent('refresh');
+            };
+            this.on('destroy', function () {
+                iNet.Loading.enable();
+            });
+        });
+    </script>
+</div>

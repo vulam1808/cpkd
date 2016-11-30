@@ -1,0 +1,19 @@
+#script("/js/xgate/inet/lib/xgate-ui-receiver-list-service.min.js")
+
+<div id="receiver-list-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="receiver-list-btn-save" class="btn btn-primary btn-small">
+            <i class="icon-save"></i> $text.getText('app.button.save')
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <span class="span2"><label class="ilabel control-label" for="group-name">$text.getText("xgate.admin.receiver.name")</label></span>
+            <span class="span10"><input class="span12" type="text" id="group-name"></span>
+        </div>
+        <div class="row-fluid">
+            <span class="span2"><label class="ilabel control-label" for="group-user">$text.getText("xgate.admin.receiver.user")</label></span>
+            <span class="span10"><input class="span12" type="text" id="group-user"></span>
+        </div>
+    </div>
+</div>

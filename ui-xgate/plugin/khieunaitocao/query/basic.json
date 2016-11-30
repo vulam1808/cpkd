@@ -1,0 +1,6 @@
+{
+ "name":"BasicSearch",
+ "syntax":"{nguoiviet: { $regex : \":nguoiviet:\"}, cmnd: { $regex : \":cmnd:\" }, noicap: { $regex : \":noicap:\" }}",
+ "searchUI":"basicsearch.html",
+ "resultUI":"basicresult.html"
+}

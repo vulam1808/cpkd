@@ -35,7 +35,9 @@ $(function() {
             div_dateSubmit: $('#'+me.id + ' #div-dateSubmit'),
             div_changeInfo: $('#'+me.id + ' #div-changeInfo'),
             name_dateSubmit: $('#'+me.id + ' #dateSubmit-name'),
-            name_changeInfo: $('#'+me.id + ' #changeInfo-name')
+            name_changeInfo: $('#'+me.id + ' #changeInfo-name'),
+            div_nameBusiness: $('#'+me.id + ' #content-nameBusiness')
+
         };
 
         me.HomeBusiness = __config.HomeBusiness || {};
@@ -56,6 +58,22 @@ $(function() {
                 }
 
                 if(me.statusType=="CAP_MOI"){
+                    //Hien thong tin dkkd
+                    $div.div_content_detail.removeClass('hide');
+                    //Hien ten dkkd
+                    var $div_id_name = $.getCmp(__config.divIDNameBusiness || 'nameProcess-widget-content');
+                    $div.div_nameBusiness.html('').append($div_id_name.html());
+                    me.ChangeName = new iNet.ui.ita.ChangeNameBusinessForm({
+                        id : me.id,
+                        idChangeBusiness: me.HomeBusiness.uuid ,
+                        idHomeBusiness:me.idHomeBusiness,
+                        nameBusiness: me.HomeBusiness.nameBusiness || ''
+                    });
+                    me.ChangeName.show();
+                    me.ChangeName.hiddenButtonCheckName();
+                    $('#'+me.id + ' #nameProcess-widget').removeClass('hide');
+
+                    //Hien nguoi dai dien
                     var Person = me.HomeBusiness.objPersonRepresent || {};
                     //iNet.extend(__config.divIDPerson, iNet.Component);
                     var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
@@ -70,7 +88,7 @@ $(function() {
                     //jsPerson.show();
                     $('#'+me.id + ' #personrepresent-widget').removeClass('hide');
 
-
+                    //Danh sach gop von
                     var $div_id_capital = $.getCmp(__config.divIDCapital || 'capital-form-widget-content');
                     $div.div_capital.html('').append($div_id_capital.html());
                     // $div_id_capital.remove();
@@ -82,6 +100,7 @@ $(function() {
                     //jsCapital.show();
                     $('#'+me.id + ' #capital-form-widget').removeClass('hide');
 
+                    //Ds nganh nghe
                     var $div_id_listcareer = $.getCmp(__config.divIDlistCareer || 'listcareer-widget-content');
                     $div.div_listcareer.html('').append($div_id_listcareer.html());
                     //$div_id_listcareer.remove();
@@ -94,6 +113,7 @@ $(function() {
                     //jslistcareer.show();
                     $('#'+me.id + ' #listcareer-widget').removeClass('hide');
 
+                    //ds nguoi gop von
                     var $div_id_listcontributor = $.getCmp(__config.divIDlistContributor || 'listcontributor-widget-content');
                     $div.div_listcontributor.html('').append($div_id_listcontributor.html());
                     //$div_id_listcontributor.remove();
@@ -119,16 +139,21 @@ $(function() {
 
                             if(strInfo == 'change_tendangkykinhdoanh')
                             {
+                                var $div_id_name = $.getCmp(__config.divIDNameBusiness || 'nameProcess-widget-content');
+                                $div.div_nameBusiness.html('').append($div_id_name.html());
                                 me.ChangeName = new iNet.ui.ita.ChangeNameBusinessForm({
-                                    idChangeBusiness: me.objBusiness.uuid ,
+                                    id : me.id,
+                                    idChangeBusiness: me.HomeBusiness.uuid ,
                                     idHomeBusiness:me.idHomeBusiness,
-                                    nameBusiness: me.objBusiness.nameBusiness || ''
+                                    nameBusiness: me.HomeBusiness.nameBusiness || ''
                                 });
-                                me.ChangeName.show();
-                                me.$form.button_info_save.removeClass('hide');
+                                //me.ChangeName.show();
+                                me.ChangeName.hiddenButtonCheckName();
+                                $('#'+me.id + ' #nameProcess-widget').removeClass('hide');
                             }
                             else if(strInfo == 'change_nguoidaidien')
                             {
+
                                 var Person = me.HomeBusiness.objPersonRepresent || {};
                                 //iNet.extend(__config.divIDPerson, iNet.Component);
                                 var $div_id_person = $.getCmp(__config.divIDPerson || 'personrepresent-widget-content');
@@ -186,13 +211,7 @@ $(function() {
                             }
                             else if(strInfo == 'change_thongtindangkykinhdoanh')
                             {
-                                me.wgTask = new iNet.ui.ita.TaskProcessWidget({
-                                    statusType: me.statusType,
-                                    idHomeBusiness:idChange,
-                                    HomeBusiness:me.objBusiness});
-                                me.wgTask.show();
-
-                                me.$form.button_info_save.removeClass('hide');
+                                $div.div_content_detail.removeClass('hide');
                             }
                         }
                         $div.name_changeInfo.html('').append(str);
@@ -210,7 +229,7 @@ $(function() {
                     //jsPause.show();
                     $('#'+me.id + ' #pausebusiness-widget').removeClass('hide');
 
-                    $div.div_content_detail.addClass('hide');
+                    //$div.div_content_detail.addClass('hide');
                 }
                 else if(me.statusType=="CHAM_DUT"){
                     var $div_endbusiness = $.getCmp(__config.divIDEndBusiness || 'endbusiness-widget-content');
@@ -223,7 +242,7 @@ $(function() {
                     jsEnd.setReadonly();
                     //jsEnd.show();
                     $('#'+me.id + ' #endbusiness-widget').removeClass('hide');
-                    $div.div_content_detail.addClass('hide');
+                    //$div.div_content_detail.addClass('hide');
                 }
             }
         };

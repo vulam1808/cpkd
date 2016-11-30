@@ -87,7 +87,8 @@ $(function () {
                         act:me.act,
                         idHomeBusiness: me.idHomeBusiness,
                         parent_ID: me.objBusiness.uuid,
-                        statusType: me.statusType
+                        statusType: me.statusType,
+                        taskID: me.taskID
                     });
                     me.wgBtnProcess.show();
 

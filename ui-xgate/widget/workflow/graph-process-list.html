@@ -1,0 +1,57 @@
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/iworkflow-ui-wf-graph-process-list-service.min.js")
+
+#xscript()
+    var roleCreate = true;
+    var roleEdit = true;
+    var roleDelete = true;
+    var roleView = true;
+#end
+
+<div id="graph-process-list-div">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="graph-process-list-create-btn" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="graph-process-list-delete-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-trash"></i> $text.getText("app.button.delete")
+        </button>
+        <button id="graph-process-list-copy-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-copy"></i> $text.getText("iworkflow.graphprocess.copy")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div id="graph-process-list-basic-search" class="hide"></div>
+            <div id="graph-process-list-grid"></div>
+        </div>
+    </div>
+</div>
+
+
+<div id="graph-process-list-modal-copy" class="modal hide fade in" aria-hidden="false" style="top: 30%">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="graph-process-list-modal-copy-tile">$text.getText('iworkflow.graphprocess.copy.title')</h4>
+    </div>
+    <div class="modal-body">
+            <span class="row-fluid">
+                <label for="graph-process-list-modal-copy-name" class="span4 control-label">$text.getText('iworkflow.graphprocess.copy.name') <span class="required"></span></label>
+                <div class="span8">
+                    <input id="graph-process-list-modal-copy-name" type="text" class="span12" />
+                </div>
+            </span>
+    </div>
+    <div class="modal-footer">
+        <button id="graph-process-list-modal-copy-submit-btn" class="btn btn-primary btn-small">
+            <i class="icon-ok-sign"></i> $text.getText("app.button.submit")
+        </button>
+        <button id="graph-process-list-modal-copy-close-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-remove-sign"></i> $text.getText("app.button.close")
+        </button>
+    </div>
+</div>

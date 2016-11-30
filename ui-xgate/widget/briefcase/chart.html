@@ -1,0 +1,301 @@
+#theme("/common/css/font-awesome")
+#theme("/xgate/css/chart/bootstrap.min")
+#theme("/xgate/css/chart/chart")
+#theme("/xgate/css/chart/colors")
+
+#script("/js/xgate/inet/lib/bfchart.min.js")
+
+<div id="chart-home-div">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="tiles b-grey">
+                        <div class="b-grey b-a">
+                            <h4 class="semi-bold text-center text-slate-800 p-t-20 p-b-10">$text.getText("briefcase.chart.process.title")</h4>
+                            <div class="b-grey b-b">
+                                <h4 class="semi-bold text-center text-slate-800 b-grey b-b m-a-0 p-b-20">
+                                    <span data-type="month">06</span>
+                                    <span>/</span>
+                                    <span data-type="year">2016</span>
+                                </h4>
+                                <h1 class="semi-bold text-center text-slate-800 p-t-15">
+                                    <span data-type="summary-percent">0</span>
+                                    <span>%</span>
+                                </h1>
+                                <h5 class="semi-bold text-center text-slate-800 b-grey b-b m-a-0 p-b-30">$text.getText("briefcase.status.ontime")</h5>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-6 b-grey b-l p-r-0">
+                                        <div class="tiles red p-t-20">
+                                            <h6 class="bold text-white text-center p-b-15">$text.getText("briefcase.received")</h6>
+                                            <h6 class="bold text-white text-center m-a-0 p-b-20">
+                                                <span data-type="summary-receiver">0</span>
+                                                <span>$text.getText("briefcase")</span>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 p-l-0">
+                                        <div class="tiles blue p-t-20">
+                                            <h6 class="bold text-white text-center p-b-15">$text.getText("briefcase.processed")</h6>
+                                            <h6 class="bold text-white text-center m-a-0 p-b-20">
+                                                <span data-type="summary-process">0</span>
+                                                <span>$text.getText("briefcase")</span>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-6 tiles light-blue b-a b-grey">
+                        <div class="tiles-body">
+                            <div class="controller"> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
+                            <div class="tiles-title text-white">$text.getText("briefcase.expway") </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-expway-procedureNoWorkflow" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.hasWorkflow")</span>
+                                        <span data-type="expway-has-workflow" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats ">
+                                <div class="wrapper last">
+                                    <a href="#receiver-expway-procedureWorkflow" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.noWorkflow")</span>
+                                        <span data-type="expway-no-workflow" class="item-count animate-number semi-bold" data-animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="progress progress-small no-radius m-t-20" style="width:90%">
+                                <div data-type="expway-percent" class="progress-bar animate-progress-bar" style="width: 0%;"></div>
+                            </div>
+                            <div class="description">
+                                <span class="text-white mini-description ">
+                                    <span data-type="expway-overdue" style="display: none;"></span>
+                                    <span style="display: none;">$text.getText("briefcase")</span>
+                                    <span style="display: none;">$text.getText("briefcase.overdue")</span>
+                                    <span>
+                                        <span class="blend" style="display: none;">/</span>
+                                        <span data-type="expway-total"></span>
+                                        <span>$text.getText("briefcase")</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 tiles blue b-a b-grey">
+                        <div class="tiles-body">
+                            <div class="controller"> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
+                            <div class="tiles-title text-white">$text.getText("briefcase.organ") </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-organization-procedureWorkflow" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.hasWorkflow")</span>
+                                        <span data-type="organ-has-workflow" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats ">
+                                <div class="wrapper last">
+                                    <a href="#receiver-organization-procedureNoWorkflow" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.noWorkflow")</span>
+                                        <span data-type="organ-no-workflow" class="item-count animate-number semi-bold" data-animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="progress progress-small no-radius m-t-20" style="width:90%">
+                                <div data-type="organ-percent" class="progress-bar animate-progress-bar" style="width: 0%;"></div>
+                            </div>
+                            <div class="description">
+                                <span class="text-white mini-description ">
+                                    <span data-type="organ-overdue" style="display: none;"></span>
+                                    <span style="display: none;">$text.getText("briefcase")</span>
+                                    <span style="display: none;">$text.getText("briefcase.overdue")</span>
+                                    <span>
+                                        <span class="blend" style="display: none;">/</span>
+                                        <span data-type="organ-total"></span>
+                                        <span>$text.getText("briefcase")</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 tiles dark-blue b-a b-grey">
+                        <div class="tiles-body">
+                            <div class="controller"> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
+                            <div class="tiles-title text-white">$text.getText("briefcase.onegate") </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-queue" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.queue")</span>
+                                        <span data-type="onegate-queue" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-additional" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.additional")</span>
+                                        <span data-type="onegate-additional" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-inprocess" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.inprocess")</span>
+                                        <span data-type="onegate-inprocess" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-completed" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.completed")</span>
+                                        <span data-type="onegate-completed" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-rejected" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.rejected")</span>
+                                        <span data-type="onegate-rejected" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats">
+                                <div class="wrapper transparent">
+                                    <a href="#receiver-refuse" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.refuse")</span>
+                                        <span data-type="onegate-refuse" class="item-count animate-number semi-bold" animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-stats ">
+                                <div class="wrapper last">
+                                    <a href="#receiver-published" data-action="menuChange" class="text-white">
+                                        <span class="item-title">$text.getText("briefcase.published")</span>
+                                        <span data-type="onegate-published" class="item-count animate-number semi-bold" data-animation-duration="700"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="progress progress-small no-radius m-t-20" style="width:90%">
+                                <div data-type="onegate-percent" class="progress-bar animate-progress-bar" style="width: 0%;"></div>
+                            </div>
+                            <div class="description">
+                                <span class="text-white mini-description ">
+                                    <span data-type="onegate-overdue" style="display: none;"></span>
+                                    <span style="display: none;">$text.getText("briefcase")</span>
+                                    <span style="display: none;">$text.getText("briefcase.overdue")</span>
+                                    <span>
+                                        <span class="blend" style="display: none;">/</span>
+                                        <span data-type="onegate-total"></span>
+                                        <span>$text.getText("briefcase")</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display: none;">
+            <div class="col-sm-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">26</div>
+                                <div>New Comments!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-tasks fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">12</div>
+                                <div>New Tasks!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-shopping-cart fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">124</div>
+                                <div>New Orders!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-support fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">13</div>
+                                <div>Support Tickets!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

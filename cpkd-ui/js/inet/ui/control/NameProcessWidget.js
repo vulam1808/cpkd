@@ -7,6 +7,17 @@ $(function () {
 
     iNet.ns("iNet.ui","iNet.ui.ita");
     iNet.ui.ita.ChangeNameBusinessForm = function (config) {
+
+        var __config = config || {};
+        var me= this;
+        iNet.apply(this, __config);// apply configuration
+        me.id = this.id || 'nameProcess-widget';
+        me.idHomeBusiness = __config.idHomeBusiness;
+        me.idChangeBusiness = __config.idChangeBusiness;
+        me.nameBusiness = __config.nameBusiness;
+        iNet.ui.ita.ChangeNameBusinessForm.superclass.constructor.call(this);
+
+
         this.resource = {
             common: ita.resources.common,
             validate: ita.resources.validate
@@ -21,33 +32,26 @@ $(function () {
         this.$form = {
 
 
-            div_checkNameBusiness:$('#div-checkNameBusiness'),
-            button_view_detail:$('#view-detail-task'),
-            button_check: $('#btn-check-nameBusiness'),
-            div_status_check_capmoi: $('#status-nameBusiness-capmoi'),
-            div_status_check_view: $('#status-nameBusiness-view'),
-            div_status_check_info: $('#status-nameBusiness-info'),
+            div_checkNameBusiness:$('#'+me.id+' #div-checkNameBusiness'),
+            button_view_detail:$('#'+me.id+' #view-detail-task'),
+            button_check: $('#'+me.id+' #btn-check-nameBusiness'),
+            div_status_check_capmoi: $('#'+me.id+' #status-nameBusiness-capmoi'),
+            div_status_check_view: $('#'+me.id+' #status-nameBusiness-view'),
+            div_status_check_info: $('#'+me.id+' #status-nameBusiness-info'),
 
 
-            div_status_check: $('#status-nameBusiness'),
-            input_nameBusiness: $('#changebusiness-nameBusiness')
+            div_status_check: $('#'+me.id+' #status-nameBusiness'),
+            input_nameBusiness: $('#'+me.id+' #changebusiness-nameBusiness')
         };
 
-        var __config = config || {};
 
-        iNet.apply(this, __config);// apply configuration
-        this.id = this.id || 'nameProcess-widget';
-        this.idHomeBusiness = __config.idHomeBusiness;
-        this.idChangeBusiness = __config.idChangeBusiness;
-        this.nameBusiness = __config.nameBusiness;
-        iNet.ui.ita.ChangeNameBusinessForm.superclass.constructor.call(this);
-        var me= this;
+
         var loadNameBusiness= function(){
             console.log(me.nameBusiness);
             me.setData(me.nameBusiness);
         };
         loadNameBusiness();
-        var hiddenButtonCheckName = function(){
+        me.hiddenButtonCheckName = function(){
             me.$form.div_checkNameBusiness.addClass("hide");
         };
 

@@ -40,6 +40,8 @@ public class BusinessNewTaskService extends DataServiceMarker {
     private EndBusinessBo endBusinessBo;
     @Inject
     private BusinessDetailBo businessDetailBo;
+    @Inject
+    private ReHomeBusinessBo reHomeBusinessBo;
 
     @Override
     protected WebDataService service(AbstractBaseAction action, Map<String, Object> params)
@@ -158,6 +160,35 @@ public class BusinessNewTaskService extends DataServiceMarker {
             //_objDetail.setDateSubmit();
             businessDetailBo.saveBusinessDetail(null,homebusinessID,taskID,statusType,_objDetail);
             return new ObjectWebDataservice<PauseBusiness>(objpause);
+        }
+        else if(statusType.equals(EnumStatus.CAP_LAI.toString()))
+        {
+
+            String homebusinessID = XParamUtils.getString("homebusinessID", params, "");
+            //update homebusiness status
+            HomeBusiness objBusiness = new HomeBusiness();
+            objBusiness.setStatusType(statusType);
+            homeBusinessBo.updateHomeBusiness(homebusinessID,objBusiness);
+
+            //set PauseBusiness
+            ReHomeBusiness objmodel = action.getModel(ReHomeBusiness.class);
+            objmodel.setTaskID(taskID);
+            objmodel.setHomeBusiness_ID(homebusinessID);
+            objmodel.setStatusProcess(EnumProcess.PROCESS.toString());
+            objmodel.setDateSubmit(Long.toString(System.currentTimeMillis()));
+            ReHomeBusiness objreHomeBusiness = reHomeBusinessBo.addReHomeBusiness(objmodel);
+
+            String reHomeBusinessID = objreHomeBusiness.getUuid();
+            Details _objDetail =new Details();
+            _objDetail.setParent_ID(reHomeBusinessID);
+            _objDetail.setStatusProcess(EnumProcess.PROCESS.toString());
+            if(taskID == null || taskID.equals(""))
+            {
+                taskID = objreHomeBusiness.getUuid();
+            }
+            //_objDetail.setDateSubmit();
+            businessDetailBo.saveBusinessDetail(null,homebusinessID,taskID,statusType,_objDetail);
+            return new ObjectWebDataservice<ReHomeBusiness>(objreHomeBusiness);
         }
         JSONObject mainObj = new JSONObject();
         mainObj.put("error", "Khong tim thay statusType");

@@ -1,0 +1,312 @@
+#script("/js/xgate/inet/lib/itask-ui-t-queue-service.min.js")
+
+#xscript()
+    var queueID = '$ctx.value("queueID")';
+    if (queueID.indexOf("ctx.value") > 0) { queueID = ""; }
+
+    $(function(){
+        bfStatus = {
+            inprocess: '$text.getText("itask.task.briefcase.inprocess")',
+            overdue: '$text.getText("itask.task.briefcase.overdue")',
+            update: '$text.getText("itask.task.briefcase.update")'
+        };
+    });
+#end
+
+<style>
+    .list-item-check{
+        float: right;
+        font-size: 14px;
+        padding: 0 8px 0 0;
+        margin-top: -2px;
+    }
+    .list-item-sender {
+        padding-left: 14px;
+    }
+</style>
+<div id="queue-div" class="hide">
+    <div>
+        <div id="queue-list-item-ui" style="display: none;">
+            <div data-id="{0}" data-base64="{1}" class="list-view-item" data-status>
+                <div class="status">&nbsp;</div>
+                <div class="line-header"></div>
+                <div class="wrapper">
+                    <div class="list-item-check">
+                        <label>
+                            <input type="checkbox" class="ace" value="">
+                            <span class="lbl"></span>
+                        </label>
+                    </div>
+                    <div class="flag">
+                        <span><i class="icon-star-empty"></i></span>
+                    </div>
+                    <div class="date-info">
+                        <span class="date timeago" title="" data-date></span>
+                    </div>
+                    <div class="sender-info">
+                    <span class="threadsCount-info">
+                        <span class="threadsCount"></span>
+                        <i class="icon-spinner animated"></i>
+                    </span>
+                        <span class="reply"><i class="icon-reply" title=""></i></span>
+                        <span class="forward"><i class="icon-share-alt" title=""></i></span>
+                        <span class="list-item-sender" data-sender></span>
+                    </div>
+                    <div class="attachment-info hide">
+                        <span class="attachment"><i class="icon-paper-clip" title="" style="color: transparent;"></i></span>
+                    </div>
+                    <div class="comment-info hide">
+                        <span class="comment"><i class="icon-comments-alt" title=""></i></span>
+                    </div>
+                    <div class="subject-info">
+                <span class="subject" style="padding-left: 14px; display: flex;">
+                    <span data-subject></span>
+                </span>
+                    </div>
+                    <div class="more-info">
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-range-info>
+                            <i class="icon-random"></i>
+                            <span> </span>
+                            <span data-category="rangeFrom"></span>
+                            <span> - </span>
+                            <span data-category="rangeTo"></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; display: none;" data-category="expired-info">
+                            <span style="color: #0002ff;" data-category="expired-color"><i class="icon-calendar"></i> $text.getText('briefcase.process.expiredDate'): <span data-category="expired"></span></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-category="serial-info">
+                            <i class="icon-info-sign"></i> $text.getText('ireceiver.queue.serial'): <span data-category="serial"></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-category="receipt-info">
+                            <i class="icon-info-sign"></i> $text.getText('ireceiver.queue.receipt'): <span data-category="receipt"></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-userprofile-info>
+                        <span>
+                            <i class="icon-user"></i> <span data-userprofile-fullname></span> - <span data-userprofile-birthday></span>
+                            (<span data-userprofile-identity></span>)
+                        </span>
+                        <span style="padding-left: 14px; display: flex;">
+                            <span>
+                                <i class="icon-envelope"></i> <span data-userprofile-email></span> - <i class="icon-phone"></i> <span data-userprofile-mobile></span>
+                            </span>
+                        </span>
+                        <span style="padding-left: 14px; display: flex;">
+                            <span>
+                                <i class="icon-map-marker"></i> <span data-userprofile-address1></span>
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script data-id="{0}" type="application/javascript">
+                $(function(){
+                    var __dataBase64 = "{1}";
+                    __dataBase64 = __dataBase64 + "" + "";
+
+                    if (__dataBase64.length > 3) {
+                        var __data = iNet.Base64.decodeObject(__dataBase64) || {};
+                        var __dataId = (__data || {}).uuid || '';
+                        var $item = $('[data-id="'+__dataId+'"]');
+                        var __localDateTime = new Date().getTime();
+
+                        var __rSerial = (__data.requestData || {}).serialNo || "";
+                        if (!iNet.isEmpty(__rSerial)){
+                            $('[data-id="'+__dataId+'"] [data-category="serial"]').text(__rSerial);
+                            $('[data-id="'+__dataId+'"] [data-category="serial-info"]').show();
+                        }
+
+                        var __rReceiptNo = __data.receiptNo || "";
+                        if (!iNet.isEmpty(__rReceiptNo)){
+                            $('[data-id="'+__dataId+'"] [data-category="receipt"]').text(__rReceiptNo);
+                            $('[data-id="'+__dataId+'"] [data-category="receipt-info"]').show();
+                        }
+
+                        $('[data-id="'+__dataId+'"] [data-sender]').text(__data.requestorName);
+                        $('[data-id="'+__dataId+'"] [data-subject]').text(__data.subject);
+
+                        $('[data-id="'+__dataId+'"] [data-date]').text($.timeago(__data.requestTime));
+                        $('[data-id="'+__dataId+'"] [data-date]').attr("title", new Date(__data.requestTime).format('H:i d/m/Y'));
+
+                        $('[data-id="'+__dataId+'"] [data-category="rangeFrom"]').text(new Date(__data.requestTime).format('H:i d/m/Y'));
+                        $('[data-id="'+__dataId+'"] [data-category="rangeTo"]').text(new Date(__data.appointment).format('H:i d/m/Y'));
+                        $('[data-id="'+__dataId+'"] [data-range-info]').css('display', '');
+                        var __bfStatusInprocess = bfStatus.inprocess;
+                        $item.find('.flag span i').attr('title', __bfStatusInprocess);
+
+                        var __flagStatus = 'icon-star-empty icon-star blue red';
+                        if (__localDateTime > __data.appointment) {
+                            $item.find('.flag span i').removeClass(__flagStatus).addClass('icon-star red');
+                            var __bfStatusOverdue = bfStatus.overdue;
+                            $item.find('.flag span i').attr('title', __bfStatusOverdue);
+                            $item.find('[data-category="rangeTo"]').css('color', '#ff0511');
+                        }
+
+                        var __expiredTask = __data.expiredTime || __data.appointment;
+                        $item.removeClass('submitted').addClass('item-blue');
+                        if (__expiredTask > 0) {
+                            var __expiredTaskString = new Date(__expiredTask).format('H:i d/m/Y');
+                            $item.find('[data-category="expired-info"]').css('display', '');
+                            $item.find('[data-category="expired"]').text(__expiredTaskString);
+                            if (__localDateTime > __expiredTask) {
+                                $item.removeClass('submitted').addClass('item-red');
+                                $item.find('[data-category="expired-color"]').css('color', '#ff0511');
+                            }
+                        }
+
+                        var __additionalId =  (__data || {}).additionalID || "";
+                        $.postJSON(iNet.getUrl('onegate/userprofile/load'), {"package": __additionalId}, function (result) {
+                            if (!iNet.isEmpty((result || {}).uuid || "")) {
+                                $('[data-id="' + __dataId + '"] [data-userprofile-fullname]').text(result.fullname);
+                                $('[data-id="' + __dataId + '"] [data-userprofile-identity]').text(result.identity);
+                                $('[data-id="' + __dataId + '"] [data-userprofile-birthday]').text(result.birthday);
+                                $('[data-id="' + __dataId + '"] [data-userprofile-mobile]').text(result.mobile);
+                                $('[data-id="' + __dataId + '"] [data-userprofile-email]').text(result.email);
+                                $('[data-id="' + __dataId + '"] [data-userprofile-address1]').text(result.address1);
+                                $('[data-id="' + __dataId + '"] [data-userprofile-info]').css('display', '');
+                            }
+                        });
+
+                        $.postJSON(iNet.getUrl('firmtask/additional/load'), {"packageID": __additionalId}, function (result) {
+                            if (!iNet.isEmpty((result || {}).uuid || "")){
+                                var __requestTimeString = new Date((result.requestData || {}).ticketTimeCreated || result.requestTime).format('H:i d/m/Y');
+                                $item.find('[data-category="rangeFrom"]').text(__requestTimeString);
+                            }
+                        });
+                    }
+                });
+            </script>
+        </div>
+        <div id="queue-list-toolbar" class="hide">
+            <button class="btn btn btn-primary hide" id="queue-list-add-btn">
+                <i class="icon-plus"></i>
+            </button>
+            <button class="btn btn btn-primary hide" id="queue-list-send-btn">
+                <i class="icon-location-arrow"></i> $text.getText("ireceiver.queue.send")
+            </button>
+        </div>
+        <div id="queue-list-basic-search" class="hide">
+            <span style="width: 10%; display: none;">
+                <label style="margin-left: 2px;margin-top: 5px;">
+                    <input type="checkbox" id="task-check-all" class="ace">
+                    <span class="lbl"></span>
+                </label>
+            </span>
+            <span style="width: 100%; padding: 0 10px 0 0;">
+                <div class="row-fluid">
+                    <div class="input-icon input-icon-right span12">
+                        <input id="queue-list-basic-search-txt-keyword" type="text" placeholder="$text.getText('briefcase.keyword')" class="span12">
+                        <i id="queue-list-basic-search-expand-btn" class="icon-caret-down" style="right: 25px; cursor: pointer; display: none;"></i>
+                        <i id="queue-list-basic-search-search-btn" class="icon-search" title="Search" style="right: 4px; cursor: pointer;"></i>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div id="queue-list-advance-search" class="hide">
+            <div class="row-fluid">
+                <span class="span4"><label class="ilabel control-label">$text.getText("ireceiver.queue.receipt")</label></span>
+                <span class="span8">
+                    <input id="queue-list-advance-search-receipt-txt" type="text" class="span12" />
+                </span>
+            </div>
+            <div class="row-fluid">
+                <span class="span4"><label class="ilabel control-label">$text.getText("ireceiver.queue.serial")</label></span>
+                <span class="span8">
+                    <input id="queue-list-advance-search-serial-txt" type="text" class="span12" />
+                </span>
+            </div>
+            <div class="row-fluid">
+                <span class="span10"><label class="ilabel control-label">$text.getText("ireceiver.queue.warnHour")</label></span>
+                <span class="span2">
+                    <input id="queue-list-advance-search-warnHour-txt" type="number" value="0" class="span12" min="0" />
+                </span>
+            </div>
+            <div class="row-fluid" style="text-align: center;">
+                <button class="btn btn-primary" id="queue-list-advance-search-search-btn">
+                    <i class="icon-search"></i> $text.getText("app.button.search")
+                </button>
+                <button class="btn btn-danger" id="queue-list-advance-search-close-btn">
+                    <i class="icon-remove"></i> $text.getText("app.button.close")
+                </button>
+            </div>
+        </div>
+        <div id="queue-list-pull-left" class="hide">
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-th"></i>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="padding: 5px">
+                    <li><i class="icon-stop" style="color: #0002ff"></i> $text.getText('itask.task.process.inprocess')</li>
+                    <li><i class="icon-stop" style="color: #ff0511"></i> $text.getText('itask.task.process.overdue')</li>
+                    <li role="separator" class="divider"></li>
+                    <li><i class="icon-star-empty"></i> $text.getText('itask.task.briefcase.inprocess')</li>
+                    <li><i class="icon-star" style="color: #ff0511"></i> $text.getText('itask.task.briefcase.overdue')</li>
+                    <li><i class="icon-star" style="color: #0600FF"></i> $text.getText('itask.task.briefcase.update')</li>
+                </ul>
+            </div>
+        </div>
+        <div id="queue-list"></div>
+    </div>
+    <div>
+        <div id="queue-toolbar" class="hide">
+            <button id="queue-view-back-btn" type="button" class="btn hide">
+                <i class="icon-arrow-left"></i>
+            </button>
+            <div class="btn-group">
+                <span>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-reorder"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="queue-view-print-formNo03-btn"><i class="icon-print"></i> $text.getText("ireceiver.record.printFormNo03")</a></li>
+                        <li><a href="#" id="queue-view-print-formNo04-btn"><i class="icon-print"></i> $text.getText("ireceiver.record.printFormNo04")</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" id="queue-view-userprofile-btn"><i class="icon-user"></i> $text.getText("ireceiver.queue.updateProfile")</a></li>
+                    </ul>
+                </span>
+            </div>
+            <button id="queue-view-save-btn" class="btn btn-primary">
+                <i class="icon-save"></i> $text.getText("ireceiver.queue.save")
+            </button>
+            <button id="queue-view-send-btn" class="btn btn-primary">
+                <i class="icon-location-arrow"></i> $text.getText("ireceiver.queue.send")
+            </button>
+            <button id="queue-view-delete-btn" class="btn btn-danger">
+                <i class="icon-trash"></i> $text.getText("ireceiver.queue.delete")
+            </button>
+            <button id="queue-view-updateProfile-btn" class="btn btn-primary" style="display: none;">
+                <i class="icon-user"></i> $text.getText("ireceiver.queue.updateProfile")
+            </button>
+        </div>
+        <div id="queue-subject-details" class="hide">
+            <div class="row-fluid">
+                <span class="span2">$text.getText("ireceiver.queue.receiptDate"): </span>
+                <span class="span4" id="queue-subject-details-receiptDate"></span>
+                <span class="span2">$text.getText("ireceiver.queue.appointmentDate"): </span>
+                <span class="span4" id="queue-subject-details-appointmentDate"></span>
+            </div>
+            <div class="row-fluid">
+                <span class="span2">$text.getText("ireceiver.queue.receipt"): </span>
+                <span class="span4" id="queue-subject-details-receiptNo"></span>
+                <span class="span2">$text.getText("ireceiver.queue.serial"): </span>
+                <span class="span4" id="queue-subject-details-serial"></span>
+            </div>
+        </div>
+        <div id="queue-sender-details" class="hide">
+            <div class="row-fluid">
+                <span class="span2">$text.getText("ireceiver.queue.birthday"): </span>
+                <span class="span4" id="queue-subject-details-birthday"></span>
+                <span class="span2">$text.getText("ireceiver.queue.identity"): </span>
+                <span class="span4" id="queue-subject-details-identity"></span>
+            </div>
+            <div class="row-fluid">
+                <span class="span2">$text.getText("ireceiver.queue.smobile"): </span>
+                <span class="span4" id="queue-subject-details-smobile"></span>
+                <span class="span2">$text.getText("ireceiver.queue.address1"): </span>
+                <span class="span4" id="queue-subject-details-address1"></span>
+            </div>
+        </div>
+        <div id="queue-view"></div>
+    </div>
+</div>

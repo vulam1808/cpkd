@@ -1,0 +1,38 @@
+#mobile({"secure":"$firm_user"})
+#set($urlLoad = "firmtask/process/myrequest")
+#set($controllerName = "taskRequest")
+<div class="m-page" e-controller="$controllerName" e-events="click">
+    <div class="m-header m-theme-a">
+        <i data-action="back" class="icon ion-chevron-left btn"></i>
+        <h1>$text.getText('mobile.orbizflow.request')</h1>
+    </div>
+    #widget("/xgate/widget/mobile/request-list")
+    <script>
+        eNet.controller('$controllerName', function (controller) {
+            controller.params = {
+                pageSize: 15,
+                pageNumber: 0
+            };
+            controller.beforeLoad = function (isPull) {
+                if(isPull){
+                    controller.params.pageNumber = 0;
+                }else{
+                    controller.params.pageNumber++;
+                }
+            };
+            controller.isLoad = function (data) {
+                return data.total > controller.params.pageSize * (controller.params.pageNumber + 1);
+            };
+            controller.convertItem = function (item) {
+                item.request = item;
+            };
+            controller.onPage = function () {
+                controller.router.fireAction('page', {
+                    url: 'xgate/page/mobile/view-request',
+                    request: this.id
+                });
+            };
+        });
+    </script>
+</div>
+#end

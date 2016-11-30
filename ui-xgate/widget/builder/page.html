@@ -1,0 +1,1091 @@
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+
+#theme("/xgate/css/codemirror/codemirror")
+#theme("/xgate/css/codemirror/show-hint")
+#theme("/xgate/css/codemirror/eclipse")
+#theme("/xgate/css/layoutit")
+#theme("/xgate/css/idesign")
+
+#script("/js/xgate/codemirror/plugins/codemirror-core.min.js")
+#script("/js/xgate/codemirror/plugins/codemirror-plugins.min.js")
+#script("/js/xgate/codemirror/plugins/codemirror-addons.min.js")
+
+#script("/js/xgate/jquery/plugins/jquery.htmlClean.min.js")
+#script("/js/xgate/jquery/plugins/jquery.ui.touch-punch.min.js")
+#script("/js/xgate/jquery/plugins/jquery-ui-1.10.2.min.js")
+
+#script("/js/xgate/inet/lib/idesign-ui-t-builder-service.min.js")
+#script("/js/xgate/inet/lib/idesign-ui-t-page-service.min.js")
+
+#xscript()
+    var roleCreate = true;
+    var roleEdit = true;
+    var roleDelete = true;
+    var roleView = true;
+#end
+
+<div id="page-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="page-back-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="page-create-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="page-delete-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-trash"></i> $text.getText("app.button.delete")
+        </button>
+        <button id="page-design-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-edit"></i> $text.getText("idesign.page.design")
+        </button>
+        <button id="page-preview-btn" class="btn btn-primary btn-small">
+            <i class="icon-eye-open"></i> $text.getText("idesign.page.preview")
+        </button>
+        <button id="page-save-btn" class="btn btn-primary btn-small">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+        <button id="page-published-xgate-btn" class="btn btn-primary btn-small">
+            <i class="icon-globe"></i> $text.getText("xgate.admin.published") $text.getText("xgate.admin.published.xgate")
+        </button>
+        <button id="page-published-expway-btn" class="btn btn-primary btn-small">
+            <i class="icon-globe"></i> $text.getText("xgate.admin.published") $text.getText("xgate.admin.published.expway")
+        </button>
+        <button id="page-information-btn" class="btn btn-primary btn-small">
+            <i class="icon-info-sign"></i> $text.getText("idesign.page.information")
+        </button>
+        <div class="design-mode">
+            <label>
+                <input id="page-design-mode-btn" class="ace ace-switch" type="checkbox">
+                <span class="lbl"></span>
+            </label>
+        </div>
+    </div>
+    <div class="wg-content web-mode">
+        <div id="page-container" class="edit">
+            <div class="sidebar-nav">
+                <ul class="web-control nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <i class="icon-plus icon-white"></i>  Layout
+                        <div class="pull-right popover-info">
+                            <i class="icon-question-sign "></i>
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">Help</h3>
+                                <div class="popover-content">Help content <a target="_blank" href="www.inetcloud.vn"> www.inetcloud.vn </a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="rows">
+                        <div class="web-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="12"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span12 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="6 6"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span6 column"></div>
+                                    <div class="span6 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="8 4"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span8 column"></div>
+                                    <div class="span4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="4 4 4"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span4 column"></div>
+                                    <div class="span4 column"></div>
+                                    <div class="span4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="2 6 4"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span2 column"></div>
+                                    <div class="span6 column"></div>
+                                    <div class="span4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label" style="display: none;"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="" placeholder="Input size: total 12"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="web-control nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <i class="icon-plus icon-white"></i> Base
+                        <div class="pull-right popover-info">
+                            <i class="icon-question-sign "></i>
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">Help</h3>
+                                <div class="popover-content">Help content <a target="_blank" href="www.inetcloud.vn"> www.inetcloud.vn </a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes">
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Div</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Div">
+                                    <div class="span12 data-design" data-design>
+                                        <div target-id="target01" data-control="Div" name=""></div>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <div target-id="target01" data-control="Div" name=""></div>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="text" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Image</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Image">
+                                    <div class="span12 data-design" data-design>
+                                        <img target-id="target01" data-control="Image" name="">
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <img target-id="target01" data-control="Image" name="">
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="src" property-value=""></properties>
+                                            <properties rel="alt" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Label</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Label">
+                                    <div class="span12 data-design" data-design>
+                                        <label target-id="target01" data-control="Label" class="ilabel control-label" name=""> Label</label>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <label target-id="target01" data-control="Label" class="ilabel control-label" name=""> Label</label>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="text" property-value="Label"></properties>
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="css"  property-value="ilabel control-label"></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Text</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Text">
+                                    <div class="span12 data-design" data-design>
+                                        <input target-id="target01" data-control="Text" class="span12" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <input target-id="target01" data-control="Text" class="span12" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="placeholder" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                            <properties rel="mask"  property-value=""></properties>
+                                            <properties rel="maskoption"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Textarea</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Textarea">
+                                    <div class="span12 data-design" data-design>
+                                        <textarea target-id="target01" data-control="Textarea" class="span12" rows="7"></textarea>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <textarea target-id="target01" data-control="Textarea" name="" class="span12" rows="7"></textarea>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="rows" property-value="7"></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Number</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Number">
+                                    <div class="span12 data-design" data-design>
+                                        <input target-id="target01" data-control="Number" class="span12" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <input target-id="target01" data-control="Number" class="span12" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="placeholder" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="decimal" property-value="5"></properties>
+                                            <properties rel="min" property-value="-9999999999999.99999"></properties>
+                                            <properties rel="max" property-value="9999999999999.99999"></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                            <properties rel="mask"  property-value=""></properties>
+                                            <properties rel="maskoption"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Date</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Date">
+                                    <div class="span12 data-design" data-design>
+                                        <div class="input-icon input-icon-right date">
+                                            <input target-id="target01" data-control="Date" type="text" name="" class="span12 date-picker">
+                                            <i class="icon-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <div class="input-icon input-icon-right date">
+                                            <input target-id="target01" data-control="Date" type="text" class="span12 date-picker">
+                                            <i class="icon-calendar"></i>
+                                        </div>
+                                        <div class="hide">
+                                            <input target-id="target01" data-control="Text" type="text" name="" dttype = "LONG">
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value="date-picker"></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                            <properties rel="mask"  property-value=""></properties>
+                                            <properties rel="maskoption"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Check</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Check">
+                                    <div class="span12 data-design" data-design>
+                                        <label>
+                                            <input target-id="target01" data-control="Check" type="checkbox" name="" class="ace">
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <label>
+                                            <input target-id="target01" data-control="Check" type="checkbox" name="" class="ace" style="display: none;">
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="css"  property-value="ace"></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Select</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Select">
+                                    <div class="span12 data-design" data-design>
+                                        <input target-id="target01" class="span12" data-control="Select">
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <input target-id="target01" class="span12" data-control="Select" name="">
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="placeholder" property-value=""></properties>
+                                            <properties rel="service" property-value=""></properties>
+                                            <properties rel="sourcevalue" property-value=""></properties>
+                                            <properties rel="displayvalue" property-value=""></properties>
+                                            <properties rel="keyvalue" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">File</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="File">
+                                    <div class="span12 data-design" data-design>
+                                        <span class="span12" data-container>
+                                            <div class="ace-file-input span8">
+                                                <label data-title="$text.getText('idesign.file.clickhere')">
+                                                    <span data-title="..."><i class="icon-upload-alt"></i></span>
+                                                </label>
+                                            </div>
+                                            <div class="span1" style="margin-top: 4px;width: 35px;">
+                                                <i class="icon-print scanner" data-scanner title="Scanner"></i>
+                                            </div>
+                                            <div class="span3" style="margin-left: 5px;margin-top: 3px;">
+                                                <label>
+                                                    <input data-hardcopy type="checkbox" name="" value="false" class="ace" style="display: none;">
+                                                    <span data-hardnote class="lbl"> Not digital</span>
+                                                </label>
+                                            </div>
+                                        </span>
+                                        <input target-id="target01" data-control="File" class="hide" type="file" name=""/>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <span class="span12" data-container>
+                                            <div class="ace-file-input span8">
+                                                <label data-title="$text.getText('idesign.file.clickhere')">
+                                                    <span data-title="..."><i class="icon-upload-alt"></i></span>
+                                                </label>
+                                                <a data-remove class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a>
+                                            </div>
+                                            <div class="span1" style="margin-top: 4px;width: 35px;">
+                                                <i class="icon-print scanner" data-scanner title="Scanner" name="" name-prefix="_scanner"></i>
+                                                <div class="hide" style="display: none;"><input type="text" data-scanner name="" name-prefix="_scanner"></div>
+                                            </div>
+                                            <div class="span3" style="margin-left: 5px;margin-top: 3px;">
+                                                <label>
+                                                    <input data-hardcopy type="checkbox" name="" name-prefix="_hardcopy" value="false" class="ace" style="display: none;">
+                                                    <span data-hardnote class="lbl"></span>
+                                                </label>
+                                            </div>
+                                        </span>
+                                        <input target-id="target01" data-control="File" class="hide" type="file" name=""/>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                            <properties rel="title"  property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="scanner"  placeholder="true,false" property-value="true"></properties>
+                                            <properties rel="hardcopy" placeholder="true,false" property-value="true"></properties>
+                                            <properties rel="hardnote" placeholder="Not digital" property-value="Not digital"></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="web-control nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <i class="icon-plus icon-white"></i> Control
+                        <div class="pull-right popover-info">
+                            <i class="icon-question-sign "></i>
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">Help</h3>
+                                <div class="popover-content">Help content <a target="_blank" href="www.inetcloud.vn"> www.inetcloud.vn </a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes" id="elmControl">
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Widget</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Widget">
+                                    <div class="span12 data-design" data-design>
+                                        <div target-id="target01" data-control="Widget" name="">
+                                            <div style="border: 10px dashed #DDD;height: 100px;text-align: center;border-radius: 15px;background-color: #F0EDED;">
+                                                <i class="icon-puzzle-piece" style="font-size: 65px;padding-top: 20px;position: absolute;color: #ABA4A4;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <div target-id="target01" data-control="Widget" name="">
+                                            <div name="widget" widget=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="application" property-type="select" property-value=""></properties>
+                                            <properties rel="widget" property-type="select" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable" style="display: none;">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Grid</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Grid">
+                                    <div class="span12 data-design" data-design>
+                                        <div class="hide"><input data-control="Text" target-id="target01" type="text" name=""></div>
+                                        <div style="background: #F8F8F8; border: 1px solid #DFDDDD; border-bottom: none;"><button style="border: none;" data-control="Button" type="button" data-action="add" class="btn btn-info"><i class="icon-plus"></i> New record</button></div>
+                                        <div target-id="target02" data-control="Grid"></div>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <div class="hide"><input data-control="Text" target-id="target01" type="text" name=""></div>
+                                        <div style="background: #F8F8F8; border: 1px solid #DFDDDD; border-bottom: none;"><button style="border: none;" data-control="Button" type="button" data-action="add" class="btn btn-info"><i class="icon-plus"></i> New record</button></div>
+                                        <div target-id="target02" data-control="Grid"></div>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                        <target target-id="target02">
+                                            <properties rel="datasource" ref="datasource" property-type="button" property-value="Config"></properties>
+                                            <properties rel="showtotal" property-value="false"></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">SimpleGrid</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="SimpleGrid">
+                                    <div class="span12 data-design" data-design>
+                                        <div class="hide"><input target-id="target01" data-control="Text" type="text" dttype="ARRAY_JSONDB" name=""></div>
+                                        <div style="background: #F8F8F8; border: 1px solid #DFDDDD; border-bottom: none;">
+                                            <button target-id="target03" style="border: none;" data-control="Button" type="button" data-action="add" class="btn btn-info"><i class="icon-plus"></i> New record</button>
+                                        </div>
+                                        <span id="simple-grid-design-id" target-id="target02" data-control="SimpleGrid" name=""></span>
+                                        <inetscript style="display: none">
+                                            #gridUI({
+                                            "type":"simple-grid-form",
+                                            "namespace":"GridVelocity",
+                                            "id":"simple-grid-design-id",
+                                            "url":"",
+                                            "firstLoad": false,
+                                            "hideHeader": true,
+                                            "hideSearch": true,
+                                            "rowId":"uuid"
+                                            })
+                                            [
+                                            {"name": "Column01", "title": "Column 01", "sortable": true},
+                                            {"name": "Column02", "title": "Column 02", "sortable": true},
+                                            {"name": "Column03", "title": "Column 03", "sortable": true},
+                                            {"name": "Column04", "title": "Column 04", "sortable": true},
+                                            {"align": "center", "buttons":
+                                            [
+                                            {"fnAction": "edit", "icon": "icon-pencil", "title": "Edit"},
+                                            {"fnAction": "delete", "icon": "icon-trash", "css": "label label-important", "title": "delete"}
+                                            ]
+                                            }
+                                            ]
+                                            #end
+                                            <script type="text/javascript">
+                                                $(function(){
+                                                    var fnDataEdit = {
+                                                        fnGetProduct: []
+                                                    };
+                                                    grid = new iNet.ui.GridVelocity.SimpleGrid({
+                                                        fnDataEdit: fnDataEdit,
+                                                        hideHeader: true,
+                                                        pageSize: 200,
+                                                        data: []
+                                                    });
+                                                });
+                                            </script>
+                                        </inetscript>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <div class="hide"><input target-id="target01" data-control="Text" type="text" dttype="ARRAY_JSONDB" name=""></div>
+                                        <div style="background: #F8F8F8; border: 1px solid #DFDDDD; border-bottom: none;">
+                                            <button target-id="target03" style="border: none;" data-control="Button" data-action="NewRecord" type="button" class="btn btn-info">New record</button>
+                                        </div>
+                                        <span target-id="target02" data-control="SimpleGrid" name=""></span>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                        <target target-id="target03">
+                                            <properties rel="text" property-value="New record"></properties>
+                                        </target>
+                                        <target target-id="target02">
+                                            <properties rel="datasource" ref="datasource" property-type="button" property-value="Config"></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">GraphData</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="GraphData">
+                                    <div class="span12 data-design" data-design>
+                                        <div style="display:inline-flex" class="span12">
+                                            <select style="width:45%">
+                                                <option value="true">Requestor</option>
+                                                <option value="false">Subject</option>
+                                            </select>
+                                            <input type="text" style="width:40%; border-radius:0px" placeholder="keyword">
+                                            <button style="width: 15%; height: 30px;border: none;"><i class="icon-search"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content web-content>
+                                        <div style="display:inline-flex" class="span12 dropdown-toggle btn-group" target-id="target01" name="" data-control="GraphData">
+                                            <select data-control="Select" style="width:45%">
+                                                <option value="true">Requestor</option>
+                                                <option value="false">Subject</option>
+                                            </select>
+                                            <input data-control="Text" type="text" style="width:40%; border-radius:0px" placeholder="keyword">
+                                            <button data-control="Button" data-action="Search" style="width: 15%; height: 30px;border: none;"><i class="icon-search"></i></button>
+                                            <ul class="dropdown-menu" role="menu" style="width: 100%">
+                                                <div class="row-fluid">
+                                                    <div data-control="Grid"></div>
+                                                </div>
+                                                <div class="row-fluid text-center">
+                                                    <button class="btn btn-danger" data-control="Button" data-action="Close"><i class="icon-remove"></i> Close</button>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content></div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mobile-control nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <i class="icon-plus icon-white"></i>  Layout
+                        <div class="pull-right popover-info">
+                            <i class="icon-question-sign "></i>
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">Help</h3>
+                                <div class="popover-content">Help content <a target="_blank" href="www.inetcloud.vn"> www.inetcloud.vn </a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="rows">
+                        <div class="mobile-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="12"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span12 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="6 6"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span6 column"></div>
+                                    <div class="span6 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="8 4"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span8 column"></div>
+                                    <div class="span4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="4 4 4"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span4 column"></div>
+                                    <div class="span4 column"></div>
+                                    <div class="span4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="2 6 4"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                    <div class="span2 column"></div>
+                                    <div class="span6 column"></div>
+                                    <div class="span4 column"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-control lyrow ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label" style="display: none;"><i class="icon-move"></i> drag</span>
+                            <div class="preview"><input type="text" value="" placeholder="Input size: total 12"></div>
+                            <div class="view">
+                                <div class="row-fluid clearfix">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mobile-control nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <i class="icon-plus icon-white"></i> Base
+                        <div class="pull-right popover-info">
+                            <i class="icon-question-sign "></i>
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">Help</h3>
+                                <div class="popover-content">Help content <a target="_blank" href="www.inetcloud.vn"> www.inetcloud.vn </a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes">
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Label</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Label">
+                                    <div class="span12 data-design" data-design>
+                                        <label target-id="target01" data-control="Label" class="ilabel control-label" name=""> Label</label>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <label target-id="target01" data-control="Label" name=""> Label</label>
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="text" property-value="Label"></properties>
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Text</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Text">
+                                    <div class="span12 data-design" data-design>
+                                        <input target-id="target01" data-control="Text" class="span12" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <input target-id="target01" data-control="Text" class="form-control" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="placeholder" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Textarea</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Textarea">
+                                    <div class="span12 data-design" data-design>
+                                        <textarea target-id="target01" data-control="Textarea" class="span12" rows="5"></textarea>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <textarea target-id="target01" data-control="Textarea" class="form-control" name="" placeholder=""></textarea>
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Number</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Number">
+                                    <div class="span12 data-design" data-design>
+                                        <input target-id="target01" data-control="Number" class="span12" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <input target-id="target01" data-control="Number" data-type="number" class="form-control" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="placeholder" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="decimal" property-value="5"></properties>
+                                            <properties rel="min" property-value="-9999999999999.99999"></properties>
+                                            <properties rel="max" property-value="9999999999999.99999"></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                            <properties rel="mask"  property-value=""></properties>
+                                            <properties rel="maskoption"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Date</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Date">
+                                    <div class="span12 data-design" data-design>
+                                        <div class="input-icon input-icon-right date">
+                                            <input target-id="target01" data-control="Date" type="text" name="" class="span12 date-picker">
+                                            <i class="icon-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <input target-id="target01" data-control="Date" data-type="date" class="form-control" type="text" name="" placeholder="">
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Select</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Select">
+                                    <div class="span12 data-design" data-design>
+                                        <input target-id="target01" class="span12" data-control="Select">
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <select target-id="target01" data-type="select" name="" class="form-control" data-control="Select"></select>
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="require" type="boolean" placeholder="true,false" property-value="false"></properties>
+                                            <properties rel="errormessage" property-value=""></properties>
+                                            <properties rel="placeholder" property-value=""></properties>
+                                            <properties rel="service" property-value=""></properties>
+                                            <properties rel="sourcevalue" property-value=""></properties>
+                                            <properties rel="displayvalue" property-value=""></properties>
+                                            <properties rel="keyvalue" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Check</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Check">
+                                    <div class="span12 data-design" data-design>
+                                        <label>
+                                            <input target-id="target01" data-control="Check" type="checkbox" name="" class="ace">
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <div class="m-checkbox m-color-a">
+                                            <input target-id="target01" data-control="Check" type="checkbox" name="">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value=""></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mobile-control nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <i class="icon-plus icon-white"></i> Control
+                        <div class="pull-right popover-info">
+                            <i class="icon-question-sign "></i>
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">Help</h3>
+                                <div class="popover-content">Help content <a target="_blank" href="www.inetcloud.vn"> www.inetcloud.vn </a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="boxes">
+                        <div class="box box-element ui-draggable">
+                            <a href="#close" class="remove label label-important"><i class="icon-remove icon-white"></i> remove</a>
+                            <span class="drag label"><i class="icon-move"></i> drag</span>
+                            <span data-configuration="properties" class="configuration label label-info"><i data-configuration="properties" class="icon-gears"></i> Properties</span>
+                            <div class="preview">Widget</div>
+                            <div class="view">
+                                <div class="clearfix" data-control="Widget">
+                                    <div class="span12 data-design" data-design>
+                                        <div target-id="target01" data-control="Widget" name="">
+                                            <div style="border: 10px dashed #DDD;height: 100px;text-align: center;border-radius: 15px;background-color: #F0EDED;">
+                                                <i class="icon-puzzle-piece" style="font-size: 65px;padding-top: 20px;position: absolute;color: #ABA4A4;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="data-content hide" data-content mobile-content>
+                                        <div target-id="target01" data-control="Widget" name="">
+                                        </div>
+                                    </div>
+                                    <div class="hide" data-properties>
+                                        <target target-id="target01">
+                                            <properties rel="name" property-value=""></properties>
+                                            <properties rel="application" property-type="select" property-value=""></properties>
+                                            <properties rel="widget" property-type="select" property-value=""></properties>
+                                            <properties rel="css"  property-value=""></properties>
+                                            <properties rel="style"  property-value="position:relative"></properties>
+                                        </target>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-dsn">
+                <div id="page-information" class="information hide">
+                    <div class="row-fluid">
+                        <label class="ilabel control-label span2" for="page-name-txt">$text.getText('idesign.page.name')</label>
+                        <span class="span10"><input id="page-name-txt" type="text" class="span12" readonly="true"></span>
+                    </div>
+                    <div class="row-fluid">
+                        <label class="ilabel control-label span2">$text.getText('idesign.page.bootstrap')</label>
+                        <label class="ilabel control-label span2" for="page-bootstrap-v2-check">$text.getText('idesign.page.version') 2</label>
+                        <span class="span2">
+                            <label>
+                                <input id="page-bootstrap-v2-check" type="checkbox" class="ace">
+                                <span class="lbl"></span>
+                            </label>
+                        </span>
+                        <label class="ilabel control-label span2" for="page-bootstrap-v3-check">$text.getText('idesign.page.version') 3</label>
+                        <span class="span2">
+                            <label>
+                                <input id="page-bootstrap-v3-check" type="checkbox" class="ace">
+                                <span class="lbl"></span>
+                            </label>
+                        </span>
+                    </span>
+                    </div>
+                </div>
+                <div id="page-tool" class="tool">
+                    <button id="page-container-btn">Container</button>
+                    <button id="page-javascript-btn">Javascript</button>
+                </div>
+                <div id="page-javascript-web" class="javascript hide">
+                    <textarea id="page-javascript-web-content" class="span12" rows="20" style="resize: none; font-size: 12px; margin-top: 3px;"></textarea>
+                </div>
+                <div id="page-javascript-mobile" class="javascript hide">
+                    <textarea id="page-javascript-mobile-content" class="span12" rows="20" style="resize: none; font-size: 12px; margin-top: 3px;"></textarea>
+                </div>
+                <div id="page-design" class="demo ui-sortable" style="min-height: 229px;"></div>
+                <div id="page-web" class="hide"></div>
+                <div id="page-mobile" class="hide"></div>
+            </div>
+            <div class="property-nav">
+                <ul class="nav nav-list accordion-group">
+                    <li class="nav-header">
+                        <i class="icon-plus icon-white"></i>  Properties
+                        <div class="pull-right popover-info">
+                            <i class="icon-question-sign "></i>
+                            <div class="popover fade right">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title">Help</h3>
+                                <div class="popover-content">Help content <a target="_blank" href="www.inetcloud.vn"> www.inetcloud.vn </a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="attrs" id="accAttribute">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

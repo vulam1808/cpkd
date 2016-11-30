@@ -1,0 +1,15 @@
+#xscript()
+    var applcationTitle = 'XGate';
+    var headerTitle = '$text.getText("xgate.title")';
+    var headerIcon = 'icon-building';
+
+    iNet.prefix="$ctx.site.prefix";
+    iNet.extension = "$ctx.extension()";
+    iNet.path = "$ctx.path()";
+#end
+
+#script("/js/xgate/inet/lib/xgate-menu-service.min.js")
+#script("/js/xgate/inet/lib/xgate-layout-service.min.js")
+
+#script("/js/common/jquery/plugins/jquery.maskedinput.min.js")
+

@@ -1,0 +1,83 @@
+#zone({"inherit":"true"})
+    #scriptBundle("xgate_message_task_task")
+        iNet.ns(
+            "iNet.resources.task.task",
+            "iNet.resources.task.commission"
+        );
+        if (iNet.resources.task.task) {
+            iNet.apply(iNet.resources.task.task, {
+                title : '$text.getText("itask.task.title")',
+                noData : '$text.getText("itask.task.noData")',
+                noItem : '$text.getText("itask.task.noItem")',
+                from : '$text.getText("itask.task.from")',
+                sent : '$text.getText("itask.task.sent")',
+                rptTask : '$text.getText("itask.task.rptTask")',
+                rptRequest : '$text.getText("itask.task.rptRequest")',
+                comment : '$text.getText("itask.task.comment")',
+                attachment : '$text.getText("itask.task.attachment")',
+                downloadAll : '$text.getText("itask.task.downloadAll")',
+                viewAll : '$text.getText("itask.task.viewAll")',
+                openTask : '$text.getText("itask.task.openTask")',
+                requestTask : '$text.getText("itask.task.requestTask")',
+                process : '$text.getText("itask.task.process")',
+                note : '$text.getText("itask.task.note")',
+                reject : '$text.getText("itask.task.reject")',
+                complete : '$text.getText("itask.task.complete")',
+                executor : '$text.getText("itask.task.executor")',
+                update : '$text.getText("itask.task.update")',
+                cancel : '$text.getText("itask.task.cancel")',
+                processInfo : '$text.getText("itask.task.processInfo")',
+                workflowInfo : '$text.getText("itask.task.workflowInfo")',
+                fieldName : '$text.getText("itask.task.fieldName")',
+                brief : '$text.getText("itask.task.brief")',
+                not_attachment : '$text.getText("itask.task.not_attachment")',
+                description : '$text.getText("itask.task.briefcase.additional.description")',
+                organName : '$text.getText("itask.task.organName")',
+                organAdd : '$text.getText("itask.task.organAdd")',
+                fax : '$text.getText("itask.task.fax")',
+                telephone : '$text.getText("itask.task.telephone")',
+                email : '$text.getText("itask.task.email")',
+                website : '$text.getText("itask.task.website")',
+                mark : '$text.getText("itask.task.mark")',
+                updateWarning : '$text.getText("itask.task.update.warning")',
+                infoTo : '$text.getText("itask.task.info.to")',
+                infoToUser : '$text.getText("itask.task.info.toUser")',
+                infoToDate : '$text.getText("itask.task.info.toDate")',
+                infoProcess : '$text.getText("itask.task.info.process")',
+                infoProcessUser : '$text.getText("itask.task.info.processUser")',
+                infoProcessDate : '$text.getText("itask.task.info.processDate")',
+                infoTask : '$text.getText("itask.task.info.task")',
+                infoTaskStatus : '$text.getText("itask.task.info.taskStatus")',
+                infoTaskTime : '$text.getText("itask.task.info.taskTime")',
+                infoTaskTimeDay : '$text.getText("itask.task.info.taskTimeDay")',
+                infoTaskTimeHours : '$text.getText("itask.task.info.taskTimeHours")',
+                infoTaskTimeMinutes : '$text.getText("itask.task.info.taskTimeMinutes")',
+                infoTaskTimeNoLimit : '$text.getText("itask.task.info.taskTimeNoLimit")',
+                infoTaskAlter : '$text.getText("itask.task.info.taskAlter")',
+                taskAlterInprocess : '$text.getText("itask.task.info.taskAlterInprocess")',
+                taskAlterOverdue : '$text.getText("itask.task.info.taskAlterOverdue")',
+                infoTaskCompleted : '$text.getText("itask.task.completed")',
+                infoTaskProcessing : '$text.getText("itask.task.processing")',
+                appointment : '$text.getText("itask.task.appointment")',
+                memberSelect : '$text.getText("itask.task.memberSelect")',
+                memberName : '$text.getText("itask.task.memberName")',
+                expiredDate : '$text.getText("itask.task.expiredDate")',
+                noteLate : '$text.getText("itask.task.noteLate")',
+                updateDescription : '$text.getText("itask.task.update.description")',
+                rejectDescription : '$text.getText("itask.task.reject.description")',
+                additionalwarningsave : '$text.getText("itask.task.additional.warningsave")',
+                typeUrgent : '$text.getText("itask.task.urgent")',
+                typeOverdue : '$text.getText("itask.task.overdue")',
+                typeInprocess : '$text.getText("itask.task.inprocess")'
+            });
+        }
+        if (iNet.resources.task.commission) {
+            iNet.apply(iNet.resources.task.commission, {
+                authorizedPerson : '$text.getText("xgate.commission.authorizedPerson")',
+                formDate : '$text.getText("xgate.commission.formDate")',
+                toDate : '$text.getText("xgate.commission.toDate")',
+                note : '$text.getText("xgate.commission.note")'
+            });
+        }
+    #end
+#end

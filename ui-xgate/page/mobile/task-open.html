@@ -1,0 +1,29 @@
+#mobile({"secure":"$firm_user"})
+#set($urlLoad = "firmtask/process/openlist")
+#set($controllerName = "taskOpen")
+<div class="m-page" e-controller="$controllerName" e-events="click">
+    <div class="m-header m-theme-a">
+        <i data-action="back" class="icon ion-chevron-left btn"></i>
+        <h1>Chờ xử lý</h1>
+    </div>
+    #widget("/xgate/widget/mobile/request-list")
+    <script>
+        eNet.controller('$controllerName', function (controller) {
+            controller.convertData = function (data) {
+                return {
+                    items: data.elements,
+                    total: data.elements.length
+                }
+            };
+            controller.onPage = function () {
+                controller.router.fireAction('page', {
+                    url: 'xgate/page/mobile/view-task',
+                    task: this.getAttribute('task'),
+                    graph: this.getAttribute('graph'),
+                    late: this.getAttribute('data-late')
+                })
+            }
+        });
+    </script>
+</div>
+#end

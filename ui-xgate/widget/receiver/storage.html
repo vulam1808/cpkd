@@ -1,0 +1,137 @@
+#dataservice("onegatedeptrecordxform")
+#set($content = $onegatedeptrecordxform.content)
+#set($request = $onegatedeptrecordxform.request)
+#set($requestData = $onegatedeptrecordxform.requestData)
+<style type="text/css">
+    @media screen, print {
+        body {
+            line-height: 120%;
+        }
+
+        .receipt-header-left {
+            text-align: center;
+            vertical-align: top;
+            white-space: nowrap;
+            min-height: 20px;
+        }
+
+        .receipt-header-left-parent {
+            text-align: center;
+            vertical-align: top;
+            font-size: 12pt;
+            font-weight: bold;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .receipt-header-left-child {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .receipt-header-left-number {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right {
+            text-align: center;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-top {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-center {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-date {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            white-space: nowrap;
+        }
+
+        .receipt-title {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-title-subject {
+            text-align: center;
+            vertical-align: top;
+            font-size: 15pt;
+            font-weight: bold;
+        }
+
+        .receipt-title-code {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+        }
+
+        .receipt-title-note {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13px;
+        }
+
+        .receipt-field-label {
+            font-weight: bold;
+        }
+
+        .receipt-footer-left {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-footer-left-text {
+            text-align: center;
+            vertical-align: top;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .receipt-footer-right {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-footer-right-text {
+            text-align: center;
+            vertical-align: top;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .receipt-separate {
+            border-left-style: dotted;
+            border-left-width: 1px;
+        }
+
+        .reciept-line {
+            line-height: 165%
+        }
+    }
+</style>
+<div>
+    $content
+</div>

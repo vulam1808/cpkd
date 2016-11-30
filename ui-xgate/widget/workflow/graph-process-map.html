@@ -1,0 +1,32 @@
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/iworkflow-ui-wf-graph-process-map-service.min.js")
+
+<div id="graph-process-map-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="graph-process-map-back-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="graph-process-map-save-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid hide">
+            <input id="graph-process-map-uuid-txt" class="span12" type="text">
+        </div>
+        <div class="row-fluid hide">
+            <span class="span2"><label for="graph-process-map-name-txt" class="control-label">$text.getText("iworkflow.graphprocess.name") </label></span>
+            <span class="span4"><input id="graph-process-map-name-txt" class="span12" type="text"></span>
+            <span class="span2"><label for="graph-process-map-brief-txt" class="control-label">$text.getText("iworkflow.graphprocess.brief") </label></span>
+            <span class="span4"><input id="graph-process-map-brief-txt" class="span12" type="text"></span>
+        </div>
+        <div class="row-fluid">
+            <div id="graph-process-map-basic-search" class="hide"></div>
+            <div id="graph-process-map-grid"></div>
+        </div>
+    </div>
+</div>

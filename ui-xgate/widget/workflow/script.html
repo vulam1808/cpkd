@@ -1,0 +1,45 @@
+#script("/js/xgate/inet/lib/iworkflow-ui-wf-script-service.min.js")
+
+#xscript()
+var roleCreate = true;
+var roleEdit = true;
+var roleDelete = true;
+var roleView = true;
+#end
+
+<div id="script-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="script-back-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="script-create-btn" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="script-delete-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-trash"></i> $text.getText("app.button.delete")
+        </button>
+        <button id="script-save-btn" class="btn btn-primary btn-small">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div class="row-fluid hide">
+                <span class="span2"><label for="script-zone-txt" class="ilabel control-label">$text.getText("iworkflow.script.zone") </label></span>
+                <span class="span10"><input id="script-zone-txt" class="span12" type="text"></span>
+            </div>
+            <div class="row-fluid">
+                <span class="span2"><label for="script-name-txt" class="ilabel control-label">$text.getText("iworkflow.script.name") </label></span>
+                <span class="span10"><input id="script-name-txt" class="span12" type="text"></span>
+            </div>
+            <div class="row-fluid">
+                <span class="span2"><label for="script-brief-txt" class="ilabel control-label">$text.getText("iworkflow.script.brief") </label></span>
+                <span class="span10"><input id="script-brief-txt" class="span12" type="text"></span>
+            </div>
+            <div class="row-fluid">
+                <span class="span2"><label for="script-condition-txt" class="ilabel control-label">$text.getText("iworkflow.script.condition") </label></span>
+                <span class="span10 input"><textarea id="script-condition-txt" class="span12" rows="8"></textarea></span>
+            </div>
+        </div>
+    </div>
+</div>

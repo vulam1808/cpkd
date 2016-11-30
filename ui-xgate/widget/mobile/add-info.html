@@ -1,0 +1,30 @@
+#set($taskID = $ctx.value('task'))
+#set($isFinish = $ctx.value("isFinish"))
+#set($late = $ctx.value('late'))
+<div class="m-panel bottom popup" e-controller="addInfo" e-events="click">
+    <style>
+
+    </style>
+    <div class="m-header m-theme-a">
+        <i class="btn icon ion-chevron-left" data-close></i>
+        <i e-click="onSubmit" class="icon ion-checkmark btn right" style="font-size: 20px"></i>
+        <h1>Bổ sung thông tin</h1>
+    </div>
+    <div class="m-content">
+        <div id="addInfo">
+            <label>Mô tả thông tin bổ sung <span style="color: red">*</span></label>
+            <textarea rows="1" data-type="TextArea" class="form-control"></textarea>
+        </div>
+    </div>
+    <script>
+        eNet.controller('addInfo', function (controller) {
+            var addInfo = this.findEl('#addInfo');
+            controller.onSubmit = function () {
+                if(!addInfo.find('textarea').val()) {
+                    alert("Mô tả thông tin bổ sung!");
+                }
+
+            }
+        });
+    </script>
+</div>

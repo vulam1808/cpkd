@@ -1,0 +1,67 @@
+#theme("/xgate/css/listview")
+
+#script("/js/xgate/jquery/plugins/jquery.slimscroll.min.js")
+
+#script("/js/xgate/inet/lib/listview.min.js")
+
+<div id="list-view-interface" style="display: none;">
+    <div data-id="list-view-control" class="list-view">
+        <div class="list-view-header">
+            <div class="toolbar">
+                <button class="btn btn-warning hide" data-id="list-view-list">
+                    <i class="icon-list"></i>
+                </button>
+                <span data-id="list-view-toolbar">
+                </span>
+                <span style="float: right;">
+                    <button class="btn" data-id="list-view-type">
+                        <i class="ace-icon icon-resize-small"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="list-view-content">
+            <div class="border">
+                <div>
+                    <div class="toolbar">
+                        <div data-id="list-view-basic-search" class="basic-search">
+                        </div>
+                        <div data-id="list-view-advance-search" class="advance-search dropdown-menu dropdown-caret">
+                        </div>
+                    </div>
+                    <div class="line-header"></div>
+                    <div class="data-content">
+                        <div data-id="list-view-no-data" class="no-data">
+                            <div>$text.getText("xgate.control.listview.noData")</div>
+                        </div>
+                        <div data-id="list-view-data" class="data">
+                            <div data-id="list-view-data-content" class="content-wrapper"></div>
+                        </div>
+                    </div>
+                    <div class="line-footer"></div>
+                    <div class="list-view-footer">
+                        <div>
+                            <span data-id="list-view-pull-left" class="pull-left"></span>
+                            <span data-id="list-view-pull-right" class="pull-right">
+                                <span data-id="list-view-paging" class="paging">
+                                    <span data-id="list-view-paging-info">$text.getText('xgate.control.listview.paging.display') <b data-id="list-view-paging-info-from"></b> - <b data-id="list-view-paging-info-to"></b> $text.getText('xgate.control.listview.paging.total') <b data-id="list-view-paging-info-total"></b></span>
+                                    <div class="btn-group">
+                                        <button data-id="list-view-paging-prev-btn" type="button" class="btn btn-xs btn-default">
+                                            <i class="icon-chevron-left"></i>
+                                        </button>
+                                        <button data-id="list-view-paging-refresh-btn" type="button" class="btn btn-xs btn-default">
+                                            <i class="icon-spin icon-refresh"></i>
+                                        </button>
+                                        <button data-id="list-view-paging-next-btn" type="button" class="btn btn-xs btn-default">
+                                            <i class="icon-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

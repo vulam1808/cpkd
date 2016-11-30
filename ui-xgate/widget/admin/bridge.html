@@ -1,0 +1,84 @@
+#theme("/xgate/css/xgate")
+#script("/js/common/inet/lib/grid.min.js")
+#script("/js/xgate/inet/lib/xgate-ui-bridge-service.min.js")
+
+<div id="bridge-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="bridge-register-btn" class="btn btn-primary btn-small">
+            <i class="icon-exchange"></i> $text.getText("xgate.admin.bridge.register")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div class="alert alert-info span12" id="bridge-info">
+            </div>
+        </div>
+        <div class="row-fluid">
+            <label class="control-label span2">$text.getText("xgate.admin.bridge.service")</label>
+            <span class="input-icon input-icon-right span4">
+                <input id="bridge-service-url" type="text" class="span12" />
+                <i id="bridge-service-url-refresh" class="icon-refresh"></i>
+            </span>
+            <span class="span6">
+                <button id="bridge-profile-btn" class="btn btn-small hide">
+                    <i class="icon-rocket"></i> $text.getText("xgate.admin.bridge.profile")
+                </button>
+            </span>
+        </div>
+        <div class="row-fluid hide" id="bridge-details">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="alert alert-info span12">$text.getText("xgate.admin.bridge.info")</div>
+                </div>
+                <div class="row-fluid">
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.organId")</label>
+                    <span class="span4"><input id="bridge-organId" type="text" class="span12" /></span>
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.profileID")</label>
+                    <span class="span4"><input id="bridge-profileID" type="text" class="span12" /></span>
+                </div>
+                <div class="row-fluid">
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.name")</label>
+                    <span class="span10"><input id="bridge-name" type="text" class="span12" /></span>
+                </div>
+                <div class="row-fluid hide">
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.industry")</label>
+                    <span class="span4"><input id="bridge-industry" type="text" class="span12" /></span>
+                </div>
+                <div class="row-fluid">
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.brief")</label>
+                    <span class="span10"><textarea id="bridge-brief" rows="3" class="span12"></textarea></span>
+                </div>
+                <div class="row-fluid">
+                    <div class="alert alert-info span12">$text.getText("xgate.admin.bridge.contact")</div>
+                </div>
+                <div class="row-fluid">
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.email")</label>
+                    <span class="span4"><input id="bridge-email" type="text" class="span12" /></span>
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.phone")</label>
+                    <span class="span4"><input id="bridge-phone" type="text" class="span12" /></span>
+                </div>
+                <div class="row-fluid">
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.website")</label>
+                    <span class="span4"><input id="bridge-website" type="text" class="span12" /></span>
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.fax")</label>
+                    <span class="span4"><input id="bridge-fax" type="text" class="span12" /></span>
+                </div>
+                <div class="row-fluid">
+                    <label class="control-label span2">$text.getText("xgate.admin.bridge.address1")</label>
+                    <span class="span10"><input id="bridge-address1" type="text" class="span12" /></span>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid hide" id="bridge-firm-list">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="alert alert-info span12">$text.getText("xgate.admin.bridge.firm")</div>
+                </div>
+                <div class="row-fluid">
+                    <div id="bridge-firm-basic-search" class="hide"></div>
+                    <div id="bridge-firm-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

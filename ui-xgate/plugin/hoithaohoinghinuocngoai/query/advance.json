@@ -1,0 +1,6 @@
+{
+ "name":"AdvanceSearch",
+ "syntax":"{hovaten: { $regex : \":hovaten:\"}, tendonvi: { $regex : \":tendonvi:\" }}",
+ "searchUI":"advancesearch.html",
+ "resultUI":"advanceresult.html"
+}

@@ -1,0 +1,66 @@
+#mobile({"secure":"$firm_user"})
+#set($controllerName = "taskRequest")
+<div class="m-page" e-controller="$controllerName" e-events="click">
+    <div class="m-header m-theme-a">
+        <i data-action="back" class="icon ion-chevron-left btn"></i>
+        <h1>$text.getText('mobile.orbizflow.request')</h1>
+    </div>
+    #widget("/xgate/widget/mobile/control-render")
+    #widget("/xgate/widget/mobile/request-info")
+    <div class="m-footer m-color-a hide"></div>
+    <script>
+        eNet.controller('$controllerName', function (controller) {
+            var url = iNet.getUrl('firmtask/process/reqload'),
+                params = {
+                    request: "$ctx.value('request')"
+                },
+                request;
+
+            this.onRefresh = function () {
+                iNet.Loading.disable();
+                this.fireEvent('refresh');
+            };
+            this.on('destroy', function () {
+                iNet.Loading.enable();
+            });
+
+            $.getJSON(url, params, function (data) {
+                if(data.request) {
+                    // Trigger event in xgate/widget/mobile/request-info
+                    controller.page.fireEvent('render_info', data);
+                    renderProcess(data);
+                }else{
+                    alert('$text.getText("mobile.orbizflow.form_invalid")');
+                }
+            }, {
+                global: false
+            });
+
+            function renderProcess(data) {
+                if(data.request.status == 'UPDATE'){
+                    controller.onUpdate = function () {
+                        iNet.MessageBox.confirm('$text.getText("mobile.orbizflow.confirm_update")', function () {
+                            var form = new FormData(controller.form.getEl()[0]);
+                            form.append('formID', request.formID);
+                            form.append('subject', request.subject);
+                            form.append('request', request.request);
+                            $.postJSON(iNet.getUrl('firmtask/process/requpdate'), form, function (data) {
+                                controller.page.fireEvent('refresh');
+                            }, {
+                                cache: false,
+                                contentType: false,
+                                processData: false
+                            });
+                        });
+                    };
+                    controller.page.getFooter().html('<div e-click="onUpdate" class="btn" style="width:100%"><i class="icon ion-forward"></i></div>')
+                        .removeClass('hide');
+                    controller.page.getContent().addClass('has-footer');
+                }else{
+                    controller.form.disableForm();
+                }
+            }
+        });
+    </script>
+</div>
+#end

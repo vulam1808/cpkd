@@ -1,0 +1,43 @@
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/iworkflow-ui-wf-actor-map-service.min.js")
+
+#xscript()
+var roleCreate = true;
+var roleEdit = true;
+var roleDelete = true;
+var roleView = true;
+#end
+
+<div id="actor-map-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="actor-map-back-btn" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="actor-map-create-btn" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="actor-map-save-btn" class="btn btn-primary btn-small">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid hide">
+            <span class="span2"><label for="actor-map-actor-txt" class="control-label">$text.getText("iworkflow.actormap.actor") <span class="required"></span></label></span>
+            <span class="span2"><input id="actor-map-actor-txt" class="span12" type="text"></span>
+            <span class="span2"><label for="actor-map-name-txt" class="control-label">$text.getText("iworkflow.actormap.name") </label></span>
+            <span class="span6"><input id="actor-map-name-txt" class="span12" type="text"></span>
+        </div>
+        <div id="actor-map-list" class="row-fluid">
+            <div id="actor-map-basic-search" class="hide"></div>
+            <div id="actor-map-grid"></div>
+        </div>
+        <div id="actor-map-user" class="row-fluid hide">
+            <div id="actor-map-user-basic-search" class="hide"></div>
+            <div id="actor-map-user-grid"></div>
+        </div>
+    </div>
+</div>

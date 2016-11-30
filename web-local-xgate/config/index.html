@@ -1,0 +1,41 @@
+<html>
+    <head>
+       <title>Welcome iNetSolution</title>
+       <script language="javascript">
+          var SLASH = '/';
+          var HTTP_PATTERN='http://';
+          var HTTPS_PATTERN='https://';
+          function gotourl(lurl){
+             // get url location.
+             var location = window.location.toString();
+             
+             var rootPath = '' ;
+             if(location.indexOf(HTTP_PATTERN) >= 0){
+                rootPath = HTTP_PATTERN ;
+             }else if(location.indexOf(HTTPS_PATTERN) >= 0){
+                rootPath = HTTPS_PATTERN ;
+             }
+             
+             var position = location.indexOf(SLASH, rootPath.length) ; 
+             if(position == 0) position = location.length ;
+             var server = location.substr(rootPath.length, position - rootPath.length) ;
+             //rootPath = rootPath + server ;
+
+              if (server.indexOf('sttttx.inetcloud.vn')>=0){
+                  window.location.href = rootPath + 'sttttx.inetcloud.vn' + '/sttttx' + lurl;
+              } else if (server.indexOf('ictlongan.inetcloud.vn')>=0){
+                  window.location.href = rootPath + 'ictlongan.inetcloud.vn' + '/ictla/smartcloud/xgate/page/index.cpx'
+              }else{
+                  window.location.href = rootPath + server + '/zgate' + lurl;
+              }
+          }
+          
+          function forwardurl(lurl){
+            window.location.href=lurl ;
+          }
+       </script>
+    </head>
+    <body>
+      <script language="javascript">gotourl('/smartcloud/xgate/page/index.cpx');</script>
+    </body>
+</html>

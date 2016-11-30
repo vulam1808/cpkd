@@ -1,0 +1,41 @@
+#script("/js/xgate/inet/lib/idesign-ui-t-process-service.min.js")
+
+<div id="modal-process" class="modal hide fade in" aria-hidden="false" style="top: 30%">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="modal-process-tile"> $text.getText("idesign.page.workflow")</h4>
+    </div>
+    <div class="modal-body" style="max-height: 250px; overflow-x: hidden; overflow-y: auto; padding: 0">
+        <div class="row-fluid" style="display: inline-flex">
+            <table style="width: 50%" class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>$text.getText("idesign.page.workflow")</th>
+                </tr>
+                </thead>
+                <tbody id="modal-body-data-workflow" style="cursor: pointer;"></tbody>
+            </table>
+            <table style="width: 50%" class="table">
+                <thead>
+                <tr>
+                    <th>$text.getText("idesign.page.graphInput")</th>
+                </tr>
+                </thead>
+                <tbody id="modal-body-graph-input" style="cursor: pointer;"></tbody>
+        </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="modal-process-refresh-btn" class="btn btn-primary btn-small">
+            <i class="icon-refresh"></i> $text.getText("app.button.refresh")
+        </button>
+        <button id="modal-process-submit-btn" class="btn btn-primary btn-small">
+            <i class="icon-ok-sign"></i> $text.getText("app.button.submit")
+        </button>
+        <button id="modal-process-close-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-remove-sign"></i> $text.getText("app.button.close")
+        </button>
+    </div>
+</div>
+

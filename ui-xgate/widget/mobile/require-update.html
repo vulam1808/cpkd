@@ -1,0 +1,36 @@
+#if(!$ctx.value("isReject"))
+    #set($title = "$text.getText('mobile.orbizflow.require_update')")
+    #set($url = "firmtask/process/noteupdate")
+#else
+    #set($title = "$text.getText('itask.task.reject')")
+    #set($url = "firmtask/process/reject")
+#end
+<div class="m-panel bottom popup" e-controller="taskRequire" e-events="click">
+    <div class="m-header m-theme-a">
+        <i class="btn icon ion-chevron-left" data-close></i>
+        <i e-click="onSubmit" class="icon ion-checkmark btn right" style="font-size:20px"></i>
+        <h1>$title</h1>
+    </div>
+    <div class="m-content">
+        <label>$text.getText("itask.task.comment"):</label>
+        <textarea id="note" rows="2" class="form-control"></textarea>
+    </div>
+    <script>
+        eNet.controller('taskRequire', function (controller) {
+            controller.onSubmit = function () {
+                var params = {
+                        note: controller.page.findEl('#note').val(),
+                        task: '$ctx.value("task")',
+                        process: '$ctx.value("process")'
+                    };
+                $.postJSON(iNet.getUrl('$url'), params, function () {
+                    controller.router.getPagePrev().fireEvent('refresh');
+                    controller.router.backPage();
+                    if(iNet.isFunction(window.itaskReload)){
+                        window.itaskReload();
+                    }
+                });
+            }
+        });
+    </script>
+</div>

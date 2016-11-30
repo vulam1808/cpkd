@@ -1,0 +1,6 @@
+{
+ "name":"AdvanceSearch",
+ "syntax":"{subject: { $regex : \":subject:\"}, fullName: { $regex : \":fullName:\" }}",
+ "searchUI":"advancesearch.html",
+ "resultUI":"advanceresult.html"
+}

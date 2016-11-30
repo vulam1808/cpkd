@@ -1,0 +1,54 @@
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+
+#theme("/xgate/css/listview")
+
+#script("/js/xgate/inet/lib/bfadditional.min.js")
+
+#xscript()
+    var recordID = '$ctx.value("recordID")';
+    if (recordID.indexOf("ctx.value") > 0) { recordID = ""; }
+#end
+
+<div id="briefcase-additional-div" class="hide">
+    <div>
+        <div id="briefcase-additional-toolbar" class="hide">
+            <button id="briefcase-additional-back-btn" type="button" class="btn hide">
+                <i class="icon-arrow-left"></i>
+            </button>
+            <button id="briefcase-additional-add-btn" class="btn btn-primary" title="$text.getText('itask.task.additional.add')">
+                <i class="icon-plus"></i>
+            </button>
+            <button id="briefcase-additional-send-btn" class="btn btn-primary hide" title="$text.getText('itask.task.additional.send')">
+                <i class="icon-location-arrow"></i>
+            </button>
+        </div>
+        <div id="briefcase-additional-subject-details" class="hide">
+        </div>
+        <div id="briefcase-additional-sender-details" class="hide">
+        </div>
+        <div id="briefcase-additional-data-content" class="hide">
+            <div class="row-fluid">
+                <span class="alert alert-info bold span12"><i class="icon-info-sign"></i> $text.getText("itask.task.briefcase.additional.request")</span>
+            </div>
+            <div class="row-fluid">
+                <label class="control-label span3">$text.getText("itask.task.additionalInfo")</label>
+                <span class="span9"><textarea id="briefcase-additional-brief-note-txt" class="span12" rows="3"></textarea></span>
+            </div>
+            <div class="row-fluid">
+                <label class="control-label span3">$text.getText("itask.task.additional.expiredTime")</label>
+                <span class="span9 input-icon input-icon-right">
+                    <input type="text" class="span12" id="briefcase-additional-brief-expiredTime">
+                    <i class="icon-calendar"></i>
+                </span>
+            </div>
+            <div class="row-fluid">
+                <div id="briefcase-additional-basic-search" class="hide"></div>
+                <div id="briefcase-additional-grid"></div>
+            </div>
+        </div>
+        <div id="briefcase-additional"></div>
+    </div>
+</div>

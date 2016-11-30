@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="imagetoolbar" content="no" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Denied access!</title>
+	<style>
+		body {background: #FAFAFA;margin: 0; padding: 20px; text-align:center; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#666666;}
+		.error_page {width: 600px; padding: 50px; margin: auto;}
+		.error_page h1 {margin: 20px 0 0;}
+		.error_page p {margin: 10px 0; padding: 0;font-size: 16px}		
+		a {text-decoration:none;}
+		a:hover {text-decoration:none;}
+		.error_page .error-number {
+		    display: block;
+		    font-size: 158px;
+		    font-weight: 300;
+		    letter-spacing: -10px;
+		    line-height: 128px;
+		    margin-top: 0;
+		    text-align: center;
+		}
+		.text-info {
+    		color: #0095C8 !important;
+		}
+		.text-warning {
+    		color: #f89406 !important;
+		}
+		
+		h1, h2, h3, h4, h5 {
+		    font-weight: 300;
+		    margin-top: 0;
+		    color: #5b5b60;
+		}
+		.page-error .error-details .btn-return {
+   			 margin: 10px 0;
+		}
+		.btn {
+		    display: inline-block;
+		    padding: 6px 12px;
+		    margin-bottom: 0;
+		    font-size: 14px;
+		    font-weight: 400;
+		    line-height: 1.42857143;
+		    text-align: center;
+		    white-space: nowrap;
+		    vertical-align: middle;
+		    -ms-touch-action: manipulation;
+		    touch-action: manipulation;
+		    cursor: pointer;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		    background-image: none;
+		    border: 1px solid rgba(0, 0, 0, 0);
+		    border-radius: 4px;
+		}
+		.btn-red {
+		    background-color: #C82E29;
+		    border-color: #C82E29;
+		    color: #FFF;
+		}
+		.btn-red:hover {
+		  background-color: #da4f4a !important;
+		  border-color: #da4f4a;
+		  color: #ffffff;
+		}
+		.btn-info {
+		    background-color: #0095C8;
+		    border-color: #0095C8;
+		    color: #FFF;
+		}
+		.btn-info:hover {
+		  background-color: #00bbfb !important;
+		  border-color: #00bbfb;
+		  color: #ffffff;
+		}
+	</style>
+	<script type="text/javascript">
+    function logout(){
+	    var location = window.location;
+	    var url = location.protocol + '//' + location.host ;
+	    
+	    
+	    var pathPars = location.pathname.split('/');
+	    
+	    if(pathPars.length > 2 ){
+	    	url += "/" + pathPars[1] + "/" + pathPars[2] + "/system/logout.cpx";
+	    }
+	    
+	    var res = AJAXPost(url);
+	    var dataRes = eval("(" + res + ")");
+	    
+	    logoutCas(dataRes.uuid);
+	  }
+    
+    function AJAXPost(url){
+        var params = "";
+        if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }else{// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("POST",url,false);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(null);
+        return xmlhttp.responseText;
+    }
+    
+    function logoutCas(url, urlCallBack) {
+			var ifrm = document.createElement("IFRAME");
+			ifrm.setAttribute("style", "display:none;");
+			ifrm.setAttribute("src", url);
+			ifrm.setAttribute("onload", 'onIFrameLoad("' + window.location + '")');
+			
+			document.body.appendChild(ifrm);
+		}
+    
+    function onIFrameLoad(url){
+    	window.location.href = url;
+    }
+	</script>	
+</head>
+<body>
+  <div class="error_page">
+    <div class="error-number text-info">401</div>
+    <h1>Rất tiếc ! có gì đó không ổn</h1>
+    <p>Bạn không có quyền truy cập vào trang này.<br></br>Vui lòng liên hệ với quản trị hệ thống để được cấp quyền.</p>
+    <p><a class="btn btn-red" href="javascript:history.back();">Trở về trang trước</a> <a class="btn btn-info" href="javascript:logout();">Đăng xuất</a></p>
+  </div>
+</body>
+</html>

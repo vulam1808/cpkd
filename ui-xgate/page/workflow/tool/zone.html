@@ -1,0 +1,95 @@
+#zone({"inherit":"true"})
+    #scriptBundle("workflow_resource")
+        iNet.ns(
+            "iNet.resources.wfTool",
+            "iNet.resources.wfTool.constant",
+            "iNet.resources.wfTool.graph",
+            "iNet.resources.wfTool.node",
+            "iNet.resources.wfTool.connection",
+            "iNet.resources.wfTool.biz"
+        );
+        if (iNet.resources.wfTool.constant) {
+            iNet.apply(iNet.resources.wfTool.constant, {
+                "title": '$text.getText("wfTool.constant.title")' || "title",
+                "process": '$text.getText("wfTool.constant.process")' || "process",
+                "can_not_del_all_nodes_start": '$text.getText("wfTool.constant.can_not_del_all_nodes_start")' || "can_not_del_all_nodes_start",
+                "can_not_create_connection_node_temp": '$text.getText("wfTool.constant.can_not_create_connection_node_temp")' || "can_not_create_connection_node_temp",
+                "is_not_blank": '$text.getText("wfTool.constant.is_not_blank")' || "is_not_blank",
+                "is_exists": '$text.getText("wfTool.constant.is_exists")' || "is_exists",
+                "process": '$text.getText("wfTool.constant.process")' || "process",
+                "load_error": '$text.getText("wfTool.constant.load_error")' || "load_error",
+                "save_success": '$text.getText("wfTool.constant.save_success")' || "save_success",
+                "save_error" : '$text.getText("wfTool.constant.save_error")' || "save_error",
+                "delete_success" : '$text.getText("wfTool.constant.delete_success")' || "delete_success",
+                "delete_error" : '$text.getText("wfTool.constant.delete_error")' || "delete_error",
+                "delete_confirm" : '$text.getText("wfTool.constant.delete_confirm")' || "delete_confirm"
+            });
+        };
+        if (iNet.resources.wfTool.graph) {
+            iNet.apply(iNet.resources.wfTool.graph, {
+                "title": '$text.getText("wfTool.graph.title")' || "title"
+            });
+        };
+        if (iNet.resources.wfTool.node) {
+            iNet.apply(iNet.resources.wfTool.node, {
+                "title" : '$text.getText("wfTool.node.title")' || "Title",
+                "temp" : '$text.getText("wfTool.node.temp")' || "temp",
+                "name" : '$text.getText("wfTool.node.name")' || "Name",
+                "multiDecision" : '$text.getText("wfTool.node.multiDecision")' || "MultiDecision",
+"reject" : '$text.getText("wfTool.node.reject")' || "Reject",
+                "value" : '$text.getText("wfTool.node.value")' || "Value",
+                "variable" : '$text.getText("wfTool.node.variable")' || "Variable",
+                "expressions" : '$text.getText("wfTool.node.expressions")' || "Expressions",
+                "actor" : '$text.getText("wfTool.node.actor")' || "Actor",
+                "actorCode" : '$text.getText("wfTool.node.actor.code")' || "Actor Code",
+                "actorName" : '$text.getText("wfTool.node.actor.name")' || "Actor Name",
+                "joinType" : '$text.getText("wfTool.node.joinType")' || "Join Type",
+                "type" : '$text.getText("wfTool.node.type")' || "Type",
+                "typeStart" : '$text.getText("wfTool.node.type.start")' || "Start",
+                "typeWork" : '$text.getText("wfTool.node.type.work")' || "Work",
+                "typeEnd" : '$text.getText("wfTool.node.type.end")' || "End",
+                "business" : '$text.getText("wfTool.node.business")' || "Business",
+                "svcOut" : '$text.getText("wfTool.node.svcOut")' || "Business Out",
+                "svcIn" : '$text.getText("wfTool.node.svcIn")' || "Business In",
+                "attribute" : '$text.getText("wfTool.node.attribute")' || "Attribute",
+"attCamel" : '$text.getText("wfTool.node.attribute.camel")' || "Camel",
+                "screen" : '$text.getText("wfTool.node.screen")' || "Screen",
+                "add" : '$text.getText("wfTool.node.add")' || "add",
+                "save" : '$text.getText("wfTool.node.save")' || "save",
+                "delete" : '$text.getText("wfTool.node.delete")' || "delete",
+                "process" : '$text.getText("wfTool.node.process")' || "Process time",
+                "byDay" : '$text.getText("wfTool.node.process.day")' || "By day",
+                "byHours" : '$text.getText("wfTool.node.process.hours")' || "By hours",
+                "byMinutes" : '$text.getText("wfTool.node.process.minutes")' || "By Minutes"
+            });
+        };
+        if (iNet.resources.wfTool.connection) {
+            iNet.apply(iNet.resources.wfTool.connection, {
+                "title" : '$text.getText("wfTool.conn.title")' || "title",
+                "name" : '$text.getText("wfTool.conn.name")' || "name",
+                "priority" : '$text.getText("wfTool.conn.priority")' || "priority",
+                "script" : '$text.getText("wfTool.conn.script")' || "script",
+                "save" : '$text.getText("wfTool.conn.save")' || "save",
+                "delete" : '$text.getText("wfTool.conn.delete")' || "delete"
+            });
+        };
+        if (iNet.resources.wfTool.biz) {
+            iNet.ns("iNet.resources.wfTool.biz.bizdefault");
+            iNet.apply(iNet.resources.wfTool.biz.bizdefault, {
+                "name" : '$text.getText("wfTool.biz.bizdefault.name")' || "Bizdefault",
+                "icon" : '$text.getText("wfTool.biz.bizdefault.icon")' || "icon-cogs"
+            });
+            iNet.ns("iNet.resources.wfTool.biz.machine");
+            iNet.apply(iNet.resources.wfTool.biz.machine, {
+                "name" : '$text.getText("wfTool.biz.machine.name")' || "Machine",
+                "icon" : '$text.getText("wfTool.biz.machine.icon")' || "icon-bolt"
+            });
+            iNet.ns("iNet.resources.wfTool.biz.email");
+            iNet.apply(iNet.resources.wfTool.biz.email, {
+                "name" : '$text.getText("wfTool.biz.email.name")' || "Email",
+                "icon" : '$text.getText("wfTool.biz.email.icon")' || "icon-envelope-alt"
+            });
+        };
+    #end
+#end
+

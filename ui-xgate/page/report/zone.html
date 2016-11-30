@@ -1,0 +1,167 @@
+#zone({"inherit":"true"})
+    #scriptBundle("xgate_message_report")
+        iNet.ns(
+            "iNet.resources.xgate",
+            "iNet.resources.xgate.report",
+            "iNet.resources.xgate.report.task",
+            "iNet.resources.xgate.report.history",
+            "iNet.resources.xgate.report.request",
+            "iNet.resources.xgate.report.record",
+            "iNet.resources.xgate.report.citizen",
+            "iNet.resources.xgate.report.summary",
+            "iNet.resources.xgate.report.detail"
+        );
+        if (iNet.resources.xgate.report.task) {
+            iNet.apply(iNet.resources.xgate.report.task, {
+                title : '$text.getText("xgate.report.task.title")',
+                form : '$text.getText("xgate.report.task.form")',
+                to : '$text.getText("xgate.report.task.to")',
+                processor : '$text.getText("xgate.report.task.processor")',
+                graph : '$text.getText("xgate.report.task.graph")',
+                task : '$text.getText("xgate.report.task.task")',
+                taskName : '$text.getText("xgate.report.task.taskName")',
+                processorName : '$text.getText("xgate.report.task.processorName")',
+                created : '$text.getText("xgate.report.task.created")',
+                completedTime : '$text.getText("xgate.report.task.completedTime")',
+                expiredTime : '$text.getText("xgate.report.task.expiredTime")',
+                serialNo : '$text.getText("briefcase.info.serialNo")',
+                receiptNo : '$text.getText("briefcase.info.receiptNo")',
+                status : '$text.getText("xgate.report.task.status")',
+                statusCompleted : '$text.getText("xgate.report.task.status.completed")',
+                statusCreated : '$text.getText("xgate.report.task.status.created")',
+                subject : '$text.getText("xgate.report.task.subject")',
+                actor : '$text.getText("xgate.report.task.actor")',
+                typeLate : '$text.getText("xgate.report.task.typeLate")',
+                typeComplete : '$text.getText("xgate.report.task.typeComplete")',
+                typeProcess : '$text.getText("xgate.report.task.typeProcess")',
+                xgateReceiver : '$text.getText("xgate.report.task.xgateReceiver")'
+            });
+        }
+        if (iNet.resources.xgate.report.history) {
+            iNet.apply(iNet.resources.xgate.report.history, {
+                title : '$text.getText("xgate.report.history.title")',
+                form : '$text.getText("xgate.report.history.form")',
+                to : '$text.getText("xgate.report.history.to")',
+                processor : '$text.getText("xgate.report.history.processor")',
+                graph : '$text.getText("xgate.report.history.graph")',
+                task : '$text.getText("xgate.report.history.task")',
+                taskName : '$text.getText("xgate.report.history.taskName")',
+                processorName : '$text.getText("xgate.report.history.processorName")',
+                created : '$text.getText("xgate.report.history.created")',
+                completedTime : '$text.getText("xgate.report.history.completedTime")',
+                status : '$text.getText("xgate.report.history.status")',
+                statusCompleted : '$text.getText("xgate.report.history.status.completed")',
+                statusCreated : '$text.getText("xgate.report.history.status.created")'
+            });
+        }
+        if (iNet.resources.xgate.report.request) {
+            iNet.apply(iNet.resources.xgate.report.request, {
+                title : '$text.getText("xgate.report.request.title")',
+                form : '$text.getText("xgate.report.request.form")',
+                to : '$text.getText("xgate.report.request.to")',
+                requester : '$text.getText("xgate.report.request.requester")',
+                graph : '$text.getText("xgate.report.request.graph")',
+                subject : '$text.getText("xgate.report.request.subject")',
+                requestorName : '$text.getText("xgate.report.request.requestorName")',
+                requestTime : '$text.getText("xgate.report.request.requestTime")',
+                completedTime : '$text.getText("xgate.report.request.completedTime")',
+                status : '$text.getText("xgate.report.request.status")',
+                statusCompleted : '$text.getText("xgate.report.request.status.completed")',
+                statusCreated : '$text.getText("xgate.report.request.status.created")'
+            });
+        }
+        if (iNet.resources.xgate.report.record) {
+            iNet.apply(iNet.resources.xgate.report.record, {
+                procedure : '$text.getText("xgate.report.record.procedure")',
+                search : '$text.getText("xgate.report.record.search")',
+                status : '$text.getText("xgate.report.record.status")',
+                statusAll : '$text.getText("xgate.report.record.status.ALL")',
+                statusCOMPLETED : '$text.getText("xgate.report.record.status.COMPLETED")',
+                statusREJECTED : '$text.getText("xgate.report.record.status.REJECTED")',
+                statusINPROCESS : '$text.getText("xgate.report.record.status.INPROCESS")',
+                statusPUBLISHED : '$text.getText("xgate.report.record.status.PUBLISHED")',
+                type : '$text.getText("xgate.report.record.type")',
+                typeAll : '$text.getText("xgate.report.record.type.all")',
+                typeOverdue : '$text.getText("xgate.report.record.type.overdue")',
+                serialNo : '$text.getText("xgate.report.record.serialNo")',
+                receiptNo : '$text.getText("xgate.report.record.receiptNo")',
+                procedureName : '$text.getText("xgate.report.record.procedureName")',
+                subject : '$text.getText("xgate.report.record.subject")',
+                fullName : '$text.getText("xgate.report.record.fullName")',
+                recordBook : '$text.getText("xgate.report.record.recordBook")',
+                recordOrder : '$text.getText("xgate.report.record.recordOrder")',
+                created : '$text.getText("xgate.report.record.created")',
+                appointment : '$text.getText("xgate.report.record.appointment")',
+                completed : '$text.getText("xgate.report.record.completed")',
+                statusCreated : '$text.getText("xgate.report.request.status.created")'
+            });
+        }
+        if (iNet.resources.xgate.report.citizen) {
+            iNet.apply(iNet.resources.xgate.report.citizen, {
+                procedure : '$text.getText("xgate.report.citizen.procedure")',
+                search : '$text.getText("xgate.report.citizen.search")',
+                status : '$text.getText("xgate.report.citizen.status")',
+                statusAll : '$text.getText("xgate.report.citizen.status.ALL")',
+                statusCOMPLETED : '$text.getText("xgate.report.citizen.status.COMPLETED")',
+                statusREJECTED : '$text.getText("xgate.report.citizen.status.REJECTED")',
+                statusINPROCESS : '$text.getText("xgate.report.citizen.status.INPROCESS")',
+                statusPUBLISHED : '$text.getText("xgate.report.citizen.status.PUBLISHED")',
+                type : '$text.getText("xgate.report.citizen.type")',
+                typeAll : '$text.getText("xgate.report.citizen.type.all")',
+                typeOverdue : '$text.getText("xgate.report.citizen.type.overdue")',
+                serialNo : '$text.getText("xgate.report.citizen.serialNo")',
+                receiptNo : '$text.getText("xgate.report.citizen.receiptNo")',
+                procedureName : '$text.getText("xgate.report.citizen.procedureName")',
+                subject : '$text.getText("xgate.report.citizen.subject")',
+                fullName : '$text.getText("xgate.report.citizen.fullName")',
+                recordBook : '$text.getText("xgate.report.citizen.recordBook")',
+                recordOrder : '$text.getText("xgate.report.citizen.recordOrder")',
+                created : '$text.getText("xgate.report.citizen.created")',
+                appointment : '$text.getText("xgate.report.citizen.appointment")',
+                completed : '$text.getText("xgate.report.citizen.completed")',
+                statusCreated : '$text.getText("xgate.report.request.status.created")'
+            });
+        }
+        if (iNet.resources.xgate.report.summary) {
+            iNet.apply(iNet.resources.xgate.report.summary, {
+                form : '$text.getText("xgate.report.summary.form")',
+                to : '$text.getText("xgate.report.summary.to")',
+                industry : '$text.getText("xgate.report.summary.industry")',
+                inventory : '$text.getText("xgate.report.summary.inventory")',
+                receiver : '$text.getText("xgate.report.summary.receiver")',
+                beforeTime : '$text.getText("xgate.report.summary.beforeTime")',
+                inTime : '$text.getText("xgate.report.summary.inTime")',
+                afterTime : '$text.getText("xgate.report.summary.afterTime")',
+                percent : '$text.getText("xgate.report.summary.percent")',
+                inTerm : '$text.getText("xgate.report.summary.inTerm")',
+                outTerm : '$text.getText("xgate.report.summary.outTerm")',
+                invalid : '$text.getText("xgate.report.summary.invalid")'
+            });
+        }
+        if (iNet.resources.xgate.report.detail) {
+            iNet.apply(iNet.resources.xgate.report.detail, {
+                procedure : '$text.getText("xgate.report.detail.procedure")',
+                search : '$text.getText("xgate.report.detail.search")',
+                status : '$text.getText("xgate.report.detail.status")',
+                statusAll : '$text.getText("xgate.report.detail.status.ALL")',
+                statusCOMPLETED : '$text.getText("xgate.report.detail.status.COMPLETED")',
+                statusREJECTED : '$text.getText("xgate.report.detail.status.REJECTED")',
+                statusINPROCESS : '$text.getText("xgate.report.detail.status.INPROCESS")',
+                statusPUBLISHED : '$text.getText("xgate.report.detail.status.PUBLISHED")',
+                type : '$text.getText("xgate.report.detail.type")',
+                typeAll : '$text.getText("xgate.report.detail.type.all")',
+                typeOverdue : '$text.getText("xgate.report.detail.type.overdue")',
+                serialNo : '$text.getText("xgate.report.detail.serialNo")',
+                receiptNo : '$text.getText("xgate.report.detail.receiptNo")',
+                procedureName : '$text.getText("xgate.report.detail.procedureName")',
+                subject : '$text.getText("xgate.report.detail.subject")',
+                fullName : '$text.getText("xgate.report.detail.fullName")',
+                recordBook : '$text.getText("xgate.report.detail.recordBook")',
+                recordOrder : '$text.getText("xgate.report.detail.recordOrder")',
+                created : '$text.getText("xgate.report.detail.created")',
+                appointment : '$text.getText("xgate.report.detail.appointment")',
+                completed : '$text.getText("xgate.report.detail.completed")'
+            });
+        }
+    #end
+#end

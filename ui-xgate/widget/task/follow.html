@@ -1,0 +1,219 @@
+#theme("/common/css/font-awesome")
+#theme("/xgate/css/chart/bootstrap.min")
+#theme("/xgate/css/chart/chart")
+#theme("/xgate/css/chart/colors")
+
+#script("/js/xgate/inet/lib/itask-ui-t-follow-service.min.js")
+
+<style>
+    .wg-toolbar.navbar-fixed-top{
+        background-color: #f5f5f5;
+        padding: 5px;
+        border-bottom: 1px solid #e5e5e5;
+        position: fixed;
+        min-height: 30px;
+        z-index: 1030;
+        width: 100%;
+    }
+
+    .wg-content {
+        padding-top: 45px;
+    }
+</style>
+
+<div id="follow-div" class="hide">
+    <div class="col-sm-12">
+        <div class="row">
+            <table class="table table-striped" id="chart-record-table">
+                <colgroup>
+                    <col style="width:auto" class="">
+                    <col style="width: 15%;" class="">
+                    <col style="width: 80px;" class="">
+                    <col style="width: 90px;" class="">
+                    <col style="width: 90px;" class="">
+                    <col style="width: 120px;" class="">
+                </colgroup>
+                <thead>
+                <tr data-type="row-pagging">
+                    <th>$text.getText("briefcase.info")</th>
+                    <th>$text.getText("briefcase.sender")</th>
+                    <th>$text.getText("briefcase.progress")</th>
+                    <th>$text.getText("briefcase.request")</th>
+                    <th>$text.getText("briefcase.status")</th>
+                    <th class="text-center">
+                        <i data-action="backPage" class="fa fa-arrow-circle-left pointer"></i>
+                        <span data-page-number>0</span>
+                        <span>/</span>
+                        <span data-page-total>0</span>
+                        <i data-action="nextPage" class="fa fa-arrow-circle-right pointer"></i>
+                    </th>
+                </tr>
+                <tr data-type="row-template" style="display: none;">
+                    <td data-cell="1">
+                        <div class="media-left media-middle">
+                            <a ahref="#"><img data-col="avatar" src="" class="img-circle img-xs avartar" alt=""></a>
+                        </div>
+                        <div class="media-left">
+                            <div data-action="view" serialNo="" recordStatus="" class="pointer">
+                                <a ahref="#" class="text-default text-semibold">
+                                    <span data-col="subject"></span>
+                                </a>
+                            </div>
+                            <div class="text-muted text-size-small">
+                                <span class="status-mark border-info m-r-5"></span>
+                                <span>$text.getText("briefcase.info.created"): </span>
+                                <span data-col="created"></span>
+                                <span data-color="appointment-border-color" class="status-mark border-info m-r-5 m-l-5"></span>
+                                <span data-color="appointment-color">$text.getText("briefcase.info.appointment"): </span>
+                                <span data-color="appointment-color" data-col="appointment"></span>
+                            </div>
+                            <div class="text-muted text-size-small">
+                                <span class="status-mark border-info m-r-5"></span>
+                                <span>$text.getText("briefcase.info.serialNo"): </span><span data-col="serialNo"></span>
+                                <span class="status-mark border-info m-r-5 m-l-5"></span>
+                                <span>$text.getText("briefcase.info.receiptNo"): </span><span data-col="receiptNo"></span>
+                            </div>
+                            <div class="text-muted text-size-small">
+                                <span class="status-mark border-info m-r-5"></span>
+                                <span>$text.getText("briefcase.info.recordBook"): </span><span data-col="recordBook"></span>
+                                <span class="status-mark border-info m-r-5 m-l-5"></span>
+                                <span>$text.getText("briefcase.info.recordOrder"): </span><span data-col="recordOrder"></span>
+                            </div>
+                            <div class="text-primary-800 text-size-small">
+                                <span class="status-mark border-info m-r-5"></span>
+                                <span>$text.getText("briefcase.info.completed"): </span><span data-col="completed"></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-cell="2">
+                        <div class="text-muted">
+                            <span data-col="fullName"></span>
+                        </div>
+                        <!--<div class="text-muted"><i class="fa fa-calendar"></i> 01/01/1901</div>-->
+                    </td>
+                    <td data-cell="3">
+                        <span data-color="percent-color" class="">
+                            <i class="fa fa-hourglass"></i>
+                            <span data-col="percent">0</span>
+                            <span>%</span>
+                            <span data-col="percent-note"></span>
+                        </span>
+                    </td>
+                    <td data-cell="4">
+                        <span data-display="urgent" class="label bg-danger" style="display: none;">
+                            <i class="fa fa-bolt"></i> $text.getText('xgate.follow.urgent')
+                        </span>
+                    </td>
+                    <td data-cell="5">
+                        <span data-color="status-color" class="label">
+                            <span data-col="status"></span>
+                        </span>
+                    </td>
+                    <td data-cell="6" class="text-center">
+                        <ul class="fa fa-reorder pointer" data-action="dropdown">
+                            <li class="dropdown">
+                                <a ahref="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    #hasRole("receiver")
+                                    <li class="pointer" data-action="print" formNo="formNo03" requestID="">
+                                        <a ahref="#"><i class="icon-print"></i> $text.getText('ireceiver.record.printFormNo03')</a>
+                                    </li>
+                                    #end
+                                    #hasRole("process_user")
+                                    <li class="pointer" data-action="print" formNo="formNo04" requestID="">
+                                        <a ahref="#"><i class="icon-print"></i> $text.getText('ireceiver.record.printFormNo04')</a>
+                                    </li>
+                                    <li class="pointer" data-action="comment" requestID="">
+                                        <a ahref="#"><i class="icon-comments-alt"></i> $text.getText('xgate.follow.comment')</a>
+                                    </li>
+                                    #end
+                                    #hasRole("management")
+                                    <li class="pointer" data-action="urgent" uuid="" additionalID="">
+                                        <a ahref="#"><i class="fa fa-bolt"></i> $text.getText('xgate.follow.urgent')</a>
+                                    </li>
+                                    <li class="pointer" data-action="add-person" requestID="">
+                                        <a ahref="#"><i class="fa fa-user-plus"></i> $text.getText('xgate.follow.addperson')</a>
+                                    </li>
+                                    #end
+                                    <!--<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="icon-gear"></i> Settings</a></li>-->
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a ahref="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    #hasRole("receiver")
+                                    <li class="pointer" data-action="print" formNo="formNo03" requestID="">
+                                        <a ahref="#"><i class="icon-print"></i> $text.getText('ireceiver.record.printFormNo03')</a>
+                                    </li>
+                                    #end
+                                    #hasRole("process_user")
+                                    <li class="pointer" data-action="print" formNo="formNo04" requestID="">
+                                        <a ahref="#"><i class="icon-print"></i> $text.getText('ireceiver.record.printFormNo04')</a>
+                                    </li>
+                                    <li class="pointer" data-action="comment" uuid="">
+                                        <a ahref="#"><i class="icon-comments-alt"></i> $text.getText('xgate.follow.comment')</a>
+                                    </li>
+                                    #end
+                                    #hasRole("management")
+                                    <li class="pointer" data-action="urgent" uuid="" additionalID="">
+                                        <a ahref="#"><i class="fa fa-bolt"></i> $text.getText('xgate.follow.urgent')</a>
+                                    </li>
+                                    <li class="pointer" data-action="add-person" requestID="">
+                                        <a ahref="#"><i class="fa fa-user-plus"></i> $text.getText('xgate.follow.addperson')</a>
+                                    </li>
+                                    #end
+                                    <!--<li><a href="#"><i class="icon-file-locked"></i> Disable campaign</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="icon-gear"></i> Settings</a></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td data-cell="7" colspan="5" style="display: none;">
+                        <span>
+                            <textarea class="col-sm-12" rows="4" style="height: 80%;width: 100%;"></textarea>
+                        </span>
+                        <span style="float: right;padding-top: 5px;">
+                            <span data-action="comment-submit" uuid="" requestID="" class="label pointer p-a-10 bg-blue">
+                                <i class="fa fa-send"></i>
+                            </span>
+                            <span data-action="comment-cancel" uuid="" class="label pointer p-a-10 bg-danger">
+                                <i class="fa fa-close"></i>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+                </thead>
+                <tbody data-type="search">
+                <tr class="active border-double">
+                    <td colspan="2">
+                        <input id="chart-record-table-keyword" type="text" class="col-sm-12" style="border: none; border-radius: 15px; width: 100%;" placeholder="$text.getText('briefcase.keyword')">
+                    </td>
+                    <td style="padding-top: 10px;">
+                        <i data-action="search" class="fa fa-search pointer"></i>
+                        <!--<i class="fa fa-external-link-square pointer p-l-10"></i>-->
+                    </td>
+                    <td colspan="3">
+                        <span data-action="search" data-type="inprocess" title="$text.getText('xgate.follow.inprocess')" class-disabled="bg-slate-300" class-enabled="bg-blue" class="label bg-slate-300 pointer p-a-10">
+                            <i class="fa fa-gears"></i>
+                            <b total-process data-type="number" class="badge badge-primary m-l-5">0</b>
+                        </span>
+                        <span data-action="search" data-type="overdue" title="$text.getText('xgate.follow.overdue')" class-disabled="bg-slate-300" class-enabled="bg-orange" class="label bg-slate-300 pointer p-a-10">
+                            <i class="fa fa-hourglass"></i>
+                            <b total-overdue data-type="number" class="badge badge-primary m-l-5">0</b>
+                        </span>
+                        <span data-action="search" data-type="urgent" title="$text.getText('xgate.follow.urgent')" class-disabled="bg-slate-300" class-enabled="bg-danger" class="label bg-slate-300 pointer p-a-10">
+                            <i class="fa fa-flash"></i>
+                            <b total-urgent data-type="number" class="badge badge-primary m-l-5">0</b>
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+                <tbody data-type="data">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

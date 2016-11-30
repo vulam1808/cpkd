@@ -1,0 +1,194 @@
+#theme("/common/css/bootstrap/bootstrap-timepicker")
+#theme("/common/css/jquery/select2")
+#theme("/xgate/css/xgate")
+
+#script("/js/common/bootstrap/plugins/bootstrap-timepicker.min.js")
+#script("/js/common/jquery/plugins/jquery.maskedinput.min.js")
+#script("/js/common/inet/lib/select.min.js")
+
+#script("/js/xgate/inet/lib/xgate-ui-working-time-service.min.js")
+
+#xscript()
+    var zone = '';
+    var context = '';
+#end
+
+<div id="working-time-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="working-time-save-btn" class="btn btn-primary btn-small">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th style="text-align: center;vertical-align: middle" >$text.getText("xgate.admin.workingtime.config")</th>
+                    <th style="text-align: center;vertical-align: middle" >$text.getText("xgate.admin.workingtime.value")</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>$text.getText("xgate.admin.workingtime.maxAppt")</td>
+                    <td>
+                        <div class="row-fuild">
+                            <input type="number" id="working-time-txt-maxAppt" class="span12">
+                        </div>
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td>$text.getText("xgate.admin.workingtime.warnBeforeLate")</td>
+                    <td>
+                        <div class="row-fuild">
+                            <input type="number" id="working-time-txt-warnBeforeLate" class="span12">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>$text.getText("xgate.admin.workingtime.waitHourOfReceiver")</td>
+                    <td>
+                        <div class="row-fuild">
+                            <input type="number" id="working-time-txt-waitHourOfReceiver" class="span12">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>$text.getText("xgate.admin.workingtime.waitHourOfCitizenReturn")</td>
+                    <td>
+                        <div class="row-fuild">
+                            <input type="number" id="working-time-txt-waitHourOfCitizenReturn" class="span12">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>$text.getText("xgate.admin.workingtime.edgeTimeAccept")</td>
+                    <td>
+                        <div class="row-fuild">
+                            <input type="number" id="working-time-txt-edgeTimeAccept" class="span12">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>$text.getText("xgate.admin.workingtime.centerPlace")</td>
+                    <td>
+                        <div class="row-fuild">
+                            <input id="working-time-select-centerPlace" class="span12">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>$text.getText("xgate.admin.workingtime.resetFlag")</td>
+                    <td>
+                        <div class="row-fuild">
+                            <select id="working-time-txt-resetFlag" class="span12">
+                                <option value="2">$text.getText("xgate.admin.workingtime.resetFlag.yearly")</option>
+                                <option value="1">$text.getText("xgate.admin.workingtime.resetFlag.monthly")</option>
+                                <option value="0">$text.getText("xgate.admin.workingtime.resetFlag.daily")</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>$text.getText("xgate.admin.workingtime.receiptPattern") ($text.getText("xgate.admin.workingtime.receiptPatternParam"))</td>
+                    <td>
+                        <div class="row-fuild">
+                            <input type="text" id="working-time-txt-receiptPattern" placeholder="$text.getText("xgate.admin.workingtime.receiptPatternExample")" class="span12">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row-fluid">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th style="text-align: center;vertical-align: middle" rowspan="2">$text.getText("xgate.admin.workingtime.weekdays")</th>
+                    <th style="text-align: center" colspan="2">$text.getText("xgate.admin.workingtime.morning")</th>
+                    <th style="text-align: center" colspan="2">$text.getText("xgate.admin.workingtime.afternoon")</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.fromTime")</th>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.toTime")</th>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.fromTime")</th>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.toTime")</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="working-time-container">
+                    <td>$text.getText("xgate.admin.workingtime.mon_to_fri")</td>
+                    <td>
+                        <div class="input-icon input-icon-right date bootstrap-timepicker" style="width: 100px;">
+                            <input id="working-time-morning-stime" type="text" value="08:00" class="span12 time-picker">
+                            <i class="add-on icon-time"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-icon input-icon-right date bootstrap-timepicker" style="width: 100px;">
+                            <input id="working-time-morning-etime" type="text" value="11:30" class="span12 time-picker">
+                            <i class="add-on icon-time"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-icon input-icon-right date bootstrap-timepicker" style="width: 100px;">
+                            <input id="working-time-afternoon-stime" type="text" value="13:30" class="span12 time-picker">
+                            <i class="add-on icon-time"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-icon input-icon-right date bootstrap-timepicker" style="width: 100px;">
+                            <input id="working-time-afternoon-etime" type="text" value="17:30" class="span12 time-picker">
+                            <i class="add-on icon-time"></i>
+                        </div>
+                    </td>
+                </tr>
+                <tr id="working-time-saturdayState">
+                    <td>$text.getText("xgate.admin.workingtime.saturday")</td>
+                    <td colspan="4">
+                        <div class="span10 radio" style="display: flex">
+                            <label style="margin-right: 10px">
+                                <input name="saturdayState" type="radio" class="ace" value="2">
+                                <span class="lbl"> $text.getText("xgate.admin.workingtime.fulltime")</span>
+                            </label>
+                            <label style="margin-right: 10px">
+                                <input name="saturdayState" type="radio" class="ace" value="1">
+                                <span class="lbl"> $text.getText("xgate.admin.workingtime.parttime")</span>
+                            </label>
+                            <label>
+                                <input name="saturdayState" type="radio" class="ace" value="0" checked>
+                                <span class="lbl"> $text.getText("xgate.admin.workingtime.closed")</span>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>        
+        <div class="row-fluid">
+            <table id="working-time-schedule-tbl" class="table table-bordered" style="width:100%">
+                <thead>
+                <tr>
+                    <th style="text-align: center;vertical-align: middle" rowspan="2">$text.getText("xgate.admin.workingtime.time_checkout")</th>
+                    <th style="text-align: center" colspan="2">$text.getText("xgate.admin.workingtime.morning")</th>
+                    <th style="text-align: center" colspan="2">$text.getText("xgate.admin.workingtime.afternoon")</th>
+                    <th style="width: 16px;" rowspan="2"></th>
+                </tr>
+                <tr>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.fromTime")</th>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.toTime")</th>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.fromTime")</th>
+                    <th style="text-align: center;width: 100px;">$text.getText("xgate.admin.workingtime.toTime")</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6" class="text-right"><a href="javascript:;" id="addSchedule"><i class="icon-plus"></i> $text.getText("xgate.admin.workingtime.add_another")</a></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

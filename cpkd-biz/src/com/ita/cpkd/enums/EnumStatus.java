@@ -5,6 +5,7 @@ package com.ita.cpkd.enums;
  */
 public enum EnumStatus {
     CAP_MOI,
+    CAP_LAI,
     CAP_DOI,
     TAM_NGUNG,
     CHAM_DUT;

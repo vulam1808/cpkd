@@ -1,0 +1,35 @@
+#theme("/xgate/css/workflow")
+
+#script("/js/xgate/inet/lib/iworkflow-ui-wf-graph-process-service.min.js")
+
+#script("/js/xgate/jquery/plugins/jquery-ui-1.10.2.min.js")
+#script("/js/xgate/jquery/plugins/jquery.jsPlumb.1.5.5.min.js")
+#script("/js/xgate/jquery/plugins/jquery.filter-input.min.js")
+#script("/js/xgate/inet/lib/workflow.min.js")
+
+#xscript()
+var roleCreate = true;
+var roleEdit = true;
+var roleDelete = true;
+var roleView = true;
+#end
+
+<div id="graph-process-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="graph-process-back-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="graph-process-published-btn" type="button" class="btn btn-primary btn-small hide">
+            <i class="icon-globe"></i> $text.getText("iworkflow.graphprocess.published")
+        </button>
+        <button id="graph-process-assign-btn" type="button" class="btn btn-primary btn-small hide">
+            <i class="icon-group"></i> $text.getText("iworkflow.graphprocess.assign")
+        </button>
+        <button id="graph-process-map-btn" type="button" class="btn btn-primary btn-small hide">
+            <i class="icon-cogs"></i> $text.getText("iworkflow.graphprocess.map")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="workflow-design-virtual"></div>
+    </div>
+</div>

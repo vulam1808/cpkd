@@ -1,0 +1,102 @@
+#theme("/xgate/css/xgate")
+
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/xgate-ui-report-summary-service.min.js")
+
+<div id="report-summary-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="report-summary-view-btn" class="btn btn-primary btn-small">
+            <i class="icon-search"></i> $text.getText("app.button.search")
+        </button>
+        <button id="report-summary-export-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-file"></i> $text.getText("xgate.report.export")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <label class="control-label span2">$text.getText("xgate.report.summary.form")</label>
+            <span class="span2">
+                <div class="row-fluid input-icon input-icon-right date">
+                    <input type="text" id="report-summary-from" class="span12 date-picker"/>
+                    <i class="icon-calendar"></i>
+                </div>
+            </span>
+            <label class="control-label span2">$text.getText("xgate.report.summary.to")</label>
+            <span class="span2">
+                <div class="row-fluid input-icon input-icon-right date">
+                    <input type="text" id="report-summary-to" class="span12 date-picker"/>
+                    <i class="icon-calendar"></i>
+                </div>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <div id="report-summary-content" style="background-color: #F0F9FF;border: 2px solid #DDD; display: none;"></div>
+            <div id="report-summary-data" style="background-color: #F0F9FF;border: 2px solid #DDD; display: none;">
+                <div id="report-summary-basic-search" class="hide"></div>
+                <div id="report-summary-grid"></div>
+            </div>
+            <div id="report-summary-table" class="fuelux">
+                <table id="report-summary-grid-table-main" class="table table-bordered datagrid grid table-striped">
+                    <colgroup>
+                        <col style="width:auto" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:30px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                        <col style="width:70px" class="">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th rowspan="2">$text.getText("xgate.report.summary.industry")</th>
+                        <th colspan="2">$text.getText("xgate.report.summary.briefcase.new")</th>
+                        <th colspan="2">$text.getText("xgate.report.summary.briefcase")</th>
+                        <th colspan="5">$text.getText("xgate.report.summary.published")</th>
+                        <th colspan="2">$text.getText("xgate.report.summary.unpublished")</th>
+                    </tr>
+                    <tr>
+                        <th>$text.getText("xgate.report.summary.camel")</th>
+                        <th>$text.getText("xgate.report.summary.expway")</th>
+                        <th>$text.getText("xgate.report.summary.inventory")</th>
+                        <th>$text.getText("xgate.report.summary.store")</th>
+                        <th>$text.getText("xgate.report.summary.inTime")</th>
+                        <th>$text.getText("xgate.report.summary.afterTime")</th>
+                        <th>$text.getText("xgate.report.summary.percent")</th>
+                        <th>$text.getText("xgate.report.summary.send")</th>
+                        <th>$text.getText("xgate.report.summary.completed")</th>
+                        <th>$text.getText("xgate.report.summary.inTerm")</th>
+                        <th>$text.getText("xgate.report.summary.outTerm")</th>
+                    </tr>
+                    <tr id="report-summary-table-row" class="rowTemplate">
+                        <td data-type="industry"></td>
+                        <td data-type="camel"></td>
+                        <td data-type="expway"></td>
+                        <td data-type="inventory"></td>
+                        <td data-type="receiver"></td>
+                        <td data-type="inTime"></td>
+                        <td data-type="afterTime"></td>
+                        <td data-type="percent"></td>
+                        <td data-type="send"></td>
+                        <td data-type="completed"></td>
+                        <td data-type="inTerm"></td>
+                        <td data-type="outTerm"></td>
+                    </tr>
+                    </thead>
+                    <tbody id="report-summary-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ import com.inet.xportal.web.interfaces.BeanInitiateInvoke;
  *          $
  * @since 1.0
  */
-@Named("FrameCoreInitBO")
+@Named("ITAFrameCoreInitBO")
 public class FrameCoreInitBO  implements BeanInitiateInvoke {
     @Inject
     private TemplateExcelInitBO tempExcelBO;

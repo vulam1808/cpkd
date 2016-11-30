@@ -1,0 +1,397 @@
+#dataservice("onegateprocessprofile")
+#set($additional = $onegateprocessprofile.additional)
+#set($request = $onegateprocessprofile.request)
+#set($profile = $onegateprocessprofile.profile)
+#set($process = $onegateprocessprofile.process)
+#set($processDay = $process.totalTime/8)
+
+#dataservice("firmtaskprofile")
+#set($firmprofile = $firmtaskprofile)
+
+
+<style type="text/css">
+    @media screen, print {
+        body {
+            line-height: 120%;
+        }
+
+        .receipt-header-left {
+            text-align: center;
+            vertical-align: top;
+            white-space: nowrap;
+            min-height: 20px;
+        }
+
+        .receipt-header-left-parent {
+            text-align: center;
+            vertical-align: top;
+            font-size: 12pt;
+            font-weight: bold;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .receipt-header-left-child {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .receipt-header-left-number {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right {
+            text-align: center;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-top {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-center {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-date {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            white-space: nowrap;
+        }
+
+        .receipt-title {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-title-subject {
+            text-align: center;
+            vertical-align: top;
+            font-size: 15pt;
+            font-weight: bold;
+        }
+
+        .receipt-title-code {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+        }
+
+        .receipt-title-note {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13px;
+        }
+
+        .receipt-field-label {
+            font-weight: bold;
+        }
+
+        .receipt-footer-left {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-footer-left-text {
+            text-align: center;
+            vertical-align: top;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .receipt-footer-right {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-footer-right-text {
+            text-align: center;
+            vertical-align: top;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .receipt-separate {
+            border-left-style: dotted;
+            border-left-width: 1px;
+        }
+
+        .reciept-line {
+            line-height: 165%
+        }
+    }
+</style>
+
+<table width="1500px" border="0" cellspacing="0" cellpadding="0" class="receipt-border-style">
+    <tbody>
+    <tr>
+        <td width="50%" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="receipt-header-left">
+                        <div class="receipt-header-left-parent">$firmprofile.name</div>
+                        <div class="receipt-header-left-child">$text.getText('ireceiver.receipt.bophantnvatraketqua')</div>
+                        <div>
+                            <hr style="width:120px;color: #000">
+                        </div>
+                        <div class="receipt-header-left-number">$text.getText('ireceiver.receipt.receiptNo'): $request.receiptNo/TNHS</div>
+                    </td>
+                    <td class="receipt-header-right">
+                        <div class="receipt-header-right-top">$text.getText('ireceiver.receipt.CHXHCNVN')</div>
+                        <div class="receipt-header-right-center">$text.getText('ireceiver.receipt.DLTDHP')</div>
+                        <div>
+                            <hr style="width:200px;color: #000">
+                        </div>
+                        <div class="receipt-header-right-date">$text.getText('ireceiver.receipt.tinhthanh'), $text.getText('ireceiver.receipt.ngay') $ctx.date($ctx.todayX(), "dd") $text.getText('ireceiver.receipt.thang') $ctx.date($ctx.todayX(), "MM") $text.getText('ireceiver.receipt.nam') $ctx.date($ctx.todayX(), "yyyy")</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="receipt-title"><br>
+                        <div class="receipt-title-subject">$text.getText('ireceiver.receipt.title1')</div>
+                        <div class="receipt-title-code">$text.getText('ireceiver.receipt.serialNo'): $additional.requestData.serialNo</div>
+                        <div class="receipt-title-note">($text.getText('ireceiver.receipt.lien3'))</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+                            <tbody>
+                            <tr>
+                                <td width="100%" valign="top" align="left"><br>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.bophantnvatraketqua1'): </span><span>$firmprofile.name</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.tiepnhanhosocua'): </span><span>$profile.fullname</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.address1'): </span><span>$profile.address1</span></div>
+                                    <div class="reciept-line">
+                                        <span class="receipt-field-label">$text.getText('ireceiver.receipt.phone'):  </span><span>$profile.mobile.</span>
+                                        <span class="receipt-field-label">$text.getText('ireceiver.receipt.email'):  </span><span>$profile.email.</span>
+                                    </div>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.noidungyeucau'): </span><span>$additional.requestData.procedureName</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">1. $text.getText('ireceiver.receipt.thanhphanhosobaogom'): </span><span></span></div>
+                                    #set($i = 0)
+                                    #foreach($document in $process.documents)
+                                        #set($i = $i + 1)
+                                        <div class="reciept-line"><span style="padding-left: 15px;">+ $i. </span><span>#if(!!$document.title && $document.title != "") $document.title #else $document.fieldname #end</span></div>
+                                    #end
+                                    <div class="reciept-line"><span class="receipt-field-label">2. $text.getText('ireceiver.receipt.soluonghoso'): </span><span>$process.numberOfRecord ($text.getText('ireceiver.receipt.bo'))</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">3. $text.getText('ireceiver.receipt.thoigiangiaiquyet'): </span><span>$processDay $text.getText('ireceiver.receipt.ngay')</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">4. $text.getText('ireceiver.receipt.thoigiannhanhoso'): </span><span><span data-no-round>$ctx.date($request.requestTime, "HH:mm")</span> $text.getText('ireceiver.receipt.phut'), $text.getText('ireceiver.receipt.ngay') $ctx.date($request.requestTime, "dd") $text.getText('ireceiver.receipt.thang') $ctx.date($request.requestTime, "MM") $text.getText('ireceiver.receipt.nam') $ctx.date($request.requestTime, "yyyy")</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">5. $text.getText('ireceiver.receipt.thoigiantrahoso'): </span><span><span data-no-round>$ctx.date($request.appointment, "HH:mm")</span> $text.getText('ireceiver.receipt.phut'), $text.getText('ireceiver.receipt.ngay') $ctx.date($request.appointment, "dd") $text.getText('ireceiver.receipt.thang') $ctx.date($request.appointment, "MM") $text.getText('ireceiver.receipt.nam') $ctx.date($request.appointment, "yyyy")</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">6. $text.getText('ireceiver.receipt.dangkynhanketqua'): </span><span>#if($additional.requestData.isPostOffice)$text.getText('ireceiver.task.receiverInPostOffice')#else$firmprofile.address1#end</span></div>                                    
+                                    <span>
+                                        $text.getText('ireceiver.receipt.quyenso'): <span>$process.recordBook. </span> $text.getText('ireceiver.receipt.stt'): <span>$process.recordOrder. </span>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br></td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="15px" align="left">
+                        <div align="left"></div>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%" border="0" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td class="receipt-footer-right" width="50%">
+                                    <div class="receipt-footer-right-text">$text.getText('ireceiver.receipt.nguoinophoso')<br>($text.getText('ireceiver.receipt.kyghiten')) <br></div>
+                                </td>
+                                <td class="receipt-footer-right" width="50%">
+                                    <div class="receipt-footer-right-text">$text.getText('ireceiver.receipt.nguoinhanhoso')<br>($text.getText('ireceiver.receipt.kyghiten'))</div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="70px" align="left">
+                        <div align="left"></div>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%" border="0" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td width="20%"></td>
+                                <td width="60%">
+                                    <div class="receipt-footer-right-text">
+                                        $text.getText('ireceiver.receipt.duongdaynong01')<br>
+                                        $text.getText('ireceiver.receipt.duongdaynong02')
+                                    </div>
+                                </td>
+                                <td width="20%"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" class="receipt-separate">&nbsp;</td>
+        <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td width="50%" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="receipt-header-left">
+                        <div class="receipt-header-left-parent">$firmprofile.name</div>
+                        <div class="receipt-header-left-child">$text.getText('ireceiver.receipt.bophantnvatraketqua')</div>
+                        <div>
+                            <hr style="width:120px;color: #000">
+                        </div>
+                        <div class="receipt-header-left-number">$text.getText('ireceiver.receipt.receiptNo'): $request.receiptNo/TNHS</div>
+                    </td>
+                    <td class="receipt-header-right">
+                        <div class="receipt-header-right-top">$text.getText('ireceiver.receipt.CHXHCNVN')</div>
+                        <div class="receipt-header-right-center">$text.getText('ireceiver.receipt.DLTDHP')</div>
+                        <div>
+                            <hr style="width:200px;color: #000">
+                        </div>
+                        <div class="receipt-header-right-date">$text.getText('ireceiver.receipt.tinhthanh'), $text.getText('ireceiver.receipt.ngay') $ctx.date($ctx.todayX(), "dd") $text.getText('ireceiver.receipt.thang') $ctx.date($ctx.todayX(), "MM") $text.getText('ireceiver.receipt.nam') $ctx.date($ctx.todayX(), "yyyy")</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="receipt-title"><br>
+                        <div class="receipt-title-subject">$text.getText('ireceiver.receipt.title1')</div>
+                        <div class="receipt-title-code">$text.getText('ireceiver.receipt.serialNo'): $additional.requestData.serialNo</div>
+                        <div class="receipt-title-note">($text.getText('ireceiver.receipt.lien3'))</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+                            <tbody>
+                            <tr>
+                                <td width="100%" valign="top" align="left"><br>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.bophantnvatraketqua1'): </span><span>$firmprofile.name</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.tiepnhanhosocua'): </span><span>$profile.fullname</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.address1'): </span><span>$profile.address1</span></div>
+                                    <div class="reciept-line">
+                                        <span class="receipt-field-label">$text.getText('ireceiver.receipt.phone'):  </span><span>$profile.mobile.</span>
+                                        <span class="receipt-field-label">$text.getText('ireceiver.receipt.email'):  </span><span>$profile.email.</span>
+                                    </div>
+                                    <div class="reciept-line"><span class="receipt-field-label">$text.getText('ireceiver.receipt.noidungyeucau'): </span><span>$additional.requestData.procedureName</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">1. $text.getText('ireceiver.receipt.thanhphanhosobaogom'): </span><span></span></div>
+                                    #set($i = 0)
+                                    #foreach($document in $process.documents)
+                                    #set($i = $i + 1)
+                                        <div class="reciept-line"><span style="padding-left: 15px;">+ $i. </span><span>#if(!!$document.title && $document.title != "") $document.title #else $document.fieldname #end</span></div>
+                                    #end
+                                    <div class="reciept-line"><span class="receipt-field-label">2. $text.getText('ireceiver.receipt.soluonghoso'): </span><span>$process.numberOfRecord ($text.getText('ireceiver.receipt.bo'))</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">3. $text.getText('ireceiver.receipt.thoigiangiaiquyet'): </span><span>$processDay $text.getText('ireceiver.receipt.ngay')</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">4. $text.getText('ireceiver.receipt.thoigiannhanhoso'): </span><span><span data-no-round>$ctx.date($request.requestTime, "HH:mm")</span> $text.getText('ireceiver.receipt.phut'), $text.getText('ireceiver.receipt.ngay') $ctx.date($request.requestTime, "dd") $text.getText('ireceiver.receipt.thang') $ctx.date($request.requestTime, "MM") $text.getText('ireceiver.receipt.nam') $ctx.date($request.requestTime, "yyyy")</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">5. $text.getText('ireceiver.receipt.thoigiantrahoso'): </span><span><span data-no-round>$ctx.date($request.appointment, "HH:mm")</span> $text.getText('ireceiver.receipt.phut'), $text.getText('ireceiver.receipt.ngay') $ctx.date($request.appointment, "dd") $text.getText('ireceiver.receipt.thang') $ctx.date($request.appointment, "MM") $text.getText('ireceiver.receipt.nam') $ctx.date($request.appointment, "yyyy")</span></div>
+                                    <div class="reciept-line"><span class="receipt-field-label">6. $text.getText('ireceiver.receipt.dangkynhanketqua'): </span><span>#if($additional.requestData.isPostOffice)$text.getText('ireceiver.task.receiverInPostOffice')#else$firmprofile.address1#end</span></div>
+                                    <span>
+                                        $text.getText('ireceiver.receipt.quyenso'): <span>$process.recordBook. </span> $text.getText('ireceiver.receipt.stt'): <span>$process.recordOrder. </span>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br></td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="15px" align="left">
+                        <div align="left"></div>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%" border="0" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td class="receipt-footer-right" width="50%">
+                                    <div class="receipt-footer-right-text">$text.getText('ireceiver.receipt.nguoinophoso')<br>($text.getText('ireceiver.receipt.kyghiten')) <br></div>
+                                </td>
+                                <td class="receipt-footer-right" width="50%">
+                                    <div class="receipt-footer-right-text">$text.getText('ireceiver.receipt.nguoinhanhoso')<br>($text.getText('ireceiver.receipt.kyghiten'))</div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="70px" align="left">
+                        <div align="left"></div>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%" border="0" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td width="20%"></td>
+                                <td width="60%">
+                                    <div class="receipt-footer-right-text" >
+                                        $text.getText('ireceiver.receipt.duongdaynong01')<br>
+                                        $text.getText('ireceiver.receipt.duongdaynong02')
+                                    </div>
+                                </td>
+                                <td width="20%"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+#xscript()
+$(function(){
+    $('[data-round]').each(function(i, item){
+        var __time = $(item).text();
+        var __argTime = __time.split(":");
+        var __minute = parseInt(__argTime[1]);
+        var __hour = parseInt(__argTime[0]);
+        if (__minute>30){
+            __hour += 1;
+            __minute = "00";
+        } else {
+            __minute = "30";
+        }
+
+        if (__hour<10){
+            __hour = "0"+__hour;
+        }
+        __time = __hour + ":" + __minute;
+        $(item).text(__time);
+    });
+});
+#end
+

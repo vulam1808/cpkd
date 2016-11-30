@@ -1,0 +1,118 @@
+html {
+    /*overflow: hidden;*/
+}
+
+a {
+   text-decoration: none !important;
+}
+
+ul {
+    list-style: none !important;
+}
+
+.status-mark{
+    width: 8px;
+    height: 8px;
+    border: 2px solid;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.avartar{
+    height: 48px;
+    width: 48px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.ilabel{
+    font-weight: normal;
+}
+
+.sidebar-shortcuts {
+    min-height: 40px;
+}
+
+.rowTemplate{
+    display: none;
+}
+
+.rowTotal {
+    font-weight: bold !important;
+}
+.rowTotal>td{
+    background-color:#E4F2F8 !important;
+}
+
+/*************** list ******************/
+.list-number p,
+.list-disc,
+.list-tick {
+    color: #000000;
+}
+
+.ace-file-input label:hover{
+    box-shadow: none !important;
+}
+
+.ace-file-input label{
+    box-shadow: none !important;
+}
+
+.scanner:hover{
+    box-shadow: none !important;
+    font-size: 20px;
+    color: white;
+    background: #6FB3E0;
+    padding: 3px;
+    border: 1px solid #DDD;
+    border-color: #f59942;
+    cursor: pointer;
+}
+
+.scanner {
+    box-shadow: none !important;
+    font-size: 20px;
+    color: white;
+    background: #6FB3E0;
+    padding: 3px;
+    border: 1px solid #DDD;
+    border-color: #DDD;
+    cursor: pointer;
+}
+
+.signInfo {
+    padding: 5px;
+    width: 550px;
+    color: #777;
+    background-color: #F8FAFF;
+}
+
+.signIcon {
+    padding: 5px;
+    border: 1px solid #DDD;
+    border-radius: 12px;
+    color: #4C91CB;
+    background-color: #EBEDF2;
+}
+
+.actionIcon {
+    font-size: 30px;
+    padding: 10px;
+    width: 50px;
+    height: 45px;
+    text-align: center;
+    float: left;
+    border: 1px dashed;
+    color: #5EB6FF;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actionLi:hover {
+    color: #FFF;
+    background: #DDD;
+    cursor: pointer;
+}

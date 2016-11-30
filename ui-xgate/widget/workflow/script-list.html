@@ -1,0 +1,30 @@
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/iworkflow-ui-wf-script-list-service.min.js")
+
+#xscript()
+var roleCreate = true;
+var roleEdit = true;
+var roleDelete = true;
+var roleView = true;
+#end
+
+<div id="script-list-div">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="script-list-create-btn" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="script-list-delete-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-trash"></i> $text.getText("app.button.delete")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div id="script-list-basic-search" class="hide"></div>
+            <div id="script-list-grid"></div>
+        </div>
+    </div>
+</div>

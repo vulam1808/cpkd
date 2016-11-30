@@ -1,0 +1,197 @@
+#set($roleReceiver = false)
+#set($roleProcessUser = false)
+#set($roleManagement = false)
+#set($roleReport = false)
+
+#set($roleWorkflowAdmin = false)
+#set($roleFirmDesigner = false)
+#set($roleXgateAdmin = false)
+#set($roleSubAdmin = false)
+#set($roleMsCoreAdmin = false)
+
+#set($roleBridge = false)
+
+#hasRole("receiver") #set($roleReceiver = true) #end
+#hasRole("process_user") #set($roleProcessUser = true) #end
+#hasRole("management") #set($roleManagement = true) #end
+#hasRole("report") #set($roleReport = true) #end
+
+#hasRole("workflow_admin") #set($roleWorkflowAdmin = true) #end
+#hasRole("firm_designer") #set($roleFirmDesigner = true) #end
+#hasRole("xgate_admin") #set($roleXgateAdmin = true) #end
+#hasRole("sub_admin") #set($roleSubAdmin = true) #end
+#hasRole("firm_admin") #set($roleFirmAdmin = true) #end
+#hasRole("mscore_admin") #set($roleMsCoreAdmin = true) #end
+
+#hasRole("bridge") #set($roleBridge = true) #end
+
+#xscript()
+iNet.roles = {
+    receiver: $roleReceiver,
+    processor: $roleProcessUser,
+    management: $roleManagement,
+    report: $roleReport,
+
+    workflow: $roleWorkflowAdmin,
+    designer: $roleFirmDesigner,
+    admin: $roleXgateAdmin,
+
+    bridge: $roleBridge
+};
+#end
+
+<a id="imenu-toggler" href="javascript:;"><span></span></a>
+<div id="sidebar" class="fixed">
+    <div id="sidebar-shortcuts" class="sidebar-shortcuts hide">
+        <div id="sidebar-shortcuts-large" class="sidebar-shortcuts-large hide" style="text-align: left; padding-left: 5px;">
+            <button class="btn btn-info" id="my-task-refresh-btn" style="width: auto !important; height: auto !important;" title="$text.getText('app.button.refresh')">
+                <i class="icon-refresh"></i> $text.getText('app.button.refresh')
+            </button>
+            <button class="btn btn-primary hide" id="my-task-create-btn" style="width: auto !important; height: auto !important;" title="$text.getText('ireceiver.task.briefcase.create')">
+                <i class="icon-plus"></i> $text.getText("ireceiver.task.briefcase.create")
+            </button>
+        </div>
+        <div id="sidebar-shortcuts-mini" class="sidebar-shortcuts-mini">
+            <span class="btn btn-info"></span>
+            <span class="btn btn-primary"></span>
+        </div>
+    </div>
+
+    <ul class="nav nav-list">
+        #if($roleReceiver)
+        <li id="receiver-chart" assigned="true">
+            <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/chart")"> <i class="icon-bar-chart"></i> <span>$text.getText("xgate.briefcase.chart")</span></a>
+        </li>
+        <li id="receiver-expway" assigned="true">
+            <a href="javascript:;"> <i class="icon-dropbox"></i> <span>$text.getText("xgate.briefcase.online")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                <li id="receiver-expway-procedureNoWorkflow" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/expway-outprocess")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.procedureNoWorkflow")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="receiver-expway-procedureWorkflow" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/expway-inprocess")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.procedureWorkflow")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+            </ul>
+        </li>
+        <li id="receiver-organization" assigned="true">
+            <a href="javascript:;"> <i class="icon-dropbox"></i> <span>$text.getText("xgate.briefcase.ofOrganization")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                <li id="receiver-organization-procedureNoWorkflow" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/organization-outprocess")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.procedureNoWorkflow")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="receiver-organization-procedureWorkflow" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/organization-inprocess")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.procedureWorkflow")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+            </ul>
+        </li>
+        <li id="briefcase" assigned="true">
+            <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/record")"> <i class="icon-dropbox"></i> <span>$text.getText("xgate.briefcase.offline")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                <li id="receiver-queue" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/queue")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.briefcase.queue.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="receiver-inprocess" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/inprocess")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.briefcase.inprocess.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="receiver-completed" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/completed")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.briefcase.completed.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="receiver-rejected" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/rejected")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.briefcase.rejected.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="receiver-published" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/published")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.briefcase.published.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="receiver-refuse" assigned="true">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/refuse")"> <i class="icon-inbox"> </i><span style="padding-right: 35px; display: flex;">$text.getText("ireceiver.task.briefcase.refuse.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+            </ul>
+        </li>
+        <li id="receiver-additional" assigned="true">
+            <a href="javascript:;" data-url="$ctx.page("xgate/page/receiver/additional")"> <i class="icon-inbox"> </i><span>$text.getText("xgate.briefcase.additional")</span><b data-type="number" class="badge badge-primary"></b></a>
+        </li>
+        #end
+
+        #if($roleProcessUser)
+        <li id="task">
+            <a href="javascript:;"> <i class="icon-gears"></i> <span>$text.getText("itask.task.title")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                <li id="task-open">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/task/task")"> <i class="icon-inbox"></i> <span>$text.getText("itask.open.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="task-commission">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/task/commission")"> <i class="icon-inbox"></i> <span>$text.getText("xgate.commission.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+                <li id="task-follow">
+                    <a href="javascript:;" data-url="$ctx.page("xgate/page/task/follow")"> <i class="icon-inbox"></i> <span>$text.getText("xgate.follow.title")<b data-type="number" class="badge badge-primary"></b></span></a>
+                </li>
+            </ul>
+        </li>
+        #end
+
+        #if($roleWorkflowAdmin)
+        <li id="workflow">
+            <a href="javascript:;"> <i class="icon-vk"></i> <span>$text.getText("iworkflow.title")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                <li id="workflow-actor-map"><a href="javascript:;" data-url="$ctx.page('xgate/page/workflow/actor-map')"> <i class="icon-random"> </i><span>$text.getText("iworkflow.actormap.title")</span></a></li>
+                <li id="workflow-script"><a href="javascript:;" data-url="$ctx.page('xgate/page/workflow/script')"> <i class="icon-random"> </i><span>$text.getText("iworkflow.script.title")</span></a></li>
+                <li id="workflow-graph-process"><a href="javascript:;" data-url="$ctx.page('xgate/page/workflow/graph-process')"> <i class="icon-random"> </i><span>$text.getText("iworkflow.graphprocess.title")</span></a></li>
+            </ul>
+        </li>
+        #end
+
+        #if($roleFirmDesigner)
+        <li id="page">
+            <a href="javascript:;"> <i class="icon-magic"></i> <span>$text.getText("idesign.title")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                <li id="page-design"><a href="javascript:;" data-url="$ctx.page('xgate/page/builder/page')"> <i class="icon-file"> </i><span>$text.getText("idesign.page.title")</span></a></li>
+                <li id="page-storage"><a href="javascript:;" data-url="$ctx.page('xgate/page/builder/storage')"> <i class="icon-cloud"> </i><span>$text.getText("idesign.storage.title")</span></a></li>
+            </ul>
+        </li>
+        #end
+
+        #if($roleXgateAdmin || $roleBridge || $roleFirmAdmin)
+        <li id="admin">
+            <a href="javascript:;"> <i class="icon-briefcase"></i> <span>$text.getText("xgate.admin.title")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                #if($roleSubAdmin)
+                <!--<li id="xgate-firm"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/subunit')"> <i class="icon-building"> </i><span>$text.getText("xgate.admin.firm.title")</span></a></li>-->
+                #end
+                #if($roleBridge && $roleFirmAdmin)
+                <li id="xgate-bridge"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/bridge')"> <i class="icon-road"> </i><span>$text.getText("xgate.admin.bridge.title")</span></a></li>
+                #end
+                #if($roleXgateAdmin)
+                <li id="xgate-agency"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/agency')"> <i class="icon-group"> </i><span>$text.getText("xgate.admin.agency.title")</span></a></li>
+                <li id="xgate-procedure"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/procedure')"> <i class="icon-info"> </i><span>$text.getText("xgate.admin.procedure.title")</span></a></li>
+                <li id="xgate-working"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/workingtime')"> <i class="icon-time"> </i><span>$text.getText("xgate.admin.workingtime.title")</span></a></li>
+                <!--<li id="xgate-receiver"><a href='javascript:;' data-url="$ctx.page('xgate/page/admin/receiver-list')"><i class="icon-building"></i> <span>$text.getText("xgate.admin.receiver.title")</span></a></li>-->
+                <!--<li id="xgate-plugin"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/plugin')"> <i class="icon-puzzle-piece"> </i><span>$text.getText("xgate.admin.plugin.title")</span></a></li>-->
+                #end
+                #if($roleFirmAdmin)
+                <li id="xgate-application"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/application')"> <i class="icon-puzzle-piece"> </i><span>$text.getText("xgate.admin.application.title")</span></a></li>
+                #end
+                #if($roleMsCoreAdmin)
+                <li id="xgate-mscore"><a href="javascript:;" data-url="$ctx.page('xgate/page/admin/mscore')"> <i class="icon-weibo"> </i><span>$text.getText("xgate.admin.mscore.title")</span></a></li>
+                #end
+            </ul>
+        </li>
+        #end
+
+        #if($roleReport)
+        <li id="report">
+            <a href="javascript:;"> <i class="icon-bar-chart"></i> <span>$text.getText("xgate.report.title")</span><b class="arrow icon-angle-down"> </b></a>
+            <ul class="submenu">
+                <li id="report-summary"><a href="javascript:;" data-url="$ctx.page('xgate/page/report/summary')"> <i class="icon-book"> </i><span>$text.getText("xgate.report.summary.title")</span></a></li>
+                <li id="report-detail"><a href="javascript:;" data-url="$ctx.page('xgate/page/report/detail')"> <i class="icon-book"> </i><span>$text.getText("xgate.report.detail.title")</span></a></li>
+                <li id="report-task"><a href="javascript:;" data-url="$ctx.page('xgate/page/report/task')"> <i class="icon-tasks"> </i><span>$text.getText("xgate.report.task.title")</span></a></li>
+                <!--<li id="report-request"><a href="javascript:;" data-url="$ctx.page('xgate/page/report/request')"> <i class="icon-suitcase"> </i><span>$text.getText("xgate.report.request.title")</span></a></li>-->
+                <!--<li id="report-history"><a href="javascript:;" data-url="$ctx.page('xgate/page/report/history')"> <i class="icon-calendar"> </i><span>$text.getText("xgate.report.history.title")</span></a></li>-->
+                <!--<li id="report-record"><a href="javascript:;" data-url="$ctx.page('xgate/page/report/record')"> <i class="icon-calendar"> </i><span>$text.getText("xgate.report.record.title")</span></a></li>-->
+            </ul>
+        </li>
+        #end
+    </ul>
+    <div id="sidebar-collapse">
+        <i class="icon-double-angle-left"></i>
+    </div>
+</div>

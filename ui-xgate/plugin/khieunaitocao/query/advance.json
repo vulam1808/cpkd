@@ -1,0 +1,6 @@
+{
+ "name":"AdvanceSearch",
+ "syntax":"{sothuly: { $regex : \":sothuly:\"}, doituongbikntc: { $regex : \":doituongbikntc:\" }, noidungdon: { $regex : \":noidungdon:\" }}",
+ "searchUI":"advancesearch.html",
+ "resultUI":"advanceresult.html"
+}

@@ -1,0 +1,47 @@
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/idesign-ui-t-workflow-service.min.js")
+
+#xscript()
+    var roleCreate = true;
+    var roleEdit = true;
+    var roleDelete = true;
+    var roleView = true;
+#end
+
+<div id="workflow-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="workflow-back-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="workflow-submit-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-ok-sign"></i> $text.getText("app.button.submit")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <span id="page-step" class="alert alert-success bold span12"><i class="icon-info-sign"></i> <span></span></span>
+        </div>
+        <div class="row-fluid">
+            <span id="plugin-step" style="cursor: pointer;" class="alert alert-info bold span12"><i class="icon-arrow-right"></i> $text.getText('idesign.page.graphInput.plugin')</span>
+        </div>
+        <div class="row-fluid">
+            <div id="workflow-plugin-basic-search" class="hide"></div>
+            <div id="workflow-plugin-grid"></div>
+        </div>
+        <div class="row-fluid">
+            <span id="procedure-step" style="cursor: pointer;" class="alert alert-info bold span12"><i class="icon-arrow-right"></i> $text.getText('idesign.page.procedure.selected')</span>
+        </div>
+        <div class="row-fluid">
+            <div id="workflow-procedure-basic-search" class="hide"></div>
+            <div id="workflow-procedure-grid"></div>
+        </div>
+        <div class="row-fluid">
+            <span id="workflow-step" style="cursor: pointer;" class="alert alert-info bold span12"><i class="icon-arrow-right"></i> $text.getText('idesign.page.workflow.selected')</span>
+        </div>
+        <div class="row-fluid">
+            <div id="workflow-basic-search" class="hide"></div>
+            <div id="workflow-grid"></div>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,15 @@ public class BusinessDetail {
     private List<Details> list_changeBusiness_ID;//= new ArrayList<Details>();
     private List<Details> list_pauseBusiness_ID;//= new ArrayList<Details>();
     private List<Details> list_endBusiness_ID;//= new ArrayList<Details>();
+    private List<Details> list_reHomeBusiness_ID;
 
+    public List<Details> getList_reHomeBusiness_ID() {
+        return list_reHomeBusiness_ID;
+    }
+
+    public void setList_reHomeBusiness_ID(List<Details> list_reHomeBusiness_ID) {
+        this.list_reHomeBusiness_ID = list_reHomeBusiness_ID;
+    }
 
     public String getDateSubmit() {
         return dateSubmit;

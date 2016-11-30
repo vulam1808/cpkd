@@ -1,0 +1,167 @@
+#theme("/common/css/jquery/select2")
+#theme("/common/css/jquery/jquery.fileuploader")
+#theme("/xgate/css/jquery/plugins/redactor")
+
+#script("/js/common/bootstrap/plugins/bootstrap-tab.min.js")
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/jquery/plugins/jquery.redactor-vi.min.js")
+#script("/js/xgate/jquery/plugins/jquery.redactor.min.js")
+#script("/js/xgate/inet/lib/xgate-ui-procedure-detail-service.min.js")
+
+<div id="procedure-detail-widget" style="display: none">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="procedure-btn-back" class="btn btn-primary">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="procedure-btn-create" class="btn btn-primary hide">
+            <i class="icon-plus"></i> $text.getText("app.button.create")
+        </button>
+        <button id="procedure-btn-save" class="btn btn-success">
+            <i class="icon-save"></i> $text.getText("app.button.save")
+        </button>
+    </div>
+    <div class="wg-content">
+        <form id="procedure-frm-detail" class="form-horizontal" method="post">
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#infomation" role="tab" data-toggle="tab">$text.getText("xgate.admin.procedure.information")</a></li>
+                    <li role="presentation"><a href="#description" role="tab" data-toggle="tab">$text.getText("xgate.admin.procedure.description")</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="infomation">
+                        <div id="procedure-info-container">
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="">
+                                        <label class="control-label span2 lbl-bold" for="procedure-select-industry">$text.getText("xgate.admin.procedure.industry") (<span class="required"/>):</label>
+                                        <div class="span10" id="procedure-select-industry-container">
+                                            <select id="procedure-select-industry" style="width: 100%">
+                                            </select>
+                                        </div>
+                                        <span style="display: none;">
+                                            <label class="control-label span2 lbl-bold" for="procedure-txt-code">$text.getText("xgate.admin.procedure.code") (<span class="required"/>):</label>
+                                            <div class="span3">
+                                                <input id="procedure-txt-code" name="code" class="form-control span12" type="text" disabled="disabled">
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="">
+                                        <label class="control-label span2 lbl-bold" for="procedure-txt-subject">
+                                            $text.getText("xgate.admin.procedure.name") (<span class="required"/>):
+                                        </label>
+                                        <div class="span10">
+                                            <textarea id="procedure-txt-subject" rows="3" name="subject" class="form-control span12">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row hide">
+                                <div class="span6">
+                                    <div class="">
+                                        <label class="control-label col-sm-4 lbl-bold">
+                                            $text.getText("xgate.admin.procedure.service_level") :</label>
+                                        <div class="span8">
+                                            <div class="checkbox" style="padding: 0px !important;">
+                                                <label class="hide">
+                                                    <input id="procedure-chk-servicel3" type="checkbox" class="ace">
+                                                    <span class="lbl"> $text.getText("xgate.admin.procedure.servicel3")</span>
+                                                </label>
+                                                <label>
+                                                    <input id="procedure-chk-servicel4" type="checkbox" class="ace">
+                                                    <span class="lbl"> $text.getText("xgate.admin.procedure.servicel4")</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="">
+                                        <label class="control-label col-sm-4 lbl-bold" for="procedure-select-level">
+                                            $text.getText("xgate.admin.procedure.level") (<span class="required"/>):</label>
+
+                                        <div class="span8" id="procedure-select-level-container">
+                                            <select id="procedure-select-level" style="width: 100%">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="">
+                                        <label class="control-label span2 lbl-bold" >$text.getText("xgate.admin.procedure.hours") :</label>
+                                        <div class="span2">
+                                            <input id="procedure-txt-hours" name="hours" class="form-control span12" type="number">
+                                        </div>
+                                        <label class="control-label span2 lbl-bold" >$text.getText("xgate.admin.procedure.maxTimeWait") :</label>
+                                        <div class="span2">
+                                            <input id="procedure-txt-maxTimeWait" name="maxTimeWait" class="form-control span12" type="number">
+                                        </div>
+                                        <label class="control-label span3 lbl-bold" >$text.getText("xgate.admin.procedure.isPostOffice") :</label>
+                                        <div class="span1">
+                                            <label>
+                                                <input type="checkbox" name="isPostOffice" class="ace" id="procedure-chk-isPostOffice">
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="">
+                                        <label class="control-label span2 lbl-bold" >$text.getText("xgate.admin.procedure.attachments") :</label>
+                                        <div class="span10">
+                                            <div class="ace-file-input">
+                                                <input type="file" id="procedure-files" name="FileUpload" multiple>
+                                                <label id="procedure-files-label" data-title='$text.getText("xgate.admin.procedure.choose")'>
+                                                    <span data-title='$text.getText("xgate.admin.procedure.no_file")'>
+                                                        <i class="icon-upload-alt"></i>
+                                                    </span>
+                                                </label>
+                                                <a id="procedure-files-remove" class="remove" style="right: -5px !important;" href="javascript:;">
+                                                    <i class="icon-remove"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="" style="margin-bottom: 2px;">
+                                        <div class="span2 upload-container">
+                                        </div>
+                                        <div class="span10">
+                                            <ul id="procedure-files-container" class="list-unstyled" style="display: none; list-style: none;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="description">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div>
+                                    <textarea id="procedure-txt-content" class="form-control span12"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

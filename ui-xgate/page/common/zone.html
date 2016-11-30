@@ -1,0 +1,56 @@
+#zone({"inherit":"true"})
+    #scriptBundle("xgate_message_common")
+        iNet.ns(
+            "iNet.resources.constant",
+            "iNet.resources.global",
+            "iNet.resources.errors",
+            "iNet.resources.validate"
+        );
+        if (iNet.resources.constant) {
+            iNet.apply(iNet.resources.constant, {
+                warning_title : '$text.getText("xgate.define.constant.warning_title")',
+                warning_required : '$text.getText("xgate.define.constant.warning_required")',
+                warning_error : '$text.getText("xgate.define.constant.warning_error")',
+                save_title : '$text.getText("xgate.define.constant.save_title")',
+                save_success : '$text.getText("xgate.define.constant.save_success")',
+                save_error : '$text.getText("xgate.define.constant.save_error")',
+                del_title : '$text.getText("xgate.define.constant.del_title")',
+                del_success : '$text.getText("xgate.define.constant.del_success")',
+                del_error : '$text.getText("xgate.define.constant.del_error")',
+                del_content : '$text.getText("xgate.define.constant.del_content")',
+                submit_title : '$text.getText("xgate.define.constant.submit_title")',
+                submit_success : '$text.getText("xgate.define.constant.submit_success")',
+                submit_error : '$text.getText("xgate.define.constant.submit_error")',
+                placeholder : '$text.getText("xgate.define.constant.placeholder")',
+                not_attachment : '$text.getText("xgate.define.constant.not_attachment")',
+                hardcopy : '$text.getText("xgate.define.constant.hardcopy")'
+            });
+        }
+        if (iNet.resources.global) {
+            iNet.apply(iNet.resources.global, {
+                file : '$text.getText("xgate.file")',
+                fileDownload : '$text.getText("xgate.file.download")',
+                fileView : '$text.getText("xgate.file.view")',
+                fileSign : '$text.getText("xgate.file.sign")',
+                fileVerify : '$text.getText("xgate.file.verify")'
+            });
+        }
+        if (iNet.resources.errors) {
+            iNet.apply(iNet.resources.errors, {
+            });
+        }
+        if (iNet.resources.validate) {
+            iNet.apply(iNet.resources.validate, {
+                required : '$text.getText("xgate.define.validate.required")',
+                is_number : '$text.getText("xgate.define.validate.is_number")',
+                number_gt_0 : '$text.getText("xgate.define.validate.number_gt_0")',
+                number_gte_0 : '$text.getText("xgate.define.validate.number_gte_0")',
+                number_gte_0_and_lte_100 : '$text.getText("xgate.define.validate.number_gte_0_and_lte_100")',
+                number_gte_1_and_lte_12 : '$text.getText("xgate.define.validate.number_gte_1_and_lte_12")',
+                is_not_blank : '$text.getText("xgate.define.validate.is_not_blank")',
+                is_not_found : '$text.getText("xgate.define.validate.is_not_found")',
+                invalid : '$text.getText("xgate.define.validate.invalid")'
+            });
+        }
+    #end
+#end

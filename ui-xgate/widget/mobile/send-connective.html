@@ -1,0 +1,69 @@
+<div class="m-panel bottom popup" e-controller="sendConnective" e-events="click">
+    <style>
+        #list-expway-firm strong {
+            width: 125px;
+            float: left;
+            text-align: right;
+        }
+        #list-expway-firm p {
+            padding-left: 135px;
+        }
+        #list-expway-firm div {
+            overflow: auto;
+            margin: 5px 0;
+        }
+    </style>
+    <div class="m-header m-theme-a">
+        <i class="btn icon ion-chevron-left" data-close></i>
+        <i e-click="onSubmit" class="icon ion-checkmark btn right" style="font-size: 20px"></i>
+        <h1>Gửi liên thông</h1>
+    </div>
+    <div class="m-content">
+        <label>Ghi chú/Thông tin</label>
+        <textarea data-type="TextArea" class="form-control"></textarea>
+        <ul data-type="ListSelect" e-id="list" data-param={"multiple":true} id="list-expway-firm" class="m-list has-icon" style="margin-top: 10px">
+
+        </ul>
+    </div>
+    <script>
+        eNet.controller('sendConnective', function (controller) {
+            var expwayFirm = this.findEl('#list-expway-firm');
+            $.get(iNet.getUrl('onegate/expwayfirms'), function (data) {
+                var __data = data || {},
+                    __items = __data.items || {},
+                    html = '';
+
+                for(var i = 0, len = __items.length; i < len; i++) {
+                    html += '<li>' +
+                            '<div>' +
+                            '<strong>Tên đơn vị - tổ chức</strong>' +
+                            '<p>' + __items[i].organName + '</p>' +
+                            '</div>' +
+                            '<div>' +
+                            '<strong>Địa chỉ</strong>' +
+                            '<p>' + __items[i].organAdd + '</p>' +
+                            '</div>' +
+//                            '<div>' +
+//                            '<strong>Thư điện tử</strong>' +
+//                            '<p>' + __items[i].email + '</p>' +
+//                            '</div>' +
+//                            '<div>' +
+//                            '<strong>Điện thoại</strong>' +
+//                            '<p>' + __items[i].telephone + '</p>' +
+//                            '</div>' +
+//                            '<div>' +
+//                            '<strong>Fax</strong>' +
+//                            '<p>' + __items[i].fax + '</p>' +
+//                            '</div>' +
+//                            '<div>' +
+//                            '<strong>Trang điện tử</strong>' +
+//                            '<p>' + __items[i].website + '</p>' +
+//                            '</div>' +
+                            '</li>';
+                }
+                expwayFirm.html(html);
+                controller.list.init();
+            });
+        });
+    </script>
+</div>

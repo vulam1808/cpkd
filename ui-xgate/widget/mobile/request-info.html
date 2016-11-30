@@ -1,0 +1,116 @@
+#set($element = "$element")
+<style>
+    .task-open-status{
+        float: left;
+        color: #fff;
+        padding: 0 5px;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+</style>
+<div class="m-content" data-type="Pull" e-id="pull">
+    <ul class="m-list readonly" id="info" style="margin-bottom: 10px" data-type="Collapse" e-id="collapse" data-param='{
+        "iconClose":"icon ion-chevron-down",
+        "iconOpen":"icon ion-chevron-up"
+    }'>
+        <div style="position:absolute;top:50%;left:50%;margin:10px 0  0 -32px" class="ball-pulse">
+            <div style="background:#999"></div>
+            <div style="background:#999"></div>
+            <div style="background:#999"></div>
+        </div>
+    </ul>
+    <form data-type="form" e-id="form"></form>
+</div>
+<script data-type="Template" e-id="temp" linkId="info" type="text/template">
+    <li>
+        <img src="{{request.requestorAvatar}}" class="list-image"/>
+        <div class="list-content">
+            <!--<small class="float-right">{{request.requestTimeRender}}</small>-->
+            <b>{{request.requestorName}}</b>
+            <p style="margin-bottom: 5px; font-weight: bold">{{request.requestData.procedureName}}</p>
+            <!--<small class="task-open-status m-theme-{{request.color}}">{{request.text}}</small>-->
+            {{#match task}}
+            <i class="icon ion-forward"></i>
+            {{task.name}}
+            {{/match}}
+        </div>
+    </li>
+    {{#match request.comments.length}}
+    <li class="divider collapse">
+        <i class="icon ion-chatboxes" style="width: 18px;color: #666;font-size: 17px"></i>
+        $text.getText("mobile.orbizflow.idea")
+        <div class="notify show has-icon">{{request.comments.length}}</div>
+    </li>
+    <ul class="m-list readonly" style="margin:-1px 0 0">
+        {{#each request.comments}}
+        <li>
+            <img src="{{avatarUrl}}" class="list-image"/>
+            <div class="list-content">
+                <small class="float-right">{{dateCreated}}</small>
+                <b>{{sender}}</b>
+                <p style="margin-top: 5px">{{note}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{/match}}
+    <li class="divider">
+        <i class="icon ion-ios7-paper" style="width: 18px;color: #666"></i>
+        $text.getText("mobile.orbizflow.content")
+    </li>
+</script>
+<script>
+    eNet.controller('$controllerName', function (controller) {
+        this.on('render_info', function (data) {
+            if(data && data.mcontent) {
+                controller.form.getEl().html(controller.createControl(data.mcontent).html);
+                controller.form.disableForm();
+            }else{
+                controller.form.getEl().html('<p style="margin: -10px;text-align: center;line-height: 40px;border-bottom: 1px solid #ddd">$text.getText("mobile.nodata")</p>');
+            }
+            if(data.request)
+                createInfo(data);
+        });
+
+        function createInfo(data) {
+            modifyData(data);
+            controller.temp.render(data);
+            controller.collapse.init();
+            controller.collapse.open(0);
+        }
+        function modifyData(data) {
+            data.request.requestTimeRender = new Date(data.request.requestTime).format('d/m/Y, H:i');
+            data.request.requestorAvatar = eNet.getAvatar(data.request.requestor);
+//            iNet.apply(data.request, getDataByStatus(data.request.status));
+            data.request.comments.forEach(function(item){
+                item.avatarUrl = eNet.getAvatar(item.senderCode);
+                item.dateCreated = new Date(item.created).format('d/m/Y, H:i');
+            });
+        }
+//        function getDataByStatus(status) {
+//            switch (status){
+//                case 'SUBMITTED':
+//                case 'QUEUE':
+//                    return {
+//                        color: 'a',
+//                        text: 'Đang xử lý'
+//                    };
+//                case 'UPDATE':
+//                    return {
+//                        color: 'i',
+//                        text: 'Cập nhật'
+//                    };
+//                case 'REJECTED':
+//                    return {
+//                        color: 'g',
+//                        text: 'Từ chối'
+//                    };
+//                default :
+//                    return {
+//                        color: 'c',
+//                        text: 'Hoàn thành'
+//                    };
+//            }
+//        }
+    });
+</script>

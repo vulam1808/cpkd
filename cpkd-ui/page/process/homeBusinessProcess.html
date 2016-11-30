@@ -21,6 +21,8 @@ iNet.taskID = $ctx.value('taskID');
 #widget("/cpkd/widget/process/pausebusiness/form")
 
 
+#widget("/cpkd/widget/control/nameProcess")
+
 #script("::/xgate/page/workflow/tool/zone")
 
 
@@ -44,7 +46,7 @@ iNet.taskID = $ctx.value('taskID');
                     <ul class="nav nav-tabs" id="business-process-tab">
                         <li class="active" data-tab="tab01" id="tab-info"><a href="#tab-business-infoTask" data-toggle="tab">$text.getText("common.infoTask")</a></li>
                         <li data-tab="tab02" id="tab-process" class="hide"><a href="#tab-business-infoProcess" data-toggle="tab">$text.getText("common.infoProcess")</a></li>
-                        <li  data-tab="tab03" id="tab-info1"><a href="#tab-business-infoTask1" data-toggle="tab">$text.getText("common.infoTask")</a></li>
+                        <!--<li  data-tab="tab03" id="tab-info1"><a href="#tab-business-infoTask1" data-toggle="tab">$text.getText("common.infoTask")</a></li>-->
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -80,9 +82,7 @@ iNet.taskID = $ctx.value('taskID');
                                 #widget("/cpkd/widget/process/listcontributor/list")
                             </div>
                         </div>
-                        <div class="tab-pane active container-fluid" id="tab-business-infoTask1">
-                            #widget("/xgate/widget/briefcase/information")
-                        </div>
+
                     </div>
                 </div>
             </div>

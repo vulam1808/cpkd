@@ -1,0 +1,27 @@
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/idesign-ui-t-procedure-service.min.js")
+
+#xscript()
+    var zone = '';
+    var context = '';
+    var roleCreate = true;
+    var roleEdit = true;
+    var roleDelete = true;
+    var roleView = true;
+#end
+
+<div id="procedure-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="procedure-back-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="procedure-submit-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-ok-sign"></i> $text.getText("app.button.submit")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="procedure-basic-search" class="hide"></div>
+        <div id="procedure-grid"></div>
+    </div>
+</div>

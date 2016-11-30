@@ -1,0 +1,6 @@
+{
+ "name":"BasicSearch",
+ "syntax":"{hovaten: { $regex : \":hovaten:\"}}",
+ "searchUI":"basicsearch.html",
+ "resultUI":"basicresult.html"
+}

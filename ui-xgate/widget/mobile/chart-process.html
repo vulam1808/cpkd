@@ -1,0 +1,102 @@
+#set($graph = $ctx.value('graph'))
+#set($zone = $ctx.value("zone"))
+#set($requestProcess = $ctx.value("request"))
+<div class="m-panel bottom popup" e-controller="chartProcess" e-events="click">
+    <style>
+        .chart-process-info {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            margin-bottom: 10px;
+            overflow: auto;
+        }
+        .chart-process-info>p {
+            float: left;
+            width: 140px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .chart-process-info>p::before {
+            content: "";
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            top: 2px;
+            left: 0;
+            border: 1px solid #ddd;
+
+        }
+        .chart-process-info>#processed::before {
+            background: orange;
+        }
+        .chart-process-info>#processing::before{
+            background: blue;
+        }
+    </style>
+    <div class="m-header m-theme-a">
+        <i class="btn icon ion-chevron-left" data-close></i>
+        <i e-click="onSubmit" class="icon ion-checkmark btn right" style="font-size: 20px"></i>
+        <h1>Quy trình xử lý</h1>
+    </div>
+    <div class="m-content">
+        <div class="chart-process-info">
+            <p id="processed">Đã xử lý</p>
+            <p id="processing">Đang xử lý</p>
+            <p id="waiting">Chờ xử lý</p>
+        </div>
+        <div data-type="FlowChart" e-id="chart" style="position: relative;overflow: auto;height: 100%;">
+
+        </div>
+    </div>
+    <script>
+        eNet.controller('chartProcess', function (controller) {
+            $.get(iNet.getUrl('firmtask/process/history'), {request: '$requestProcess'}, function (json) {
+                var _data = json || {},
+                    _item = _data.items || {},
+                    _history = {};
+
+
+                for ( var i=0, len=_item.length; i < len; i++ ){
+                    if(!_history[_item[i]['taskName']]){
+                        _history[_item[i]['taskName']] = _item[i];
+                    }
+                }
+                $.get(iNet.getUrl("cloud/workflow/visualdesign"), {graph: '$graph', zone: '$zone'}, function (data) {
+                    var __data = data || {},
+                            node = {};
+
+                    controller.chart.setData(__data.nodes);
+                    controller.chart.convertItem = function (item) {
+                        node[item.nodeName] = item.uuid;
+                        item.id = item.uuid;
+                        item.name = item.nodeName;
+                        return item;
+                    };
+                    controller.chart.init();
+                    __data.arcs.forEach(function (item) {
+                        controller.chart.connect({source: item.taskActorUUID, target: node[item.arcTo], detachable: false}, item.arcName);
+                    });
+
+                    for(var i = 0, len = controller.chart.getNodes().length; i < len; i++) {
+                        for(var keys in _history) {
+                            if(_history.hasOwnProperty(keys)) {
+                                if(controller.chart.getNodes()[i].innerHTML === _history[keys].taskName && _history[keys].completedTime) {
+                                    $(controller.chart.getNodes()[i]).css({
+                                        background: 'orange',
+                                        color: '#fff'
+                                    });
+                                } else if(controller.chart.getNodes()[i].innerHTML === _history[keys].taskName && !_history[keys].completedTime) {
+                                    $(controller.chart.getNodes()[i]).css({
+                                        background: 'blue',
+                                        color: '#fff'
+                                    });
+                                }
+                            }
+                        }
+
+                    }
+                })
+            });
+
+        });
+    </script>
+</div>

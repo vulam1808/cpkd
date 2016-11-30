@@ -2,16 +2,22 @@
 #set($process = false)
 #set($master = false)
 #set($create = false)
+#set($report = false)
+#set($tax = false)
 
 #hasRole("cpkd.process") #set($process = true) #end
 #hasRole("cpkd.master") #set($master = true) #end
 #hasRole("cpkd.create") #set($create = true) #end
+#hasRole("cpkd.report") #set($report = true) #end
+#hasRole("cpkd.menu.tax") #set($tax = true) #end
 
 #xscript()
 iNet.roles = {
     process: $process,
     master: $master,
-    create: $create
+    create: $create,
+    report: $report,
+tax: $tax,
 };
 #end
 
@@ -42,7 +48,9 @@ iNet.roles = {
         <a href="javascript:;"> <i class="icon-cogs"></i> <span>$text.getText("common.process")</span> <b class="arrow icon-angle-down"></b></a>
           <ul class="submenu">
               <li id="menu-process-business" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/list/listprocessbusiness', 'act=PROCESS')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.list_process_business")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
-              <li id="menu-taxcode-business" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/list/listprocessbusiness', 'act=PROCESS_TAX')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.list_taxcode_business")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
+
+              <!--<li id="menu-taxcode-business" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/list/listprocessbusiness', 'act=PROCESS_TAX')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.list_taxcode_business")</span> <span data-type="number" class="badge badge-primary"></span></a></li>-->
+
               <li id="menu-task-business" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/list/listprocessbusiness', 'act=DONE')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.list_task_business")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
 
               <li id="menu-process-homebusines" class="hide active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/process/homeBusinessProcess')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.chuyenvienxuly")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
@@ -56,6 +64,11 @@ iNet.roles = {
           </ul>
         </li>
         #end
+        #if($tax)
+        <li id="tax-menu" onclick="javascript:;">
+            <a href='javascript:;' data-url="$ctx.page('cpkd/page/list/listprocessbusiness', 'act=PROCESS_TAX')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.list_taxcode_business")</span> <span data-type="number" class="badge badge-primary"></span></a>
+        </li>
+        #end
         #if($master)
         <li>
             <a href="javascript:;"> <i class="icon-tag"></i> <span>Danh Mục</span> <b class="arrow icon-angle-down"></b></a>
@@ -67,6 +80,18 @@ iNet.roles = {
                 <li id="areabusiness-menu" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/master/areabusiness')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.nameAreaBusiness")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
                 <li id="career-menu" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/master/career')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.nameCareer")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
 
+
+
+            </ul>
+        </li>
+        #end
+        #if($report)
+        <li>
+            <a href="javascript:;"> <i class="icon-bar-chart"></i> <span>Báo cáo</span> <b class="arrow icon-angle-down"></b></a>
+            <ul class="submenu">
+
+                <li id="summary-menu" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/report/summary')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.reportsummary")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
+                <li id="list-menu" class="active" onclick="javascript:;"><a href='javascript:;' data-url="$ctx.page('cpkd/page/report/list')"><i class="icon-double-angle-right"></i> <span>$text.getText("common.reportlist")</span> <span data-type="number" class="badge badge-primary"></span></a></li>
 
 
             </ul>

@@ -1,0 +1,191 @@
+<!--storagedata-->
+<!--formreqdata-->
+<!--actorMatched("actor1","actors",...) end-->
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.nguoiviet")</label>
+    <span class="span4">
+        <input name="frmdata_nguoiviet" class="span12" type="text" #if(!!$storagedata && !!$storagedata.nguoiviet) value="$storagedata.nguoiviet" #elseif (!!$formreqdata && !!$formreqdata.nguoiviet) value="$formreqdata.nguoiviet" #end  />
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.ngayviet")</label>
+    <span class="span4">
+        <input name="frmdata_ngayviet" class="span12" type="text" />
+    </span>
+</div>
+<span class="span12" data-container="">
+     <input class="hide" type="file" name="dinhkem01">
+     <div class="ace-file-input">
+         <label data-title="Click here"><span data-title="..."><i class="icon-upload-alt"></i></span></label>
+     </div>
+</span>
+#actorMatched('GQL')
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.noidungdon")</label>
+    <span class="span10">
+        <textarea class="span12" rows="7" name="frmdata_noidungdon"></textarea>
+    </span>
+</div>
+#end
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.filedinhkem")</label>
+    <span class="span4">
+        <input name="frmdata_dinhkem01" class="span12" type="text" />
+    </span>
+    <label class="span2 control-label"></label>
+    <span class="span4">
+        <input name="frmdata_dinhkem02" class="span12" type="text" />
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label"></label>
+    <span class="span4">
+        <input name="frmdata_dinhkem03" class="span12" type="text" />
+    </span>
+    <label class="span2 control-label"></label>
+    <span class="span4">
+        <input name="frmdata_dinhkem04" class="span12" type="text" />
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.diaban")</label>
+    <span class="span4">
+        <!--<input name="frmdata_diaban" type="text" />-->
+        <select name="frmdata_diaban" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.donvithamquyen")</label>
+    <span class="span4">
+        <select name="frmdata_donvithamquyen" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.sothuly")</label>
+    <span class="span4">
+        <input name="frmdata_sothuly" class="span12" type="text" />
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.ngaynhan")</label>
+    <span class="span4">
+        <input name="frmdata_ngaynhan" class="span12" type="text" />
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.lan")</label>
+    <span class="span4">
+        <select name="frmdata_lan" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.nguondon")</label>
+    <span class="span4">
+        <select name="frmdata_nguondon" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.loaidon")</label>
+    <span class="span4">
+        <select name="frmdata_loaidon" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.linhvuc")</label>
+    <span class="span4">
+        <select name="frmdata_linhvuc" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.doituongbikntc")</label>
+    <span class="span4">
+        <input name="frmdata_doituongbikntc" class="span12" type="text" />
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.loaidoituon")</label>
+    <span class="span4">
+        <select name="frmdata_loaidoituong" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.ngaybatdauthuly")</label>
+    <span class="span4">
+        <input name="frmdata_ngaybatdauthuly" class="span12" type="text" />
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.ngayketthucthuly")</label>
+    <span class="span4">
+        <input name="frmdata_ngayketthucthuly" class="span12" type="text" />
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.phongbanthuly")</label>
+    <span class="span4">
+        <select name="frmdata_phongbanthuly" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+    <label class="span2 control-label">$text.getText("kntc.canhanthuly")</label>
+    <span class="span4">
+        <select name="frmdata_canhanthuly" class="span12">
+            <option></option>
+            <option></option>
+            <option></option>
+            <option></option>
+        </select>
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.noidungxuly")</label>
+    <span class="span10">
+        <textarea class="span12" rows="7" name="frmdata_noidungxuly" #if(!!$storagedata && !!$storagedata.noidungxuly) value="$storagedata.noidungxuly" #elseif (!!$formreqdata && !!$formreqdata.noidungxuly) value="$formreqdata.noidungxuly" #end></textarea>
+    </span>
+</div>
+<div class="row-fluid">
+    <label class="span2 control-label">$text.getText("kntc.filequyetdinh")</label>
+    <span class="span4">
+        <input name="frmdata_quyetdinh01" class="span12" type="text" />
+    </span>
+    <label class="span2 control-label"></label>
+    <span class="span4">
+        <input name="frmdata_quyetdinh02" class="span12" type="text" />
+    </span>
+</div>
+
+<script>
+    $(function(){
+        $('[name="dinhkem01"]').on('click', function(){
+
+        });
+
+        $('[name="dinhkem01"]').on('click', function(){
+
+        });
+    });
+</script>

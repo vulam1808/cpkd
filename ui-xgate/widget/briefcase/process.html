@@ -1,0 +1,123 @@
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/bootstrap/plugins/bootstrap-tab.min.js")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+
+#theme("/xgate/css/listview")
+
+#script("/js/xgate/inet/lib/bfprocess.min.js")
+
+#xscript()
+    var recordID = '$ctx.value("recordID")';
+    if (recordID.indexOf("ctx.value") > 0) { recordID = ""; }
+#end
+
+<div id="briefcase-process-div" class="hide">
+    <div>
+        <div id="briefcase-process-toolbar" class="hide">
+            <button id="briefcase-process-back-btn" type="button" class="btn hide">
+                <i class="icon-arrow-left"></i>
+            </button>
+            <span id="briefcase-process-additional-toolbar">
+                <button id="briefcase-process-additional-upload-btn" class="btn btn-primary" title="$text.getText('itask.task.briefcase.additional.save')">
+                    <i class="icon-upload-alt"></i> $text.getText('itask.task.briefcase.additional.save')
+                </button>
+            </span>
+            <span id="briefcase-process-task-toolbar" class="hide">
+                <button id="briefcase-process-completeTask-btn" class="btn hide" completeTask>
+                    <i class="icon-ok-sign"></i> $text.getText('itask.task.complete')
+                </button>
+                <button id="briefcase-process-executorTask-btn" class="btn btn-primary hide" executorTask>
+                    <i class="icon-ok-sign"></i> $text.getText('itask.task.executor')
+                </button>
+                <button id="briefcase-process-updateTask-btn" class="btn btn-warning" updateTask>
+                    <i class="icon-ok-sign"></i> $text.getText('itask.task.update')
+                </button>
+                <button id="briefcase-process-rejectTask-btn" class="btn btn-danger" rejectTask>
+                    <i class="icon-ok-sign"></i> $text.getText('itask.task.reject')
+                </button>
+            </span>
+        </div>
+        <div id="briefcase-process-subject-details" class="hide">
+        </div>
+        <div id="briefcase-process-sender-details" class="hide">
+        </div>
+        <div id="briefcase-process-data-content" class="hide">
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="briefcase-process-tab">
+                    <li class="active" data-tab="tab01"><a href="#tab-process-additional" data-toggle="tab">$text.getText("itask.task.briefcase.additional.submit")</a></li>
+                    <li data-tab="tab02"><a href="#tab-process-workflow" data-toggle="tab">$text.getText("itask.task.workflowInfo")</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-process-additional">
+                        <div id="briefcase-process-additional-content" style="padding-top: 10px;">
+                            <div class="row-fluid hide">
+                                <span class="alert alert-info bold span12"><i class="icon-info-sign"></i> $text.getText("itask.task.briefcase.additional.submit")</span>
+                            </div>
+                            <form id="briefcase-process-additional-form" method="post" enctype="multipart/form-data" style="padding: 10px;">
+                                <div class="row-fluid hide">
+                                    <span class="alert alert-info bold span12">
+                                    </span>
+                                </div>
+                                <div class="row-fluid">
+                                    <label class="span2">$text.getText("itask.task.briefcase.additional.description")<span class="required"></span></label>
+                                    <span class="span10"><textarea id="briefcase-process-additional-attachment-description" name="description" class="span12" rows="3"></textarea></span>
+                                </div>
+                                <div class="row-fluid">
+                                    <div id="briefcase-process-additional-attachment-list">
+                                    </div>
+                                </div>
+                                <div class="row-fluid text-right">
+                                    <a id="briefcase-process-additional-attachment-add" href="#"><i class="icon-plus"></i> $text.getText('itask.task.briefcase.additional.add')</a>
+                                </div>
+                                <div class="row-fluid">
+                                    <div id="briefcase-process-additional-attachment-view" class="span12">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-process-workflow">
+                        <div id="briefcase-process-form-content-hidden"></div>
+                        <div id="briefcase-process-form-content">
+                            <div id="briefcase-process-dropdown-menu-content" style="overflow: auto">
+                                <div class="row-fluid hide">
+                                    <span class="alert alert-info bold span12"><i class="icon-info-sign"></i> $text.getText("itask.task.workflowInfo")</span>
+                                </div>
+                                <div class="row-fluid" data-action="rule" style="padding-top: 5px;">
+                                </div>
+                                <div class="row-fluid" data-action="description">
+                                    <span class="span3"><label class="ilabel control-label">$text.getText("itask.task.note")</label></span>
+                                    <span class="span9">
+                                        <input class="span12" style="border: none; border-bottom: 1px solid #CBC6C6; border-radius: 0; min-width: 300px;" data-action="note" type="text" placeholder="$text.getText('itask.task.comment')">
+                                    </span>
+                                </div>
+                                <div class="row-fluid hide" id="briefcase-process-noteLate">
+                                    <span class="span3"><label class="ilabel control-label">$text.getText("itask.task.noteLate")<span class="required"></span></label></span>
+                                    <span class="span9">
+                                        <input class="span12" style="border: none; border-bottom: 1px solid #CBC6C6; border-radius: 0; min-width: 300px;" data-action="noteLate" type="text" placeholder="...">
+                                    </span>
+                                </div>
+                                <div class="row-fluid" data-action="exclusive" style="padding-bottom: 10px;">
+                                    <span class="span3"><label class="ilabel control-label">$text.getText("itask.task.exclusive")</label></span>
+                                    <span class="span9">
+                                        <input id="briefcase-process-exclusive" class="span12" />
+                                    </span>
+                                </div>
+                                <div class="row-fluid" data-action="execute" style="display: inline;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="briefcase-process"></div>
+    </div>
+</div>

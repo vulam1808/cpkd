@@ -1,0 +1,151 @@
+<style>
+    .task-open-status{
+        float: left;
+        color: #fff;
+        padding: 0 5px;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+</style>
+<div class="m-content" data-type="Pull" e-id="pull">
+    <div>
+        <ul class="m-list" data-type="ListLazy" e-id="list" id="list">
+
+        </ul>
+    </div>
+</div>
+<script data-type="Template" e-id="temp" linkId="list" type="text/template">
+    {{#each items}}
+    <li data-late="{{late}}" e-click="onPage" id="{{uuid}}" task="{{history.taskID}}" graph="{{history.graphID}}">
+        <img src="{{request.avatarUrl}}" class="list-image" style="border:1px solid #ddd"/>
+        <div class="list-content">
+            <!--<small class="float-right">{{request.requestTimeText}}</small>-->
+            <b>{{request.requestorName}}</b>
+            <p style="font-weight: bold">{{request.requestData.procedureName}}</p>
+            <p style="color: {{color}}">
+                <i class="icon ion-calendar" style="margin-right: 5px"></i>
+                <span style="width: 95px;display: inline-block;">Hạn xử lý </span>
+                {{history.expiredTaskText}}
+            </p>
+            <p>
+                <i class="icon ion-information-circled" style="margin-right: 5px"></i>
+                <span style="width: 95px;display: inline-block;">Mã hồ sơ </span>
+                {{request.requestData.serialNo}}
+            </p>
+            <p>
+                <i class="icon ion-information-circled" style="margin-right: 5px"></i>
+                <span style="width: 95px;display: inline-block;">Mã biên nhận </span>
+                {{request.receiptNo}}
+            </p>
+            <p>
+                <i class="icon ion-person" style="margin-right: 5px"></i>
+                {{request.requestData.userProfile.fullname}}
+            </p>
+            <!--<small class="task-open-status m-theme-{{request.statusColor}}">{{request.statusText}}</small>-->
+            {{#match task}}
+            <i class="icon ion-forward"></i>
+            {{task.name}}
+            {{/match}}
+        </div>
+    </li>
+    {{else}}
+    <div class="social-no-feed" style="margin-top:-20px">
+        <div><i class="icon ion-chatbox-working"></i></div>
+        $text.getText("mobile.nodata")
+    </div>
+    {{/each}}
+</script>
+<script>
+    eNet.controller('$controllerName', function (controller) {
+        // Requirements:
+        // + controller.beforeLoad
+        // + controller.isLoad
+        // + controller.convertData
+        // + controller.convertItem
+
+        var url = iNet.getUrl('$urlLoad');
+
+        controller.list.getEl().html('<div style="position: absolute;top: 50%;left: 50%;margin:10px 0  0 -32px" class="ball-pulse"><div style="background:#999"></div><div style="background:#999"></div><div style="background:#999"></div></div>');
+        controller.list.onLoad = load;
+        controller.pull.onRefresh = function () {
+            load(true);
+        };
+        setTimeout(function () {
+            load(true);
+        }, 400);
+        function load(isPull) {
+            if(isPull){
+                controller.list.disable();
+            }
+            controller.beforeLoad && controller.beforeLoad(isPull);
+            $.getJSON(url, controller.params, function (data) {
+                controller.list.getLoadEl().detach();
+                if(controller.convertData){
+                    data = controller.convertData(data);
+                }
+                if(!controller.pull.isEnable()){
+                    controller.pull.close();
+                }
+                if(!data || data.total < 1){
+                    controller.temp.render();
+                    return;
+                }
+                data.items.forEach(function (item) {
+                    controller.convertItem && controller.convertItem(item);
+                    item.request.avatarUrl = eNet.getAvatar(item.request.requestor);
+                    item.request.requestTimeText = new Date(item.request.requestTime).format('d/m/Y, H:i');
+                    item.history.expiredTaskText = new Date(item.history.expiredTask).format('H:i d/m/Y');
+                    if(new Date(item.history.expiredTask) > new Date()) {
+                        item.late = 'no';
+                        item.color = '#0002ff';
+                    } else {
+                        item.late = 'yes';
+                        item.color = 'rgb(255, 5, 17)';
+                    }
+//                    iNet.apply(item.request, getDataByStatus(item.request.status));
+                });
+
+                if(isPull){
+                    controller.temp.render(data);
+                }else{
+                    controller.temp.renderAppend(data);
+                }
+
+                if(controller.isLoad && controller.isLoad(data)){
+                    controller.list.getLoadEl().appendTo(controller.list.getEl());
+                    controller.list.enable();
+                }
+            },{
+                global: false,
+                error: function () {
+                    controller.pull.close();
+                }
+            });
+        }
+//        function getDataByStatus(status) {
+//            switch (status){
+//                case 'SUBMITTED':
+//                case 'QUEUE':
+//                    return {
+//                        statusColor: 'a',
+//                        statusText: 'Đang xử lý'
+//                    };
+//                case 'UPDATE':
+//                    return {
+//                        statusColor: 'i',
+//                        statusText: 'Cập nhật'
+//                    };
+//                case 'REJECTED':
+//                    return {
+//                        statusColor: 'g',
+//                        statusText: 'Từ chối'
+//                    };
+//                default :
+//                    return {
+//                        statusColor: 'c',
+//                        statusText: 'Hoàn thành'
+//                    };
+//            }
+//        }
+    });
+</script>

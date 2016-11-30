@@ -37,6 +37,7 @@ $(function () {
             div_title:$('#homebusiness-title'),
             div_item:$('#homebusiness-item'),
             div_homebusiness_create:$('#homebusiness-item-create'),
+            div_rehomebusiness_create:$('#reHomeBusiness-item-create'),
             div_endbusiness_create:$('#endbusiness-item-create'),
             div_changebusiness_create:$('#changebusiness-item-create'),
             div_pausebusiness_create:$('#pausebusiness-item-create'),
@@ -63,6 +64,9 @@ $(function () {
         };
         this.$formCapDoi = {
             input_infoChange: $('#changebusiness-infoChange')
+        };
+        this.$formCapLai = {
+            input_reHomeBusinessReason: $('#reHomeBusiness-reason')
         };
         this.$formTamNgung = {
             input_dayofPause: $('#pausebusiness-dayofPause'),
@@ -116,6 +120,7 @@ $(function () {
                     if(valTypkeTask == "CAP_MOI")
                     {
                         FormService.displayContent(me.$form.div_homebusiness_create,'show');
+                        FormService.displayContent(me.$form.div_rehomebusiness_create,'hide');
                         FormService.displayContent(me.$form.div_endbusiness_create,'hide');
                         FormService.displayContent(me.$form.div_changebusiness_create,'hide');
                         FormService.displayContent(me.$form.div_pausebusiness_create,'hide');
@@ -123,6 +128,7 @@ $(function () {
                     else if(valTypkeTask == "CAP_DOI")
                     {
                         FormService.displayContent(me.$form.div_homebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_rehomebusiness_create,'hide');
                         FormService.displayContent(me.$form.div_endbusiness_create,'hide');
                         FormService.displayContent(me.$form.div_changebusiness_create,'show');
                         FormService.displayContent(me.$form.div_pausebusiness_create,'hide');
@@ -130,6 +136,7 @@ $(function () {
                     else if(valTypkeTask == "TAM_NGUNG")
                     {
                         FormService.displayContent(me.$form.div_homebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_rehomebusiness_create,'hide');
                         FormService.displayContent(me.$form.div_endbusiness_create,'hide');
                         FormService.displayContent(me.$form.div_changebusiness_create,'hide');
                         FormService.displayContent(me.$form.div_pausebusiness_create,'show');
@@ -137,7 +144,16 @@ $(function () {
                     else if(valTypkeTask == "CHAM_DUT")
                     {
                         FormService.displayContent(me.$form.div_homebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_rehomebusiness_create,'hide');
                         FormService.displayContent(me.$form.div_endbusiness_create,'show');
+                        FormService.displayContent(me.$form.div_changebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_pausebusiness_create,'hide');
+                    }
+                    else if(valTypkeTask == "CAP_LAI")
+                    {
+                        FormService.displayContent(me.$form.div_homebusiness_create,'hide');
+                        FormService.displayContent(me.$form.div_rehomebusiness_create,'show');
+                        FormService.displayContent(me.$form.div_endbusiness_create,'hide');
                         FormService.displayContent(me.$form.div_changebusiness_create,'hide');
                         FormService.displayContent(me.$form.div_pausebusiness_create,'hide');
                     }
@@ -318,11 +334,17 @@ $(function () {
                 _data = me.getDataChamDut() || {};
                 console.log('Save click - Type: CHAM_DUT >>>',_data);
             }
+            else if(valTypkeTask == "CAP_LAI")
+            {
+                _data = me.getDataCapLai() || {};
+                console.log('Save click - Type: CAP_LAI >>>',_data);
+            }
             $.postJSON(url.save_business, _data, function (result) {
                 console.log('Save Business OK >>>',__result);
                 var __result = result || {};
                 if (CommonService.isSuccess(__result)) {
                     //var __listProvince = [];
+                    me.clearData();
                     me.__isCheckNameSave = false;
                     me.notifySuccess(me.resource.validate.save_title, me.resource.validate.save_success);
                 }
@@ -465,6 +487,17 @@ $(function () {
     iNet.extend(iNet.ui.ita.HomeBusinessForm, iNet.ui.app.widget,{
         clearData:function(){
             this.__id_homebusiness = '';
+            this.$form.input_nameBusiness.val('');
+            this.$formCapMoi.input_address.val('');
+            this.$formCapMoi.input_phone.val('');
+            this.$formCapMoi.input_fax.val('');
+            this.$formCapMoi.input_email.val('');
+            this.$formCapMoi.input_website.val('');
+            this.$formCapDoi.input_infoChange.setValue('');
+            this.$formTamNgung.input_reason.val('');
+            this.$formTamNgung.input_dayofPause.val('0');
+            this.$formTamNgung.input_reason.val('');
+            this.$formChamDut.input_reason.val('');
         },
          getDataCapMoi: function(){
             var __data = {};
@@ -484,10 +517,19 @@ $(function () {
         },
         getDataCapDoi: function(){
             var __data = {};
+            __data.nameBusiness = this.$form.input_nameBusiness.val().toUpperCase();
             __data.homebusinessID = this.__id_homebusiness;
             __data.infoChange = this.$formCapDoi.input_infoChange.getValue().toString();
             __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
             __data.statusType= "CAP_DOI";
+            return __data;
+        },
+        getDataCapLai: function(){
+            var __data = {};
+            __data.homebusinessID = this.__id_homebusiness;
+            __data.reason = this.$formCapLai.input_reHomeBusinessReason.val();
+            __data.dateSubmit = CommonService.getCurrentDate().dateToLong();
+            __data.statusType= "CAP_LAI";
             return __data;
         },
         getDataTamNgung: function(data){

@@ -1,0 +1,57 @@
+#theme("/xgate/css/xgate")
+
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/xgate-ui-report-request-service.min.js")
+
+<div id="report-request-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="report-request-search-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-search"></i> $text.getText("app.button.search")
+        </button>
+        <button id="report-request-print-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-print"></i> $text.getText("app.button.print")
+        </button>
+        <button id="report-request-view-btn" class="btn btn-primary btn-small">
+            <i class="icon-search"></i> $text.getText("app.button.search")
+        </button>
+        <button id="report-request-export-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-file"></i> $text.getText("xgate.report.export")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <label class="control-label span2">$text.getText("xgate.report.request.form")</label>
+            <span class="span2">
+                <div class="row-fluid input-icon input-icon-right date">
+                    <input type="text" id="report-request-from" class="span12 date-picker"/>
+                    <i class="icon-calendar"></i>
+                </div>
+            </span>
+            <label class="control-label span2">$text.getText("xgate.report.request.requester")</label>
+            <span class="span6"><input type="text" id="report-request-requester" class="span12"/></span>
+        </div>
+        <div class="row-fluid">
+            <label class="control-label span2">$text.getText("xgate.report.request.to")</label>
+            <span class="span2">
+                <div class="row-fluid input-icon input-icon-right date">
+                    <input type="text" id="report-request-to" class="span12 date-picker"/>
+                    <i class="icon-calendar"></i>
+                </div>
+            </span>
+            <label class="control-label span2">$text.getText("xgate.report.request.graph")</label>
+            <span class="span6"><input type="text" id="report-request-graph" class="span12"/></span>
+        </div>
+        <div class="row-fluid">
+            <div id="report-request-content" style="background-color: #F0F9FF;border: 2px solid #DDD; display: none;"></div>
+            <div id="report-request-data" style="background-color: #F0F9FF;border: 2px solid #DDD;">
+                <div id="report-request-basic-search" class="hide"></div>
+                <div id="report-request-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>

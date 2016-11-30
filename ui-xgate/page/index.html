@@ -1,0 +1,36 @@
+#html({"lang":"vi","dir":"ltr", "xmlns":"http://www.w3.org/1999/xhtml","secure":"$firmuser","inherit":true})
+    #keywords({"title":'$text.getText("xgate.title")'})
+    #meta({ "title":"iCloud Platform","viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+    #widget("/common/widget/header")
+    #widget("/xgate/widget/common/header")
+
+    <style>
+        html {
+            overflow: hidden;
+        }
+    </style>
+
+    <div id="main-container" class="container-fluid">
+        #widget("/xgate/widget/menu")
+        <div id="main-content" class="clearfix">
+            <div id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li><i class="icon-home"></i><a href="javascript:;">$text.getText("xgate.title")</a>
+                        <span class="divider"><i class="icon-angle-right"></i></span></li>
+                    <li class="active"></li>
+                </ul>
+            </div>
+            <div id="page-content" class="clearfix">
+                <iframe id="iframe-content"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-mask" class="widget-box-layer" style="display: none">
+        <span style="position: relative; top: 250px" class="">
+            <i class="icon-spinner icon-spin icon-2x orange"></i>
+            <span id="main-mask-title" item-type="loadtext" style="font-size: 24px;">$text.getText("xgate.title.restarting") </span>
+            <span id="main-mask-loading" style="font-size: 24px;"></span>
+        </span>
+    </div>
+#end

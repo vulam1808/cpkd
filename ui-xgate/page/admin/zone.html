@@ -1,0 +1,166 @@
+#zone({"inherit":"true"})
+    #scriptBundle("xgate_message_admin")
+        iNet.ns(
+            "iNet.resources.xgate",
+            "iNet.resources.xgate.admin",
+            "iNet.resources.xgate.admin.bridge",
+            "iNet.resources.xgate.admin.procedure",
+            "iNet.resources.xgate.admin.design",
+            "iNet.resources.xgate.admin.workingtime",
+            "iNet.resources.xgate.admin.plugin",
+            "iNet.resources.xgate.admin.agency",
+            "iNet.resources.xgate.admin.published",
+            "iNet.resources.xgate.admin.firm",
+            "iNet.resources.xgate.admin.application",
+            "iNet.resources.xgate.admin.token"
+        );
+        if (iNet.resources.xgate.admin.bridge) {
+            iNet.apply(iNet.resources.xgate.admin.bridge, {
+                title: '$text.getText("xgate.admin.bridge.title")',
+                register: '$text.getText("xgate.admin.bridge.register")',
+                profile: '$text.getText("xgate.admin.bridge.profile")',
+                connected: '$text.getText("xgate.admin.bridge.connected")',
+                unconnect: '$text.getText("xgate.admin.bridge.unconnect")',
+                service: '$text.getText("xgate.admin.bridge.service")',
+                info: '$text.getText("xgate.admin.bridge.info")',
+                name: '$text.getText("xgate.admin.bridge.name")',
+                industry: '$text.getText("xgate.admin.bridge.industry")',
+                brief: '$text.getText("xgate.admin.bridge.brief")',
+                contact: '$text.getText("xgate.admin.bridge.contact")',
+                email: '$text.getText("xgate.admin.bridge.email")',
+                phone: '$text.getText("xgate.admin.bridge.phone")',
+                website: '$text.getText("xgate.admin.bridge.website")',
+                fax: '$text.getText("xgate.admin.bridge.fax")',
+                address1: '$text.getText("xgate.admin.bridge.address1")',
+                organId: '$text.getText("xgate.admin.bridge.organId")',
+                profileID: '$text.getText("xgate.admin.bridge.profileID")',
+                firm: '$text.getText("xgate.admin.bridge.firm")'
+            });
+        }
+        if (iNet.resources.xgate.admin.procedure) {
+            iNet.apply(iNet.resources.xgate.admin.procedure, {
+                title: '$text.getText("xgate.admin.procedure.title")',
+                subject: '$text.getText("xgate.admin.procedure.subject")',
+                view: '$text.getText("xgate.admin.procedure.view")',
+                attach: '$text.getText("xgate.admin.procedure.attach")',
+                fieldName: '$text.getText("xgate.admin.procedure.fieldName")',
+                brief: '$text.getText("xgate.admin.procedure.brief")',
+                system: '$text.getText("xgate.admin.procedure.system")',
+                industry: '$text.getText("xgate.admin.procedure.industry")',
+                exportNoUsed: '$text.getText("xgate.admin.procedure.exportNoUsed")',
+                exportNoUsedContent: '$text.getText("xgate.admin.procedure.exportNoUsedContent")',
+                exportUsed: '$text.getText("xgate.admin.procedure.exportUsed")',
+                exportUsedContent: '$text.getText("xgate.admin.procedure.exportUsedContent")',
+                clickHere: '$text.getText("xgate.admin.procedure.clickHere")',
+                file: '$text.getText("xgate.admin.procedure.file")',
+                formUI: '$text.getText("xgate.admin.procedure.formUI")',
+                workflow: '$text.getText("xgate.admin.procedure.workflow")',
+                page: '$text.getText("xgate.admin.procedure.page")',
+                pagedesign: '$text.getText("xgate.admin.procedure.pagedesign")',
+                attrCode: '$text.getText("xgate.admin.procedure.attrCode")',
+                attrName: '$text.getText("xgate.admin.procedure.attrName")'
+            });
+        }
+        if (iNet.resources.xgate.admin.design) {
+            iNet.apply(iNet.resources.xgate.admin.design, {
+            });
+        }
+        if (iNet.resources.xgate.admin.workingtime) {
+            iNet.apply(iNet.resources.xgate.admin.workingtime, {
+                title: '$text.getText("xgate.admin.workingtime.title")',
+                weekdays: '$text.getText("xgate.admin.workingtime.weekdays")',
+                morning: '$text.getText("xgate.admin.workingtime.morning")',
+                afternoon: '$text.getText("xgate.admin.workingtime.afternoon")',
+                fromTime: '$text.getText("xgate.admin.workingtime.fromTime")',
+                toTime: '$text.getText("xgate.admin.workingtime.toTime")',
+                mon_to_fri: '$text.getText("xgate.admin.workingtime.mon_to_fri")',
+                saturday: '$text.getText("xgate.admin.workingtime.saturday")',
+                time_checkout: '$text.getText("xgate.admin.workingtime.time_checkout")',
+                add_another: '$text.getText("xgate.admin.workingtime.add_another")',
+                fulltime: '$text.getText("xgate.admin.workingtime.fulltime")',
+                parttime: '$text.getText("xgate.admin.workingtime.parttime")',
+                closed: '$text.getText("xgate.admin.workingtime.closed")',
+                appointment: '$text.getText("xgate.admin.workingtime.appointment")',
+                workingtime: '$text.getText("xgate.admin.workingtime.workingtime")',
+                maxNumber: '$text.getText("xgate.admin.workingtime.maxNumber")',
+                mon: '$text.getText("xgate.admin.workingtime.mon")',
+                tue: '$text.getText("xgate.admin.workingtime.tue")',
+                wed: '$text.getText("xgate.admin.workingtime.wed")',
+                thu: '$text.getText("xgate.admin.workingtime.thu")',
+                fri: '$text.getText("xgate.admin.workingtime.fri")',
+                sat: '$text.getText("xgate.admin.workingtime.sat")',
+                sun: '$text.getText("xgate.admin.workingtime.sun")',
+                selectPlaceholder: '$text.getText("xgate.admin.workingtime.select.placeholder")'
+            });
+        }
+        if (iNet.resources.xgate.admin.plugin) {
+            iNet.apply(iNet.resources.xgate.admin.plugin, {
+                title: '$text.getText("xgate.admin.plugin.title")',
+                import: '$text.getText("xgate.admin.plugin.import")',
+                name: '$text.getText("xgate.admin.plugin.name")',
+                brief: '$text.getText("xgate.admin.plugin.brief")'
+            });
+        }
+        if (iNet.resources.xgate.admin.agency) {
+            iNet.apply(iNet.resources.xgate.admin.agency, {
+                title: '$text.getText("xgate.admin.agency.title")',
+                organName: '$text.getText("xgate.admin.agency.organName")',
+                organAdd: '$text.getText("xgate.admin.agency.organAdd")',
+                fax: '$text.getText("xgate.admin.agency.fax")',
+                email: '$text.getText("xgate.admin.agency.email")',
+                telephone: '$text.getText("xgate.admin.agency.telephone")',
+                website: '$text.getText("xgate.admin.agency.website")',
+                accepted: '$text.getText("xgate.admin.agency.accepted")',
+                unaccepted: '$text.getText("xgate.admin.agency.unaccepted")'
+            });
+        }
+        if (iNet.resources.xgate.admin.published) {
+            iNet.apply(iNet.resources.xgate.admin.published, {
+                pageName: '$text.getText("xgate.admin.published.page.name")',
+                workflowName: '$text.getText("xgate.admin.published.workflow.name")',
+                workflowName: '$text.getText("xgate.admin.published.workflow.name")',
+                procedureSubject: '$text.getText("xgate.admin.published.procedure.subject")',
+                procedureIndustry: '$text.getText("xgate.admin.published.procedure.industry")',
+                procedureFormUI: '$text.getText("xgate.admin.published.procedure.formUI")',
+                pluginBrief: '$text.getText("xgate.admin.published.plugin.brief")',
+                applicationName: '$text.getText("xgate.admin.published.application.name")',
+                applicationBrief: '$text.getText("xgate.admin.published.application.brief")'
+            });
+        }
+        if (iNet.resources.xgate.admin.firm) {
+            iNet.apply(iNet.resources.xgate.admin.firm, {
+                title: '$text.getText("xgate.admin.firm.title")',
+                organId: '$text.getText("xgate.admin.firm.organId")',
+                name: '$text.getText("xgate.admin.firm.name")',
+                email: '$text.getText("xgate.admin.firm.email")',
+                phone: '$text.getText("xgate.admin.firm.phone")',
+                fax: '$text.getText("xgate.admin.firm.fax")'
+            });
+        }
+        if (iNet.resources.xgate.admin.application) {
+            iNet.apply(iNet.resources.xgate.admin.application, {
+                title: '$text.getText("xgate.admin.application.title")',
+                import: '$text.getText("xgate.admin.application.import")',
+                name: '$text.getText("xgate.admin.application.name")',
+                brief: '$text.getText("xgate.admin.application.brief")',
+                changed: '$text.getText("xgate.admin.application.changed")',
+                changedNOCHANGE: '$text.getText("xgate.admin.application.changedNOCHANGE")',
+                changedINFO: '$text.getText("xgate.admin.application.changedINFO")',
+                changedDESIGN: '$text.getText("xgate.admin.application.changedDESIGN")',
+                changedPUBLISHED: '$text.getText("xgate.admin.application.changedPUBLISHED")',
+                changedUNPUBLISHED: '$text.getText("xgate.admin.application.changedUNPUBLISHED")',
+                status: '$text.getText("xgate.admin.application.status")',
+                statusDESIGN: '$text.getText("xgate.admin.application.statusDESIGN")',
+                statusPUBLISHED: '$text.getText("xgate.admin.application.statusPUBLISHED")'
+            });
+        }
+        if (iNet.resources.xgate.admin.token) {
+            iNet.apply(iNet.resources.xgate.admin.token, {
+                firmID: '$text.getText("xgate.admin.mscore.firmID")',
+                firmName: '$text.getText("xgate.admin.mscore.firmName")',
+                name: '$text.getText("xgate.admin.mscore.name")',
+                token: '$text.getText("xgate.admin.mscore.token")'
+            });
+        }
+    #end
+#end

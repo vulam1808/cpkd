@@ -1,0 +1,71 @@
+#theme("/xgate/css/xgate")
+
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/xgate-ui-report-task-service.min.js")
+
+<div id="report-task-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="report-task-search-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-search"></i> $text.getText("app.button.search")
+        </button>
+        <button id="report-task-print-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-print"></i> $text.getText("app.button.print")
+        </button>
+        <button id="report-task-view-btn" class="btn btn-primary btn-small">
+            <i class="icon-search"></i> $text.getText("app.button.search")
+        </button>
+        <button id="report-task-export-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-file"></i> $text.getText("xgate.report.export")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <label class="control-label span2">$text.getText("xgate.report.task.form")</label>
+            <span class="span2">
+                <div class="row-fluid input-icon input-icon-right date">
+                    <input type="text" id="report-task-from" class="span12 date-picker"/>
+                    <i class="icon-calendar"></i>
+                </div>
+            </span>
+            <label class="control-label span2">$text.getText("xgate.report.task.procedure")</label>
+            <span class="span6"><input type="text" id="report-task-procedure" class="span12"/></span>
+        </div>
+        <div class="row-fluid">
+            <label class="control-label span2">$text.getText("xgate.report.task.to")</label>
+            <span class="span2">
+                <div class="row-fluid input-icon input-icon-right date">
+                    <input type="text" id="report-task-to" class="span12 date-picker"/>
+                    <i class="icon-calendar"></i>
+                </div>
+            </span>
+            <label class="control-label span2">$text.getText("xgate.report.task.processor")</label>
+            <span class="span6"><input type="text" id="report-task-processor" class="span12"/></span>
+        </div>
+        <div class="row-fluid">
+            <label class="control-label span2">$text.getText("xgate.report.task.keyword")</label>
+            <span class="span2">
+                <input type="text" id="report-task-keyword" placeholder="$text.getText('briefcase.keyword')" class="span12"/>
+            </span>
+        </div>
+        <div class="row-fluid hide">
+            <label class="control-label span2">$text.getText("briefcase.info.serialNo")</label>
+            <span class="span2"><input id="report-task-serialNo" type="text" class="span12"/></span>
+            <label class="control-label span2">$text.getText("briefcase.info.receiptNo")</label>
+            <span class="span2"><input id="report-task-receiptNo" type="text" class="span12"/></span>
+        </div>
+        <div class="row-fluid">
+            <div id="report-task-content" style="background-color: #F0F9FF;border: 2px solid #DDD; display: none;">
+            </div>
+            <div id="report-task-data" style="background-color: #F0F9FF;border: 2px solid #DDD;">
+                <div id="report-task-basic-search" class="hide"></div>
+                <div id="report-task-grid"></div>
+            </div>
+        </div>
+    </div>
+</div>

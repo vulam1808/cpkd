@@ -1,0 +1,6 @@
+{
+ "name":"BasicSearch",
+ "syntax":"{subject: { $regex : \":subject:\"}}",
+ "searchUI":"basicsearch.html",
+ "resultUI":"basicresult.html"
+}

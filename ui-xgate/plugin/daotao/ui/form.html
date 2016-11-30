@@ -1,0 +1,25 @@
+<!--storagedata-->
+<!--formreqdata-->
+<!--actorMatched("actor1","actors",...) end-->
+<div class="row-fluid">
+    <label class="span2 control-label">Quyết định đào tạo</label>
+    <span class="span4">
+        <input name="frmdata_hovaten" class="span12" type="text" #if(!!$storagedata && !!$storagedata.hovaten) value="$storagedata.hovaten" #elseif (!!$formreqdata && !!$formreqdata.hovaten) value="$formreqdata.hovaten" #end  />
+    </span>
+    <label class="span2 control-label">Ngày bắt đầu</label>
+    <span class="span4">
+        <input name="frmdata_ngaybatdau" class="span12" type="text" />
+    </span>
+</div>
+
+<script>
+    $(function(){
+        $('[name="dinhkem01"]').on('click', function(){
+
+        });
+
+        $('[name="dinhkem01"]').on('click', function(){
+
+        });
+    });
+</script>

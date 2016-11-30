@@ -1,0 +1,97 @@
+#script("/js/common/inet/lib/grid.min.js")
+
+#script("/js/xgate/inet/lib/xgate-ui-published-service.min.js")
+
+#xscript()
+    var roleCreate = true;
+    var roleEdit = true;
+    var roleDelete = true;
+    var roleView = true;
+#end
+
+<div id="published-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="published-back-btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="published-submit-btn" type="button" class="btn btn-danger btn-small hide">
+            <i class="icon-bolt"></i> $text.getText("app.button.submit")
+        </button>
+        <button id="published-create-page-btn" data-handler="tabChange" type="button" class="btn btn-primary btn-small hide">
+            <i class="icon-magic"></i> $text.getText("xgate.admin.published.create.page")
+        </button>
+        <button id="published-edit-page-btn" data-handler="tabChange" type="button" class="btn btn-warning btn-small hide">
+            <i class="icon-eye-open"></i> $text.getText("xgate.admin.published.edit.page")
+        </button>
+        <button id="published-create-workflow-btn" data-handler="tabChange" type="button" class="btn btn-primary btn-small hide">
+            <i class="icon-vk"></i> $text.getText("xgate.admin.published.create.workflow")
+        </button>
+        <button id="published-edit-workflow-btn" data-handler="tabChange" type="button" class="btn btn-warning btn-small hide">
+            <i class="icon-eye-open"></i> $text.getText("xgate.admin.published.edit.workflow")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div class="span12">
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                    <li class="active span3">
+                        <a href="#step-1">
+                            <h5 class="list-group-item-heading">$text.getText("xgate.admin.published.step1"): $text.getText("xgate.admin.published.procedure")</h5>
+                            <p class="list-group-item-text">$text.getText("xgate.admin.published.selected"): <span id="published-procedure-selected"></span></p>
+                        </a>
+                    </li>
+                    <li first class="span3">
+                        <a href="#step-2" button="#published-create-page-btn">
+                            <h5 class="list-group-item-heading">$text.getText("xgate.admin.published.step2"): $text.getText("xgate.admin.published.page")</h5>
+                            <p class="list-group-item-text">$text.getText("xgate.admin.published.selected"): <span id="published-page-selected"></span></p>
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a href="#step-3" button="#published-create-workflow-btn">
+                            <h5 class="list-group-item-heading">$text.getText("xgate.admin.published.step3"): $text.getText("xgate.admin.published.workflow")</h5>
+                            <p class="list-group-item-text">$text.getText("xgate.admin.published.selected"): <span id="published-workflow-selected"></span></p>
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a href="#step-4">
+                            <h5 class="list-group-item-heading">$text.getText("xgate.admin.published.step4"): $text.getText("xgate.admin.published.application")</h5>
+                            <p class="list-group-item-text">$text.getText("xgate.admin.published.selected"): <span id="published-application-selected"></span></p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row-fluid setup-content" id="step-1">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div id="published-procedure-basic-search" class="hide"></div>
+                    <div id="published-procedure-grid"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid setup-content" id="step-2">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div id="published-page-basic-search" class="hide"></div>
+                    <div id="published-page-grid"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid setup-content" id="step-3">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div id="published-workflow-basic-search" class="hide"></div>
+                    <div id="published-workflow-grid"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid setup-content" id="step-4">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div id="published-application-basic-search" class="hide"></div>
+                    <div id="published-application-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

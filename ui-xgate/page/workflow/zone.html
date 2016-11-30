@@ -1,0 +1,72 @@
+#zone({"inherit":"true"})
+    #scriptBundle("iworkflow_message_workflow")
+        iNet.ns(
+            "iNet.resources.workflow.graphprocess",
+            "iNet.resources.workflow.script",
+            "iNet.resources.workflow.actormap",
+            "iNet.resources.workflow.processmap",
+            "iNet.resources.workflow.actor"
+        );
+        if (iNet.resources.workflow.graphprocess) {
+            iNet.apply(iNet.resources.workflow.graphprocess, {
+                title : '$text.getText("iworkflow.graphprocess.title")',
+                design : '$text.getText("iworkflow.graphprocess.design")',
+                map : '$text.getText("iworkflow.graphprocess.map")',
+                published : '$text.getText("iworkflow.graphprocess.published")',
+                detach : '$text.getText("iworkflow.graphprocess.detach")',
+                assign : '$text.getText("iworkflow.graphprocess.assign")',
+                name : '$text.getText("iworkflow.graphprocess.name")',
+                zone : '$text.getText("iworkflow.graphprocess.zone")',
+                brief : '$text.getText("iworkflow.graphprocess.brief")',
+                type : '$text.getText("iworkflow.graphprocess.type")',
+                version : '$text.getText("iworkflow.graphprocess.version")',
+                createCode : '$text.getText("iworkflow.graphprocess.createCode")',
+                createName : '$text.getText("iworkflow.graphprocess.createName")',
+                applyToService : '$text.getText("iworkflow.graphprocess.applyToService")',
+                "ProcessType.AUTOMATIC" : '$text.getText("iworkflow.graphprocess.ProcessType.AUTOMATIC")',
+                "ProcessType.MANUAL" : '$text.getText("iworkflow.graphprocess.ProcessType.MANUAL")',
+                "ProcessType.SEMI_AUTOMATIC" : '$text.getText("iworkflow.graphprocess.ProcessType.SEMI_AUTOMATIC")',
+                "VersionState.DESIGN" : '$text.getText("iworkflow.graphprocess.VersionState.DESIGN")',
+                "VersionState.TESTING" : '$text.getText("iworkflow.graphprocess.VersionState.TESTING")',
+                "VersionState.PRODUCTION" : '$text.getText("iworkflow.graphprocess.VersionState.PRODUCTION")',
+                "VersionState.ARCHIVED" : '$text.getText("iworkflow.graphprocess.VersionState.ARCHIVED")'
+            });
+        }
+        if (iNet.resources.workflow.script) {
+            iNet.apply(iNet.resources.workflow.script, {
+                title : '$text.getText("iworkflow.script.title")',
+                name : '$text.getText("iworkflow.script.name")',
+                zone : '$text.getText("iworkflow.script.zone")',
+                brief : '$text.getText("iworkflow.script.brief")',
+                condition : '$text.getText("iworkflow.script.condition")'
+            });
+        }
+        if (iNet.resources.workflow.actormap) {
+            iNet.apply(iNet.resources.workflow.actormap, {
+                title : '$text.getText("iworkflow.actormap.title")',
+                actor : '$text.getText("iworkflow.actormap.actor")',
+                name : '$text.getText("iworkflow.actormap.name")',
+                username : '$text.getText("iworkflow.actormap.username")',
+                fullname : '$text.getText("iworkflow.actormap.fullname")',
+                map : '$text.getText("iworkflow.actormap.map")'
+            });
+        }
+        if (iNet.resources.workflow.processmap) {
+            iNet.apply(iNet.resources.workflow.processmap, {
+                title : '$text.getText("iworkflow.processmap.title")',
+                actor : '$text.getText("iworkflow.processmap.actor")',
+                process: '$text.getText("iworkflow.processmap.process")',
+                name: '$text.getText("iworkflow.processmap.name")',
+                map: '$text.getText("iworkflow.processmap.map")'
+            });
+        }
+        if (iNet.resources.workflow.actor) {
+            iNet.apply(iNet.resources.workflow.actor, {
+                title : '$text.getText("iworkflow.actor.title")',
+                name : '$text.getText("iworkflow.actor.name")',
+                position: '$text.getText("iworkflow.actor.position")',
+                brief: '$text.getText("iworkflow.actor.brief")'
+            });
+        }
+    #end
+#end

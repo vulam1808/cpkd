@@ -1,0 +1,77 @@
+#set($package = $ctx.value("package"))
+#set($requestID = $ctx.value("requestID"))
+<div class="m-panel bottom popup" e-controller="requestAdditional" e-events="click">
+    <style>
+        .note-info {
+            padding: 6px 10px;
+            background: #bce8f1;
+            border-radius: 3px;
+            color: #3a87ad;
+        }
+    </style>
+    <div class="m-header m-theme-a">
+        <i class="btn icon ion-chevron-left" data-close></i>
+        <i e-click="onSubmit" class="icon ion-checkmark btn right" style="font-size: 20px"></i>
+        <h1>Yêu cầu bổ sung</h1>
+    </div>
+    <div class="m-content">
+        <p class="note-info"><i class="icon ion-information-circled" style="margin-right: 5px"></i>Yêu cầu người dân bổ sung</p>
+        <label>Mô tả/Ghi chú</label>
+        <textarea data-type="TextArea" id="description" class="form-control" style="margin-bottom: 10px"></textarea>
+        <ul id="list-request" class="m-list has-icon" data-type="ListSelect" e-id="list" data-param={"searchable":true,"multiple":true}>
+
+        </ul>
+    </div>
+    <!--<div class="m-footer m-color-a">-->
+        <!--<div class="btn" e-click="onAddInfo">-->
+            <!--<i class="icon ion-plus-round"></i>-->
+        <!--</div>-->
+    <!--</div>-->
+    <script>
+        eNet.controller('requestAdditional', function (controller) {
+            var _urlRequest = iNet.getUrl('onegate/externaldata/request'),
+                _listRequest = this.findEl('#list-request'),
+                _description = this.findEl('#description'),
+                __paramsReqSubmit = {
+                    package: '$package',
+                    requestID: '$requestID'
+                };
+
+            $.get(_urlRequest, {package: '$package'}, function (data) {
+                var __data = data || {},
+                    __items = __data.items || [],
+                    html = '';
+
+                for(var i = 0, len = __items.length; i < len; i++) {
+                    html += '<li><h2>'+ __items[i].brief +'</h2></li>';
+                    __paramsReqSubmit[__items[i].fieldName] = __items[i].brief;
+                }
+                _listRequest.html(html);
+                controller.list.init();
+            });
+
+//            controller.onAddInfo = function () {
+//                iNet.MessageBox.prompt("Thêm thông tin bổ sung", function (name) {
+//                    _listRequest.prepend('<li><h2>'+ name +'</h2></li>');
+//                    controller.list.init();
+//                    $.post(iNet.getUrl('onegate/dictadditional/create'), {
+//                        brief: name,
+//                        fieldName: eNet.removeAccents(name.toLowerCase()).replace(/\s+/g, ''),
+//                        procedureID: iNet.generateId()
+//                    });
+//                })
+//            };
+//            window.test = controller.list;
+            controller.onSubmit = function () {
+                __paramsReqSubmit.brief = _description.val();
+                $.get(iNet.getUrl('onegate/externaldata/reqsubmit'), __paramsReqSubmit, function (data) {
+                    controller.router.getPagePrev().fireEvent('refresh');
+                    controller.router.backPage();
+                    if(iNet.isFunction(window.itaskReload)){
+                        window.itaskReload();
+                    }
+                });
+            }
+        });
+    </script>
+</div>

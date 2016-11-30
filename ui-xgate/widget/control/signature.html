@@ -1,0 +1,231 @@
+#script("/js/xgate/inet/lib/signature.min.js")
+
+<div id="signature-view-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="signature-back-btn" class="btn" title="$text.getText('app.button.back')">
+            <i class="icon-arrow-left"></i>
+        </button>
+        <button id="signature-submit-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-upload"></i> $text.getText("app.button.upload")
+        </button>
+        <div class="btn-group" role="group" aria-label="..." style="float: right; padding-right: 10px;">
+            <button type="button" id="signature-mode-lanhdao-btn" disabled="disabled" class="btn btn-primary">
+                $text.getText("xgate.signature.LanhDao")
+            </button>
+            <button type="button" id="signature-mode-tochuc-btn" class="btn btn-primary">
+                $text.getText("xgate.signature.ToChuc")
+            </button>
+        </div>
+    </div>
+    <div class="wg-content">
+        <div class="hide">
+            <input type="text" id="signature-note" value="$text.getText('xgate.control.signature.note')"/>
+        </div>
+        <form id="signature-form" method="post" enctype="multipart/form-data">
+            <object codetype="application/java"
+                    classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+                    name="signature" height="400px" width="100%">
+                <param name="codebase" value="http://www.inetcloud.vn/public/tool/">
+                <param name="code" value="bcy.vgca.Applet.mainApplet">
+                <param name="archive" value="Binhthuan_applet.jar">
+                <param name="mayscript" value="true">
+                <param name="type" value="application/x-java-applet;version=1.5">
+                <param name="scriptable" value="false">
+                <param name="func_ghi_du_lieu_len_form" value="ghi_du_lieu_len_form">
+                <param name="func_ToChuc_On_Off" value="off">
+                <param name="func_LanhDao_On_Off" value="on">
+                <comment>
+                    <embed type="application/x-java-applet;version=1.5"
+                           codebase="http://www.inetcloud.vn/public/tool/"
+                           archive="Binhthuan_applet.jar"
+                           code="bcy.vgca.Applet.mainform"
+                           scriptable="true"
+                           pluginspage="http://java.sun.com/products/plugin/index.html#download"
+                           func_ghi_du_lieu_len_form="ghi_du_lieu_len_form" func_ToChuc_On_Off="off"
+                           func_LanhDao_On_Off="on" height="400px" width="100%">
+                        <noembed>
+                            Can not be started because Java Plugin is not installed.
+                        </noembed>
+                </comment>
+            </object>
+            <br>
+
+            <p style="display: none;">
+                <textarea rows="5" cols="180" id="signature-data" hidden=""></textarea>
+            </p>
+            <script>
+                function ghi_du_lieu_len_form(data) {
+                    document.getElementById("signature-data").innerHTML = data;
+                    $(function () {
+                        if (!(typeof window.signature === "undefined")) {
+                            if (window.signature != null) {
+                                window.signature.signData();
+                            }
+                        }
+                    });
+                }
+            </script>
+        </form>
+    </div>
+</div>
+
+<div id="signature-info-div" class="modal hide fade in" aria-hidden="false" style="top: 5%">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="signature-info-div-tile">$text.getText('xgate.signature.info')</h4>
+    </div>
+    <div class="modal-body">
+        <div id="signature-info-data-div" class="row-fluid">
+            <ol style="list-style: none;margin-left: 0px;">
+                <li id="signature-info-subject" style="display: flex;">
+                    <div style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                        <i class="icon-minus"></i>
+                    </div>
+                    <div style="padding-top: 2px;padding-left: 5px;">$text.getText('xgate.signature.subject')</div>
+                </li>
+                <ol id="signature-info-subject-detail" style="list-style: none;">
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">C</div>
+                        <div data-sign-info="C" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">CN</div>
+                        <div data-sign-info="CN" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">DC</div>
+                        <div data-sign-info="DC" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">E</div>
+                        <div data-sign-info="E" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">L</div>
+                        <div data-sign-info="L" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">O</div>
+                        <div data-sign-info="O" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">OU</div>
+                        <div data-sign-info="OU" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">SN</div>
+                        <div data-sign-info="SN" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">ST</div>
+                        <div data-sign-info="ST" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">T</div>
+                        <div data-sign-info="T" style="padding-left: 5px;"></div>
+                    </li>
+                </ol>
+            </ol>
+            <ol style="list-style: none;margin-left: 0px;">
+                <li id="signature-info-issuer" style="display: flex;">
+                    <div style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                        <i class="icon-plus"></i>
+                    </div>
+                    <div style="padding-top: 2px;padding-left: 5px;">$text.getText('xgate.signature.issuer')</div>
+                </li>
+                <ol id="signature-info-issuer-detail" style="list-style: none; display:none;">
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">C</div>
+                        <div data-sign-info="C" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">CN</div>
+                        <div data-sign-info="CN" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">DC</div>
+                        <div data-sign-info="DC" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">E</div>
+                        <div data-sign-info="E" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">L</div>
+                        <div data-sign-info="L" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">O</div>
+                        <div data-sign-info="O" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">OU</div>
+                        <div data-sign-info="OU" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">SN</div>
+                        <div data-sign-info="SN" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">ST</div>
+                        <div data-sign-info="ST" style="padding-left: 5px;"></div>
+                    </li>
+                    <li style="display: flex;border: 1px solid #dae2ea;padding: 2px;margin-bottom: -1px;">
+                        <div style="padding-left: 5px;width: 25px;background: #57B7DB;color: #FFF;">T</div>
+                        <div data-sign-info="T" style="padding-left: 5px;"></div>
+                    </li>
+                </ol>
+            </ol>
+            <ol style="list-style: none;margin-left: 0px; display: none">
+                <li id="signature-info-reason" style="display: flex;">
+                    <div style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                        <i class="icon-info" style="padding-left: 3px;"></i>
+                    </div>
+                    <div style="padding-top: 2px;padding-left: 5px;">$text.getText('xgate.signature.reason'): <span id="signature-info-reason-data"></span></div>
+                </li>
+            </ol>
+            <ol style="list-style: none;margin-left: 0px;">
+                <li id="signature-info-signTime" style="display: flex;">
+                    <div style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                        <i class="icon-info" style="padding-left: 3px;"></i>
+                    </div>
+                    <div style="padding-top: 2px;padding-left: 5px;">$text.getText('xgate.signature.signTime'): <span id="signature-info-signTime-data"></span></div>
+                </li>
+            </ol>
+            <ol style="list-style: none;margin-left: 0px; display: none">
+                <li id="signature-info-verified" style="display: flex;">
+                    <div style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                        <i class="icon-info" style="padding-left: 3px;"></i>
+                    </div>
+                    <div style="padding-top: 2px;padding-left: 5px;">$text.getText('xgate.signature.verified'): <span id="signature-info-verified-data"></span></div>
+                </li>
+            </ol>
+        </div>
+        <div id="signature-info-paging-div" class="row-fluid hide" style="text-align: center;">
+            <div style="display: inline-flex;">
+                <div id="signature-info-paging-back" style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                    <i class="icon-arrow-left"></i>
+                </div>
+                <div><span id="signature-info-paging-index"></span><span>/</span><span id="signature-info-paging-total"></span></div>
+                <div id="signature-info-paging-next" style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                    <i class="icon-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+        <div id="signature-info-no-data-div" class="row-fluid hide">
+            <ol style="list-style: none;margin-left: 0px;">
+                <li id="signature-info-notFound" style="display: flex;">
+                    <div style="border: 1px solid #DDD;border-radius: 13px;width: 15px;height: 20px;padding-left: 5px;background: #FA6831;color: #DDD;">
+                        <i class="icon-info" style="padding-left: 3px;"></i>
+                    </div>
+                    <div style="padding-top: 2px;padding-left: 5px;">$text.getText('xgate.signature.notFound')</div>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="signature-info-div-close-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-remove-sign"></i> $text.getText("app.button.close")
+        </button>
+    </div>
+</div>

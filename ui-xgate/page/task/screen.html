@@ -1,0 +1,23 @@
+#html({"lang":"vi","dir":"ltr","forward":"WorkflowNodeScreen","xmlns":"http://www.w3.org/1999/xhtml","secure":"$process_user","inherit":true})
+#keywords({"title":'$text.getText("xgate.builder.title")'})
+#meta({ "title":"iCloud Platform","viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"})
+    #widget("/xgate/widget/common/common")
+    #widget("/xgate/widget/control/ajaxmask")
+    #widget("/xgate/widget/control/itemview")
+    #widget("/xgate/widget/control/fileview")
+    #widget("/xgate/widget/control/signature")
+    #widget("/xgate/widget/control/modalview")
+
+    #widget("/xgate/widget/briefcase/information")
+    #widget("/xgate/widget/briefcase/process")
+    #widget("/xgate/widget/briefcase/transfer")
+    #widget("/xgate/widget/briefcase/additional")
+
+    #widget("/xgate/widget/briefcase/workflow")
+    #script("::/xgate/page/resources/BfWorkflow")
+    #script("::/xgate/page/workflow/tool/zone")
+
+    #widget("/xgate/widget/task/screen")
+    #script("::/xgate/page/task/zone")
+    #script("::/xgate/page/common/zone")
+#end

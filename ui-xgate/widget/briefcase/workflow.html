@@ -1,0 +1,37 @@
+#script("/js/xgate/jquery/plugins/jquery-ui-1.10.2.min.js")
+#script("/js/xgate/jquery/plugins/jquery.jsPlumb.1.5.5.min.js")
+#script("/js/xgate/jquery/plugins/jquery.filter-input.min.js")
+#script("/js/xgate/inet/lib/workflow.min.js")
+
+#theme("/xgate/css/workflow")
+
+#script("/js/xgate/inet/lib/bfworkflow.min.js")
+
+<div id="briefcase-workflow-div" class="hide">
+    <div>
+        <div id="briefcase-workflow-toolbar" class="hide">
+            <button id="briefcase-workflow-back-btn" type="button" class="btn hide">
+                <i class="icon-arrow-left"></i>
+            </button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-sitemap"></i> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-sign-blank" style="color: orange"></i> $text.getText("briefcase.status.completed")</a></li>
+                    <li><a href="#"><i class="icon-sign-blank" style="color: blue"></i> $text.getText("briefcase.status.processing")</a></li>
+                    <li><a href="#"><i class="icon-unchecked"></i> $text.getText("briefcase.status.waiting")</a></li>
+                    <!--<li role="separator" class="divider"></li>-->
+                </ul>
+            </div>
+        </div>
+        <div id="briefcase-workflow-subject-details" class="hide">
+        </div>
+        <div id="briefcase-workflow-sender-details" class="hide">
+        </div>
+        <div id="briefcase-workflow-data-content">
+            <div id="briefcase-workflow-data-content-view"></div>
+        </div>
+        <div id="briefcase-workflow"></div>
+    </div>
+</div>

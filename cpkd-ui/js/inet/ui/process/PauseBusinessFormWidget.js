@@ -1,125 +1,71 @@
-// #PACKAGE: numberbusiness-widget
-// #MODULE: NumberBusinessWidget
+/**
+ * Created by HS on 21/09/2016.
+ */
+// #PACKAGE: pausebusiness-form-widget
+// #MODULE: PauseBusinessFormWidget
 
 $(function() {
 
 
     iNet.ns("iNet.ui", "iNet.ui.ita");
-    iNet.ui.ita.NumberBusinessWidget = function (config) {
+    iNet.ui.ita.PauseBusinessFormWidget = function (config) {
+        var __config = config || {};
+        iNet.apply(this, __config);// apply configuration
+        this.id = this.id || 'endbusiness-widget';
+        var me = this;
 
         var resource = {
             common: ita.resources.common,
             validate: ita.resources.validate
         };
-        this.$inputNumber = {
-            numberBusiness: $('#homebusiness-txt-numberBusiness'),
-            button_process: $('#action-processNumber-btn')
+        this.$form = {
+            textbox_dayofPause: $('#'+me.id + ' #pausebusiness-dayofPause'),
+            textbox_dateStart: $('#'+me.id + ' #pausebusiness-dateStart'),
+            textbox_reason: $('#'+me.id + ' #pausebusiness-reason')
         };
 
-        var url = {
-            //view: iNet.getUrl('ita/personrepresent/load'),
-            // save: iNet.getUrl('ita/personrepresent/save'),
-            update_numberBusinessHomeBusiness: iNet.getUrl('ita/business/updatenumberid'),
-            update_statusProcess: iNet.getUrl('ita/businessprocess/updatestatus')
-        };
-
-        var __config = config || {};
-        iNet.apply(this, __config);// apply configuration
-        this.id = this.id || 'numberbusiness-widget';
-
-        iNet.ui.ita.NumberBusinessWidget.superclass.constructor.call(this);
 
 
-        var me = this;
         me.idHomeBusiness = __config.idHomeBusiness;
-        me.taxCode = __config.taxCode;
-        me.parent_ID=__config.parent_ID;
-        me.statusType=__config.statusType;
-        me.statusProcess=__config.statusProcess;
-        //me.__id_homebusiness = '';
-        var updateNumberBusinessHomeBusiness = function(data){
-            var _data = data || '';
-            // var _data = {taxCode: _taxcode};
-            $.postJSON(url.update_numberBusinessHomeBusiness, _data, function (result) {
-                var __result = result || {};
-                if (CommonService.isSuccess(__result)) {
-                    me.$inputNumber.button_process.removeClass("hide");
-                    //console.log('Update Taxcode success'+data+">>>>",_data);
-                    me.notifySuccess(resource.validate.save_title, resource.validate.update_success);
-                }
-                else
-                {
-                    //console.log('Update Taxcode error'+data+">>>>",_data);
-                    me.notifyError(resource.validate.save_title, me.getNotifyContent(resource.validate.save_error, __result.errors || []));
-                }
-            });
+        me.statusType = __config.statusType;
+        me.PauseBusiness = __config.PauseBusiness;
+
+
+
+        var loadPauseBusiness = function(){
+            me.setData(me.PauseBusiness);
+            me.setReadonly();
         }
 
-        $('#numberbusiness-location-btn-update').on('click', function(){
+        loadPauseBusiness();
 
-            var __data = me.getDataNumberBusiness() || {};
-            console.log('updatenumberBusiness>>', __data);
-
-            updateNumberBusinessHomeBusiness(__data);
-        }.createDelegate(this));
-        var loadinfo = function()
-        {
-            console.log("numberBusiness",me.numberBusiness);
-            if(me.numberBusiness != ""){
-                me.$inputNumber.numberBusiness.val(me.numberBusiness);
-                me.$inputNumber.button_process.removeClass("hide");
-            }
-        };
-        this.$inputNumber.button_process.on('click',function(){
-            var __data = {
-                idHomeBusiness: me.idHomeBusiness,
-                statusProcess:me.statusProcess,
-                statusType:me.statusType,
-                parent_ID:me.parent_ID
-            };
-            console.log("button_process data?>>>", __data);
-            confirmDialog.params  = __data;
-            confirmDialog.show();
-
-        });
-        var confirmDialog = me.confirmDialog(
-            resource.validate.process_title, me.getNotifyContent(resource.validate.sure_process, ''), function () {
-                if (!iNet.isEmpty(confirmDialog.params || {})) {
-                    confirmDialog.hide();
-                    $.postJSON(url.update_statusProcess, confirmDialog.params, function (result) {
-                        var __result = result || {};
-                        console.log("__result button process?>>>", __result);
-                        buttonBack();
-                    }/*, {
-                     mask: me.getMask(),
-                     msg: iNet.validate.process_success
-                     }*/);
-                }
-            });
-        var buttonBack = function(){
-            console.log("Show ACT>>>", me.act);
-            var __url = iNet.getUrl('cpkd/page/index')+'#menu-process-business';
-            iNet.getLayout().window.location.href = __url;
-            iNet.getLayout().parentParams={act: me.statusProcess};
-        };
-        loadinfo();
-
-
+        iNet.ui.ita.PauseBusinessFormWidget.superclass.constructor.call(this);
     };
 
-    iNet.extend(iNet.ui.ita.NumberBusinessWidget, iNet.ui.app.widget,{
-        getDataNumberBusiness: function () {
+    iNet.extend(iNet.ui.ita.PauseBusinessFormWidget, iNet.ui.app.widget,{
+        setReadonly: function(){
 
-            var __data = {};
+            this.$form.textbox_dayofPause.prop('readonly', true);
+            this.$form.textbox_dateStart.prop('readonly', true);
+            this.$form.textbox_reason.prop('readonly', true);
+        },
+        removeReadonly: function(){
+            this.$form.textbox_dayofPause.prop('readonly', false);
+            this.$form.textbox_dateStart.prop('readonly', false);
+            this.$form.textbox_reason.prop('readonly', false);
 
-            __data.idHomeBusiness = this.idHomeBusiness;
-            __data.numberBusiness = this.$inputNumber.numberBusiness.val();
+        },
 
-            return __data;
+        setData: function (data) {
+            var __data = data || {}
+
+            this.$form.textbox_dayofPause.val(__data.dayofPause);
+            this.$form.textbox_dateStart.val(__data.dateStart.longToDate());
+            this.$form.textbox_reason.val(__data.reason);
+
+
         }
     });
 
-    /*var wgProvince = new iNet.ui.ita.NumberBusinessWidget();
-     wgProvince.show();*/
 
 });

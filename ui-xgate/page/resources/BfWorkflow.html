@@ -1,0 +1,37 @@
+#zone({"inherit":"true"})
+    #scriptBundle("xgate_message_briefcase_workflow")
+        iNet.ns(
+            "iNet.resources.xgate",
+            "iNet.resources.xgate.BfWorkflow"
+        );
+        if (iNet.resources.xgate.BfWorkflow) {
+            iNet.apply(iNet.resources.xgate.BfWorkflow, {
+                status: {
+                    completed: '$text.getText("briefcase.status.completed")',
+                    processing: '$text.getText("briefcase.status.processing")',
+                    waiting: '$text.getText("briefcase.status.waiting")',
+                    inprocess: '$text.getText("briefcase.status.inprocess")',
+                    overdue: '$text.getText("briefcase.status.overdue")'
+                },
+                time: {
+                    unlimited: '$text.getText("briefcase.time.unlimited")',
+                    day: '$text.getText("briefcase.time.day")',
+                    hours: '$text.getText("briefcase.time.hours")',
+                    minutes: '$text.getText("briefcase.time.minutes")'
+                },
+                info: {
+                    alter: '$text.getText("briefcase.info.alter")',
+                    timeProcess: '$text.getText("briefcase.info.timeProcess")',
+                    task: '$text.getText("briefcase.info.task")',
+                    status: '$text.getText("briefcase.info.status")',
+                    process: '$text.getText("briefcase.info.process")',
+                    processor: '$text.getText("briefcase.info.processor")',
+                    completedDate: '$text.getText("briefcase.info.completedDate")',
+                    to: '$text.getText("briefcase.info.to")',
+                    sender: '$text.getText("briefcase.info.sender")',
+                    sendDate: '$text.getText("briefcase.info.sendDate")'
+                }
+            });
+        }
+    #end
+#end

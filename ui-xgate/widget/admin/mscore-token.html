@@ -1,0 +1,22 @@
+#script("/js/common/inet/lib/grid.min.js")
+
+#theme("/xgate/css/xgate")
+
+#script("/js/xgate/inet/lib/xgate-ui-mscore-token-service.min.js")
+
+#xscript()
+    var zone = '';
+    var context = '';
+#end
+
+<div id="mscore-token-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="mscore-token-sync-btn" class="btn btn-primary btn-small">
+            <i class="icon-refresh"></i> $text.getText("app.button.sync")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div id="mscore-token-basic-search" class="hide"></div>
+        <div id="mscore-token-grid"></div>
+    </div>
+</div>

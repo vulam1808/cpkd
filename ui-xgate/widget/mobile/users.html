@@ -1,0 +1,48 @@
+#set($callback = $ctx.value("callback"))
+<div class="m-panel bottom popup" e-controller="flowUsers" e-events="click">
+    <div class="m-header m-theme-a">
+        <i data-close="back" class="icon ion-chevron-left btn"></i>
+        <i e-click="onSelect" class="icon ion-checkmark btn right" style="font-size: 20px"></i>
+        <h1>$text.getText("mobile.orbizflow.select_user")</h1>
+    </div>
+    <div class="m-content">
+        <div>
+            <ul data-type="ListSelect" data-param={"searchable":true,"multiple":true} class="m-list has-icon" e-id="list" id="list">
+
+            </ul>
+        </div>
+    </div>
+    <script data-type="Template" e-id="temp" linkId="list" type="text/template">
+        {{#each items}}
+        <li id="{{fullname}}" value="{{username}}">
+            <img src="{{#avatar '50'}}{{username}}{{/avatar}}" class="list-image"/>
+            <h2>{{fullname}}</h2>
+            {{username}}
+        </li>
+        {{/each}}
+    </script>
+    <script>
+        eNet.controller('flowUsers', function (controller) {
+            controller.onSelect = function () {
+                var data = [];
+                controller.list.getActive().each(function () {
+                   data.push({
+                       name: this.id,
+                       value: this.getAttribute('value')
+                   });
+                });
+                if(iNet.isFunction(window["$callback"])){
+                    window["$callback"](data);
+                }
+                controller.page.close();
+            };
+            $.getJSON(iNet.getUrl('system/account/role'), function (data) {
+                data.items.sort(function (a, b) {
+                    return a.fullname.localeCompare(b.fullname);
+                });
+                controller.temp.render(data);
+                controller.list.init();
+            }, {global: false});
+        });
+    </script>
+</div>

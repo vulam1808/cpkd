@@ -1,0 +1,47 @@
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid.min.js")
+
+#theme("/xgate/css/theme")
+
+#script("/js/xgate/inet/lib/idesign-ui-t-storage-service.min.js")
+
+#xscript()
+    var zone = '';
+    var context = '';
+    var roleCreate = true;
+    var roleEdit = true;
+    var roleDelete = true;
+    var roleView = true;
+#end
+
+<div id="storage-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <div class="row-fluid">
+            <label class="ilabel control-label span1" for="storage-category-select">$text.getText('idesign.storage.category')</label>
+            <span class="span3">
+                <input id="storage-category-select" class="span12">
+            </span>
+            <label class="ilabel control-label span1" for="storage-keyword-txt">$text.getText('idesign.storage.keyword')</label>
+            <span class="span3 input-icon input-icon-right">
+                <input id="storage-keyword-txt" type="text" class="span12">
+                <i id="storage-search-btn" class="icon-search"></i>
+            </span>
+            <span class="span2" style="padding-right: 10px">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button id="storage-paging-left" type="button" class="btn btn-default"><i class="fa fa-chevron-left"></i></button>
+                    <button id="storage-paging-info" type="button" class="btn btn-default" disabled="disabled">/</button>
+                    <button id="storage-paging-right" type="button" class="btn btn-default"><i class="fa fa-chevron-right"></i></button>
+                    <button id="storage-paging-refresh" type="button" class="btn btn-default"><i class="fa fa-refresh"></i></button>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div class="wg-content">
+        <div id="storage-list" class="row-fluid theme-browser">
+        </div>
+    </div>
+</div>

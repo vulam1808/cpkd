@@ -1,0 +1,188 @@
+#mobile({"secure":"$firm_user"})
+#dataservice("cloudwflarcruleengine")
+#set($hasProcess = $cloudwflarcruleengine.lines.keySet().size() > 0)
+#set($taskID = $ctx.value('task'))
+#set($controllerName = "taskView")
+#set($late = $ctx.value('late'))
+<div class="m-page" e-controller="$controllerName" e-events="click">
+    <div class="m-header m-theme-a">
+        <i data-action="back" class="icon ion-chevron-left btn"></i>
+        <h1 #if($hasProcess)style="right:100px"#end>$text.getText("mobile.orbizflow.workflow")</h1>
+    </div>
+    #widget("/xgate/widget/mobile/control-render")
+    #widget("/xgate/widget/mobile/request-info")
+    ##if($hasProcess)
+    <div class="m-footer m-color-a has-text">
+        <div class="btn" id="process-record" e-click="processRecord">
+            <i class="icon ion-gear-b" style="line-height: 30px"></i>
+            <p class="footer-text">Xử lý hồ sơ</p>
+        </div>
+        <div id="finish-record" e-click="onFinish" class="btn" style="display: none">
+            <i class="icon ion-checkmark-circled" style="line-height: 30px"></i>
+            <p class="footer-text">Kết thúc hồ sơ</p>
+        </div>
+    </div>
+    <!--<div class="m-panel bottom" data-type="Panel" data-close="true" e-id="panel" data-param={"toggleId":"process-record"}>-->
+    <!--<ul class="m-list list-menu">-->
+    <!--<li e-click="onAddProcess">-->
+    <!--Bổ sung thông tin xử lý-->
+    <!--</li>-->
+    <!--<li e-click="onInfoProcess">-->
+    <!--Thông tin quy trình xử lý-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <div class="m-panel bottom" data-type="Panel" e-id="menu" data-close="true">
+        <ul class="m-list list-menu has-image">
+            <li e-click="onRequestAdditional">
+                <i class="icon ion-plus-round list-menu-image"></i>
+                Yêu cầu bổ sung
+            </li>
+            <li e-click="onSendConnective">
+                <i class="icon ion-ios7-redo list-menu-image"></i>
+                Gửi liên thông
+            </li>
+            <li e-click="onSeeProcess">
+                <i class="icon ion-network list-menu-image"></i>
+                Xem quá trình xử lý
+            </li>
+        </ul>
+    </div>
+    ##else
+    <!--<div class="m-footer m-color-a hide">-->
+        <!--<div e-click="onComplete" class="btn"><i class="icon ion-checkmark"></i></div>-->
+    <!--</div>-->
+    ##end
+    <script>
+        eNet.controller('$controllerName', function (controller) {
+            var isFinishRecord = false;
+            var url = iNet.getUrl('firmtask/process/view'),
+                    params = {
+                        task: "$taskID",
+                        graph: "$ctx.value('graph')"
+                    },
+                    processUUID, zone, graph, request, additionalID,
+                    finishRecord = this.findEl('#finish-record');
+
+            this.onRefresh = function () {
+                iNet.Loading.disable();
+                this.fireEvent('refresh');
+            };
+            this.on('destroy', function () {
+                iNet.Loading.enable();
+            });
+            $.getJSON(url, params, function (data) {
+                if(data.request) {
+                    controller.page.fireEvent('render_info', data);
+                    processUUID = data.request.processUUID;
+                    graph = data.request.graphID;
+                    zone = data.request.organId;
+                    request = data.request.uuid;
+                    additionalID = data.request.additionalID;
+                    if(data.request.status != 'REJECTED'){
+                        controller.page.getFooter().removeClass('hide');
+                        controller.page.getContent().addClass('has-footer');
+                    }
+                    if(data.history.attributes.reject === '1') {
+                        isFinishRecord = true;
+                        finishRecord.show();
+                        finishRecord.prev().css('width','50%');
+                    } else {
+                        isFinishRecord = false;
+                        finishRecord.hide();
+                        finishRecord.prev().css('width','100%');
+                    }
+                }else{
+                    alert('$text.getText("mobile.orbizflow.form_invalid")');
+                }
+            }, {
+                global: false
+            });
+
+            ##if($hasProcess)
+                this.getHeader().prepend('<i e-click="onMore" class="btn icon ion-more right" style="-webkit-transform:rotate(90deg);transform:rotate(90deg)"></i>');
+            this.getContent().addClass('has-footer');
+            controller.onMore = function(){
+                controller.menu.open();
+            };
+            controller.onAddProcess = function () {
+                controller.router.fireAction('panel', {
+                    url: 'xgate/page/mobile/add-info',
+                    task: '$taskID',
+                    isFinish: isFinishRecord,
+                    late: '$late'
+                });
+            };
+//                controller.onInfoProcess = function() {
+//                    controller.router.fireAction('panel', {
+//                        url: 'xgate/page/mobile/process',
+//                        task: '$taskID',
+//                        isFinish: isFinishRecord,
+//                        late: '$late'
+//                    });
+//                };
+            controller.processRecord = function() {
+                controller.router.fireAction('panel', {
+                    url: 'xgate/page/mobile/process',
+                    task: '$taskID',
+                    isFinish: isFinishRecord,
+                    late: '$late'
+                });
+            };
+            controller.onRequestAdditional = function(){
+                controller.router.fireAction('panel', {
+                    url: 'xgate/page/mobile/request-additional',
+                    package: additionalID,
+                    requestID: request
+                });
+            };
+            controller.onSendConnective = function(){
+                controller.router.fireAction('panel', {
+                    url: 'xgate/page/mobile/send-connective'
+                });
+            };
+            controller.onSeeProcess = function () {
+                controller.router.fireAction('panel', {
+                    url: 'xgate/page/mobile/chart-process',
+                    graph: graph,
+                    zone: zone,
+                    request: request
+                });
+            };
+            controller.onFinish = function(){
+                iNet.MessageBox.confirm('$text.getText("mobile.orbizflow.task_complete")', function () {
+                    $.postJSON(iNet.getUrl('firmtask/process/executor'), {
+                        task: "$taskID"
+                    }, function () {
+                        controller.router.backPage();
+                        // refresh page prev
+                        controller.router.getPagePrev().on('pageshow', function () {
+                            this.fireEvent('refresh');
+                            this.un('pageshow');
+                        });
+                    });
+                });
+            };
+            ##else
+//            controller.onComplete = function(){
+//                iNet.MessageBox.confirm('$text.getText("mobile.orbizflow.task_complete")', function () {
+//                    $.postJSON(iNet.getUrl('firmtask/process/executor'), {
+//                        task: "$taskID"
+//                    }, function () {
+//                        controller.router.backPage();
+//                        // refresh page prev
+//                        controller.router.getPagePrev().on('pageshow', function () {
+//                            this.fireEvent('refresh');
+//                            this.un('pageshow');
+//                        });
+//                    });
+//                });
+//            };
+            ##end
+
+
+
+        });
+    </script>
+</div>
+#end

@@ -1,0 +1,44 @@
+#mobile({"secure":"$firm_user"})
+#set($urlLoad = "firmtask/process/graphtask")
+#set($controllerName = "taskForm")
+<div class="m-page" e-controller="$controllerName" e-events="click">
+    <div class="m-header m-theme-a">
+        <i data-action="back" class="icon ion-chevron-left btn"></i>
+        <i id=#command("create",{"url":"xgate/page/mobile/create","form":"$ctx.value('form')"}) data-action="panel" class="icon ion-plus-round btn right"></i>
+        <h1 style="right:100px"></h1>
+    </div>
+    #widget("/xgate/widget/mobile/request-list")
+    <script>
+        eNet.controller('taskForm', function (controller) {
+            this.getTitle().html(window.__ogbizTitle);
+            controller.params = {
+                    pageSize: 15,
+                    pageNumber: 0,
+                    graph: "$ctx.value('graph')"
+                };
+
+            controller.beforeLoad = function (isPull) {
+                if(isPull){
+                    controller.params.pageNumber = 0;
+                }else{
+                    controller.params.pageNumber++;
+                }
+            };
+            controller.isLoad = function (data) {
+                return data.total > controller.params.pageSize * (controller.params.pageNumber + 1);
+            };
+            controller.convertData = function (data) {
+                return data.opentask;
+            };
+
+            controller.onPage = function () {
+                controller.router.fireAction('page', {
+                    url: 'xgate/page/mobile/view-task',
+                    task: this.getAttribute('task'),
+                    graph: this.getAttribute('graph')
+                })
+            }
+        });
+    </script>
+</div>
+#end

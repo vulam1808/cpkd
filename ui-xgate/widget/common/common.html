@@ -1,0 +1,50 @@
+
+#theme("/common/css/inet-core.min")
+
+
+
+
+
+#theme("/common/css/grid.min")
+#theme("/common/css/jquery/jquery.pnotify")
+#theme("/common/css/common")
+#theme("/xgate/css/xgate")
+
+#script("/js/common/bootstrap/bootstrap.min.js")
+#script("/js/common/inet/lib/inet-core.min.js")
+#script("/js/common/inet/lib/inet-utilities.min.js")
+#script("/js/common/inet/lib/inet-ui.min.js")
+
+#script("::common/page/resources/common-zone")
+#script("::common/page/resources/plugin-zone")
+
+#script("/js/xgate/inet/lib/xgate-utils-service.min.js")
+#script("/js/xgate/inet/lib/application-widget-abstract-service.min.js")
+
+
+
+
+
+#dataservice("firmtaskprofile")
+#set($firmData = $firmtaskprofile)
+
+#xscript()
+    iNet.prefix="$ctx.site.prefix";
+    iNet.firmPrefix = iNet.getLayout().iNet.firmPrefix;
+    iNet.extension = "$ctx.extension()";
+    iNet.path = "$ctx.path()";
+    #if($ctx.pattern)
+        iNet.pattern = "$ctx.pattern";
+    #end
+    iNet.serverDate = new Date();
+    iNet.zone = #if($firmData.organiId) '$firmData.organiId' #else '$firmData.shareDomain' #end;
+    if (iNet.zone.indexOf("Data.organ") > 0) { iNet.zone = ""; }
+    if (iNet.zone.indexOf("Data.share") > 0) { iNet.zone = ""; }
+
+    iNet.context = '$firmData.firmContext';
+    if (iNet.context.indexOf("Data.firm") > 0) { iNet.context = ""; }
+    iNet.usercode = '$ctx.usercode()';
+    iNet.username = '$ctx.getUsername()';
+
+    iNet.roles = iNet.apply(iNet.roles || {}, iNet.getLayout().iNet.roles);
+#end

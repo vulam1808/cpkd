@@ -1,0 +1,350 @@
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+
+#script("/js/common/jquery/plugins/jquery.timeago.min.js")
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+#script("/js/common/jquery/plugins/jquery.maskedinput.min.js")
+#script("/js/common/jquery/plugins/jquery.autoNumeric.min.js")
+
+#script("/js/xgate/inet/lib/idesign-ui-t-builder-service.min.js")
+
+#script("/js/xgate/jquery/plugins/jquery.slimscroll.min.js")
+#script("/js/xgate/math/math.js")
+
+#script("/js/xgate/inet/lib/itask-ui-t-task-service.min.js")
+
+#theme("/xgate/css/listview")
+
+#xscript()
+    $(function(){
+        bfStatus = {
+            inprocess: '$text.getText("itask.task.briefcase.inprocess")',
+            overdue: '$text.getText("itask.task.briefcase.overdue")',
+            update: '$text.getText("itask.task.briefcase.update")'
+        };
+    });
+#end
+
+<div id="task-div" class="hide">
+    <div>
+        <div id="task-list-item-ui" style="display: none;">
+            <div data-id="{0}" data-base64="{1}" class="list-view-item submitted" data-status>
+                <div class="status">&nbsp;</div>
+                <div class="line-header"></div>
+                <div class="wrapper">
+                    <!--flag {'icon-star-empty';'icon-star red';'icon-star blue'}-->
+                    <div class="flag">
+                        <span data-flag="status">
+                            <i class="icon-star-empty" title="$text.getText('itask.task.briefcase.inprocess')"></i>
+                        </span>
+                        <span data-flag="urgent" style="display: none;">
+                            <i class="icon-flag red" title="$text.getText('xgate.follow.urgent')"></i>
+                        </span>
+                    </div>
+                    <div class="date-info">
+                        <span class="date timeago" title=""></span>
+                    </div>
+                    <div class="check">
+                        <label style="display: none">
+                            <input type="checkbox" class="ace" value="">
+                            <span class="lbl"></span>
+                        </label>
+                    </div>
+                    <div class="sender-info">
+                        <span class="threadsCount-info">
+                            <span class="threadsCount"></span>
+                            <i class="icon-spinner animated"></i>
+                        </span>
+                        <span class="reply"><i class="icon-reply" title=""></i> </span>
+                        <span class="forward"><i class="icon-share-alt" title=""></i> </span>
+                        <span class="sender"></span>
+                    </div>
+                    <div class="attachment-info">
+                        <span class="attachment hide"><i class="icon-pushpin" title="" style="color: black;"></i></span>
+                    </div>
+                    <div class="comment-info">
+                        <span class="comment hide"><i class="icon-comments-alt" title=""></i></span>
+                    </div>
+                    <div class="subject-info">
+                        <span class="subject" style="padding-left: 14px; display: flex;"></span>
+                    </div>
+                    <div class="more-info" style="font-weight: normal;">
+                        <div style="padding-left: 14px; width: 100%;">
+                            <span>
+                                <i class="icon-random"></i>
+                                <span> </span>
+                                <span data-category="rangeFrom"></span>
+                                <span> - </span>
+                                <span data-category="rangeTo"></span>
+                            </span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: bolder;">
+                            <span style="color: #0002ff;"><i class="icon-calendar"></i> $text.getText('itask.task.expiredDate'): <span data-category="expired"></span></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-category="serial-info">
+                            <i class="icon-info-sign"></i> $text.getText('itask.task.serial'): <span data-category="serial"></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-category="receipt-info">
+                            <i class="icon-info-sign"></i> $text.getText('itask.task.receipt'): <span data-category="receipt"></span>
+                        </div>
+                        <div class="hide" style="padding-left: 14px; width: 100%;">
+                            <span><i class="icon-comments-alt"></i> <span data-category="comment"></span></span>
+                        </div>
+                        <div class="hide" style="padding-left: 14px; width: 100%;">
+                            <span><i class="icon-pushpin"></i> <span data-category="pushpin"></span></span>
+                        </div>
+                        <div data-category="userprofile" style="padding-left: 14px; width: 100%;display:none;">
+                            <div>
+                                <div>
+                                    <i class="icon-user"></i>
+                                    <span> </span>
+                                    <span data-category="fullname"></span>
+                                    <span> - </span>
+                                    <span data-category="birthday"></span>
+                                    <span> (</span>
+                                    <span data-category="identity"></span>
+                                    <span>)</span>
+                                </div>
+                                <div style="padding-left: 14px;">
+                                    <i class="icon-envelope"></i>
+                                    <span> </span>
+                                    <span data-category="email"></span>
+                                    <span> - </span>
+                                    <i class="icon-phone"></i>
+                                    <span data-category="mobile"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-category="additionalrequest" style="padding-left: 14px; width: 100%;display:none;">
+                            <span style="color: #f89406;">
+                                <i class="icon-warning-sign"></i> $text.getText('itask.task.additionalrequest')
+                                <span style="display: none;" data-expiredTime-info>
+                                    <span> </span>
+                                    $text.getText('itask.task.additionalrequest.expiredTime')
+                                    <span> </span>
+                                    <span data-expiredTime></span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script data-id="{0}" type="application/javascript">
+                $(function(){
+                    var __dataBase64 = "{1}";
+                    __dataBase64 = __dataBase64 + "" + "";
+
+                    if (__dataBase64.length > 3) {
+                        var __data = iNet.Base64.decodeObject(__dataBase64) || {};
+                        var __dataId = __data.uuid || '';
+
+                        if (iNet.isEmpty(__dataId)) {
+                            //TODO: i will do when i have some new idea.
+                        } else {
+                            var $item = $('[data-id="'+__dataId+'"]');
+                            var __localDateTime = new Date().getTime();
+
+                            var __usercode = iNet.usercode;
+                            var __history = __data.history || {};
+                            var __request = __data.request || {};
+                            var __createTask = __history.created;
+                            var __createTaskString = new Date(__createTask).format('H:i d/m/Y');
+                            var __createTaskTimeago = $.timeago(__createTask);
+                            var __requestTime = __request.requestTime;
+                            var __requestTimeString = new Date(__requestTime).format('H:i d/m/Y');
+                            var __appointment = __request.appointment;
+                            var __appointmentString = new Date(__appointment).format('H:i d/m/Y');
+                            var __expiredTask = __history.expiredTask;
+                            if (__expiredTask == 0) {
+                                __expiredTask = __appointment;
+                            }
+                            var __expiredTaskString = new Date(__expiredTask).format('H:i d/m/Y');
+
+                            if (__localDateTime > __expiredTask) {
+                                $item.removeClass('submitted').addClass('item-red');
+                                $item.find('[data-category="expired"]').parent().css('color', '#ff0511')
+                            }
+
+                            var __flagStatus = 'icon-star-empty icon-star blue red';
+                            if (__localDateTime > __appointment) {
+                                $item.find('.flag span[data-flag="status"] i').removeClass(__flagStatus).addClass('icon-star red');
+                                var __bfStatusOverdue = bfStatus.overdue;
+                                $item.find('.flag span[data-flag="status"] i').attr('title', __bfStatusOverdue);
+                                $item.find('[data-category="rangeTo"]').css('color', '#ff0511');
+                            }
+                            if (((__data.request || {}).status || '') == 'UPDATE') {
+                                $item.find('.flag span[data-flag="status"] i').removeClass(__flagStatus).addClass('icon-star blue');
+                                var __bfStatusUpdate = bfStatus.update;
+                                $item.find('.flag span[data-flag="status"] i').attr('title', __bfStatusUpdate);
+                            }
+
+                            if (__data.urgent) {
+                                $item.find('.flag span[data-flag="urgent"]').css('display', '');
+                            } else {
+                                $item.find('.flag span[data-flag="urgent"]').css('display', 'none');
+                            }
+
+                            $item.find('.date-info .date.timeago').attr('title', __createTaskString);
+                            $item.find('.date-info .date.timeago').text(__createTaskTimeago);
+                            var __hSenderName = __history.senderName;
+                            $item.find('.sender-info .sender').text(__hSenderName);
+                            var __rSubject = __request.subject;
+                            $item.find('.subject-info .subject').text(__rSubject);
+                            $item.find('[data-category="rangeFrom"]').text(__requestTimeString);
+                            $item.find('[data-category="rangeTo"]').text(__appointmentString);
+                            $item.find('[data-category="expired"]').text(__expiredTaskString);
+
+                            var __rSerial = (__request.requestData || {}).serialNo || "";
+                            if (!iNet.isEmpty(__rSerial)){
+                                $item.find('[data-category="serial"]').text(__rSerial);
+                                $item.find('[data-category="serial-info"]').show();
+                            }
+
+                            var __rReceiptNo = __request.receiptNo || "";
+                            if (!iNet.isEmpty(__rReceiptNo)){
+                                $item.find('[data-category="receipt"]').text(__rReceiptNo);
+                                $item.find('[data-category="receipt-info"]').show();
+                            }
+
+                            var __workers = __history.workers || [];
+                            var __worker = (__workers.length > 0) ? (__workers[__workers.length - 1] || {}) : {};
+                            $.each(__workers, function(i, worker){
+                                $item.find('.attachment-info .attachment').show();
+                                $item.find('.attachment-info .attachment i').css('color', 'blue');
+                                if (worker.senderCode == __usercode){
+                                    $item.find('.attachment-info .attachment i').css('color', 'black');
+                                    var __note = worker.note;
+                                    $item.find('.attachment-info .attachment i').attr('title', __note);
+                                    return false;
+                                }
+                            });
+
+                            if (!iNet.isEmpty(__worker) && !iNet.isEmpty(__worker.sender) && !iNet.isEmpty(__worker.note)){
+                                var __pushpin = __worker.sender + ' [' + __worker.note + ']';
+                                $item.find('[data-category="pushpin"]').text(__pushpin);
+                                $item.find('[data-category="pushpin"]').parent().parent().show();
+                            } else {
+                                $item.find('[data-category="pushpin"]').parent().parent().hide();
+                            }
+
+
+                            var __comments = (__data.request || {}).comments || [];
+                            var __comment = (__comments.length > 0) ? (__comments[__comments.length-1] || {}) : {};
+
+                            var __userProfile = ((__data.request || {}).requestData || {}).userProfile || {};
+
+                            if (iNet.isEmpty(__userProfile)){
+                                $item.find('[data-category="userprofile"]').hide();
+                                /*$.postJSON(iNet.getUrl('onegate/userprofile/load'), {"package": __additional}, function (result) {
+                                    //iNet.ui.task.TTaskUtil.setUserProfile(__additional, result || {});
+                                });*/
+                            } else {
+                                $item.find('[data-category="userprofile"]').show();
+                                var __upFullname = __userProfile.fullname;
+                                $item.find('[data-category="fullname"]').text(__upFullname);
+                                var __upBirthday = __userProfile.birthday;
+                                $item.find('[data-category="birthday"]').text(__upBirthday);
+                                var __upIdentity = __userProfile.identity;
+                                $item.find('[data-category="identity"]').text(__upIdentity);
+                                var __upEmail = __userProfile.email;
+                                $item.find('[data-category="email"]').text(__upEmail);
+                                var __upMobile = __userProfile.mobile;
+                                $item.find('[data-category="mobile"]').text(__upMobile);
+                            }
+
+                            var __additional = (__data.request || {}).additionalID || "";
+                            $.postJSON(iNet.getUrl('onegate/externaldata/reqload'), {"packageID": __additional}, function (result) {
+                                if (!iNet.isEmpty((result || {}).uuid || "")){
+                                    $item.find('[data-category="additionalrequest"]').css('display', '');
+
+                                    if (((result || {}).expiredTime || 0) != 0){
+                                        if (__localDateTime > (result || {}).expiredTime){
+                                            $item.find('[data-expiredTime-info]').css('color', '#ff0400');
+                                        }
+
+                                        var __expiredTimeString = new Date((result || {}).expiredTime).format('d/m/Y');
+                                        $item.find('[data-expiredTime-info]').css('display', '');
+                                        $item.find('[data-expiredTime]').text(__expiredTimeString);
+                                    } else {
+                                        $item.find('[data-expiredTime-info]').css('display', 'none');
+                                    }
+                                }
+                            });
+
+                            $.postJSON(iNet.getUrl('firmtask/additional/load'), {"packageID": __additional}, function (result) {
+                                if (!iNet.isEmpty((result || {}).uuid || "")){
+                                    __requestTimeString = new Date((result.requestData || {}).ticketTimeCreated || result.requestTime).format('H:i d/m/Y');
+                                    $item.find('[data-category="rangeFrom"]').text(__requestTimeString);
+                                }
+                            });
+                        }
+                    }
+                });
+            </script>
+        </div>
+        <div id="task-list-basic-search" class="hide">
+            <span style="width: 10%; display: none;">
+                <label style="margin-left: 2px;margin-top: 5px;">
+                    <input type="checkbox" id="task-check-all" class="ace">
+                    <span class="lbl"></span>
+                </label>
+            </span>
+            <span style="width: 100%; padding: 0 10px 0 0;">
+                <div class="row-fluid">
+                    <div class="input-icon input-icon-right span12">
+                        <input id="task-list-basic-search-txt-keyword" placeholder="$text.getText('briefcase.keyword')" type="text" data-param="_requestData_procedureName" class="span12">
+                        <i id="task-list-basic-search-expand-btn" class="icon-caret-down" style="right: 25px; cursor: pointer;"></i>
+                        <i id="task-list-basic-search-search-btn" class="icon-search" title="Search" style="right: 4px; cursor: pointer"></i>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div id="task-list-advance-search" class="hide">
+            <div class="row-fluid hide">
+                <span class="span8"><label class="ilabel control-label">$text.getText('itask.task.warnHour')</label></span>
+                <span class="span4">
+                    <input id="task-list-advance-search-txt-warnHour" type="number" min="0" value="0" class="span12" />
+                </span>
+            </div>
+            <div class="row-fluid">
+                <span class="span4"><label class="ilabel control-label">$text.getText('itask.task.type')</label></span>
+                <span class="span8">
+                    <input id="task-list-advance-search-txt-type" class="span12" />
+                </span>
+            </div>
+            <div class="row-fluid" style="text-align: center;">
+                <button class="btn btn-primary" id="task-list-advance-search-search-btn">
+                    <i class="icon-search"></i> $text.getText("app.button.search")
+                </button>
+                <button class="btn btn-danger" id="task-list-advance-search-close-btn">
+                    <i class="icon-remove"></i> $text.getText("app.button.close")
+                </button>
+            </div>
+        </div>
+        <div id="task-list-pull-left" class="hide">
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-th"></i>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="padding: 5px">
+                    <li><i class="icon-pushpin" style="color: #000000"></i> $text.getText('itask.task.mark.status')</li>
+                    <li><i class="icon-pushpin" style="color: #070eff"></i> $text.getText('itask.task.mark.statusOther')</li>
+                    <li role="separator" class="divider"></li>
+                    <li><i class="icon-stop" style="color: #0002ff"></i> $text.getText('itask.task.process.inprocess')</li>
+                    <li><i class="icon-stop" style="color: #ff0511"></i> $text.getText('itask.task.process.overdue')</li>
+                    <li role="separator" class="divider"></li>
+                    <li><i class="icon-star-empty"></i> $text.getText('itask.task.briefcase.inprocess')</li>
+                    <li><i class="icon-star" style="color: #ff0511"></i> $text.getText('itask.task.briefcase.overdue')</li>
+                    <li><i class="icon-star" style="color: #0600FF"></i> $text.getText('itask.task.briefcase.update')</li>
+                </ul>
+            </div>
+        </div>
+        <div id="task-list"></div>
+    </div>
+    <iframe id="task-iframe" class="item-view" style="border: 0;"></iframe>
+</div>

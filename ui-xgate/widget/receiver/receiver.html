@@ -1,0 +1,384 @@
+#script("/js/xgate/inet/lib/itask-ui-t-receiver-service.min.js")
+
+
+<div id="receiver-div" class="hide">
+    <div>
+        <div id="receiver-list-item-ui" style="display: none;">
+            <div data-id="{0}" data-base64="{1}" class="list-view-item" data-status>
+                <div class="status">&nbsp;</div>
+                <div class="line-header"></div>
+                <div class="wrapper">
+                    <div class="flag">
+                        <span data-flag="status">
+                            <i class="icon-star-empty"></i>
+                        </span>
+                        <span data-flag="isPostOffice">
+                            <i class="fa fa-bank blue" style="display: none;" isPostOffice="true" title="$text.getText('ireceiver.task.registerReceiverResult') $text.getText('ireceiver.task.receiverInPostOffice')"></i>
+                            <i class="fa fa-home blue" style="display: none;" isPostOffice="false" title="$text.getText('ireceiver.task.registerReceiverResult') $text.getText('ireceiver.task.receiverInOrgan')"></i>
+                        </span>
+                    </div>
+                    <div class="date-info">
+                        <span class="date timeago" title="" data-date></span>
+                    </div>
+                    <div class="check">
+                        <label style="display: none">
+                            <input type="checkbox" class="ace" value="">
+                            <span class="lbl"></span>
+                        </label>
+                    </div>
+                    <div class="sender-info">
+                    <span class="threadsCount-info">
+                        <span class="threadsCount"></span>
+                        <i class="icon-spinner animated"></i>
+                    </span>
+                        <span class="reply"><i class="icon-reply" title=""></i></span>
+                        <span class="forward"><i class="icon-share-alt" title=""></i></span>
+                        <span class="sender" data-sender></span>
+                    </div>
+                    <div class="attachment-info hide">
+                        <span class="attachment"><i class="icon-paper-clip" title="" style="color: transparent;"></i></span>
+                    </div>
+                    <div class="comment-info hide">
+                        <span class="comment"><i class="icon-comments-alt" title=""></i></span>
+                    </div>
+                    <div class="subject-info">
+                        <span class="subject" style="padding-left: 14px; display: flex;">
+                            <span data-subject></span>
+                        </span>
+                    </div>
+                    <div class="more-info">
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-range-info>
+                            <i class="icon-random"></i> <span data-range></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; display: none;" data-category="expired-info">
+                            <span style="color: #0002ff;" data-category="expired-color"><i class="icon-calendar"></i> $text.getText('briefcase.process.expiredDate'): <span data-category="expired"></span></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-serial-info>
+                            <i class="icon-info-sign"></i> $text.getText('ireceiver.task.serial'): <span data-serial></span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-userprofile-info>
+                            <span>
+                                <i class="icon-user"></i> <span data-userprofile-fullname></span> - <span data-userprofile-birthday></span>
+                                (<span data-userprofile-identity></span>)
+                            </span>
+                            <span style="padding-left: 14px; display: flex;">
+                                <span>
+                                    <i class="icon-envelope"></i> <span data-userprofile-email></span> - <i class="icon-phone"></i> <span data-userprofile-mobile></span>
+                                </span>
+                            </span>
+                            <span style="padding-left: 14px; display: flex;">
+                                <span>
+                                    <i class="icon-map-marker"></i> <span data-userprofile-address1></span>
+                                </span>
+                            </span>
+                        </div>
+                        <div style="padding-left: 14px; width: 100%; font-weight: normal; display: none;" data-sourceAddress-info>
+                            <span>
+                                <i class="icon-building"></i> <span data-sourceAddress-name></span>                                
+                            </span>
+                            <span style="padding-left: 14px; display: flex;">
+                                <span>
+                                    <i class="icon-envelope"></i> <span data-sourceAddress-email></span> - <i class="icon-phone"></i> <span data-sourceAddress-mobile></span>
+                                </span>
+                            </span>
+                            <span style="padding-left: 14px; display: flex;">
+                                <span>
+                                    <i class="icon-map-marker"></i> <span data-sourceAddress-address></span>
+                                </span>
+                            </span>
+                        </div>
+                        <div data-category="additionalrequest" style="padding-left: 14px; width: 100%;display:none;">
+                            <span style="color: #f89406;"><i class="icon-warning-sign"></i> $text.getText('ireceiver.task.additionalrequest')</span>
+                        </div>
+                        <div data-refuserequest-info style="padding-left: 14px; width: 100%;display:none;">
+                            <span style="color: #f89406;"><i class="icon-warning-sign"></i> $text.getText('ireceiver.task.refuserequest'): <span data-refuserequest></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script data-id="{0}" type="application/javascript">
+                $(function(){
+                    var __dataBase64 = "{1}";
+                    __dataBase64 = __dataBase64 + "" + "";
+
+                    if (__dataBase64.length > 3) {
+                        var __data = iNet.Base64.decodeObject(__dataBase64) || {};
+                        var __dataId = (__data || {}).uuid || '';
+                        var $item = $('[data-id="'+__dataId+'"]');
+                        var __localDateTime = new Date().getTime();
+
+                        var __fullName = (__data.author || {}).fullName || "";
+                        $item.find('[data-sender]').text(__fullName);
+
+                        var __subject = __data.subject || "";
+                        $item.find('[data-subject]').text(__subject);
+
+                        var __requestTimeTimeago = $.timeago(__data.requestTime);
+                        var __requestTimeString = new Date(__data.requestTime).format('H:i d/m/Y');
+                        $item.find('[data-date]').text(__requestTimeTimeago);
+                        $item.find('[data-date]').attr("title", __requestTimeString);
+
+                        var __requestTimeRange = new Date((__data.requestData || {}).ticketTimeCreated || __data.requestTime).format('H:i d/m/Y');
+                        $item.find('[data-range]').text(__requestTimeRange);
+                        $item.find('[data-range-info]').css('display', '');
+
+                        var __expiredTask = __data.appointment;
+                        $item.removeClass('submitted').addClass('item-blue');
+                        if (__expiredTask > 0) {
+                            var __expiredTaskString = new Date(__expiredTask).format('H:i d/m/Y');
+                            $item.find('[data-category="expired-info"]').css('display', '');
+                            $item.find('[data-category="expired"]').text(__expiredTaskString);
+
+                            if (__data.status != "REFUSE"){
+                                if (__localDateTime > __expiredTask) {
+                                    $item.removeClass('submitted').addClass('item-red');
+                                    $item.find('[data-category="expired-color"]').css('color', '#ff0511');
+                                }
+                            }
+                        }
+
+                        var __organName = (__data.sourceAddress || {}).organName || "";
+                        var __email = (__data.sourceAddress || {}).email || "";
+                        var __telephone = (__data.sourceAddress || {}).telephone || "";
+                        var __organAdd = (__data.sourceAddress || {}).organAdd || "";
+
+                        $item.find('[data-sourceAddress-name]').text(__organName);
+                        $item.find('[data-sourceAddress-email]').text(__email);
+                        $item.find('[data-sourceAddress-mobile]').text(__telephone);
+                        $item.find('[data-sourceAddress-address]').text(__organAdd);
+                        $item.find('[data-sourceAddress-info]').css('display', '');
+
+                        var __requestData = __data.requestData || {};
+
+                        var __serialNo = __requestData.serialNo || "";
+                        if(!iNet.isEmpty(__serialNo)) {
+                            $item.find('[data-serial]').text(__serialNo);
+                            $item.find('[data-serial-info]').css('display', '');
+                        }
+
+                        var __isPostOffice = __requestData.isPostOffice || false;
+                        if (__isPostOffice){
+                            $item.find('.flag span[data-flag="isPostOffice"] [isPostOffice="true"]').css('display', '');
+                            $item.find('.flag span[data-flag="isPostOffice"] [isPostOffice="false"]').css('display', 'none');
+                        } else {
+                            $item.find('.flag span[data-flag="isPostOffice"] [isPostOffice="true"]').css('display', 'none');
+                            $item.find('.flag span[data-flag="isPostOffice"] [isPostOffice="false"]').css('display', '');
+                        }
+
+                        var __note = __data.note || "";
+                        if(!iNet.isEmpty(__note)) {
+                            $item.find('[data-refuserequest]').text(__note);
+                            $item.find('[data-refuserequest-info]').css('display', '');
+                        }
+
+                        var __profileID =  __requestData.profileID || "";
+                        if(!iNet.isEmpty(__profileID)) {
+                            $.postJSON(iNet.getUrl('onegate/userprofile/load'), {"profileID": __profileID}, function (result) {
+                                if (!iNet.isEmpty((result || {}).uuid || "")) {
+                                    var __fullname = (result || {}).fullname || "";
+                                    $item.find('[data-userprofile-fullname]').text(__fullname);
+                                    var __identity = (result || {}).identity || "";
+                                    $item.find('[data-userprofile-identity]').text(__identity);
+                                    var __birthday = (result || {}).birthday || "";
+                                    $item.find('[data-userprofile-birthday]').text(__birthday);
+                                    var __mobile = (result || {}).mobile || "";
+                                    $item.find('[data-userprofile-mobile]').text(__mobile);
+                                    var __email = (result || {}).email || "";
+                                    $item.find('[data-userprofile-email]').text(__email);
+                                    var __address1 = (result || {}).address1 || "";
+                                    $item.find('[data-userprofile-address1]').text(__address1);
+                                    $item.find('[data-userprofile-info]').css('display', '');
+                                }
+                            });
+                        }
+
+                        $.postJSON(iNet.getUrl('onegate/externaldata/reqload'), {"packageID": __dataId}, function (result) {
+                            if (!iNet.isEmpty((result || {}).uuid || "")){
+                                $item.find('[data-category="additionalrequest"]').show();
+                            }
+                        });
+                    }
+                });
+            </script>
+        </div>
+        <div id="receiver-list-toolbar" class="hide">
+            <button class="btn btn-default hide" id="receiver-list-excel-btn">
+                <i class="fa fa-file-excel-o"></i>
+            </button>
+        </div>
+        <div id="receiver-list-basic-search" class="hide">
+            <span style="width: 10%; display: none;">
+                <label style="margin-left: 2px;margin-top: 5px;">
+                    <input type="checkbox" id="task-check-all" class="ace">
+                    <span class="lbl"></span>
+                </label>
+            </span>
+            <span style="width: 100%; padding: 0 10px 0 0;">
+                <div class="row-fluid">
+                    <div class="input-icon input-icon-right span12">
+                        <input id="receiver-list-basic-search-txt-keyword" type="text" placeholder="$text.getText('briefcase.keyword')" class="span12">
+                        <i id="receiver-list-basic-search-expand-btn" class="icon-caret-down" style="right: 25px; cursor: pointer;"></i>
+                        <i id="receiver-list-basic-search-search-btn" class="icon-search" title="Search" style="right: 4px; cursor: pointer"></i>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div id="receiver-list-advance-search" class="hide">
+            <div class="row-fluid">
+                <span class="span10"><label class="ilabel control-label">$text.getText("ireceiver.task.warnHour")</label></span>
+                <span class="span2">
+                    <input id="receiver-list-advance-search-warnHour-txt" type="number" value="0" class="span12" min="0" />
+                </span>
+            </div>
+            <div class="row-fluid" style="text-align: center;">
+                <button class="btn btn-primary" id="receiver-list-advance-search-search-btn">
+                    <i class="icon-search"></i> $text.getText("app.button.search")
+                </button>
+                <button class="btn btn-danger" id="receiver-list-advance-search-close-btn">
+                    <i class="icon-remove"></i> $text.getText("app.button.close")
+                </button>
+            </div>
+        </div>
+        <div id="receiver-list-pull-left" class="hide">
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-th"></i>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="padding: 5px">
+                    <li><i class="icon-stop" style="color: #0002ff"></i> $text.getText('ireceiver.task.process.inprocess')</li>
+                    <li><i class="icon-stop" style="color: #ff0511"></i> $text.getText('ireceiver.task.process.overdue')</li>
+                    <!--<li role="separator" class="divider"></li>-->
+                </ul>
+            </div>
+        </div>
+        <div id="receiver-list"></div>
+    </div>
+    <div>
+        <div id="receiver-view-toolbar" class="hide">
+            <div class="btn-group" id="receiver-view-group-btn">
+                <span>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-reorder"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="receiver-view-transfer-btn"><i class="icon-mail-forward"></i> $text.getText("ireceiver.task.transfer")</a></li>
+                        <li><a href="#" id="receiver-view-additional-btn"><i class="icon-plus"></i> $text.getText("ireceiver.task.additional")</a></li>
+                    </ul>
+                </span>
+            </div>
+            <button id="receiver-view-create-btn" class="btn btn-primary">
+                <i class="icon-plus"></i> $text.getText("ireceiver.task.create")
+            </button>
+            <button id="receiver-view-cancel-btn" class="btn btn-info" title="$text.getText('ireceiver.task.titleDialog')" description="$text.getText('ireceiver.task.reasonDialog')">
+                <i class="icon-trash"></i> $text.getText("ireceiver.task.cancel")
+            </button>
+            <button id="receiver-view-info-btn" class="btn btn-info">
+                <i class="icon-info-sign"></i> $text.getText("ireceiver.task.refuse")
+            </button>
+        </div>
+        <div id="receiver-view-subject-details" class="hide">
+        </div>
+        <div id="receiver-view-sender-details" class="hide">
+        </div>
+        <div id="receiver-view"></div>
+    </div>
+    <div>
+        <div id="receiver-transfer-toolbar" class="hide">
+            <div class="btn-group">
+                <span>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-reorder"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="receiver-transfer-briefcase-btn"><i class="icon-briefcase"></i> $text.getText("ireceiver.briefcase.request.view")</a></li>
+                        <li><a href="#" id="receiver-transfer-additional-btn"><i class="icon-plus"></i> $text.getText("ireceiver.task.additional")</a></li>
+                    </ul>
+                </span>
+            </div>
+            <button id="receiver-transfer-send-btn" class="btn btn-primary hide" title="$text.getText('ireceiver.task.send')">
+                <i class="icon-location-arrow"></i> $text.getText('ireceiver.task.send')
+            </button>
+        </div>
+        <div id="receiver-transfer-subject-details" class="hide">
+        </div>
+        <div id="receiver-transfer-sender-details" class="hide">
+        </div>
+        <div id="receiver-transfer-data-content">
+            <div class="row-fluid">
+                <label class="control-label span2">$text.getText("ireceiver.task.transferInfo")</label>
+                <span class="span10"><textarea id="receiver-transfer-agency-note-txt" class="span12" rows="3"></textarea></span>
+            </div>
+            <div class="row-fluid">
+                <label class="control-label span2"></label>
+                <span class="span10">
+                    <label>
+                        <input id="receiver-transfer-agency-remove-chk" type="checkbox" class="ace" checked="true">
+                        <span class="lbl"> $text.getText("ireceiver.task.transferRemove")</span>
+                    </label>
+                </span>
+            </div>
+            <div class="row-fluid">
+                <div id="receiver-transfer-agency-basic-search" class="hide"></div>
+                <div id="receiver-transfer-agency-grid"></div>
+            </div>
+        </div>
+        <div id="receiver-transfer"></div>
+    </div>
+    <div>
+        <div id="receiver-additional-toolbar" class="hide">
+            <div class="btn-group">
+                <span>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-reorder"></i> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="receiver-additional-briefcase-btn"><i class="icon-briefcase"></i> $text.getText("ireceiver.briefcase.request.view")</a></li>
+                        <li><a href="#" id="receiver-additional-transfer-btn"><i class="icon-mail-forward"></i> $text.getText("ireceiver.task.transfer")</a></li>
+                    </ul>
+                </span>
+            </div>
+            <button id="receiver-additional-add-btn" class="btn btn-primary" title="$text.getText('ireceiver.task.addAdditional')">
+                <i class="icon-plus"></i> $text.getText('ireceiver.task.addAdditional')
+            </button>
+            <button id="receiver-additional-send-btn" class="btn btn-primary hide" title="$text.getText('ireceiver.task.sendAdditional')">
+                <i class="icon-location-arrow"></i> $text.getText('ireceiver.task.sendAdditional')
+            </button>
+        </div>
+        <div id="receiver-additional-subject-details" class="hide">
+        </div>
+        <div id="receiver-additional-sender-details" class="hide">
+        </div>
+        <div id="receiver-additional-data-content">
+            <div class="row-fluid">
+                <label class="control-label span2">$text.getText("ireceiver.task.additionalInfo")</label>
+                <span class="span10"><textarea id="receiver-additional-brief-info-txt" class="span12" rows="3"></textarea></span>
+            </div>
+            <div class="row-fluid">
+                <div id="receiver-additional-basic-search" class="hide"></div>
+                <div id="receiver-additional-grid"></div>
+            </div>
+        </div>
+        <div id="receiver-additional"></div>
+    </div>
+    <div>
+        <div id="receiver-refuse-toolbar" class="hide">
+            <button id="receiver-refuse-briefcase-btn" class="btn btn-primary" title="">
+                <i class="icon-briefcase"></i> $text.getText('ireceiver.task.request')
+            </button>
+        </div>
+        <div id="receiver-refuse-subject-details" class="hide">
+        </div>
+        <div id="receiver-refuse-sender-details" class="hide">
+        </div>
+        <div id="receiver-refuse-data-content">
+            <div class="row-fluid">
+                <div id="receiver-refuse-note" class="alert alert-info bold span12"></div>
+            </div>
+            <div class="row-fluid">
+                <div id="receiver-refuse-file-list"></div>
+            </div>
+        </div>
+        <div id="receiver-refuse"></div>
+    </div>
+</div>

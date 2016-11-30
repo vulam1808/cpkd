@@ -1,0 +1,157 @@
+#theme("/xgate/css/listview")
+
+#theme("/common/css/bootstrap/bootstrap-datepicker")
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/bootstrap/plugins/bootstrap-tab.min.js")
+#script("/js/common/bootstrap/plugins/bootstrap-datepicker.min.js")
+#script("/js/common/inet/lib/select.min.js")
+#script("/js/common/inet/lib/grid-2.0.min.js")
+
+#script("/js/common/jquery/plugins/jquery.timeago.min.js")
+#script("/js/common/jquery/plugins/jquery.form.min.js")
+#script("/js/common/jquery/plugins/jquery.maskedinput.min.js")
+#script("/js/common/jquery/plugins/jquery.autoNumeric.min.js")
+
+#script("/js/xgate/inet/lib/idesign-ui-t-builder-service.min.js")
+#script("/js/xgate/math/math.js")
+
+#script("/js/xgate/inet/lib/itemview.min.js")
+
+<div id="item-view-interface" style="display: none;">
+    <div data-id="item-view-control" class="item-view">
+        <div class="item-view-header">
+            <div class="toolbar">
+                <span>
+                    <button class="btn btn-warning hide" data-id="item-view-menu">
+                        <i class="icon-list"></i>
+                    </button>
+                </span>
+                <span data-id="item-view-header-toolbar"></span>
+                <span class="utility">
+                    <button data-id="item-view-previous" class="btn hide">
+                        <i class="ace-icon icon-arrow-left"></i>
+                    </button>
+                    <button data-id="item-view-next" class="btn hide">
+                        <i class="ace-icon icon-arrow-right"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div data-id="item-view-content" class="item-view-content">
+            <div data-id="item-view-no-item" class="no-data">
+                <div><i class="icon-tasks" style="font-size: 100px;"></i></div>
+                <div>$text.getText("xgate.control.itemview.noItem")</div>
+            </div>
+            <div data-id="item-view-data-item" class="data hide">
+                <div data-id="item-view-header-info" class="header-info hide">
+                    <div class="subject-info">
+                        <span data-id="item-view-subject-attachment-icon" class="attachment hide"><a href="javascript:;"><i class="icon-paper-clip" title=""></i></a></span>
+                        <span data-id="item-view-subject-comment-icon" class="comment hide"><a href="javascript:;"><i class="icon-comments-alt" title=""></i></a></span>
+                        <span data-id="item-view-subject-details-icon" class="icon-caret-right hide"></span>
+                        <span data-id="item-view-subject-title" class="subject" title=""></span>
+                        <div data-id="item-view-subject-details" class="details hide">
+                        </div>
+                    </div>
+                    <div class="sender-info">
+                        <div class="short">
+                            <span data-id="item-view-sender-details-icon" class="icon-caret-right"></span>
+                            <span class="sender" data-id="item-view-sender-name" title=""></span>
+                            <span class="send-date" data-id="item-view-sender-date" title=""></span>
+                        </div>
+                        <div data-id="item-view-sender-details" class="details hide">
+                        </div>
+                    </div>
+                </div>
+                <div data-id="item-view-body-info" class="body-info hide">
+                    <div data-id="item-view-data" class="form-content hide">
+                        <div data-id="item-view-data-content-hidden" class="hide"></div>
+                        <div data-id="item-view-data-content"></div>
+                    </div>
+                    <form data-id="item-view-form" method="post" enctype="multipart/form-data" class="form-content hide">
+                        <div data-id="item-view-form-content-hidden" class="hide"></div>
+                        <div data-id="item-view-form-content"></div>
+                    </form>
+                    <form data-id="item-view-submit" method="post" enctype="multipart/form-data" class="form-content hide">
+                        <div data-id="item-view-submit-content-hidden" class="hide"></div>
+                        <div data-id="item-view-submit-content"></div>
+                    </form>
+                    <div data-id="item-view-attachment" class="form-content hide">
+                        <iframe data-id="item-view-attachment-iframe"></iframe>
+                    </div>
+                </div>
+                <script type="application/javascript">
+                    $(function(){
+                        externalClick = function(btn){
+                            var __btnAction =  $(btn).attr('data-action') || "";
+                            var __btnCSS =  $(btn).attr('data-css') || "";
+
+                            if (__btnAction == "collapse") {
+                                $(btn).parent().parent().addClass(__btnCSS);
+                                $(btn).hide();
+                                $(btn).next().show();
+                            }
+                            if (__btnAction == "expand") {
+                                $(btn).parent().parent().removeClass(__btnCSS);
+                                $(btn).hide();
+                                $(btn).siblings().show();
+                            }
+                        };
+                    });
+                </script>
+                <div data-id="item-view-attachment-info" class="attachment-info hide">
+                    <div data-id="item-view-attach-brief-view" class="hide">
+                        <p>
+                            <span><i class="icon-paper-clip"></i> <span data-id="item-view-attach-brief-number">1</span> $text.getText("xgate.control.itemview.attachment")</span>
+                            <span><a data-id="item-view-attach-brief-download-all" href="javascript:;">$text.getText("xgate.control.itemview.downloadAll")</a></span>
+                            <span class="hide"><a data-id="item-view-attach-brief-view-image" href="javascript:;">$text.getText("xgate.control.itemview.viewAll")</a></span>
+                        </p>
+                        <div class="attachment-list">
+                            <ul data-id="item-view-attach-brief-list" style="display: inline-flex; list-style-type: none;"></ul>
+                        </div>
+                    </div>
+                    <div data-id="item-view-attach-additional-view" class="hide">
+                        <p>
+                            <span><i class="icon-plus"></i> <span data-id="item-view-attach-additional-number">1</span> $text.getText("xgate.control.itemview.attachment.additional") </span>
+                            <span class="hide"><a data-id="item-view-attach-additional-download-all" href="javascript:;">$text.getText("xgate.control.itemview.downloadAll")</a></span>
+                            <span class="hide"><a data-id="item-view-attach-additional-view-image" href="javascript:;">$text.getText("xgate.control.itemview.viewAll")</a></span>
+                        </p>
+                        <div class="attachment-list">
+                            <ul data-id="item-view-attach-additional-list" style="list-style-type: none;"></ul>
+                        </div>
+                    </div>
+                    <div id="item-view-attach-idesk-view" class="hide">
+                        <p>
+                            <span><i class="icon-desktop"></i> <span id="item-view-attach-idesk-number">1</span> $text.getText("xgate.control.itemview.attachment.idesk") </span>
+                            <span class="hide"><a id="item-view-attach-idesk-download-all" href="javascript:;">$text.getText("xgate.control.itemview.downloadAll")</a></span>
+                            <span class="hide"><a id="item-view-attach-idesk-view-image" href="javascript:;">$text.getText("xgate.control.itemview.viewAll")</a></span>
+                        </p>
+                        <div class="attachment-list">
+                            <ul id="item-view-attach-idesk-list" style="list-style-type: none;"></ul>
+                        </div>
+                    </div>
+                    <div data-id="item-view-attach-agency-view" class="hide">
+                        <p>
+                            <span><i class="icon-exchange"></i> <span data-id="item-view-attach-agency-number">1</span> $text.getText("xgate.control.itemview.attachment.agency") </span>
+                            <span class="hide"><a id="item-view-attach-agency-download-all" href="javascript:;">$text.getText("xgate.control.itemview.downloadAll")</a></span>
+                            <span class="hide"><a id="item-view-attach-agency-view-image" href="javascript:;">$text.getText("xgate.control.itemview.viewAll")</a></span>
+                        </p>
+                        <div class="attachment-list">
+                            <ul data-id="item-view-attach-agency-list" style="list-style-type: none;"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div data-id="item-view-comment-info" class="comment-info hide">
+                    <p>
+                        <span><i class="icon-comments-alt"></i> <span data-id="item-view-comment-number">1</span> $text.getText("xgate.control.itemview.comment") </span>
+                        <span><a data-id="item-view-comment-view-all" href="javascript:;">$text.getText("xgate.control.itemview.viewAll")</a></span>
+                        <span class="hide"><a data-id="item-view-comment-view-image" href="javascript:;"></a></span>
+                    </p>
+                    <div class="comment-list">
+                        <div data-id="item-view-comment-list" class="hide"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

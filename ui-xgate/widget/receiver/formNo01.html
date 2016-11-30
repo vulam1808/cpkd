@@ -1,0 +1,251 @@
+<style type="text/css">
+    @media screen, print {
+        body {
+            line-height: 120%;
+        }
+
+        .receipt-header-left {
+            text-align: center;
+            vertical-align: top;
+            white-space: nowrap;
+            min-height: 20px;
+        }
+
+        .receipt-header-left-parent {
+            text-align: center;
+            vertical-align: top;
+            font-size: 12pt;
+            font-weight: bold;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .receipt-header-left-child {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .receipt-header-left-number {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right {
+            text-align: center;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-top {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-center {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .receipt-header-right-date {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            white-space: nowrap;
+        }
+
+        .receipt-title {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-title-subject {
+            text-align: center;
+            vertical-align: top;
+            font-size: 15pt;
+            font-weight: bold;
+        }
+
+        .receipt-title-code {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13pt;
+            font-weight: bold;
+        }
+
+        .receipt-title-note {
+            text-align: center;
+            vertical-align: top;
+            font-size: 13px;
+        }
+
+        .receipt-field-label {
+            font-weight: bold;
+        }
+
+        .receipt-footer-left {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-footer-left-text {
+            text-align: center;
+            vertical-align: top;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .receipt-footer-right {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .receipt-footer-right-text {
+            text-align: center;
+            vertical-align: top;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .receipt-separate {
+            border-left-style: dotted;
+            border-left-width: 1px;
+        }
+
+        .reciept-line {
+            line-height: 165%
+        }
+    }
+</style>
+
+#variable('packageID', '$targetID')
+
+#dataservice("onegateexternaldatareqload")
+#set($addData = $onegateexternaldatareqload)
+
+##dataservice("cloudwfldefproclist", {"depend": "onegateexternaldatareqload"})
+##variable("zone", "onegateexternaldatareqload", "shareDomain")
+
+#dataservice("firmtaskprofile")
+#set($firmData = $firmtaskprofile)
+
+<table width="725px" border="0" cellspacing="0" cellpadding="0" class="receipt-border-style">
+    <tbody>
+    <tr>
+        <td width="100%" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="receipt-header-left">
+                        <div class="receipt-header-left-parent">$firmData.name</div>
+                        <div class="receipt-header-left-child">$text.getText('ireceiver.receipt.bophantnvatraketqua')</div>
+                        <div>
+                            <hr style="width:120px;color: #000">
+                        </div>
+                        <div class="receipt-header-left-number">$text.getText('ireceiver.receipt.receiptNo'): #if(!!$addData)$addData.serialNo#end/HTHS</div>
+                    </td>
+                    <td class="receipt-header-right">
+                        <div class="receipt-header-right-top">$text.getText('ireceiver.receipt.CHXHCNVN')</div>
+                        <div class="receipt-header-right-center">$text.getText('ireceiver.receipt.DLTDHP')</div>
+                        <div>
+                            <hr style="width:200px;color: #000">
+                        </div>
+                        <div class="receipt-header-right-date">$text.getText('ireceiver.receipt.tinhthanh'), $text.getText('ireceiver.receipt.ngay') $ctx.date($ctx.todayX(), "dd") $text.getText('ireceiver.receipt.thang') $ctx.date($ctx.todayX(), "MM") $text.getText('ireceiver.receipt.nam') $ctx.date($ctx.todayX(), "yyyy")</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="receipt-title"><br>
+                        <div class="receipt-title-subject">$text.getText('ireceiver.receipt.title3')</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table border="0" cellspacing="0" cellpadding="0" style="width: 100%">
+                            <tbody>
+                            <tr>
+                                <td width="100%" valign="top" align="left"><br>
+                                    <div class="reciept-line"><span>$text.getText('ireceiver.receipt.hosocua'): </span><span>#if(!!$addData && !!$addData.author)$addData.author.fullName#end</span></div>
+                                    <div class="reciept-line"><span>$text.getText('ireceiver.receipt.noidungyeucau'): </span></div>
+                                    <div class="reciept-line"><span>#if(!!$addData) $addData.subject #end</span></div>
+                                    <div class="reciept-line"><span>$text.getText('ireceiver.receipt.address1'): </span><span>......</span></div>
+                                    <div class="reciept-line">
+                                        <span>$text.getText('ireceiver.receipt.phone'):  </span><span>......</span>
+                                        <span>$text.getText('ireceiver.receipt.email'):  </span><span>......</span>
+                                    </div>
+                                    <div class="reciept-line"><span>$text.getText('ireceiver.receipt.noidungyeucauhoanthienhoso'): </span><span></span></div>
+                                    #if(!!$addData && !!$addData.files)
+                                        <span id="additional-files">
+                                        </span>
+                                        #xscript()
+                                            $(function() {
+                                                $('#additional-files').html('');
+                                                var files = '$addData.files';
+                                                files = files.replace(/=/gi, '":"').replace(/, /gi, '", "').replace(/}/gi, '"}').replace(/{/gi, '{"');
+                                                files = JSON.parse(files);
+                                                var i = 1;
+                                                for (var key in files){
+                                                    var __html = '<div class="reciept-line">+ '+i+'. <span> '+files[key]+'</span></div>';
+                                                    $('#additional-files').append(__html);
+                                                    i++;
+                                                }
+                                            });
+                                        #end
+                                    #end
+                                    <div class="reciept-line">
+                                        <span>$text.getText('ireceiver.receipt.ghichu3'): </span>
+                                        <span>$firmData.name.</span>
+                                        <span>$text.getText('ireceiver.receipt.phone'): </span>
+                                        <span>$firmData.phone</span>
+                                        <span>$text.getText('ireceiver.receipt.ghichu4')</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br></td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="55px" align="left">
+                        <div align="left"></div>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%" border="0" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td class="receipt-footer-right" width="50%">
+                                    <div class="receipt-footer-right-text"></div>
+                                </td>
+                                <td class="receipt-footer-right" width="50%">
+                                    <div class="receipt-footer-right-text">$text.getText('ireceiver.receipt.nguoiuongdan')<br>($text.getText('ireceiver.receipt.kyghiten')) <br></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" class="receipt-separateee">&nbsp;</td>
+        <td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td width="0%" valign="top">
+        </td>
+    </tr>
+    </tbody>
+</table>
+

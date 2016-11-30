@@ -1,0 +1,192 @@
+#script("/js/xgate/inet/lib/itask-ui-t-userprofile-service.min.js")
+
+<div id="userprofile-div" class="hide">
+    <div id="userprofile-view" class="item-view full">
+        <div class="item-view-header">
+            <div class="toolbar">
+                <button id="user-profile-back-btn" class="btn btn-primary">
+                    <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+                </button>                
+                <button id="user-profile-save-btn" class="btn btn-primary">
+                    <i class="icon-save"></i> $text.getText("app.button.save")
+                </button>
+                <span class="utility">
+                </span>
+            </div>
+        </div>
+        <div id="userprofile-view-content" class="item-view-content">
+            <div id="userprofile-item" class="data" style="padding-left: 5px; padding-right: 5px;">
+                <div>
+                    <div class="row-fluid" style="cursor: pointer;">
+                        <span class="span12 alert alert-info bold">
+                            <span id="userprofile-info" style="float: left;display: flex;">
+                                <span><i class="icon-plus"></i> $text.getText('ireceiver.task.userprofile.info'): </span>
+                                <span>
+                                    <label class="radio">
+                                        <input type="radio" name="profile-type" id="userprofile-citizen" class="ace">
+                                        <span class="lbl"> $text.getText('ireceiver.task.userprofile.citizen')</span>
+                                    </label>
+                                  </span>
+                                <span>
+                                    <label class="radio">
+                                        <input type="radio" name="profile-type" id="userprofile-organ" class="ace">
+                                        <span class="lbl"> $text.getText('ireceiver.task.userprofile.organ')</span>
+                                    </label>
+                                  </span>
+                              </span>
+                        </span>
+                    </div>
+                    <div class="row-fluid" id="userprofile-content">
+                        <div class="row-fluid">
+                            <div class="span8">
+                                <div class="row-fluid">
+                                    <label for="userprofile-fullname" class="span3 control-label">
+                                        <span data-profile="citizen" class="">$text.getText('ireceiver.task.fullname') <span class="required"></span></span>
+                                        <span data-profile="organ" class="hide">$text.getText('ireceiver.task.fullname.organ') <span class="required"></span></span>
+                                    </label>
+                                    <div class="span9">
+                                        <input id="userprofile-fullname" type="text" class="span12"/>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-birthday" class="span3 control-label">
+                                        <span data-profile="citizen" class="">$text.getText('ireceiver.task.birthday') <span class="required"></span></span>
+                                        <span data-profile="organ" class="hide">$text.getText('ireceiver.task.birthday.organ') <span class="required"></span></span>
+                                    </label>
+                                    <div class="span3">
+                                        <input id="userprofile-birthday" type="text" class="span12" data-date-format="dd/mm/yyyy" data-type="date" mask="99/99/9999" />
+                                    </div>
+                                    <label for="userprofile-identity" class="span3 control-label">
+                                        <span data-profile="citizen" class="">$text.getText('ireceiver.task.identity') <span class="required"></span></span>
+                                        <span data-profile="organ" class="hide">$text.getText('ireceiver.task.identity.organ') <span class="required"></span></span>
+                                    </label>
+                                    <div class="span3">
+                                        <input id="userprofile-identity" type="text" class="span12"/>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-idPlaceOfIssuse" class="span3 control-label">
+                                        <span data-profile="citizen" class="">$text.getText('ireceiver.task.idPlaceOfIssuse')</span>
+                                        <span data-profile="organ" class="hide">$text.getText('ireceiver.task.idPlaceOfIssuse.organ')</span>
+                                    </label>
+                                    <div class="input-icon input-icon-left span3">
+                                        <input type="text" class="span12" id="userprofile-idPlaceOfIssuse">
+                                        <i class="icon-map-marker"></i>
+                                    </div>
+                                    <label data-profile="citizen" for="userprofile-idDateOfIssue" class="span3 control-label">
+                                        $text.getText('ireceiver.task.idDateOfIssue')
+                                    </label>
+                                    <div data-profile="citizen" class="input-icon input-icon-right span3">
+                                        <input type="text" class="span12" id="userprofile-idDateOfIssue">
+                                        <i class="icon-calendar"></i>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-address1" class="span3 control-label">
+                                        <span data-profile="citizen" class="">$text.getText('ireceiver.task.address1') <span class="required"></span></span>
+                                        <span data-profile="organ" class="hide">$text.getText('ireceiver.task.address1.organ') <span class="required"></span></span>
+                                    </label>
+                                    <div class="input-icon input-icon-left span9">
+                                        <input type="text" class="span12" id="userprofile-address1" placeholder="$text.getText('ireceiver.task.address.placeholder')">
+                                        <i class="icon-map-marker"></i>
+                                    </div>
+                                </div>
+                                <div id="userprofile-more-info-02">
+                                    <div class="row-fluid">
+                                        <label for="userprofile-address2" class="span3 control-label">
+                                            <span data-profile="citizen" class="">$text.getText('ireceiver.task.address2')</span>
+                                            <span data-profile="organ" class="hide">$text.getText('ireceiver.task.address2.organ')</span>
+                                        </label>
+                                        <div class="input-icon input-icon-left span9">
+                                            <input type="text" class="span12" id="userprofile-address2" placeholder="$text.getText('ireceiver.task.address.placeholder')">
+                                            <i class="icon-map-marker"></i>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label for="userprofile-otherNumber" class="span3 control-label">
+                                            <span data-profile="citizen" class="">$text.getText('ireceiver.task.otherNumber')</span>
+                                            <span data-profile="organ" class="hide">$text.getText('ireceiver.task.otherNumber.organ')</span>
+                                        </label>
+                                        <div class="span3">
+                                            <input type="text" class="span12" id="userprofile-otherNumber">
+                                        </div>
+                                        <label for="userprofile-otherDateOfIssue" class="span3 control-label">$text.getText('ireceiver.task.otherDateOfIssue')</label>
+                                        <div class="input-icon input-icon-right span3">
+                                            <input type="text" class="span12" id="userprofile-otherDateOfIssue">
+                                            <i class="icon-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="userprofile-more-info-01" class="span4">
+                                <div class="row-fluid">
+                                    <label class="span5 control-label">
+                                        <span data-profile="citizen" class="">$text.getText('ireceiver.task.sex')</span>
+                                        <span data-profile="organ" class="hide">$text.getText('ireceiver.task.sex.organ')</span>
+                                    </label>
+                                    <div class="span7">
+                                        <div class="row-fluid">
+                                            <div class="radio span6">
+                                                <label>
+                                                    <input name="sex" id="userprofile-sex-male" type="radio" class="ace">
+                                                    <span class="lbl">
+                                                        <span data-profile="citizen" class=""> $text.getText('ireceiver.task.sex.male')</span>
+                                                        <span data-profile="organ" class="hide"> $text.getText('ireceiver.task.sex.male.organ')</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="radio span6">
+                                                <label>
+                                                    <input name="sex" id="userprofile-sex-female" type="radio" class="ace">
+                                                    <span class="lbl">
+                                                        <span data-profile="citizen" class=""> $text.getText('ireceiver.task.sex.female')</span>
+                                                        <span data-profile="organ" class="hide"> $text.getText('ireceiver.task.sex.female.organ')</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-region" class="span5 control-label">
+                                        <span data-profile="citizen" class="">$text.getText('ireceiver.task.region')</span>
+                                        <span data-profile="organ" class="hide">$text.getText('ireceiver.task.region.organ')</span>
+                                    </label>
+                                    <div class="span7">
+                                        <input type="text" class="span12" id="userprofile-region">
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-nationality" class="span5 control-label">$text.getText('ireceiver.task.nationality')</label>
+                                    <div class="span7">
+                                        <input type="text" class="span12" id="userprofile-nationality">
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-smobile" class="span5 control-label">$text.getText('ireceiver.task.smobile')</label>
+                                    <div class="input-icon input-icon-left span7">
+                                        <input type="text" class="span12" id="userprofile-smobile">
+                                        <i class="icon-mobile-phone"></i>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-email" class="span5 control-label">$text.getText('ireceiver.task.email')</label>
+                                    <div class="input-icon input-icon-left span7">
+                                        <input type="text" class="span12" id="userprofile-email">
+                                        <i class="icon-envelope-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <label for="userprofile-otherPlaceOfIssuse" class="span5 control-label">$text.getText('ireceiver.task.otherPlaceOfIssuse')</label>
+                                    <div class="span7">
+                                        <input type="text" class="span12" id="userprofile-otherPlaceOfIssuse">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

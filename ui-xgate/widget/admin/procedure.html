@@ -1,0 +1,66 @@
+#script("/js/common/inet/lib/grid.min.js")
+
+#theme("/xgate/css/xgate")
+
+#script("/js/xgate/inet/lib/xgate-ui-procedure-service.min.js")
+#script("/js/xgate/inet/lib/xgate-ui-procedure-dictadditional-service.min.js")
+
+<div id="procedure-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top" style="min-height: 30px">
+        <button id="procedure-add-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-plus"></i> $text.getText("app.button.add")
+        </button>
+        <button id="procedure-published-xgate-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-globe"></i> $text.getText("xgate.admin.published") $text.getText("xgate.admin.published.xgate")
+        </button>
+        <button id="procedure-published-expway-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-globe"></i> $text.getText("xgate.admin.published") $text.getText("xgate.admin.published.expway")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div id="procedure-basic-search" class="hide"></div>
+            <div id="procedure-grid"></div>
+        </div>
+    </div>
+</div>
+
+<div id="procedure-dictadditional-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top" style="min-height: 30px">
+        <button id="procedure-dictadditional-back-btn" class="btn btn-primary btn-small">
+            <i class="icon-arrow-left"></i> $text.getText("app.button.back")
+        </button>
+        <button id="procedure-dictadditional-add-btn" class="btn btn-primary btn-small">
+            <i class="icon-plus"></i> $text.getText("app.button.add")
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div id="procedure-dictadditional-basic-search" class="hide"></div>
+            <div id="procedure-dictadditional-grid"></div>
+        </div>
+    </div>
+</div>
+
+<div id="procedure-modal" class="modal hide fade in" aria-hidden="false" style="top: 30%">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="procedure-modal-tile">$text.getText("xgate.admin.procedure.title")</h4>
+    </div>
+    <div class="modal-body">
+        <div id="procedure-modal-body">
+            <span class="row-fluid">
+                <label class="control-label span2">$text.getText("xgate.admin.procedure.name")</label>
+                <span class="span10"><textarea id="procedure-modal-subject" class="span12" rows="3"></textarea></span>
+            </span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="procedure-modal-submit-btn" class="btn btn-primary btn-small">
+            <i class="icon-ok-sign"></i> $text.getText("app.button.submit")
+        </button>
+        <button id="procedure-modal-close-btn" type="button" class="btn btn-danger btn-small">
+            <i class="icon-remove-sign"></i> $text.getText("app.button.close")
+        </button>
+    </div>
+</div>

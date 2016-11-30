@@ -41,6 +41,8 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
     @Inject
     private EndBusinessBo endBusinessBo;
     @Inject
+    private ReHomeBusinessBo reHomeBusinessBo;
+    @Inject
     private PersonRepresentBo personRepresentBo;
     @Inject
     private DistrictBo districtBo;
@@ -153,7 +155,14 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
             mainObj.put("objBusiness", objHome);
             mainObj.put("statusType", statusType);
         }
-
+        else if(statusType.equals(EnumStatus.CAP_LAI.toString()))
+        {
+            ReHomeBusiness objHome = reHomeBusinessBo.load(ID);
+            //objHome = loadObjParent(objHome);
+            mainObj.put("idHomeBusiness", objHome.getHomeBusiness_ID());
+            mainObj.put("objBusiness", objHome);
+            mainObj.put("statusType", statusType);
+        }
         return mainObj;
     }
 
@@ -208,6 +217,19 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
                 i++;
                 EndBusiness objChange = endBusinessBo.loadByID(item.getParent_ID());
                 mainObj.put("EndBusiness" + i, objChange);
+            }
+        }
+        List<Details> lstRe = objDetail.getList_reHomeBusiness_ID();
+        if(lstRe != null) {
+            //Utility.sortList(lstEnd, "dateSubmit");
+            i = 0;
+            for (Object childNode : lstRe) {
+                JSONObject fromObject = JSONObject.fromObject(childNode);
+                Details item = (Details) JSONObject.toBean(fromObject,
+                        Details.class);
+                i++;
+                ReHomeBusiness objChange = reHomeBusinessBo.loadByID(item.getParent_ID());
+                mainObj.put("ReHomeBusiness" + i, objChange);
             }
         }
         return mainObj;
@@ -288,8 +310,13 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
 
             }
         }
+        mainObj.put("careerBusiness", careerBusiness);
         //get von kinh doanh
-        mainObj.put("capitalBusiness",obj.getBusinessCapital()!=null?obj.getBusinessCapital():"");
+        String num = obj.getBusinessCapital()!=null || !obj.getBusinessCapital().equals("")?obj.getBusinessCapital():"0";
+        int number = Integer.parseInt(num);
+        String capital = Utility.formatNumber(number);
+
+        mainObj.put("capitalBusiness",capital+" đồng");
 
         //get nguoi dai dien
         PersonRepresent per = personRepresentBo.loadPersonRepresentByID(obj.getPersonRepresent_ID());
@@ -312,7 +339,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
         {
             long val = Long.parseLong(birthday);
             Date date=new Date(val);
-            SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+            SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
             String dateText = df2.format(date);
 
             mainObj.put("birthdayRepresent",dateText);
@@ -331,7 +358,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
         {
             long val = Long.parseLong(cnmdDate);
             Date date=new Date(val);
-            SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+            SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
             String dateText = df2.format(date);
 
             mainObj.put("cmndDateRepresent",dateText);

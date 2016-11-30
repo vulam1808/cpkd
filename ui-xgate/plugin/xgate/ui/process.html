@@ -1,0 +1,25 @@
+<div class="row-fluid">
+    <label class="span4 control-label">Tên hồ sơ: </label>
+    <span class="span8">
+        <input name="frmdata_subject" type="text" class="span12"/>
+    </span>
+</div>
+
+<script type="application/javascript">
+    var fnSave = function(){
+        console.log(">>call save function>>");
+
+        $.postJSON(iNet.getUrl('onegate/prodlist'), {}, function (result) {
+            console.log(">> call save function result >>", result);
+        });
+    };
+
+    var fnDelete = function(){
+        console.log(">>call delete function>>");
+
+        $.postJSON(iNet.getUrl('onegate/expwayavailable'), {}, function (result) {
+            console.log(">> call delete function result >>", result);
+        });
+    };
+</script>
+

@@ -1,0 +1,40 @@
+#zone({"inherit":"true"})
+    #scriptBundle("xgate_message_builder")
+        iNet.ns(
+            "iNet.resources.builder.page",
+            "iNet.resources.builder.storage"
+        );
+        if (iNet.resources.builder.page) {
+            iNet.apply(iNet.resources.builder.page, {
+                title : '$text.getText("idesign.page.title")',
+                name : '$text.getText("idesign.page.name")',
+                templateID : '$text.getText("idesign.page.templateID")',
+                creator : '$text.getText("idesign.page.creator")',
+                created : '$text.getText("idesign.page.created")',
+                published : '$text.getText("idesign.page.published")',
+                detach : '$text.getText("idesign.page.detach")',
+                design : '$text.getText("idesign.page.design")',
+                preview : '$text.getText("idesign.page.preview")',
+                workflowName : '$text.getText("idesign.page.workflow.name")',
+                propertyName : '$text.getText("idesign.page.propertyName")',
+                procedureSubject : '$text.getText("idesign.page.procedure.subject")',
+                procedureIndustry : '$text.getText("idesign.page.procedure.industry")',
+                procedureFormUI : '$text.getText("idesign.page.procedure.formUI")',
+                pluginBrief : '$text.getText("idesign.page.plugin.brief")',
+                formUITitle : '$text.getText("idesign.page.formUI.title")',
+                webMode : '$text.getText("idesign.page.mode.web")',
+                mobileMode : '$text.getText("idesign.page.mode.mobile")'
+            });
+        }
+        if (iNet.resources.builder.storage) {
+            iNet.apply(iNet.resources.builder.storage, {
+                title : '$text.getText("idesign.storage.title")',
+                published : '$text.getText("idesign.storage.published")',
+                picture : '$text.getText("idesign.storage.picture")',
+                application : '$text.getText("idesign.storage.application")',
+                keyword : '$text.getText("idesign.storage.keyword")',
+                import : '$text.getText("idesign.storage.import")'
+            });
+        }
+    #end
+#end

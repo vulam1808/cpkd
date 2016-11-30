@@ -43,7 +43,7 @@ import javax.inject.Named;
  *          $
  * @since 1.0
  */
-@Named("TemplateExcelInitBO")
+@Named("ITATemplateExcelInitBO")
 public class TemplateExcelInitBO {
     private static final Logger logger = LoggerFactory.getLogger(TemplateExcelInitBO.class);
 
@@ -84,7 +84,14 @@ public class TemplateExcelInitBO {
                 "License",
                 "Report.xls",
                 "License report!");
-
+        addTemplate(siteID,
+                "Summary4",
+                "Report.xls",
+                "Summary report!");
+        addTemplate(siteID,
+                "List",
+                "Report.xls",
+                "List report!");
         /*addTemplate(siteID,
                 "Task",
                 "Report.xls",

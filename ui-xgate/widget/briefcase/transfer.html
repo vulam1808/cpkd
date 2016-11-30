@@ -1,0 +1,47 @@
+#script("/js/common/inet/lib/grid-2.0.min.js")
+
+#theme("/xgate/css/listview")
+
+#script("/js/xgate/inet/lib/bftransfer.min.js")
+
+#xscript()
+    var recordID = '$ctx.value("recordID")';
+    if (recordID.indexOf("ctx.value") > 0) { recordID = ""; }
+#end
+
+<div id="briefcase-transfer-div" class="hide">
+    <div>
+        <div id="briefcase-transfer-toolbar" class="hide">
+            <button id="briefcase-transfer-back-btn" type="button" class="btn hide">
+                <i class="icon-arrow-left"></i>
+            </button>
+            <button id="briefcase-transfer-send-btn" class="btn btn-primary hide" title="$text.getText('itask.task.send')">
+                <i class="icon-location-arrow"></i>
+            </button>
+        </div>
+        <div id="briefcase-transfer-subject-details" class="hide">
+        </div>
+        <div id="briefcase-transfer-sender-details" class="hide">
+        </div>
+        <div id="briefcase-transfer-data-content" class="hide">
+            <div class="row-fluid">
+                <label class="control-label span2">$text.getText("itask.task.transfer.info")</label>
+                <span class="span10"><textarea id="briefcase-transfer-note-txt" class="span12" rows="3"></textarea></span>
+            </div>
+            <div class="row-fluid hide">
+                <label class="control-label span2"></label>
+                <span class="span10">
+                    <label>
+                        <input id="briefcase-transfer-remove-chk" type="checkbox" class="ace">
+                        <span class="lbl"> $text.getText("itask.task.transfer.remove")</span>
+                    </label>
+                </span>
+            </div>
+            <div class="row-fluid">
+                <div id="briefcase-transfer-agency-basic-search" class="hide"></div>
+                <div id="briefcase-transfer-agency-grid"></div>
+            </div>
+        </div>
+        <div id="briefcase-transfer"></div>
+    </div>
+</div>

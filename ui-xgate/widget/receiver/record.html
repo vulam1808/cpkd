@@ -1,0 +1,71 @@
+#theme("/common/css/jquery/select2")
+
+#script("/js/common/inet/lib/grid.min.js")
+#script("/js/common/inet/lib/select.min.js")
+
+#script("/js/xgate/inet/lib/itask-ui-t-record-service.min.js")
+
+<div id="record-home-div" class="dashboard">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="record-home-print-form-no03-btn" class="btn btn-info hide">
+            <i class="icon-print"></i> $text.getText('ireceiver.record.printFormNo03')
+        </button>
+        <button id="record-home-print-form-no04-btn" class="btn btn-info hide">
+            <i class="icon-print"></i> $text.getText('ireceiver.record.printFormNo04')
+        </button>
+    </div>
+    <div class="wg-content">
+        <div class="row-fluid">
+            <div id="record-home-basic-search" class="hide">
+                <div class="row-fluid">
+                        <span class="span12 input-icon input-icon-right">
+                            <input id="record-home-basic-search-txt" type="text" class="span12" placeholder="$text.getText('briefcase.keyword')"/>
+                            <i class="icon-external-link" data-action-search="expand" style="right: 25px"></i>
+                            <i class="icon-search" data-action-search="search"></i>
+                        </span>
+                </div>
+            </div>
+            <div id="record-home-advance-search" class="dropdown-menu advance-search dropdown-caret" style="padding: 10px;top: 90px;left: 8px;background-color: aliceblue;width: 70%;">
+                <div class="row-fluid hide">
+                    <span class="span2"><label class="ilabel control-label">$text.getText("ireceiver.record.procedure")</label></span>
+                    <span class="span10"><input id="record-home-advance-search-procedure" class="span12" /></span>
+                </div>
+                <div class="row-fluid" style="padding-top: 5px">
+                    <span class="span2"><label class="ilabel control-label">$text.getText("ireceiver.record.status")</label></span>
+                    <span class="span4">
+                        <select id="record-home-advance-search-status" class="span12">
+                            <option value="">$text.getText("ireceiver.record.status.ALL")</option>
+                            <option value="CREATED">$text.getText("ireceiver.record.status.CREATED")</option>
+                            <option value="INPROCESS">$text.getText("ireceiver.record.status.INPROCESS")</option>
+                            <option value="REJECTED">$text.getText("ireceiver.record.status.REJECTED")</option>
+                            <option value="COMPLETED">$text.getText("ireceiver.record.status.COMPLETED")</option>
+                            <option value="PUBLISHED">$text.getText("ireceiver.record.status.PUBLISHED")</option>
+                        </select>
+                    </span>
+                    <span class="span2 hide"><label class="ilabel control-label">$text.getText("ireceiver.record.type")</label></span>
+                    <span class="span4 hide">
+                        <select id="record-home-advance-search-type" class="span12">
+                            <option value="">$text.getText("ireceiver.record.type.all")</option>
+                            <option value="overdue">$text.getText("ireceiver.record.type.overdue")</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="row-fluid hide">
+                    <span class="span2"><label class="ilabel control-label">$text.getText("ireceiver.record.serialNo")</label></span>
+                    <span class="span4"><input id="record-home-advance-search-serialNo" type="text" class="span12" /></span>
+                    <span class="span2"><label class="ilabel control-label">$text.getText("ireceiver.task.receiptNo")</label></span>
+                    <span class="span4"><input id="record-home-advance-search-receiptNo" type="text" class="span12" /></span>
+                </div>
+                <div class="row-fluid advance-search-button" style="padding-top: 5px; text-align: center;">
+                    <button data-action-search="search" type="button" class="btn btn-success btn-small">
+                        <i class="icon-search"></i> $text.getText("app.button.search")
+                    </button>
+                    <button data-action-search="close" type="button" class="btn btn-danger btn-small">
+                        <i class="icon-remove"></i> $text.getText("app.button.close")
+                    </button>
+                </div>
+            </div>
+            <div id="record-home-grid"></div>
+        </div>
+    </div>
+</div>

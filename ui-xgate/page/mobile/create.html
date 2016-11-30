@@ -1,0 +1,63 @@
+#mobile({"secure":"$firm_user"})
+#set($form = $ctx.value('form'))
+#set($controllerName = "taskCreate")
+<div class="m-panel bottom popup" e-controller="$controllerName" e-events="click">
+    <div class="m-header m-theme-a">
+        <i class="btn icon ion-chevron-left" data-close></i>
+        #if(!!$form)
+        <i e-click="onSubmit" class="icon ion-checkmark btn right" style="font-size: 22px"></i>
+        #end
+        <h1>$text.getText("mobile.orbizflow.create")</h1>
+    </div>
+    <div class="m-content">
+        #if(!!$form)
+        <form data-type="form" e-id="form">
+            <input type="hidden" name="form" value="$form"/>
+        </form>
+        #widget("/xgate/widget/mobile/control-render")
+        #else
+        <div class="social-no-feed">
+            <div><i class="icon ion-chatbox-working"></i></div>
+            $text.getText("mobile.orbizflow.form_invalid")
+        </div>
+        #end
+    </div>
+    #if(!!$form)
+    <script>
+        eNet.controller('$controllerName', function (controller) {
+            var controlData;
+            $.getJSON(iNet.getUrl('firmtask/process/request'), {form: '$form'}, function (_data) {
+                if(_data.length == 0 || !_data.mcontent) return;
+                controlData = controller.createControl(_data.mcontent);
+                controller.form.getEl().append(controlData.html);
+            });
+            controller.onSubmit = function () {
+                // Validate data missing
+                var data = controller.form.getFormData();
+                for(var k in data){
+                    if(!data[k]){
+                        var item = controlData.properties[k];
+                        if(item.require == 'true'){
+                            iNet.MessageBox.alert(item.errormessage || 'Chưa nhập thông tin: ' + k);
+                            return;
+                        }
+                    }
+                }
+                var formData = new FormData(controller.form.getEl()[0]);
+                $.postJSON(iNet.getUrl('firmtask/process/submit'), formData, function () {
+                    controller.router.back();
+                    controller.router.fireAction('refresh');
+                    if(iNet.isFunction(window.itaskReload)){
+                        itaskReload();
+                    }
+                }, {
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            };
+        });
+    </script>
+    #end
+</div>
+#end

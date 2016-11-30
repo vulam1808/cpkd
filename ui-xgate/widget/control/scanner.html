@@ -1,0 +1,63 @@
+#script("/js/xgate/inet/lib/scanner.min.js")
+
+<div id="scanner-view-div" class="hide">
+    <div class="wg-toolbar navbar-fixed-top">
+        <button id="scanner-back-btn" class="btn" title="$text.getText('app.button.back')">
+            <i class="icon-arrow-left"></i>
+        </button>
+        <button id="scanner-scan-btn" class="btn btn-primary btn-small">
+            <i class="icon-print"></i> $text.getText("app.button.scan")
+        </button>
+        <button id="scanner-upload-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-upload"></i> $text.getText("app.button.upload")
+        </button>
+        <button id="scanner-download-btn" class="btn btn-primary btn-small hide">
+            <i class="icon-download"></i> $text.getText("app.button.download")
+        </button>
+    </div>
+    <div class="wg-content">
+        <script type="text/javascript" src="https://www.inetcloud.vn/public/tool/jsScanner.js"></script>
+        <script type="application/javascript">
+            function myCallBackFunc(success, mesg, thumbs, images) {
+                imagesScanned = [];
+                $(function(){
+                    $('#scanner-images').html('');
+                    $('#scanner-upload-btn').show();
+                });
+                for(var i = 0; (images instanceof Array) && i < images.length; i++){
+                    addImage(images[i], document.getElementById('scanner-images')); // 'images' is a <div>
+                }
+            }
+
+            var imagesScanned = []; // global var to store all images scanned
+
+            function addImage(imgObj, domParent) {
+                imagesScanned.push(imgObj);
+                var imgSrc = imgObj.datatype == com_asprise_scan_datatype_BASE64 ?
+                'data:' + imgObj.mimetype + ';base64,' + imgObj.data : imgObj.data;
+                var elementImg = createDomElementFromModel({
+                    'name': 'img',
+                    'attributes': {
+                        'class': 'scanned',
+                        'src': imgSrc,
+                        'height': '400',
+                        'class': 'zoom'
+                    }
+                });
+                domParent.appendChild(elementImg);
+            }
+
+            function scan() {
+                com_asprise_scan_request(myCallBackFunc, // callback on dialog closed
+                        com_asprise_scan_cmd_method_SCAN, // action: SCAN
+                        com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS, // return types
+                        {'wia-version': 2} // options
+                );
+            }
+        </script>
+        <div class="hide">
+            <textarea rows="5" cols="180" id="scanner-data" hidden=""></textarea>
+        </div>
+        <div id="scanner-images"></div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.ilabel{
+    font-weight: normal;
+}
+
+.sidebar-shortcuts {
+    min-height: 40px;
+}
+
+.rowTotal {
+    font-weight: bold !important;
+}
+.rowTotal>td{
+    background-color:#E4F2F8 !important;
+}
+
+.scanner:hover{
+    box-shadow: none !important;
+    font-size: 20px;
+    color: white;
+    background: #6FB3E0;
+    padding: 3px;
+    border: 1px solid #DDD;
+    border-color: #f59942;
+}
+
+.scanner {
+    box-shadow: none !important;
+    font-size: 20px;
+    color: white;
+    background: #6FB3E0;
+    padding: 3px;
+    border: 1px solid #DDD;
+    border-color: #DDD;
+}

@@ -46,6 +46,7 @@ $(function () {
             div_title:$('#'+me.id+' #homebusiness-title'),
             div_item:$('#'+me.id+' #homebusiness-item'),
             div_homebusiness_create:$('#'+me.id+' #homebusiness-item-create'),
+            div_rehomebusiness_create:$('#'+me.id+' #rehomebusiness-item-create'),
             div_endbusiness_create:$('#'+me.id+' #endbusiness-item-create'),
             div_changebusiness_create:$('#'+me.id+' #changebusiness-item-create'),
             div_pausebusiness_create:$('#'+me.id+' #pausebusiness-item-create'),
@@ -55,6 +56,7 @@ $(function () {
             div_status_check: $('#'+me.id+' #status-nameBusiness'),
             input_nameBusiness: $('#'+me.id+' #homebusiness-nameBusiness')
         };
+
         this.$formCapMoi = {
             input_address: $('#'+me.id+' #homebusiness-address'),
             input_province: $('#'+me.id+' #homebusiness-province'),
@@ -66,6 +68,9 @@ $(function () {
             input_website: $('#'+me.id+' #homebusiness-website'),
             //dateSubmit:$('homebusiness-dateSubmit'),
             input_areaBusiness: $('#'+me.id+' #homebusiness-areaBusiness')
+        };
+        this.$formCapLai = {
+            input_reason: $('#'+me.id+' #rehomebusiness-reason')
         };
         this.$formCapDoi = {
             input_infoChange: $('#'+me.id+' #changebusiness-infoChange')
@@ -91,6 +96,7 @@ $(function () {
             {
                 $form.input_typeTask.val(resource.common.CAP_MOI);
                 FormService.displayContent($form.div_homebusiness_create,'show');
+                FormService.displayContent($form.div_rehomebusiness_create,'hide');
                 FormService.displayContent($form.div_endbusiness_create,'hide');
                 FormService.displayContent($form.div_changebusiness_create,'hide');
                 FormService.displayContent($form.div_pausebusiness_create,'hide');
@@ -100,6 +106,7 @@ $(function () {
             {
                 $form.input_typeTask.val(resource.common.CAP_DOI);
                 FormService.displayContent($form.div_homebusiness_create,'hide');
+                FormService.displayContent($form.div_rehomebusiness_create,'hide');
                 FormService.displayContent($form.div_endbusiness_create,'hide');
                 FormService.displayContent($form.div_changebusiness_create,'show');
                 FormService.displayContent($form.div_pausebusiness_create,'hide');
@@ -109,6 +116,7 @@ $(function () {
             {
                 $form.input_typeTask.val(resource.common.TAM_NGUNG);
                 FormService.displayContent($form.div_homebusiness_create,'hide');
+                FormService.displayContent($form.div_rehomebusiness_create,'hide');
                 FormService.displayContent($form.div_endbusiness_create,'hide');
                 FormService.displayContent($form.div_changebusiness_create,'hide');
                 FormService.displayContent($form.div_pausebusiness_create,'show');
@@ -119,10 +127,22 @@ $(function () {
                 $form.input_typeTask.val(resource.common.CHAM_DUT);
 
                 FormService.displayContent($form.div_homebusiness_create,'hide');
+                FormService.displayContent($form.div_rehomebusiness_create,'hide');
                 FormService.displayContent($form.div_endbusiness_create,'show');
                 FormService.displayContent($form.div_changebusiness_create,'hide');
                 FormService.displayContent($form.div_pausebusiness_create,'hide');
                 me.setDataChamDut(me.objBusiness);
+            }
+            else if(me.statusType == "CAP_LAI")
+            {
+                $form.input_typeTask.val(resource.common.CAP_LAI);
+
+                FormService.displayContent($form.div_homebusiness_create,'hide');
+                FormService.displayContent($form.div_rehomebusiness_create,'show');
+                FormService.displayContent($form.div_endbusiness_create,'hide');
+                FormService.displayContent($form.div_changebusiness_create,'hide');
+                FormService.displayContent($form.div_pausebusiness_create,'hide');
+                me.setDataCapLai(me.objBusiness);
             }
         };
         loaddata();
@@ -179,6 +199,13 @@ $(function () {
             this.$formCapDoi.input_infoChange.html('').append(str);
             //this.$formCapDoi.input_infoChange.val(__data.infoChange);
             //__data.dateSubmit = CommonService.dateSubmit.val().longToDate();
+
+            return __data;
+        },
+        setDataCapLai:function(data){
+            var __data = data || {};
+
+            this.$formCapLai.input_reason.val(__data.reason);
 
             return __data;
         },

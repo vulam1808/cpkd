@@ -1,0 +1,117 @@
+#set($element = "$element")
+<script>
+    eNet.controller('$controllerName', function (controller) {
+        controller.createControl = function (html) {
+            var data = {},
+                script,
+                jscode;
+
+            html = $('<div>').html(html);
+            html.find('[type="text/properties"]').each(function () {
+                data.properties = JSON.parse(this.innerHTML);
+            }).remove();
+
+            script = html.find('script').last();
+            jscode = script.html().trim();
+            script.remove();
+
+            data.control = __createControl(html, data.properties);
+
+            // Global js in design form
+            if(jscode) {
+                jscode = jscode.replace(/iNet.controls/g, 'control');
+                Function('control', jscode)(data.control);
+            }
+
+            data.html = html.children();
+            return data;
+        };
+
+        function __createControl(controlEl, properties) {
+            var mapControl = {};
+            controlEl.find('[data-control]').each(function () {
+                var name = this.getAttribute('name'),
+                    $element,
+                    control;
+                if (!name) return;
+                $element = controlEl.find('#' + this.id);
+                switch (this.getAttribute('data-control').toLowerCase()) {
+                    case 'date':
+                        control = new eNet.controls.Date({
+                            $element: $element
+                        });
+                        break;
+                    case 'select':
+                        var prop = properties[name];
+                        if (prop) {
+                            control = new eNet.controls.Select({
+                                $element: $element
+                            });
+                            if (prop.service) {
+                                $.getJSON(iNet.getUrl(prop.service), function (data) {
+                                    if (iNet.isArray(data)) {
+                                        renderSelect(data, prop, $element);
+                                    } else if (iNet.isObject(data)) {
+                                        for (var k in data) {
+                                            if (iNet.isArray(data[k])) {
+                                                renderSelect(data[k], prop, $element);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                });
+                            } else if (prop.sourcevalue) {
+                                try {
+                                    renderSelect(JSON.stringify(eval(prop.sourcevalue)), prop, $element);
+                                } catch (e) {}
+                            }
+                        }
+                        break;
+                    case 'widget':
+                        var el = $element.children();
+                        if (el.hasClass("m-panel")) {
+                            control = new iNet.ui.mobile.PagePanel({$element: el});
+                            control.open();
+                        } else if (el.hasClass("m-page")) {
+                            control = new iNet.ui.mobile.Page({$element: el});
+                            control.show();
+                        }
+                        break;
+                    case 'label':
+                        control = $element;
+                        control.setValue = function(val){
+                            this.html(val);
+                        };
+                        control.getValue = function(){
+                            return this.html();
+                        };
+                        mapControl[name] = control;
+                        return;
+                    default :
+                        control = $element;
+                        control.setValue = function(val){
+                            this.val(val);
+                        };
+                        control.getValue = function(){
+                            return this.val();
+                        };
+                        mapControl[name] = control;
+                        return;
+                }
+                controller.page.addControl(name, control);
+                mapControl[name] = control;
+            });
+            return mapControl;
+        }
+
+        function renderSelect(data, prop, el) {
+            if(!iNet.isArray(data)) return;
+            var html = '';
+            for(var i = 0; i < data.length; i++){
+                var item = data[i];
+                html += String.format('<option value="{0}">{1}</option>', item[prop.keyvalue], item[prop.displayvalue]);
+            }
+            el.html(html);
+        }
+    });
+</script>
