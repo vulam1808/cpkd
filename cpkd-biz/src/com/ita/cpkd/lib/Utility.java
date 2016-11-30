@@ -8,6 +8,8 @@ import com.ita.cpkd.model.Province;
 
 import javax.inject.Inject;
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -61,21 +63,18 @@ public class Utility {
         }
         return result;
     }
-    @Inject
-    private DistrictBo districtBo;
-    @Inject
-    private ProvinceBo provinceBo;
-    @Inject
-    private WardBo wardBo;
-    public String getAddress(String address,String provinceid,String districtid, String wardid)
-    {
-        String _address = address;
-        String province= "";
-        if(provinceid !=null)
-        {
-            Province objProvince = provinceBo.load(provinceid);
-            province = objProvince.getName();
+    public static String formatNumber(int number) {
+        if (number < 1000) {
+            return String.valueOf(number);
         }
-
+        try {
+            NumberFormat formatter = new DecimalFormat("###,###");
+            String resp = formatter.format(number);
+            resp = resp.replaceAll(",", ".");
+            return resp;
+        } catch (Exception e) {
+            return "";
+        }
     }
+
 }

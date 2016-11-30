@@ -1,9 +1,9 @@
 package com.ita.cpkd.report;
 
-import com.inet.xportal.module.web.model.FirmProfileModel;
+
 import com.inet.xportal.nosql.web.bo.SiteBO;
 import com.inet.xportal.nosql.web.bo.SubFirmProfileBO;
-import com.inet.xportal.nosql.web.data.SearchDTO;
+
 import com.inet.xportal.nosql.web.model.SiteDataModel;
 import com.inet.xportal.nosql.web.model.SubFirmProfile;
 import com.inet.xportal.report.ReportService;
@@ -51,8 +51,8 @@ public class LicenseReportExcelDataService implements ReportService {
             logger.debug("Site/subfirm ID : {} ", siteID);
 
             String homeBusinessID = XParamUtils.getString("homeBusinessID", params);
-            homeBusinessBo.loadReportLicenseByHomeBusinessID(homeBusinessID);
-            reports.put("report", homeBusinessID);
+            JSONObject obj = homeBusinessBo.loadReportLicenseByHomeBusinessID(homeBusinessID);
+            reports.put("report", obj);
             final SiteDataModel siteData = siteBO.load(siteID);
 
 

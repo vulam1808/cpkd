@@ -33,12 +33,12 @@ import java.util.Map;
  * @version $Id: ReportGeneratorDataservice.java Jan 10, 2014 3:48:48 PM phongtt@inetcloud.vn $
  * @since 1.0
  */
-@Named("onegateexcelgenerator")
-@XPortalDataService(roles = {WebConstant.ROLE_USER}, description = "Excel service")
-@XPortalPageRequest(uri = "onegate/excel/generator", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
+@Named("ITAexcelgenerator")
+@XPortalDataService(roles = {"cpkd.report"}, description = "Excel service")
+@XPortalPageRequest(uri = "cpkd/excel/generator", result = WebConstant.ACTION_XSTREAM_JSON_RESULT)
 public class ReportGeneratorDataservice extends AbstractReportGenerator {
     private static final Logger logger = LoggerFactory.getLogger(
-            com.inet.xportal.itask.excel.TaskGeneratorDataservice.class);
+            ReportGeneratorDataservice.class);
 
     @Inject
     private ReportTemplateBO templateBO;
