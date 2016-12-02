@@ -11,7 +11,9 @@ $(function () {
         var url = {
             update_statusProcess: iNet.getUrl('ita/businessprocess/updatestatus'),
             export_excel: iNet.getUrl('cpkd/excel/generator'),
-            load_infoDetail: iNet.getUrl('ita/homebusiness/loadinfo')
+            load_infoDetail: iNet.getUrl('ita/homebusiness/loadinfo'),
+            chkstatus: iNet.getUrl('report/file/chkstatus'),//reportID
+            download: iNet.getUrl('report/file/download')
 
         };
         var $form = {

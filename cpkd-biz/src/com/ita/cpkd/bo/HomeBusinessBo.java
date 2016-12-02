@@ -312,7 +312,7 @@ public class HomeBusinessBo extends MagicContentBO<HomeBusiness> {
         }
         mainObj.put("careerBusiness", careerBusiness);
         //get von kinh doanh
-        String num = obj.getBusinessCapital()!=null || !obj.getBusinessCapital().equals("")?obj.getBusinessCapital():"0";
+        String num = obj.getBusinessCapital()!=null && !obj.getBusinessCapital().equals("")?obj.getBusinessCapital():"0";
         int number = Integer.parseInt(num);
         String capital = Utility.formatNumber(number);
 

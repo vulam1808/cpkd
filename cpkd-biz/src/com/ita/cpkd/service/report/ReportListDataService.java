@@ -65,10 +65,11 @@ public class ReportListDataService extends DataServiceMarker {
         try {
             String dateStart = XParamUtils.getString("dateStart", params);
             String dateEnd = XParamUtils.getString("dateEnd", params);
-            String typeTask = XParamUtils.getString("typeTask", params);
-
+            String lstTypeTask = XParamUtils.getString("lstTypeTask", params);
+            String lstAreaID = XParamUtils.getString("lstAreaID", params);
+            logger.debug("ReportListDataService params: {} , {} ", lstTypeTask,lstAreaID);
             logger.debug("ReportListDataService params: {} , {} ", dateStart,dateEnd);
-            obj = businessDetailBo.loadTaskByStatusType(dateStart,dateEnd,typeTask);
+            obj = businessDetailBo.loadTaskByStatusType(dateStart,dateEnd,lstTypeTask,lstAreaID);
 
         }
         catch (Throwable ex) {

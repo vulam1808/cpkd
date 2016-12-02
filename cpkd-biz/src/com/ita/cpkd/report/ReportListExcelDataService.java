@@ -37,10 +37,10 @@ public class ReportListExcelDataService implements ReportService {
 
             String dateStart = XParamUtils.getString("dateStart", params);
             String dateEnd = XParamUtils.getString("dateEnd", params);
-            String typeTask = XParamUtils.getString("typeTask", params);
+            String lstTypeTask = XParamUtils.getString("lstTypeTask", params);
+            String lstAreaID = XParamUtils.getString("lstAreaID", params);
 
-
-            List<JSONObject> obj = businessDetailBo.loadTaskByStatusType(dateStart, dateEnd, typeTask);
+            List<JSONObject> obj =  businessDetailBo.loadTaskByStatusType(dateStart,dateEnd,lstTypeTask,lstAreaID);
             logger.debug("ReportListExcelDataService params: {} ", obj.size());
 
 

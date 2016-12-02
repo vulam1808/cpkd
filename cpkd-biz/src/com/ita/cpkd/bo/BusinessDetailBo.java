@@ -30,10 +30,12 @@ import com.ita.cpkd.model.*;
 import com.inet.xportal.nosql.web.bf.MagicContentBF;
 import com.inet.xportal.nosql.web.bo.MagicContentBO;
 import com.inet.xportal.web.context.ContentContext;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -334,18 +336,27 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
 
         return objbusinessDetail;
     }
-    public List<JSONObject> loadTaskByStatusType(String dateStart, String dateEnd,String statusType)
+    public List<JSONObject> loadTaskByStatusType(String dateStart, String dateEnd,String lstStatusType,String lstAreaID)
     {
         List<JSONObject> lstObj = loadAllTaskFromTo(dateStart, dateEnd);
         List<JSONObject> lstObjTask=new ArrayList<JSONObject>();
-        if(statusType.equals("") || statusType == null || statusType.equals("ALL"))
-        {
-            logger.debug("load lstObj ALL : {}", lstObj.size());
-            return lstObj;
-        }
+       /* String[] arrayType= lstStatusType.split(",");
+        arrayType.equals()*/
         for (JSONObject item : lstObj) {
+            Boolean blType = false;
+            Boolean blarea = false;
             String _statusType = item.getString("statusType");
-            if(_statusType.equals(statusType))
+            String _areaBusinessID = item.getString("areaBusinessID");
+          /*  logger.debug("lstStatusType.contains(_statusType): {}", lstStatusType.contains(_statusType));*/
+            if(lstStatusType == null || lstStatusType.contains(_statusType) || lstStatusType.equals("") )
+            {
+                blType = true;
+            }
+            if(lstAreaID == null || lstAreaID.contains(_areaBusinessID) || lstAreaID.equals("") )
+            {
+                blarea = true;
+            }
+            if(blType & blarea)
             {
                 lstObjTask.add(item);
             }
@@ -502,7 +513,7 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
                     }
                 }
 
-                List<Details> lstRe =item.getList_endBusiness_ID();
+                List<Details> lstRe =item.getList_reHomeBusiness_ID();
                 if(lstRe!=null && lstRe.size() > 0) {
                     for (Object childNode : lstRe) {
                         JSONObject fromObject = JSONObject.fromObject(childNode);
@@ -690,6 +701,8 @@ public class BusinessDetailBo extends MagicContentBO<BusinessDetail> {
             }
         }
         obj.put("areaBusiness",strAreaBusiness);
+        obj.put("areaBusinessID",objBusiness.getAreaBusiness_ID());
+
         String strPer= "";
         if(objBusiness.getAreaBusiness_ID() !=null && lstper!=null)
         {

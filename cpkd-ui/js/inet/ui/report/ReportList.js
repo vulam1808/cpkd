@@ -17,6 +17,7 @@ $(function() {
             view: iNet.getUrl('cpkd/reportlist'),
             load_enum: iNet.getUrl('ita/enums/load'),
             load_infoDetail: iNet.getUrl('ita/homebusiness/loadinfo'),
+            load_areaBusiness: iNet.getUrl('ita/areabusiness/load'),
             export_excel: iNet.getUrl('cpkd/excel/generator'),
             chkstatus: iNet.getUrl('report/file/chkstatus'),//reportID
             download: iNet.getUrl('report/file/download')
@@ -30,7 +31,9 @@ $(function() {
             button_excel: $('#report-export-excel-btn'),
             input_dateStart: $('#input-dateStart'),
             input_dateEnd: $('#input-dateEnd'),
-            input_typeTask: $('#input-typeTask')
+            input_typeTask: $('#input-typeTask'),
+            input_areaBusiness: $('#input-areaBusiness')
+
         };
         var __config = config || {};
         iNet.apply(this, __config);// apply configuration
@@ -53,17 +56,37 @@ $(function() {
         }).data('datepicker');
         $formReport.input_dateEnd.val(CommonService.getCurrentDate());
 
+        var loadAreaBusiness = function(){
+            $formReport.input_areaBusiness =  FormService.createSelect('input-areaBusiness', [], 'id', 1, false, true);
+            //me.$form.input_areaBusiness.setValue(value || "");
+
+            var __listAreaBusiness = [];
+                $.postJSON(url.load_areaBusiness, {}, function (result) {
+                    var __result = result || {};
+                    if (CommonService.isSuccess(__result)) {
+                        //var __listProvince = [];
+                        $.each(__result.items || [], function(i, obj){
+                            __listAreaBusiness.push({id: obj.uuid, code: obj.code, name: obj.area});
+                        });
+                        $formReport.input_areaBusiness = FormService.createSelect('input-areaBusiness',__listAreaBusiness, 'id', 1, false, true);
+                        console.log('__listAreaBusiness>>',__listAreaBusiness);
+                    }
+                });
+
+
+        };
+        loadAreaBusiness();
         var listStatusBusiness = function() {
             var __dataTypeTaskBusiness  = [];
-            __dataTypeTaskBusiness.push({id: "ALL", name: "Tất cả"})
-            $formReport.input_typeTask = FormService.createSelect('input-typeTask', __dataTypeTaskBusiness, 'id', 1, false, false);
+            //__dataTypeTaskBusiness.push({id: "ALL", name: "Tất cả"})
+            $formReport.input_typeTask = FormService.createSelect('input-typeTask', __dataTypeTaskBusiness, 'id', 1, false, true);
             $.postJSON(url.load_enum, {typeEnum: 'STATUS'}, function (result) {
                 var __result = result || [];
                 $(__result).each(function (i, item) {
                     __dataTypeTaskBusiness.push({id: item, name: resource.common[item]});
                 });
                 console.log("__dataTypeTaskBusiness>>",__dataTypeTaskBusiness);
-                $formReport.input_typeTask = FormService.createSelect('input-typeTask', __dataTypeTaskBusiness, 'id', 1, false, false);
+                $formReport.input_typeTask = FormService.createSelect('input-typeTask', __dataTypeTaskBusiness, 'id', 1, false, true);
                 $formReport.input_typeTask.setValue('ALL');
             });
         }
@@ -113,6 +136,11 @@ $(function() {
 
             },{
                 property : 'statusTypeName',
+                label : resource.common.type_task,
+                sortable : true,
+                type : 'text'
+            },{
+                property : 'statusProcessName',
                 label : resource.common.status,
                 sortable : true,
                 type : 'text'
@@ -154,7 +182,7 @@ $(function() {
                     labelCls: 'label label-success',
                     fn : function(record) {
                         var __data = {type:"License",homeBusinessID:record.idHomeBusiness, statusType : record.statusType};
-                        $.postJSON(url.export_license, __data, function (result) {
+                        $.postJSON(url.export_excel, __data, function (result) {
                             var __result = result || {};
                             console.log("Info Detail",__result);
                             var __result = result || {};
@@ -173,11 +201,11 @@ $(function() {
                     visibled: function (data){
                         var type = data.statusType;
                         //console.log("statusType visibled export >>> ",type);
-                        if(type=="CAP_MOI" || type=="CAP_DOI")
+                        /*if(type=="CAP_MOI" || type=="CAP_DOI")
                         {
                             return true;
-                        }
-                        return false;
+                        }*/
+                        return true;
                     }
                 }]
             }]
@@ -202,6 +230,8 @@ $(function() {
                 $.each(_data, function(i, obj){
                     obj.dateSubmit1 = obj.dateSubmit.longToDate();
                     obj.statusTypeName = resource.common[obj.statusType]
+                    obj.statusProcessName = resource.common[obj.statusProcess]
+
                     if(obj.namePeprensent == "")
                     {
                         obj.namePeprensent ="Đang cập nhật ...";
@@ -224,7 +254,10 @@ $(function() {
             var __params = {};
             __params.dateStart= $formReport.input_dateStart.val().dateToLong();
             __params.dateEnd= $formReport.input_dateEnd.val().dateToLong();
-            __params.typeTask= $formReport.input_typeTask.getValue();
+            __params.lstTypeTask= $formReport.input_typeTask.getValue().toString();
+            __params.lstAreaID= $formReport.input_areaBusiness.getValue().toString();
+            console.log("__params.lstTypeTask",__params.lstTypeTask);
+            console.log("__params.lstAreaID",__params.lstAreaID);
             grid.setParams(__params);
             grid.load();
         });
